@@ -1,0 +1,88 @@
+\documentclass[10pt,a4paper]{report}
+\usepackage[top=3cm, bottom=2.5cm, left=3cm, right=2.5cm] {geometry}
+\usepackage {bsymb,b2latex}
+\usepackage{fancyhdr,lastpage}
+\lhead{\rm An Event-B Specification of H4}
+\rhead {\rm Page \thepage~of \pageref{LastPage}}
+\lfoot{}\cfoot{}\rfoot{}
+\pagestyle{fancy}
+%---------------------------------------------------------
+\begin{document}
+\thispagestyle{empty}
+\begin{description}
+\BTitle{H4}{11 Apr 2008}{04:30:02 PM}
+\MACHINE{H4}
+\REFINES{H3}
+\SEES{Clients, Central, droitDuTravail}
+\VARIABLES
+	\begin{description}
+		\Item{ Ok }
+		\Item{ Wait }
+		\Item{ Frustrated }
+		\Item{ Active }
+		\Item{ OpClient }
+		\Item{ NbPause }
+		\Item{ ClientTick }
+		\Item{ NumTick }
+	\end{description}
+\EVENTS
+	\INITIALISATION
+		\begin{description}
+			\Item{inherited}
+		\end{description}
+	\EVT {Clac}
+		\begin{description}
+			\Item{inherited}
+		\end{description}
+	\EVT {Call}
+		\begin{description}
+			\Item{inherited}
+		\end{description}
+	\EVT {Panne}
+		\begin{description}
+			\Item{inherited}
+		\end{description}
+	\EVT {Fix}
+		\begin{description}
+			\Item{inherited}
+		\end{description}
+	\EVT {Break}
+		\begin{description}
+			\Item{inherited}
+		\end{description}
+	\EVT {UnBreak}
+		\begin{description}
+			\Item{inherited}
+		\end{description}
+	\EVT {Answer}
+	\REF{Answer}
+		\begin{description}
+		\Any
+			\begin{description}
+			\Item{ c }
+			\Item{ o }
+			\end{description}
+		\Where
+			\begin{description}
+			\nItem{ grd3 }{ o \in  Operateurs }
+			\nItem{ grd2 }{ c \in  Wait }
+			\nItem{ grd1 }{ Active(o) = libre }
+			\nItem{ grd4 }{ c \notin  ran(OpClient) }
+			\nItem{ grd6 }{ c \in  dom(ClientTick) }
+			\nItem{ grd5 }{ \lnot (\exists cl\qdot (cl \notin  ran(OpClient) \land  
+		\\\hspace*{1,2 cm}  (cl \in  Wait) \land  
+		\\\hspace*{1,2 cm}  (cl \in  dom(ClientTick)) \land 
+		\\\hspace*{1,2 cm}  (ClientTick(cl) \leq  ClientTick(c)))) }
+			\cmt{ Le client qui a le ticket
+le plus petit est prioritaire. }
+			\end{description}
+		\Then
+			\begin{description}
+			\nItem{ act1 }{ Active(o) :=  reponse }
+			\nItem{ act2 }{ OpClient(o) :=  c }
+			\end{description}
+		\End
+		\end{description}
+\END
+\end{description}
+\end{document}
