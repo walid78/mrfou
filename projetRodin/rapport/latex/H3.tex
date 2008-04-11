@@ -1,0 +1,127 @@
+\thispagestyle{empty}
+\begin{description}
+\BTitle{H3}{11 Apr 2008}{04:17:18 PM}
+\MACHINE{H3}
+\REFINES{H2}
+\SEES{Clients, Central, droitDuTravail}
+\VARIABLES
+	\begin{description}
+		\Item{ Ok }
+		\Item{ Wait }
+		\Item{ Frustrated }
+		\Item{ Active }
+		\Item{ OpClient }
+		\Item{ NbPause }
+		\Item{ ClientTick }
+		\Item{ NumTick }
+	\end{description}
+\INVARIANTS
+	\begin{description}
+		\nItem{ inv2 }{ ClientTick \in  CLIENTS \pinj  \nat }
+		\nItem{ inv1 }{ NumTick \in  \nat }
+		\cmt{ Numéro de ticket global. }
+	\end{description}
+\EVENTS
+	\INITIALISATION
+		\begin{description}
+		\Begin
+			\begin{description}
+			\nItem{ act1 }{ Wait,Frustrated :=  \emptyset ,\emptyset  }
+			\nItem{ act2 }{ Ok :=  CLIENTS }
+			\nItem{ act3 }{ Active :=  Operateurs \cprod  \{ libre\}  }
+			\nItem{ act4 }{ OpClient :=  Operateurs \cprod  \emptyset  }
+			\nItem{ act5 }{ NbPause :=  Operateurs \cprod  \{ 0\}  }
+			\nItem{ act6 }{ ClientTick :=  CLIENTS \cprod  \emptyset  }
+			\nItem{ act7 }{ NumTick :=  0 }
+			\end{description}
+		\End
+		\end{description}
+	\EVT {Clac}
+	\REF{Clac}
+		\begin{description}
+		\Any
+			\begin{description}
+			\Item{ c }
+			\Item{ o }
+			\end{description}
+		\Where
+			\begin{description}
+			\nItem{ grd1 }{ c \in  Wait }
+			\nItem{ grd2 }{ o \in  Operateurs }
+			\nItem{ grd3 }{ Active(o) = reponse }
+			\nItem{ grd4 }{ OpClient(o) = c }
+			\nItem{ grd5 }{ c\in dom(ClientTick) }
+			\end{description}
+		\Then
+			\begin{description}
+			\nItem{ act1 }{ Wait,Frustrated :=  Wait\setminus \{ c\} ,Frustrated\bunion \{ c\}  }
+			\nItem{ act2 }{ Active(o) :=  libre }
+			\nItem{ act3 }{ OpClient :=  OpClient \setminus  \{ o \mapsto  c\}  }
+			\nItem{ act4 }{ ClientTick :=  ClientTick \setminus  \{ c \mapsto  ClientTick(c)\}  }
+			\end{description}
+		\End
+		\end{description}
+	\EVT {Call}
+	\REF{Call}
+		\begin{description}
+		\Any
+			\begin{description}
+			\Item{ c }
+			\end{description}
+		\Where
+			\begin{description}
+			\nItem{ grd1 }{ c\in Frustrated }
+			\nItem{ grd2 }{ c\notin dom(ClientTick) }
+			\nItem{ grd3 }{ NumTick\notin ran(ClientTick) }
+			\end{description}
+		\Then
+			\begin{description}
+			\nItem{ act1 }{ Wait,Frustrated:= Wait\bunion \{ c\} ,Frustrated\setminus \{ c\}  }
+			\nItem{ act2 }{ ClientTick(c):= NumTick }
+			\nItem{ act3 }{ NumTick:= NumTick+1 }
+			\end{description}
+		\End
+		\end{description}
+	\EVT {Panne}
+		\begin{description}
+			\Item{inherited}
+		\end{description}
+	\EVT {Fix}
+	\REF{Fix}
+		\begin{description}
+		\Any
+			\begin{description}
+			\Item{ c }
+			\Item{ o }
+			\end{description}
+		\Where
+			\begin{description}
+			\nItem{ grd1 }{ c \in  Wait }
+			\nItem{ grd2 }{ o \in  Operateurs }
+			\nItem{ grd3 }{ Active(o) = reponse }
+			\nItem{ grd4 }{ OpClient(o) = c }
+			\nItem{ grd5 }{ c\in dom(ClientTick) }
+			\end{description}
+		\Then
+			\begin{description}
+			\nItem{ act1 }{ Ok,Wait := Ok\bunion \{ c\} ,Wait\setminus \{ c\}  }
+			\nItem{ act2 }{ Active(o) :=  libre }
+			\nItem{ act3 }{ OpClient :=  OpClient \setminus  \{ o \mapsto  c\}  }
+			\nItem{ act4 }{ ClientTick :=  ClientTick \setminus  \{ c \mapsto  ClientTick(c)\}  }
+			\end{description}
+		\End
+		\end{description}
+	\EVT {Break}
+		\begin{description}
+			\Item{inherited}
+		\end{description}
+	\EVT {UnBreak}
+		\begin{description}
+			\Item{inherited}
+		\end{description}
+	\EVT {Answer}
+		\begin{description}
+			\Item{inherited}
+		\end{description}
+\END
+\end{description}

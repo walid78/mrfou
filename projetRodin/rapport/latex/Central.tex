@@ -1,0 +1,33 @@
+\thispagestyle{empty}
+\begin{description}
+\BTitle{Central}{11 Apr 2008}{04:16:59 PM}
+\CONTEXT{Central}
+\SETS
+	\begin{description}
+		\Item{ Operateurs }
+		\Item{ Etat }
+	\end{description}
+\CONSTANTS
+	\begin{description}
+		\Item{ pause }
+		\Item{ reponse }
+		\Item{ libre }
+		\Item{ m }
+		\bcmt{ Le nombre d'opérateurs }
+	\end{description}
+\AXIOMS
+	\begin{description}
+		\nItem{ axm1 }{ Etat = \{ pause, reponse, libre\}  }
+		\nItem{ axm2 }{ pause \neq  reponse }
+		\nItem{ axm3 }{ pause \neq  libre }
+		\nItem{ axm4 }{ reponse \neq  libre }
+		\nItem{ axm5 }{ m \in  \nat_1 }
+		\nItem{ axm6 }{ finite(Operateurs) }
+		\nItem{ axm7 }{ card(Operateurs) = m }
+	\end{description}
+\THEOREMS
+	\begin{description}
+		\nItem{ thm1 }{ finite(Etat) }
+	\end{description}
+\END
+\end{description}

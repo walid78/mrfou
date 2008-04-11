@@ -1,0 +1,153 @@
+\thispagestyle{empty}
+\begin{description}
+\BTitle{H2}{11 Apr 2008}{04:17:15 PM}
+\MACHINE{H2}
+\REFINES{H1}
+\SEES{Clients, Central, droitDuTravail}
+\VARIABLES
+	\begin{description}
+		\Item{ Ok }
+		\Item{ Wait }
+		\Item{ Frustrated }
+		\Item{ Active }
+		\Item{ OpClient }
+		\Item{ NbPause }
+	\end{description}
+\INVARIANTS
+	\begin{description}
+		\nItem{ inv1 }{ Active \in  Operateurs \tfun  Etat }
+		\nItem{ inv2 }{ OpClient \in  Operateurs \pinj  Wait }
+		\nItem{ inv3 }{ dom(OpClient) = dom(Active \ranres  \{ reponse\} ) }
+		\nItem{ inv4 }{ NbPause \in  Operateurs \tfun  0\upto pauseMax }
+	\end{description}
+\EVENTS
+	\INITIALISATION
+		\begin{description}
+		\Begin
+			\begin{description}
+			\nItem{ act1 }{ Wait,Frustrated :=  \emptyset ,\emptyset  }
+			\nItem{ act2 }{ Ok :=  CLIENTS }
+			\nItem{ act3 }{ Active :=  Operateurs \cprod  \{ libre\}  }
+			\nItem{ act4 }{ OpClient :=  Operateurs \cprod  \emptyset  }
+			\nItem{ act5 }{ NbPause :=  Operateurs \cprod  \{ 0\}  }
+			\end{description}
+		\End
+		\end{description}
+	\EVT {Clac}
+	\REF{Clac}
+		\begin{description}
+		\Any
+			\begin{description}
+			\Item{ c }
+			\Item{ o }
+			\end{description}
+		\Where
+			\begin{description}
+			\nItem{ grd1 }{ c \in  Wait }
+			\nItem{ grd2 }{ o \in  Operateurs }
+			\nItem{ grd4 }{ Active(o) = reponse }
+			\nItem{ grd3 }{ OpClient(o) = c }
+			\end{description}
+		\Then
+			\begin{description}
+			\nItem{ act1 }{ Wait,Frustrated :=  Wait\setminus \{ c\} ,Frustrated\bunion \{ c\}  }
+			\nItem{ act2 }{ Active(o) :=  libre }
+			\nItem{ act3 }{ OpClient :=  OpClient \setminus  \{ o \mapsto  c\}  }
+			\end{description}
+		\End
+		\end{description}
+	\EVT {Call}
+		\begin{description}
+			\Item{inherited}
+		\end{description}
+	\EVT {Panne}
+		\begin{description}
+			\Item{inherited}
+		\end{description}
+	\EVT {Fix}
+	\REF{Fix}
+		\begin{description}
+		\Any
+			\begin{description}
+			\Item{ c }
+			\Item{ o }
+			\end{description}
+		\Where
+			\begin{description}
+			\nItem{ grd1 }{ c \in  Wait }
+			\nItem{ grd2 }{ o \in  Operateurs }
+			\nItem{ grd4 }{ Active(o) = reponse }
+			\nItem{ grd3 }{ OpClient(o) = c }
+			\end{description}
+		\Then
+			\begin{description}
+			\nItem{ act1 }{ Ok,Wait := Ok\bunion \{ c\} ,Wait\setminus \{ c\}  }
+			\nItem{ act2 }{ Active(o) :=  libre }
+			\nItem{ act3 }{ OpClient :=  OpClient \setminus  \{ o \mapsto  c\}  }
+			\end{description}
+		\End
+		\end{description}
+	\EVT {Break}
+		\begin{description}
+		\Any
+			\begin{description}
+			\Item{ o }
+			\end{description}
+		\Where
+			\begin{description}
+			\nItem{ grd1 }{ o \in  Operateurs }
+			\nItem{ grd2 }{ Active(o) = libre }
+			\nItem{ grd4 }{ NbPause(o) <  pauseMax }
+			\nItem{ grd3 }{ card(Active \ranres  \{ libre\} ) > 
+		\\\hspace*{1,2 cm}  card(Wait \setminus  ran(OpClient)) }
+			\cmt{ Nombre d'opérateurs suffisant
+pour traiter les clients en attente. }
+			\end{description}
+		\Then
+			\begin{description}
+			\nItem{ act1 }{ Active(o) :=  pause }
+			\nItem{ act2 }{ NbPause(o) :=  NbPause(o)+1 }
+			\end{description}
+		\End
+		\end{description}
+	\EVT {UnBreak}
+		\begin{description}
+		\Any
+			\begin{description}
+			\Item{ o }
+			\end{description}
+		\Where
+			\begin{description}
+			\nItem{ grd1 }{ o \in  Operateurs }
+			\nItem{ grd2 }{ Active(o) = pause }
+			\end{description}
+		\Then
+			\begin{description}
+			\nItem{ act1 }{ Active(o) :=  libre }
+			\end{description}
+		\End
+		\end{description}
+	\EVT {Answer}
+		\begin{description}
+		\Any
+			\begin{description}
+			\Item{ c }
+			\Item{ o }
+			\end{description}
+		\Where
+			\begin{description}
+			\nItem{ grd3 }{ o \in  Operateurs }
+			\nItem{ grd2 }{ c \in  Wait }
+			\nItem{ grd1 }{ Active(o) = libre }
+			\nItem{ grd4 }{ c \notin  ran(OpClient) }
+			\end{description}
+		\Then
+			\begin{description}
+			\nItem{ act1 }{ Active(o) :=  reponse }
+			\nItem{ act2 }{ OpClient(o) :=  c }
+			\end{description}
+		\End
+		\end{description}
+\END
+\end{description}
+x
