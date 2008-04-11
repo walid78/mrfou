@@ -1,0 +1,61 @@
+\thispagestyle{empty}
+\begin{description}
+\BTitle{H0}{11 Apr 2008}{04:17:08 PM}
+\MACHINE{H0}
+\SEES{Clients}
+\VARIABLES
+	\begin{description}
+		\Item{ Ok }
+		\Item{ Lose }
+	\end{description}
+\INVARIANTS
+	\begin{description}
+		\nItem{ inv1 }{ Ok\subseteq CLIENTS }
+		\nItem{ inv2 }{ Lose\subseteq CLIENTS }
+		\nItem{ inv3 }{ Ok\bunion Lose=CLIENTS }
+		\nItem{ inv4 }{ Ok\binter Lose=\emptyset  }
+	\end{description}
+\EVENTS
+	\INITIALISATION
+		\begin{description}
+		\Begin
+			\begin{description}
+			\nItem{ act1 }{ Ok:= CLIENTS }
+			\nItem{ act2 }{ Lose:= \emptyset  }
+			\end{description}
+		\End
+		\end{description}
+	\EVT {Panne}
+		\begin{description}
+		\Any
+			\begin{description}
+			\Item{ c }
+			\end{description}
+		\Where
+			\begin{description}
+			\nItem{ grd1 }{ c\in Ok }
+			\end{description}
+		\Then
+			\begin{description}
+			\nItem{ act1 }{ Ok,Lose:= Ok\setminus \{ c\} ,Lose\bunion \{ c\}  }
+			\end{description}
+		\End
+		\end{description}
+	\EVT {Fix}
+		\begin{description}
+		\Any
+			\begin{description}
+			\Item{ c }
+			\end{description}
+		\Where
+			\begin{description}
+			\nItem{ grd1 }{ c\in Lose }
+			\end{description}
+		\Then
+			\begin{description}
+			\nItem{ act1 }{ Lose,Ok:= Lose\setminus \{ c\} ,Ok\bunion \{ c\}  }
+			\end{description}
+		\End
+		\end{description}
+\END
+\end{description}

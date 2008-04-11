@@ -1,0 +1,98 @@
+\thispagestyle{empty}
+\begin{description}
+\BTitle{H1}{11 Apr 2008}{04:17:12 PM}
+\MACHINE{H1}
+\REFINES{H0}
+\SEES{Clients}
+\VARIABLES
+	\begin{description}
+		\Item{ Ok }
+		\Item{ Wait }
+		\Item{ Frustrated }
+	\end{description}
+\INVARIANTS
+	\begin{description}
+		\nItem{ inv1 }{ Wait \subseteq  Lose }
+		\nItem{ inv2 }{ Frustrated \subseteq  Lose }
+		\nItem{ inv3 }{ Wait \binter  Frustrated = \emptyset  }
+		\nItem{ inv4 }{ Lose = Wait \bunion  Frustrated }
+		\nItem{ inv5 }{ finite(Wait) }
+	\end{description}
+\EVENTS
+	\INITIALISATION
+		\begin{description}
+		\Begin
+			\begin{description}
+			\nItem{ act1 }{ Ok:= CLIENTS }
+			\nItem{ act2 }{ Wait,Frustrated:= \emptyset ,\emptyset  }
+			\end{description}
+		\End
+		\end{description}
+	\EVT {Panne}
+	\REF{Panne}
+		\begin{description}
+		\Any
+			\begin{description}
+			\Item{ c }
+			\end{description}
+		\Where
+			\begin{description}
+			\nItem{ grd1 }{ c\in Ok }
+			\end{description}
+		\Then
+			\begin{description}
+			\nItem{ act1 }{ Ok,Frustrated:= Ok\setminus \{ c\} ,Frustrated \bunion  \{ c\}  }
+			\end{description}
+		\End
+		\end{description}
+	\EVT {Fix}
+	\REF{Fix}
+		\begin{description}
+		\Any
+			\begin{description}
+			\Item{ c }
+			\end{description}
+		\Where
+			\begin{description}
+			\nItem{ grd1 }{ c\in Wait }
+			\end{description}
+		\Then
+			\begin{description}
+			\nItem{ act1 }{ Ok,Wait := Ok\bunion \{ c\} ,Wait\setminus \{ c\}  }
+			\end{description}
+		\End
+		\end{description}
+	\EVT {Clac}
+		\begin{description}
+		\Any
+			\begin{description}
+			\Item{ c }
+			\end{description}
+		\Where
+			\begin{description}
+			\nItem{ grd1 }{ c\in Wait }
+			\end{description}
+		\Then
+			\begin{description}
+			\nItem{ act1 }{ Wait,Frustrated := Wait\setminus \{ c\} ,Frustrated\bunion \{ c\}  }
+			\end{description}
+		\End
+		\end{description}
+	\EVT {Call}
+		\begin{description}
+		\Any
+			\begin{description}
+			\Item{ c }
+			\end{description}
+		\Where
+			\begin{description}
+			\nItem{ grd1 }{ c\in Frustrated }
+			\end{description}
+		\Then
+			\begin{description}
+			\nItem{ act1 }{ Wait,Frustrated:= Wait\bunion \{ c\} ,Frustrated\setminus \{ c\}  }
+			\end{description}
+		\End
+		\end{description}
+\END
+\end{description}

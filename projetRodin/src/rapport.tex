@@ -1,0 +1,97 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[francais]{babel}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{color} 
+\usepackage{enumerate}
+\usepackage[colorlinks=true, urlcolor=blue]{hyperref}
+\usepackage[top=3cm, bottom=2.5cm, left=3cm, right=2.5cm] {geometry}
+\usepackage {latex/bsymb,latex/b2latex}
+\usepackage{fancyhdr}
+
+%%%%% Mise en page %%%%%
+\addtolength{\textwidth}{3cm}
+\addtolength{\oddsidemargin}{-1.5cm}
+\textheight=22cm % longueur utile de la page
+\topmargin=-2cm % marge haute
+%\headsep=20pt % séparation 20 points entre entête et texte
+%\footskip=20pt % idem séparation pied de page
+
+%%%%% Entetes et Enpieds de pages %%%%%
+\pagestyle{fancy}
+\lhead{\footnotesize{\textit{Hannier Julien, Kuntz Fabien}}}
+\rhead{\footnotesize{\textit{Projet de Conceptions Formelles}}}
+
+%%%%% Numérotation sections %%%%
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+
+%%%%% Titre %%%%%
+\newlength{\larg}
+\setlength{\larg}{14.5cm}
+
+\title{
+{\rule{\larg}{1mm}}\vspace{7mm}
+\begin{flushright}
+ \Huge{\bf Implémenter un service de Hotline} \\
+ \Huge{\bf en event-B avec Rodin} \\
+ ~\\
+ \huge{Projet de Conceptions Formelles}
+\end{flushright}
+\vspace{2mm}
+{\rule{\larg}{1mm}}
+\vspace{2mm} \\
+\begin{flushright}
+ \large{\bf Rapport} \\
+ ~\\
+ \large{Chargé de TD : Alain Griffault}\\
+ ~\\
+ \today
+\end{flushright}
+\vspace{9.5cm}
+}
+\author{\begin{tabular}{p{13.7cm}}
+Hannier Julien, Kuntz Fabien.
+\end{tabular}\\
+\hline }
+\date{}
+%%%Zone de Code%%%
+\definecolor{gray}{gray}{0.86}  
+
+\lstset{numbers=left, tabsize=2, frame=single, breaklines=true,
+basicstyle=\ttfamily,numberstyle=\tiny\ttfamily, framexleftmargin=13mm,
+backgroundcolor=\color{gray}, xleftmargin=14mm} 
+
+\newsavebox{\fmbox}
+\newenvironment{fmpage}[1]{\begin{lrbox}{\fmbox}\begin{minipage}{#1}}{\end{minipage}\end{lrbox}\fbox{\usebox{\fmbox}}}
+
+
+\begin{document}
+
+%%%%% Titre %%%%%
+\thispagestyle{empty}
+\maketitle
+\newpage
+
+%%%%% Page blanche %%%%%
+\thispagestyle{empty}
+~\newpage
+
+%%%%% Table des matières %%%%%
+\thispagestyle{empty}
+\tableofcontents
+\newpage
+
+\setcounter{page}{1}
+\include{latex/Client}
+\include{latex/Central}
+\include{latex/droitDuTravail}
+\include{latex/H0}
+\include{latex/H1}
+\include{latex/H2}
+\include{latex/H3}
+\include{latex/H4}
+
+\end{document}
