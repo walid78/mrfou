@@ -12,10 +12,10 @@
 \usepackage{fancyhdr}
 
 %%%%% Mise en page %%%%%
-\addtolength{\textwidth}{3cm}
-\addtolength{\oddsidemargin}{-1.5cm}
-\textheight=22cm % longueur utile de la page
-\topmargin=-2cm % marge haute
+%\addtolength{\textwidth}{3cm}
+%\addtolength{\oddsidemargin}{-3cm}
+%\textheight=22cm % longueur utile de la page
+%\topmargin=-2cm % marge haute
 %\headsep=20pt % séparation 20 points entre entête et texte
 %\footskip=20pt % idem séparation pied de page
 
@@ -36,7 +36,7 @@
 {\rule{\larg}{1mm}}\vspace{7mm}
 \begin{flushright}
  \Huge{\bf Implémenter un service de Hotline} \\
- \Huge{\bf en event-B avec Rodin} \\
+ \Huge{\bf en Event-B avec Rodin} \\
  ~\\
  \huge{Projet de Conceptions Formelles}
 \end{flushright}
@@ -85,13 +85,164 @@ backgroundcolor=\color{gray}, xleftmargin=14mm}
 \newpage
 
 \setcounter{page}{1}
-\include{latex/Client}
-\include{latex/Central}
-\include{latex/droitDuTravail}
-\include{latex/H0}
-\include{latex/H1}
-\include{latex/H2}
-\include{latex/H3}
-\include{latex/H4}
+
+ \section{Présentation du Projet}
+ 
+  \subsection{Cahier des charges}
+  Un vendeur de logiciels propose à ses clients d'utiliser un service de
+  Hotline lorsqu'ils rencontrent un problème avec ses
+  produits.\newline
+  
+  La procédure est simple : En cas de panne, ils doivent appeler un
+  numéro téléphonique. Un(e) opérateur(rice) hautement qualifié(e) leur
+  indiquera alors la démarche à suivre. \newline
+  
+  \subsection{Contraintes}
+  \begin{itemize}
+   \item Le nombre d'opérateurs(rices) est fini.
+   \item Le service doit être toujours opérationnel.
+   \item Le service doit être le plus équitable possible.
+   \item L'employeur doit respecter le code du travail qui prévoit des
+		 pauses pour les opérateurs(trices).
+  \end{itemize}
+
+  \subsection{Dysfonctionnements}
+  Une communication peut pour des raisons diverses être
+  interrompue. Dans ce cas, le client (sans doute alors très mécontent)
+  doit être très rapidement servi, mais pas nécessairement par le(a)
+  même opérateur(rice).
+
+  \subsection{Objectif}
+  L'objectif est de construire par raffinements successifs, un
+  environnement certifié avec l'outil \emph{Rodin} modélisant ce
+  service.\newline
+
+ \section{Présentation des contextes}
+ Les fichiers suivants définissent les ensembles et constantes
+ nécessaires à la modélisation du système. 
+ 
+  \subsection{Rôle des contextes}
+  Le contexte \emph{Clients} définit notre ensemble de clients.\newline
+  
+  \indent Le contexte \emph{Central} définit notre ensemble d'opérateurs
+  ainsi que leur état.\newline
+  Les différents états sont \emph{pause} quand l'opérateur est en pause,
+  \emph{reponse} quand l'opérateur est au téléphone et \emph{lire} quand
+  l'opérateur est en attente d'un appel.\newline
+  Le nombre d'opérateurs est fini. Il est désigné par la constante
+  \emph{m}.
+
+  \indent Le contexte \emph{droitDuTravail} définit le nombre maximum de
+  pauses que peut prendre un opérateur. 
+
+  \subsection{Code des contextes}
+
+  \include{latex/Clients}
+  \include{latex/Central}
+  \include{latex/droitDuTravail}
+
+ \section{Présentation des machines}
+ 
+  \subsection{Machine H0}
+  
+   \subsubsection{Rôle de la machine H0}
+   La première machine consiste à prendre le système du côté du
+   client. L'ensemble \emph{CLIENTS} est alors découpé en deux
+   sous-ensembles : 
+
+   \begin{itemize} 
+	\item \emph{OK} quand le client est satisfait.
+	\item \emph{Lose} quand son logiciel ne marche pas. 
+   \end{itemize}
+
+   \indent Ainsi, lors d'une panne de logiciel, le client passe dans le
+   sous-ensemble \emph{Lose} et inversement quand sa panne est réparée.
+
+   \include{latex/H0}
+
+  \subsection{Machine H1}
+  
+   \subsubsection{Rôle de la machine H1}
+   Ce premier raffinement précise un peu plus le système.\newline
+
+   \indent Le sous-ensemble \emph{Lose} est à son tour découpé en deux
+   sous-ensembles \emph{Frustrated} et \emph{Wait}. Le client dont le
+   logiciel tombe en panne passe donc de \emph{Ok} à
+   \emph{Frustrated}. Ensuite, il appelle la \emph{hotline} et va alors
+   dans \emph{Wait}. Ici, deux événements sont possibles :
+   \begin{itemize} 
+	\item Il peut survenir une coupure durant la communication. À ce
+		  moment là, le client repasse dans \emph{Frustrated}, auquel
+		  cas il devra rappeler.
+	\item Ou alors la panne du client est réparée et il va alors dans le
+		  sous-ensemble \emph{Ok}.
+   \end{itemize}
+
+   \include{latex/H1}
+
+  \subsection{Machine H2}
+  
+   \subsubsection{Rôle de la machine H2}
+   Dans cette machine l'interaction entre clients et opérateurs est
+   ajoutée. Il faut donc trouver un moyen de \og lier \fg\ un opérateur
+   à un client, ainsi qu'un moyen de changer l'état de
+   l'opérateur.\newline
+   
+   \indent Un opérateur a obligatoirement un état. Nous donc avons défini une
+   fonction totale de \emph{Operateurs} dans \emph{Etat}.\newline
+   
+   \indent Au contraire, un opérateur n'est pas toujours lié à un
+   client. Nous utilisons donc une fonction partielle de
+   \emph{Operateurs} dans \emph{Wait} pour attribuer un client à un
+   opérateur. \newline 
+
+   \indent Pour que la modélisation fonctionne, nous avons rajouté un
+   évènement \emph{Answer} qui correspond à la prise en charge d'un
+   client par un opérateur. C'est à ce moment là qu'un client est lié à
+   un opérateur et que l'état de l'opérateur change à
+   \emph{reponse}.\newline
+
+   \indent Nous avons aussi logiquement raffiné les événements
+   \emph{Clac} et \emph{Fix} pour détacher un client d'un opérateur et
+   changer l'état de l'opérateur. \newline 
+
+   \indent Nous avons ensuite ajouté la gestion des pauses des
+   opérateurs suivant le droit du travail. Ainsi, nous avons rajouté une
+   fonction totale qui attribue un nombre de pauses à un opérateur ainsi
+   que deux événements \emph{Break} et \emph{UnBreak}. L'événement
+   \emph{UnBreak} change juste l'opérateur d'état. L'évènement
+   \emph{Break}, en plus de changer l'opérateur d'état, regarde si
+   celui-ci peut prendre une pause tout en suivant le respect de ses 
+   collègues. En effet, un opérateur ne peut prendre une pause que s'il
+   y a plus d'opérateurs libres que de clients en attente de prise en
+   charge.
+
+   \include{latex/H2}
+
+  \subsection{Machine H3}
+  
+   \subsubsection{Rôle de la machine H3}
+   Le but de ce raffinement est de donner un ticket à un client lorsque
+   celui-ci appelle la hotline. Nous gérons ce ticket grâce à une
+   file. Nous ajoutons donc simplement une fonction partielle qui
+   attribue un ticket à un client, le numéro global des tickets étant
+   conservé dans une constante. Ainsi lorsqu'un client appelle, il se
+   voit remettre un ticket qu'il gardera durant toute la communication
+   que celle-ci se termine bien (\emph{Fix}) ou mal (\emph{Clac}).
+
+   \include{latex/H3}
+
+  \subsection{Machine H4}
+  
+   \subsubsection{Rôle de la machine H4}
+   Le client se voit donc remettre un ticket quand il appel la
+   hotline. Les opérateurs peuvent donc répondre en priorité au client
+   qui a le plus attendu. Le système devient équitable. Pour ce faire,
+   nous avons rajouté une garde à l'événement \emph{Answer} qui vérifie
+   qu'il n'existe pas de client attendant qu'on lui réponde qui a un
+   ticket inférieur à celui que l'on veut traiter (c'est-à-dire qui a
+   attendu longtemps).
+
+   \include{latex/H4}
 
 \end{document}
