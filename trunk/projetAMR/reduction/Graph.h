@@ -2,11 +2,11 @@
 
 using namespace std;
 
-class Graphe {
+class Graph {
 
 public:
-	Graphe(int nb_nodes);
-	~Graphe();
+	Graph(int nb_nodes);
+	~Graph();
 	void addEdges(int, int);
 	Vector<int> getNeighbours(int);
 
