@@ -18,13 +18,13 @@ int getNbVertex(char* path){
       for(int i = 0; i<length ; i++){
 	switch (line[i]){
 	case '-':
-	  current = atoi(number);
+	  current = atoi(number.c_str());
 	  if(current > max)
 	    max = current;
 	  number = "";
 	  break;
 	case ' ':
-	  current = atoi(number);
+	  current = atoi(number.c_str());
 	  if(current > max)
 	    max = current;
 	  number = "";
@@ -59,18 +59,18 @@ readGraph(char* path){
 
       for(int i = 0; i < length; i++){
 	if(line[i] == '-'){
-	  current = atoi(number);
+	  current = atoi(number.c_str());
 	  if(last >= 0){
 	    graph.addEdges(last,current);
 	  }
 	  last = current;
 	  number = "";
 	}
-	else if(line[i] = ' '){
-	  current = atoi(number);
+	else if(line[i] == ' '){
+	  current = atoi(number.c_str());
 	  graph.addEdges(last,current);
 	  number = "";
-	  last == -1;
+	  last = -1;
 	}
 	else{
 	  number += line[i];
