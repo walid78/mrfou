@@ -1,9 +1,11 @@
 #include "Graph.h"
 
-Graph::Graph(int nb_nodes){
-	this.nb_nodes = nb_nodes;
-	//graph(Vector<int>[nb_nodes]);
-	graph = new Vector<int>[nb_nodes];
+Graph::Graph(int nodes){
+	nb_nodes = nodes;
+	//graph(vector<int>[nodes]);
+	graph = new vector<int>[nodes];
+	for(int i=0 ; i<nodes ; ++i)
+	  graph[i] = new vector<int>;
 }
 
 Graph::~Graph(){
@@ -12,7 +14,7 @@ Graph::~Graph(){
 
 void Graph::addEdges(int originNode, int destNode)
 {
-	for(int i=0 ; i<graph[originNode].size() ; ++i){
+	for(unsigned i=0 ; i<graph[originNode].size() ; ++i){
 		if(graph[originNode][i] == destNode)
 			return ;
 	}
@@ -21,7 +23,7 @@ void Graph::addEdges(int originNode, int destNode)
 	graph[destNode].push_back(originNode);
 }
 
-Vector<int> Graph::getNeighbours(int originNode)
+vector<int> Graph::getNeighbours(int originNode)
 {
 	return graph[originNode];
 }

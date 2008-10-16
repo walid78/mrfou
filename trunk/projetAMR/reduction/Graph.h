@@ -1,4 +1,7 @@
-#include <Vector>
+#ifndef GRAPH_H
+#define GRAPH_H
+
+#include <vector>
 
 using namespace std;
 
@@ -8,9 +11,11 @@ public:
 	Graph(int nb_nodes);
 	~Graph();
 	void addEdges(int, int);
-	Vector<int> getNeighbours(int);
+	vector<int> getNeighbours(int);
 
 private:
-	Vector<int>[] graph;
 	int nb_nodes;
+	vector<int>* graph;
 };
+
+#endif /* GRAPH_H */
