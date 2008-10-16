@@ -1,11 +1,8 @@
 #include "Graph.h"
 
 Graph::Graph(int nodes){
-	nb_nodes = nodes;
-	//graph(vector<int>[nodes]);
-	graph = new vector<int>[nodes];
 	for(int i=0 ; i<nodes ; ++i)
-	  graph[i] = new vector<int>;
+	  graph.push_back(vector<int>());
 }
 
 Graph::~Graph(){
