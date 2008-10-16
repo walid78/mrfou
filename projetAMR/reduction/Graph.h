@@ -8,14 +8,14 @@ using namespace std;
 class Graph {
 
 public:
-	Graph(int nb_nodes);
+	Graph(int nodes);
 	~Graph();
 	void addEdges(int, int);
 	vector<int> getNeighbours(int);
 
 private:
 	int nb_nodes;
-	vector<int>* graph;
+	vector< vector<int> > graph;
 };
 
 #endif /* GRAPH_H */
