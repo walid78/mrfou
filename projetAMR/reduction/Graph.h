@@ -2,20 +2,37 @@
 #define GRAPH_H
 
 #include <vector>
+#include <iostream>
 
 using namespace std;
 
-class Graph {
+class Graph{
+	
+	friend ostream& operator<<(ostream& o, const Graph& g);
+	
+ public:
+  //===========================================================================
+  /** Constructeur : **/
+	Graph(const int nb_nodes);
 
-public:
-	Graph(int nodes);
+  //===========================================================================
+  /** Destructeur : **/
 	~Graph();
-	void addEdges(int, int);
-	vector<int> getNeighbours(int);
 
-private:
-	int nb_nodes;
+	//===========================================================================
+  /** Fonctions membres : **/
+	void addEdges(const int originNode, const int destNode);
+	vector<int>& getNeighbours(const int originNode);
+
+	vector<int>& operator[](const int originNode);
+
+ private:
 	vector< vector<int> > graph;
+
 };
+
+//===========================================================================
+/** Opérateur : **/
+ostream& operator<<(ostream& o, const Graph& g);
 
 #endif /* GRAPH_H */
