@@ -23,4 +23,4 @@ clean:
 	-rm -f $(TARGET) *.o 
 
 polish: clean
-	rm -f *.# *.~
+	rm -f *# *~
