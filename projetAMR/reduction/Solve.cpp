@@ -2,10 +2,12 @@
 #include <fstream>
 #include <string>
 #include "Graph.h"
+#include "Cover.h"
 
 using namespace std;
 
-int getNbVertex(char* path){
+int
+getNbVertex(char* path){
   ifstream file(path, ios::in);  // on ouvre le fichier en lecture
   int max = -1;
 
@@ -101,6 +103,13 @@ main(int argc, char** argv){
   Graph graph = readGraph(argv[1]);
   cout << "test reussi" << endl;
   cout << graph << endl;
-	
+  
+  vector<int> cover;
+  cover.push_back(0);
+  cover.push_back(2);
+  
+  bool test = isCover(graph, cover);
+  cout <<"TEST COVER " << test <<endl;
+
   return 0;
 }
