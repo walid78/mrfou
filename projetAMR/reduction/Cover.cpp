@@ -11,8 +11,10 @@ bool isCover(Graph graph, vector<int> vertexs){
       for(unsigned i=0; i<vertexs.size();++i){
 	if( j!=vertexs[i] && temp[k]!=vertexs[i])
 	  isCov=false;
-	else
+	else{
 	  isCov=true;
+	  break;
+	}
       }
       if(!isCov)
 	return false;
