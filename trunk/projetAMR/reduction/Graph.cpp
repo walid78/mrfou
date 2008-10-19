@@ -17,8 +17,7 @@ Graph::~Graph(){
 	
 }
 
-/** Fonctions membres : **/
-//===========================================================================
+/** Fonctions membres : **///===========================================================================
 void Graph::addEdges(const int originNode, const int destNode)
 {
 	for(unsigned i=1 ; i<graph[originNode].size() ; ++i){
@@ -33,9 +32,14 @@ void Graph::addEdges(const int originNode, const int destNode)
 }
 
 //===========================================================================
-vector<int>& Graph::getNeighbours(const int originNode)
+vector<int> Graph::getNeighbours(const int originNode)
 {
-	return graph[originNode];
+  vector<int> tmp(graph[originNode].begin()+1, graph[originNode].end());
+  return tmp;
+}
+
+int Graph::getNbVertex(void){
+  return graph.size();
 }
 
 /** Opérateurs : **/
