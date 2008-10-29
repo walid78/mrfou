@@ -5,10 +5,18 @@
 /** Constructeur : **/
 //===========================================================================
 Graph::Graph(const int nodes){
-	for(int i=0 ; i<nodes ; ++i)
-		//Initialisation d'une liste pour chaque sommet i où la première case 
-		//contient le nombre de sommets en relation avec i dans le graphe
-	  graph.push_back(vector<int>(1,0));
+  for(int i=0 ; i<nodes ; ++i)
+    //Initialisation d'une liste pour chaque sommet i où la première case 
+    //contient le nombre de sommets en relation avec i dans le graphe
+    graph.push_back(vector<int>(1,0));
+}
+
+Graph::Graph(const Graph& g){
+  for(unsigned i=0 ; i<g.graph.size() ; ++i){
+    graph.push_back(vector<int>());
+    for(int j=0 ; j<=g.graph[i][0] ; ++j)
+      graph[i].push_back(g.graph[i][j]);
+  }
 }
 
 /** Destructeur : **/
@@ -17,49 +25,69 @@ Graph::~Graph(){
 	
 }
 
-/** Fonctions membres : **///===========================================================================
+/** Fonctions membres : **/
+//===========================================================================
 void Graph::addEdges(const int originNode, const int destNode)
 {
-	for(unsigned i=1 ; i<graph[originNode].size() ; ++i){
-		if(graph[originNode][i] == destNode)
-			return ;
-	}
+  for(unsigned i=1 ; i<graph[originNode].size() ; ++i){
+    if(graph[originNode][i] == destNode)
+      return ;
+  }
 	
-	graph[originNode].push_back(destNode);
-	graph[originNode][0]++;
-	graph[destNode].push_back(originNode);
-	graph[destNode][0]++;
+  graph[originNode].push_back(destNode);
+  graph[originNode][0]++;
+  graph[destNode].push_back(originNode);
+  graph[destNode][0]++;
 }
 
 //===========================================================================
-vector<int> Graph::getNeighbours(const int originNode)
-{
+vector<int> Graph::getNeighbours(const int originNode){
   vector<int> tmp(graph[originNode].begin()+1, graph[originNode].end());
   return tmp;
 }
 
-int Graph::getNbVertex(void){
+//===========================================================================
+int Graph::getNbVertexes(void){
   return graph.size();
+}
+
+//===========================================================================
+int Graph::getNbEdges(void){
+  int nb_edges = 0;
+  
+  for(unsigned i=0 ; i<graph.size() ; ++i)
+    nb_edges += graph[i][0];
+
+  return nb_edges/2;
+}
+
+int Graph::getNbNeighbours(int originNode){
+  return graph[originNode][0];
 }
 
 /** Opérateurs : **/
 //===========================================================================
-/*** Condamné, parait inutile
-vector<int>& Graph::operator[](const int originNode){
+vector<int> Graph::operator[](const int originNode){
   assert((unsigned)originNode>=0 && (unsigned)originNode<graph.size());
-  return graph[originNode];
+  
+  vector<int> vector;
+
+  for(unsigned j=1 ; j<graph[originNode].size() ; ++j){
+    vector.push_back(graph[originNode][j]);
+  }
+
+  return vector;
 }
-*/
 
 //===========================================================================
 ostream& operator<<(ostream& o, const Graph& g){
-	for(unsigned i=0 ; i<g.graph.size() ; ++i){
-		o << i << ":";
-		for(unsigned j=1 ; j<g.graph[i].size() ; ++j){
-			o << " " << g.graph[i][j];
-		}
-		o << endl;
-	}
+  for(unsigned i=0 ; i<g.graph.size() ; ++i){
+    o << i << ":";
+    for(unsigned j=1 ; j<g.graph[i].size() ; ++j){
+      o << " " << g.graph[i][j];
+    }
+    o << endl;
+  }
 	
-	return o;
+  return o;
 }
