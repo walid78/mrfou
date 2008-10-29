@@ -13,8 +13,9 @@ class Graph{
  public:
   //===========================================================================
   /** Constructeur : **/
-  Graph(const int nb_nodes);
-  
+  Graph(const int nb_nodes); 
+  Graph(const Graph& g); 
+
   //===========================================================================
   /** Destructeur : **/
   ~Graph();
@@ -25,13 +26,15 @@ class Graph{
   
   vector<int> getNeighbours(const int originNode);
   
-  vector<int>& operator[](const int originNode);
+  vector<int> operator[](const int originNode);
   
-  int getNbVertex(void);
+  int getNbVertexes(void);
+  int getNbEdges(void);
+  int getNbNeighbours(int originNode);
 
  private:
   vector< vector<int> > graph;
-  
+
 };
 
 //===========================================================================

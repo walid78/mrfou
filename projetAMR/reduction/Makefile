@@ -1,16 +1,14 @@
 SHELL= bash
 TARGET= solve
-SRCS= Graph.cpp Solve.cpp Cover.cpp
+OBJS= Graph.o Solve.o Cover.o CircuitHamiltonien.o
 CXXFLAGS = -Wall -g
 CXX= g++
 LDFLAGS=
 
 all: $(TARGET)
 
-$(TARGET): Solve.o Graph.o Cover.o
+$(TARGET): $(OBJS)
 	$(CXX) $(CXXFLAGS) $^ -o $@
-
-solve: Graph.o Solve.o Cover.o
 
 Graph.o: Graph.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
@@ -21,6 +19,8 @@ Cover.o: Cover.cpp
 Solve.o: Solve.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
+CircuitHamiltonien.o: CircuitHamiltonien.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
 	-rm -f $(TARGET) *.o 

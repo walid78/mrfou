@@ -1,8 +1,10 @@
 #include <iostream>
+#include <sstream>
 #include <fstream>
 #include <string>
 #include "Graph.h"
 #include "Cover.h"
+#include "CircuitHamiltonien.h"
 
 using namespace std;
 
@@ -108,8 +110,20 @@ main(int argc, char** argv){
   cover.push_back(0);
   cover.push_back(2);
   
-  bool test = isCover(graph, cover);
+  /*  bool test = isCover(graph, cover);
   cout <<"TEST COVER " << test <<endl;
 
+  cout << graph.getNbVertexes() << " " << graph.getNbEdges() << endl;
+
+  // Rajoute une arete
+  graph.addEdges(3,4);
+  */
+  //  cout << graph.getNbVertexes() << " " << graph.getNbEdges() << endl;
+  
+
+  /*tmp*/
+  CircuitHamiltonien ch(graph);
+  cout << ch.generateFormule();
+  
   return 0;
 }
