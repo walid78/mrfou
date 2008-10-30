@@ -3,9 +3,9 @@
 /** Constructeur : **/
 //===========================================================================
 CircuitHamiltonien::CircuitHamiltonien(Graph g):graph(g){
-  nbVars = 0;
-
   int nbVertexes = g.getNbVertexes();
+
+  nbVars = 0;
 
   //Initialisation du tableau vars à -1
   for(int i=0 ; i<nbVertexes ; ++i)
@@ -13,13 +13,10 @@ CircuitHamiltonien::CircuitHamiltonien(Graph g):graph(g){
   
   //Remplissage du tableau des variables en mettant une variable par arc
   for(int i=0 ; i<nbVertexes ; ++i){
-    //cout << "test" << i << " :" << g.getNbNeighbours(i) << endl;
     for(int j=0 ; j<g.getNbNeighbours(i) ; ++j){
-      //cout << "aa : " << g[i][j] << endl;
       vars[i][g[i][j]] = ++nbVars;
     }
   }
-  
 }
 
 /** Destructeur : **/

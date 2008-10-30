@@ -4,14 +4,14 @@
 
 /** Constructeur : **/
 //===========================================================================
-Graph::Graph(const int nodes){
+Graph::Graph(const int nodes):nbVertexes(nodes){
   for(int i=0 ; i<nodes ; ++i)
     //Initialisation d'une liste pour chaque sommet i où la première case 
     //contient le nombre de sommets en relation avec i dans le graphe
     graph.push_back(vector<int>(1,0));
 }
 
-Graph::Graph(const Graph& g){
+Graph::Graph(const Graph& g):nbVertexes(g.graph.size()){
   for(unsigned i=0 ; i<g.graph.size() ; ++i){
     graph.push_back(vector<int>());
     for(int j=0 ; j<=g.graph[i][0] ; ++j)
@@ -22,17 +22,14 @@ Graph::Graph(const Graph& g){
 /** Destructeur : **/
 //===========================================================================
 Graph::~Graph(){
-	
 }
 
 /** Fonctions membres : **/
 //===========================================================================
-void Graph::addEdges(const int originNode, const int destNode)
-{
-  for(unsigned i=1 ; i<graph[originNode].size() ; ++i){
+void Graph::addEdges(const int originNode, const int destNode){
+  for(int i=1 ; i<=graph[originNode][0] ; ++i)
     if(graph[originNode][i] == destNode)
       return ;
-  }
 	
   graph[originNode].push_back(destNode);
   graph[originNode][0]++;
@@ -42,13 +39,15 @@ void Graph::addEdges(const int originNode, const int destNode)
 
 //===========================================================================
 vector<int> Graph::getNeighbours(const int originNode){
+  assert((unsigned)originNode>=0 && (unsigned)originNode<graph.size());
+
   vector<int> tmp(graph[originNode].begin()+1, graph[originNode].end());
   return tmp;
 }
 
 //===========================================================================
 int Graph::getNbVertexes(void){
-  return graph.size();
+  return nbVertexes;
 }
 
 //===========================================================================
@@ -68,15 +67,7 @@ int Graph::getNbNeighbours(int originNode){
 /** Opérateurs : **/
 //===========================================================================
 vector<int> Graph::operator[](const int originNode){
-  assert((unsigned)originNode>=0 && (unsigned)originNode<graph.size());
-  
-  vector<int> vector;
-
-  for(unsigned j=1 ; j<graph[originNode].size() ; ++j){
-    vector.push_back(graph[originNode][j]);
-  }
-
-  return vector;
+  return getNeighbours(originNode);
 }
 
 //===========================================================================

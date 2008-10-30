@@ -34,6 +34,7 @@ class Graph{
 
  private:
   vector< vector<int> > graph;
+  int nbVertexes;
 
 };
 
