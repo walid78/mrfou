@@ -26,12 +26,8 @@ class CircuitHamiltonien{
   /** Fonctions membres : **/
   vector<bool> getSolution();
   
-  string generateFormule();
-  
-  //===========================================================================
-  /** Opérateur interne : **/
-  
  private:
+  string generateFormule();
   vector< vector<int> > vars;
   int nbVars;
   Graph graph;

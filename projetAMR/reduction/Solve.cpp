@@ -101,29 +101,27 @@ readGraph(char* path){
 int
 main(int argc, char** argv){
 
-  cout << "test a :" << getNbVertex(argv[1])<<endl;
   Graph graph = readGraph(argv[1]);
-  cout << "test reussi" << endl;
-  cout << graph << endl;
+  cout << "Graph :" << endl << graph << endl;
   
-  vector<int> cover;
-  cover.push_back(0);
-  cover.push_back(2);
+  //   vector<int> cover;
+  //   cover.push_back(0);
+  //   cover.push_back(2);
   
-  /*  bool test = isCover(graph, cover);
-  cout <<"TEST COVER " << test <<endl;
+  //   bool test = isCover(graph, cover);
+  //   cout <<"TEST COVER " << (test?"OK":"KO") <<endl;
 
-  cout << graph.getNbVertexes() << " " << graph.getNbEdges() << endl;
+  //   cout << graph.getNbVertexes() << " " << graph.getNbEdges() << endl;
 
   // Rajoute une arete
-  graph.addEdges(3,4);
-  */
+  //   graph.addEdges(3,4);
+
   //  cout << graph.getNbVertexes() << " " << graph.getNbEdges() << endl;
   
 
   /*tmp*/
   CircuitHamiltonien ch(graph);
   cout << ch.generateFormule();
-  
+
   return 0;
 }

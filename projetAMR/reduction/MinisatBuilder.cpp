@@ -5,8 +5,10 @@
 #include "Graph.h"
 #include "MinisatBuilder.hpp"
 
+bool[]
 MinisatBuilder::readFromMinisat(char* path){
   ifstream file(path, ios::in);
+  bool[] tab(/*valeur à récupérer grace à writetoMinisat*/)
   
   if(file){
 
@@ -25,7 +27,8 @@ MinisatBuilder::readFromMinisat(char* path){
 	  if(line[i] == ' '){
 	    int valeur = atoi(number);
 	    number = "";
-	    //TRAITER CETTE VALEUR, JE NE SAIS PAS COMMENT
+	    //Traitement des variables
+	    tab[valeur] = (valeur > 0);
 	  }
 	  else{
 	    if(line[i] = '0' && i = length - 1) //Ceci ne doit en
@@ -34,26 +37,18 @@ MinisatBuilder::readFromMinisat(char* path){
 	    else
 	      number += line[i];
 	  }
-	}
-	
-	
-    //NE PAS LIRE CA, C'EST POURRI MAIS JE LE GARDE. BEN
-    /*string line;
-      int pFind = 0; //Savoir si p a deja etait lu
-      
-      while(getline(file, line)){
-      if(!(line.find("c") == 1)){ //Si la ligne n'est pas un commentaire
-      if(pFind == 0 && line.find("p") == 1){ //Ligne d'indication
-      int pos = line.find("cnf") + 2;
-      string = "";
-      int length = line.length() + pos;*/
+	}	
       }
     }
   }
   file.close();
+  return tab;
 }
+
 MinisatBuilder::writeToMinisat(char* path){ //Surement des arguments a
 					    //ajouter ?
+  //A revoir puisqu'on récupère déjà un ostream donc juste écrire dans le fichier
+  //penser à récupérer le nombre de variable
   ofstream file(path, ios::out);
   
   if(file){
@@ -69,3 +64,6 @@ MinisatBuilder::writeToMinisat(char* path){ //Surement des arguments a
   }
   file.close();
 }
+
+//Rajouter une fonction askMinisat qui prend en parametre une string et 
+//retourne tab booléen qui ecrit dans minisat, lance minisat et récupère le solution
