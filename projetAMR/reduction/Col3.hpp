@@ -1,28 +1,28 @@
-#ifndef CIRCUITHAMILTONIEN_H
-#define CIRCUITHAMILTONIEN_H
+#ifndef COL3_HPP
+#define COL3_HPP
 
 #include <vector>
 #include <iostream>
 #include <sstream>
 
 #include "Graph.h"
-#include "MinisatBuilder.hpp"
+//#include "MinisatBuilder.hpp"
 
 using namespace std;
 
-class CircuitHamiltonien{
+class Col3{
 
-  friend ostream& operator<<(ostream& o, const CircuitHamiltonien& ch);
+  friend ostream& operator<<(ostream& o, const Col3& ch);
 
   /*-*-*-*-* PUBLIC *-*-*-*-*/
  public:
     //===========================================================================
   /** Constructeur : **/
-  CircuitHamiltonien(Graph g);
+  Col3(Graph g);
   
   //===========================================================================
   /** Destructeur : **/
-  ~CircuitHamiltonien();
+  ~Col3();
   
   //===========================================================================
   /** Fonctions membres : **/
@@ -36,17 +36,15 @@ class CircuitHamiltonien{
   int nbClauses;
   int nbVars;
   char* pathFile;
-  vector< vector<int> > vars;
 
   //===========================================================================
   /** Fonctions membres **/
   string generateCNFFormula();
-  int* getEdgeFromVar(int var);
 };
 
 //===========================================================================
 /** Opérateur externe : **/
-ostream& operator<<(ostream& o, const CircuitHamiltonien& g);
+ostream& operator<<(ostream& o, const Col3& g);
 
 
 #endif

@@ -13,7 +13,7 @@ class Graph{
  public:
   //===========================================================================
   /** Constructeur : **/
-  Graph(const int nb_nodes); 
+  Graph(const int nb_nodes, char* path); 
   Graph(const Graph& g); 
 
   //===========================================================================
@@ -31,10 +31,12 @@ class Graph{
   int getNbVertexes(void);
   int getNbEdges(void);
   int getNbNeighbours(int originNode);
+  char* getPathFile();
 
  private:
   vector< vector<int> > graph;
   int nbVertexes;
+  char* pathFile;
 
 };
 
