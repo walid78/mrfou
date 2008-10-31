@@ -62,12 +62,27 @@ int Graph::getNbEdges(void){
   return nb_edges/2;
 }
 
+//===========================================================================
 int Graph::getNbNeighbours(int originNode){
   return graph[originNode][0];
 }
 
+//===========================================================================
 char* Graph::getPathFile(void){
   return pathFile;
+}
+
+//===========================================================================
+int Graph::getMaxDegre(void){
+  int max=0;
+  for(int i=0 ; i<nbVertexes ; ++i)
+    if(graph[i][0] == nbVertexes-1)
+      return nbVertexes-1;
+    else if(graph[i][0] > max){
+      max=graph[i][0];
+    }
+  
+  return max;
 }
 
 /** Opérateurs : **/

@@ -1,10 +1,11 @@
 #include "KCol.hpp"
 
-#define N 4
+#define N NB_COLORS
 
 /** Constructeur : **/
 //===========================================================================
-KCol::KCol(Graph g):graph(g){
+KCol::KCol(Graph g, int nbColors):graph(g),
+				  NB_COLORS(nbColors){
   nbVars = g.getNbVertexes()*3;
   nbClauses = 0;
 }
@@ -59,6 +60,19 @@ string KCol::generateCNFFormula(){
 
 //===========================================================================
 string KCol::getSolution(){
+  if(N >= graph.getNbVertexes()){
+    cout << "Coloration évidente des sommets en prenant pour chacun" <<
+      " une couleur différente" << endl;
+    exit(1);
+  }else{
+    int maxDegre = graph.getMaxDegre();
+    if(N < maxDegre){
+      cout << "Le graphe n'admet pas de " << N << "-Coloration car le degré maximal"<<
+	" d'un sommet du graphe est " << maxDegre << endl;
+      exit(1);
+    }
+  }
+  
 //   stringstream answer;
 //   MinisatBuilder mb(pathFile,
 // 		    graph.getNbVertexes(),

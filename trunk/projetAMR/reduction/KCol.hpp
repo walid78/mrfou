@@ -1,5 +1,5 @@
-#ifndef COL3_HPP
-#define COL3_HPP
+#ifndef KCOL_HPP
+#define KCOL_HPP
 
 #include <vector>
 #include <iostream>
@@ -10,19 +10,19 @@
 
 using namespace std;
 
-class Col3{
+class KCol{
 
-  friend ostream& operator<<(ostream& o, const Col3& ch);
+  friend ostream& operator<<(ostream& o, const KCol& ch);
 
   /*-*-*-*-* PUBLIC *-*-*-*-*/
  public:
     //===========================================================================
   /** Constructeur : **/
-  Col3(Graph g);
+  KCol(Graph g, int nbColors);
   
   //===========================================================================
   /** Destructeur : **/
-  ~Col3();
+  ~KCol();
   
   //===========================================================================
   /** Fonctions membres : **/
@@ -47,7 +47,7 @@ class Col3{
 
 //===========================================================================
 /** Opérateur externe : **/
-ostream& operator<<(ostream& o, const Col3& g);
+ostream& operator<<(ostream& o, const KCol& g);
 
 
 #endif
