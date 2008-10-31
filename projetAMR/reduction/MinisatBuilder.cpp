@@ -92,5 +92,16 @@ void MinisatBuilder::writeToMinisat(){
 bool* solve(){
   //a faire, c'est lui qui fait tout, alors au boulot
   //Penser aussi à regarder le execvp
-  return NULL;
+  writeToMinisat();
+
+  //faire le execvp, ET RAJOUTER LES BONNE LIB
+  if(fork()){
+    char* args[2];
+    args[0] = inputPath;
+    args[1] = ""; //TODO récupérer le nom du fichier de sortie
+    execvp("./minisat", 
+  }
+
+  return readFromMinisat();
+  //  return NULL;
 }
