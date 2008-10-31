@@ -9,73 +9,83 @@
 MinisatBuilder::MinisatBuilder(char* inputPath,
 			       int nbVertexes,
 			       int nbClauses,
-			       string CNFFormula){
-  cout << "Construction de MinisatBuilder";
+			       string CNFFormula) : inputPath(inputPath), nbVertexes(nbVertexes), nbClauses(nbClauses), CNFFormula(CNFFormula){
+  ;
 }
 
 bool* MinisatBuilder::readFromMinisat(){
-//   ifstream file(path, ios::in);
-//   bool* tab(/*valeur à récupérer grace à writetoMinisat*/)
   
-//   if(file){
-
-//     string line;
-//     int SATFind = 0;
+  char* path = "";
+  for(int i = 0; inputPath[i] != '\0' && inputPath[i] != '.'; ++i){
+    strcat(path, inputPath[i]);
+  } //strncat aurait peut-être était mieux, à voir
+  
+  strcat(path, ".gout");
+  
+  ifstream file(path, ios::in);
+  bool* tab(/*valeur à récupérer grace à writetoMinisat*/)
     
-//     while(getline(file, line)){
-//       if(SATFind == 0 && line.find("SAT") >= 0)
-// 	SATFind = 1;
+    if(file){
       
-//       if(SATFind == 1){
-// 	int length = line.length();
-// 	string number = "";
+      string line;
+      int SATFind = 0;
+      
+      while(getline(file, line)){
+	if(SATFind == 0 && line.find("SAT") >= 0)
+	  SATFind = 1;
 	
-// 	for(int i = 0; i < length - 1; i++){
-// 	  if(line[i] == ' '){
-// 	    int valeur = atoi(number);
-// 	    number = "";
-// 	    //Traitement des variables
-// 	    tab[valeur] = (valeur > 0);
-// 	  }
-// 	  else{
-// 	    if(line[i] = '0' && i = length - 1) //Ceci ne doit en
-// 						//theorie ne jamais arriver
-// 	      break;
-// 	    else
-// 	      number += line[i];
-// 	  }
-// 	}	
-//       }
-//     }
-//   }
-//   file.close();
-//   return tab;
-  return NULL;
+	if(SATFind == 1){
+	  int length = line.length();
+	  string number = "";
+	  
+	  for(int i = 0; i < length - 1; i++){
+	    if(line[i] == ' '){
+	      int valeur = atoi(number);
+	      number = "";
+	      //Traitement des variables
+	      tab[valeur] = (valeur > 0);
+	    }
+	    else{
+	      if(line[i] = '0' && i = length - 1) //Ceci ne doit en
+		//theorie ne jamais arriver
+ 	      break;
+	      else
+		number += line[i];
+	    }
+	  }	
+	}
+      }
+    }
+  file.close();
+  return tab;
+  //  return NULL;
 }
 
-void MinisatBuilder::writeToMinisat(){ //Surement des arguments a
-//   //ajouter ?
-//   //A revoir puisqu'on récupère déjà un ostream donc juste écrire dans le fichier
-//   //penser à récupérer le nombre de variable
-//   ofstream file(path, ios::out);
+void MinisatBuilder::writeToMinisat(){
+
+  ofstream file(inputPath, ios::out);
   
-//   if(file){
-//     string s;
-//     s = "c "; //Si on veut mettre un commentaire
-//     file.write(s, s.length);
-
-//     s = "p cnf "; //Plus les autres trucs que je ne sais pas
-//     file.write(s, s.length);
-
-//     //Faire une boucle qui se termine par un 0. Je ne sais pas non
-//     //plus quoi mettre dedans
-//   }
-//   file.close();
+  if(file){
+    string s;
+    s = "c "; //Si on veut mettre un commentaire
+    file.write(s, s.length);
+    
+    s = "p cnf ";
+    s += nbVertexes;
+    s += " ";
+    s += nbClauses;
+    s += "\n";
+    file.write(s, s.length);
+    
+    file.write(CNFFormula; CNFFormula.length);
+  }
+  file.close();
 }
 
-//Rajouter une fonction askMinisat qui prend en parametre une string et 
+//Rajouter une fonction solve qui prend en parametre une string et 
 //retourne tab booléen qui ecrit dans minisat, lance minisat et récupère le solution
 
 bool* solve(){
+  //a faire, c'est lui qui fait tout, alors au boulot
   return NULL;
 }
