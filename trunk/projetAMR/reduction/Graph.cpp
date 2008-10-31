@@ -4,14 +4,16 @@
 
 /** Constructeur : **/
 //===========================================================================
-Graph::Graph(const int nodes):nbVertexes(nodes){
+Graph::Graph(const int nodes, char* path):nbVertexes(nodes),
+					  pathFile(path){
   for(int i=0 ; i<nodes ; ++i)
     //Initialisation d'une liste pour chaque sommet i où la première case 
     //contient le nombre de sommets en relation avec i dans le graphe
     graph.push_back(vector<int>(1,0));
 }
 
-Graph::Graph(const Graph& g):nbVertexes(g.graph.size()){
+Graph::Graph(const Graph& g):nbVertexes(g.graph.size()),
+			     pathFile(g.pathFile){
   for(unsigned i=0 ; i<g.graph.size() ; ++i){
     graph.push_back(vector<int>());
     for(int j=0 ; j<=g.graph[i][0] ; ++j)
@@ -62,6 +64,10 @@ int Graph::getNbEdges(void){
 
 int Graph::getNbNeighbours(int originNode){
   return graph[originNode][0];
+}
+
+char* Graph::getPathFile(void){
+  return pathFile;
 }
 
 /** Opérateurs : **/

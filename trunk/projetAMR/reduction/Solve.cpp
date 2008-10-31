@@ -2,14 +2,16 @@
 #include <sstream>
 #include <fstream>
 #include <string>
+
 #include "Graph.h"
 #include "Cover.h"
 #include "CircuitHamiltonien.h"
+#include "Col3.hpp"
 
 using namespace std;
 
 int
-getNbVertex(char* path){
+getNbVertexes(char* path){
   ifstream file(path, ios::in);  // on ouvre le fichier en lecture
   int max = -1;
 
@@ -53,8 +55,8 @@ getNbVertex(char* path){
 
 Graph
 readGraph(char* path){
-  int nbVertex = getNbVertex(path);
-  Graph graph(nbVertex);
+  int nbVertex = getNbVertexes(path);
+  Graph graph(nbVertex, path);
   ifstream file(path, ios::in);  // on ouvre le fichier en lecture
   
   if(file){  // si l'ouverture a reussi
@@ -120,8 +122,11 @@ main(int argc, char** argv){
   
 
   /*tmp*/
-  CircuitHamiltonien ch(graph);
-  cout << ch.generateFormule();
+//   CircuitHamiltonien ch(graph);
+//   cout << ch.getSolution();
+
+  Col3 c(graph);
+  cout << c.getSolution();
 
   return 0;
 }

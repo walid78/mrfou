@@ -6,6 +6,7 @@ CircuitHamiltonien::CircuitHamiltonien(Graph g):graph(g){
   int nbVertexes = g.getNbVertexes();
 
   nbVars = 0;
+  nbClauses = 0;
 
   //Initialisation du tableau vars à -1
   for(int i=0 ; i<nbVertexes ; ++i)
@@ -27,61 +28,116 @@ CircuitHamiltonien::~CircuitHamiltonien(){
 
 /** Fonctions membres : **/
 //===========================================================================
-string CircuitHamiltonien::generateFormule(){
-  stringstream formule;
+string CircuitHamiltonien::generateCNFFormula(){
+  stringstream CNFFormula;
   
   int nbVertexes = graph.getNbVertexes();
 
   /* Au moins un arc sortant */
-  formule << "c Au moins un arc sortant" << endl;
+  CNFFormula << "c Au moins un arc sortant" << endl;
   for(int i=0 ; i<nbVertexes ; ++i){
     for(int j=0 ; j<graph.getNbNeighbours(i) ; ++j){
-      formule << vars[i][graph[i][j]] << " ";
+      CNFFormula << vars[i][graph[i][j]] << " ";
     }
-    formule << "0" << endl;
+    CNFFormula << "0" << endl;
+    nbClauses++;
   }
 
   /* Pas deux arcs sortants */
-  formule << "c Pas deux arcs sortants" << endl;
+  CNFFormula << "c Pas deux arcs sortants" << endl;
   for(int i=0 ; i<nbVertexes ; ++i)
     for(int j=0 ; j<graph.getNbNeighbours(i) ; ++j)
       for (int k=0 ; k<graph.getNbNeighbours(i); ++k)
-	if(graph[i][j] < graph[i][k])
-	  formule << "-" << vars[i][graph[i][j]] << " " << 
+	if(graph[i][j] < graph[i][k]){
+	  CNFFormula << "-" << vars[i][graph[i][j]] << " " << 
 	    "-" << vars[i][graph[i][k]] << " 0" <<endl;
+	  nbClauses++;
+	}
 
   /* Au moins un arc entrant */
-  formule << "c Au moins un arc entrant" << endl;
+  CNFFormula << "c Au moins un arc entrant" << endl;
   for(int i=0 ; i<nbVertexes ; ++i){
     for(int j=0 ; j<graph.getNbNeighbours(i) ; ++j){
-      formule << vars[graph[i][j]][i] << " ";
+      CNFFormula << vars[graph[i][j]][i] << " ";
     }
-    formule << "0" << endl;
+    CNFFormula << "0" << endl;
+    nbClauses++;
   }
 
   /* Pas deux arcs entrants */
-  formule << "c Pas deux arcs entrants" << endl;
+  CNFFormula << "c Pas deux arcs entrants" << endl;
   for(int i=0 ; i<nbVertexes ; ++i)
     for(int j=0 ; j<graph.getNbNeighbours(i) ; ++j)
       for (int k=0 ; k<graph.getNbNeighbours(i); ++k)
-	if(graph[i][j] < graph[i][k])
-	  formule << "-" << vars[graph[i][j]][i] << " " << 
+	if(graph[i][j] < graph[i][k]){
+	  CNFFormula << "-" << vars[graph[i][j]][i] << " " << 
 	    "-" << vars[graph[i][k]][i] << " 0" <<endl;
-
+	  nbClauses++;
+	}
+  
   /* Pas de double arcs */
-  formule << "c Pas de double arcs" << endl;
+  CNFFormula << "c Pas de double arcs" << endl;
   for(int i=0 ; i<nbVertexes ; ++i)
     for(int j=0 ; j<graph.getNbNeighbours(i) ; ++j)
-      if(i<graph[i][j])
-	formule << "-" << vars[i][graph[i][j]] << " " << 
+      if(i<graph[i][j]){
+	CNFFormula << "-" << vars[i][graph[i][j]] << " " << 
 	  "-" << vars[graph[i][j]][i] << " 0" << endl;
-
-  return formule.str();
+	nbClauses++;
+      }
+  
+  return CNFFormula.str();
 }
 
 //===========================================================================
-vector<bool> CircuitHamiltonien::getSolution(){
-  return vector<bool>();
+int* CircuitHamiltonien::getEdgeFromVar(int var){
+  int* edge = new int[2];
+  for(int i=0 ; i<nbVars ; ++i)
+    for(int j=0 ; j<nbVars ; ++j)
+      if(vars[i][j] == var){
+	edge[0] = i;
+	edge[1] = j;
+	return edge;
+      }
+
+  return NULL;
+}
+
+//===========================================================================
+string CircuitHamiltonien::getSolution(){
+//   stringstream answer;
+//   MinisatBuilder mb(pathFile,
+// 		    graph.getNbVertexes(),
+// 		    nbClauses,
+// 		    generateCNFFormula()
+// 		    );
+
+//   bool* varAssign = mb.solve();
+//   int* edge;
+  
+//   //solve renvoie -1 lorsque c'est non sat
+//   if(varAssign[0] == -1)
+//     answer << "Le graphe n'admet pas de circuit Hamiltonien.";
+//   else{
+//     answer << "Le graphe admet un circuit Hamiltonien." << endl <<
+//       "Il suffit de considérer l'ensemble d'arêtes suivant :" << endl <<
+//       "{ ";
+    
+//     for(int i=0 ; i<nbVars ; ++i){
+//       if((edge = getEdgeFromVar(i)) != NULL)
+// 	answer << edge[0] << "-" << edge[1] << ", ";
+//       else{
+// 	cerr << "Problème dans le programme." << endl;
+// 	exit(0);
+//       }
+//     }
+
+//     int size = answer.str().size();
+//     answer.str()[size-2]= ' ';
+//     answer.str()[size-1]= '}';
+//   }
+
+//   return answer.str();
+   return generateCNFFormula();
 }
 
 //===========================================================================

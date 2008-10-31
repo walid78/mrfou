@@ -1,10 +1,18 @@
-#ifndef MINISATBUILDER_H
-#define MINISATBUILDER_H
+#ifndef MINISATBUILDER_HPP
+#define MINISATBUILDER_HPP
+
+using namespace std;
 
 class MinisatBuilder {
+  
 public:
-  readFromMinisat(char*);
-  writeToMinisat(char*);
+  MinisatBuilder(char* inputPath, int nbVertexes, int nbClauses, string CNFFormula);
+  bool* solve();
+
+private:
+  //char* inputPath; ...
+  bool* readFromMinisat();
+  void writeToMinisat();
 };
 
 #endif
