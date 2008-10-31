@@ -87,5 +87,6 @@ void MinisatBuilder::writeToMinisat(){
 
 bool* solve(){
   //a faire, c'est lui qui fait tout, alors au boulot
+  //Penser aussi à regarder le execvp
   return NULL;
 }
