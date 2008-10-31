@@ -28,11 +28,12 @@ class Graph{
   
   vector<int> operator[](const int originNode);
   
+  int getMaxDegre(void);
   int getNbVertexes(void);
   int getNbEdges(void);
   int getNbNeighbours(int originNode);
-  char* getPathFile();
-
+  char* getPathFile(void);
+  
  private:
   vector< vector<int> > graph;
   int nbVertexes;

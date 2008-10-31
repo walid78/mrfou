@@ -6,7 +6,7 @@
 #include "Graph.h"
 #include "Cover.h"
 #include "CircuitHamiltonien.h"
-#include "Col3.hpp"
+#include "KCol.hpp"
 
 using namespace std;
 
@@ -88,6 +88,7 @@ readGraph(char* path){
       }
       //Ici on traite le cas du dernier numero de la ligne!
       current = atoi(number.c_str());
+      //cout << ++tmp << ":" << current << endl;
       graph.addEdges(last,current);
       number = "";
       last = -1;
@@ -125,8 +126,8 @@ main(int argc, char** argv){
 //   CircuitHamiltonien ch(graph);
 //   cout << ch.getSolution();
 
-  Col3 c(graph);
-  cout << c.getSolution();
+   KCol c(graph,atoi(argv[2]));
+   cout << c.getSolution();
 
   return 0;
 }
