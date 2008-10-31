@@ -10,7 +10,10 @@ public:
   bool* solve();
 
 private:
-  //char* inputPath; ...
+  char* inputPath;
+  int nbVertexes;
+  int nbClauses;
+  string CNFFormula;
   bool* readFromMinisat();
   void writeToMinisat();
 };
