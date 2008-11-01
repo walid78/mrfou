@@ -117,9 +117,17 @@ string CircuitHamiltonien::getSolution(){
 		    generateCNFFormula()
 		    );
 
-  bool* varAssign = mb.solve();
+   bool* varAssign = mb.solve();
+  
+  //cout << varAssign[0];
+  /*
+  for(unsigned i=0 ; i<sizeof(varAssign)/sizeof(bool) ; ++i)
+    cout << i << ":" << (varAssign[i]?"true":"false") << ", ";
+  cout << endl;
+  */
   int* edge;
   
+  cout << "TESTTSJKMHFMKJDSQHFDLKJHLDJKHLSFKJ" << endl;
   //solve renvoie -1 lorsque c'est non sat
   if(varAssign == NULL)
     answer << "Le graphe n'admet pas de circuit Hamiltonien.";
@@ -129,11 +137,13 @@ string CircuitHamiltonien::getSolution(){
       "{ ";
     
     for(int i=0 ; i<nbVars ; ++i){
-      if((edge = getEdgeFromVar(i)) != NULL)
-	answer << edge[0] << "-" << edge[1] << ", ";
-      else{
-	cerr << "Problème dans le programme." << endl;
-	exit(0);
+      if(varAssign[i]){
+	if((edge = getEdgeFromVar(i)) != NULL)
+	  answer << edge[0] << "-" << edge[1] << ", ";
+	else{
+	  cerr << "Problème dans le programme." << endl;
+	  exit(0);
+	}
       }
     }
 
@@ -142,6 +152,8 @@ string CircuitHamiltonien::getSolution(){
     answer.str()[size-1]= '}';
   }
 
+  delete edge;
+  delete varAssign;
   return answer.str();
   //return generateCNFFormula();
 }
