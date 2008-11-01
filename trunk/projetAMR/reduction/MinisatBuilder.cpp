@@ -41,6 +41,9 @@ bool* MinisatBuilder::readFromMinisat(){
       while(getline(file, line)){
 	if(SATFind == 0 && line.find("SAT") >= 0)
 	  SATFind = 1;
+
+	if(SATFind == 0 && line.find("UNSAT") >= 0)
+	  return NULL;
 	
 	if(SATFind == 1){
 	  int length = line.length();
@@ -91,17 +94,6 @@ void MinisatBuilder::writeToMinisat(){
 }
 
 bool* MinisatBuilder::solve(){
-//   //a faire, c'est lui qui fait tout, alors au boulot
-//   //Penser aussi à regarder le execvp
-//   writeToMinisat();
-  
-//   //faire le execvp, ET RAJOUTER LES BONNES LIB
-//     string args[2];
-//     args[0] = fileName+".sat";
-//     args[1] = fileName+".sol";
-//     execvp("./minisat", args.c_str());
-//   }
-//   wait(2); //TODO Trouver un temps plus adéquate
   
   system(("./minisat/simp/minisat_static " + fileName + ".sat " + fileName + ".sol").c_str());
   
