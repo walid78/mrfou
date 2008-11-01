@@ -7,32 +7,31 @@
 #include <string>
 #include <vector>
 
-#include "Graph.h"
+#include "Graph.hpp"
 #include "MinisatBuilder.hpp"
 
-MinisatBuilder::MinisatBuilder(char* inputPath,
+MinisatBuilder::MinisatBuilder(string inputPath,
 			       int nbVertexes,
 			       int nbClauses,
-			       string CNFFormula):inputPath(inputPath), 
-						  nbVertexes(nbVertexes), 
+			       string CNFFormula):nbVertexes(nbVertexes), 
 						  nbClauses(nbClauses), 
 						  CNFFormula(CNFFormula){
-  ;
+  fileName = inputPath.substr(0,inputPath.size()-4);
+  cout << fileName;
 }
 
 bool* MinisatBuilder::readFromMinisat(){
   
-  char* path = "";
-  for(int i = 0; inputPath[i] != '\0' && inputPath[i] != '.'; ++i){
-    char* tmp = inputPath[i]; //ça ne marche pas, problème de type
-    strcat(path, tmp);
-  } //strncat aurait peut-être était mieux, à voir
+//   char* path = (char *)"";
+//   for(int i = 0; inputPath[i] != '\0' && inputPath[i] != '.'; ++i){
+//     char tmp = inputPath[i]; //ça ne marche pas, problème de type
+//     strcat(path, tmp);
+//   } //strncat aurait peut-être était mieux, à voir
   
-  strcat(path, ".gout");
-  outputPath = path;
+//   strcat(path, ".gout");
   
-  ifstream file(path, ios::in);
-  bool* tab(nbVertexes);
+  ifstream file((fileName+".sol").c_str(), ios::in);
+  bool* tab = new bool[nbVertexes];
     
     if(file){
       
@@ -55,7 +54,7 @@ bool* MinisatBuilder::readFromMinisat(){
 	      tab[valeur] = (valeur > 0);
 	    }
 	    else{
-	      if(line[i] = '0' && i = length - 1) //Ceci ne doit en
+	      if(line[i] == '0' && i == length - 1) //Ceci ne doit en
 		//theorie ne jamais arriver
  	      break;
 	      else
@@ -71,39 +70,40 @@ bool* MinisatBuilder::readFromMinisat(){
 
 void MinisatBuilder::writeToMinisat(){
 
-  ofstream file(inputPath, ios::out);
+  ofstream file((fileName+".sat").c_str(), ios::out);
   
   if(file){
     string s;
     s = "c "; //Si on veut mettre un commentaire
     s += "\n";
-    file.write(s, s.length);
+    file << s;
     
     s = "p cnf ";
     s += nbVertexes;
     s += " ";
     s += nbClauses;
     s += "\n";
-    file.write(s, s.length);
+    file << s;
     
-    file.write(CNFFormula, CNFFormula.length);
+    file << CNFFormula;
   }
   file.close();
 }
 
 bool* MinisatBuilder::solve(){
-  //a faire, c'est lui qui fait tout, alors au boulot
-  //Penser aussi à regarder le execvp
-  writeToMinisat();
+//   //a faire, c'est lui qui fait tout, alors au boulot
+//   //Penser aussi à regarder le execvp
+//   writeToMinisat();
   
-  //faire le execvp, ET RAJOUTER LES BONNES LIB
-  if(fork()){
-    char* args[2];
-    args[0] = inputPath;
-    args[1] = outputPath;
-    execvp("./minisat", args);
-  }
-  wait(2); //TODO Trouver un temps plus adéquate
+//   //faire le execvp, ET RAJOUTER LES BONNES LIB
+//     string args[2];
+//     args[0] = fileName+".sat";
+//     args[1] = fileName+".sol";
+//     execvp("./minisat", args.c_str());
+//   }
+//   wait(2); //TODO Trouver un temps plus adéquate
+  
+  system(("./minisat " + fileName + ".sat " + fileName + ".sol").c_str());
   
   return readFromMinisat();
 }

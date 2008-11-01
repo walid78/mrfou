@@ -6,12 +6,11 @@ using namespace std;
 class MinisatBuilder {
   
 public:
-  MinisatBuilder(char* inputPath, int nbVertexes, int nbClauses, string CNFFormula);
+  MinisatBuilder(string inputPath, int nbVertexes, int nbClauses, string CNFFormula);
   bool* solve();
 
 private:
-  char* inputPath;
-  char* outputPath;
+  string fileName;
   int nbVertexes;
   int nbClauses;
   string CNFFormula;

@@ -30,6 +30,7 @@ class CircuitHamiltonien{
   Graph graph;
   int nbClauses;
   int nbVars;
+  string pathFile;
   vector< vector<int> > vars;
 
   //===========================================================================
