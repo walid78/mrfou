@@ -58,7 +58,7 @@ bool* MinisatBuilder::readFromMinisat(){
 	    else
 	      number += line[i];
 	  }
-	}	
+	}
       }
     }
 
@@ -92,7 +92,5 @@ bool* MinisatBuilder::solve(){
   
   system(("./minisat/simp/minisat " + fileName + ".sat " + fileName + ".sol").c_str());
 
-  bool* tab = readFromMinisat();
-
-  return tab;
+  return readFromMinisat();
 }
