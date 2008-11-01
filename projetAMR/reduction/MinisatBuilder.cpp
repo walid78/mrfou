@@ -36,16 +36,12 @@ bool* MinisatBuilder::readFromMinisat(){
       if(line.find("UNSAT") >= 0)
 	return NULL;
       
-//       // Obligatoire
-//       if(line.find("SAT") >= 0)
-// 	SATFind = 1;
-      
-      if(line.find("SAT") < 0)
+      if(line.find("SAT") < 0){
+	cerr << "ERROR";
 	exit(0);
-      
+      }
+
       while(getline(file, line)){
-// 	cout << "TESTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT" << endl;
-	
 	int length = line.length();
 	string number = "";
 	  
