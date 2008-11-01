@@ -103,7 +103,7 @@ bool* MinisatBuilder::solve(){
 //   }
 //   wait(2); //TODO Trouver un temps plus adéquate
   
-  system(("./minisat " + fileName + ".sat " + fileName + ".sol").c_str());
+  system(("./minisat/simp/minisat_static " + fileName + ".sat " + fileName + ".sol").c_str());
   
   return readFromMinisat();
 }

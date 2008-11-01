@@ -123,14 +123,14 @@ main(int argc, char** argv){
   
 
   /*tmp*/
-//   CircuitHamiltonien ch(graph);
-//   cout << ch.getSolution();
+   CircuitHamiltonien ch(graph);
+   cout << ch.getSolution();
 
 //   KCol c(graph,atoi(argv[2]));
 //   cout << c.getSolution();
 
-   Clique c(graph, atoi(argv[2]));
-   cout << c.getSolution();
+//    Clique c(graph, atoi(argv[2]));
+//    cout << c.getSolution();
 
   return 0;
 }
