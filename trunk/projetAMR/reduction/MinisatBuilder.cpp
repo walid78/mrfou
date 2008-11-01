@@ -1,3 +1,7 @@
+#include <wait.h>
+#include <unistd.h>
+#include <signal.h>
+
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -100,6 +104,7 @@ bool* MinisatBuilder::solve(){
     args[1] = outputPath;
     execvp("./minisat", args);
   }
+  wait(2); //TODO Trouver un temps plus adéquate
   
   return readFromMinisat();
 }
