@@ -1,8 +1,7 @@
-#ifndef GRAPH_H
-#define GRAPH_H
+#ifndef GRAPH_HPP
+#define GRAPH_HPP
 
 #include <vector>
-#include <iostream>
 
 using namespace std;
 

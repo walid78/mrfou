@@ -1,23 +1,28 @@
-#ifndef CIRCUITHAMILTONIEN_HPP
-#define CIRCUITHAMILTONIEN_HPP
+#ifndef CLIQUE_HPP
+#define CLIQUE_HPP
+
+#include <vector>
+#include <iostream>
+#include <sstream>
 
 #include "Graph.hpp"
+#include "MinisatBuilder.hpp"
 
 using namespace std;
 
-class CircuitHamiltonien{
+class Clique{
 
-  friend ostream& operator<<(ostream& o, const CircuitHamiltonien& ch);
+  friend ostream& operator<<(ostream& o, const Clique& ch);
 
   /*-*-*-*-* PUBLIC *-*-*-*-*/
  public:
     //===========================================================================
   /** Constructeur : **/
-  CircuitHamiltonien(Graph g);
+  Clique(Graph g, int size);
   
   //===========================================================================
   /** Destructeur : **/
-  ~CircuitHamiltonien();
+  ~Clique();
   
   //===========================================================================
   /** Fonctions membres : **/
@@ -30,17 +35,17 @@ class CircuitHamiltonien{
   Graph graph;
   int nbClauses;
   int nbVars;
+  int cliqueSize;
   vector< vector<int> > vars;
 
   //===========================================================================
   /** Fonctions membres **/
   string generateCNFFormula();
-  int* getEdgeFromVar(int var);
 };
 
 //===========================================================================
 /** Opérateur externe : **/
-ostream& operator<<(ostream& o, const CircuitHamiltonien& g);
+ostream& operator<<(ostream& o, const Clique& g);
 
 
 #endif

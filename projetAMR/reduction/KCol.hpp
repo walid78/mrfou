@@ -1,12 +1,7 @@
 #ifndef KCOL_HPP
 #define KCOL_HPP
 
-#include <vector>
-#include <iostream>
-#include <sstream>
-
 #include "Graph.hpp"
-//#include "MinisatBuilder.hpp"
 
 using namespace std;
 
@@ -35,7 +30,6 @@ class KCol{
   Graph graph;
   int nbClauses;
   int nbVars;
-  char* pathFile;
 
   /** Constante **/
   const int NB_COLORS;

@@ -4,6 +4,7 @@
 #include <string>
 
 #include "Graph.hpp"
+#include "Clique.hpp"
 #include "Cover.hpp"
 #include "CircuitHamiltonien.hpp"
 #include "KCol.hpp"
@@ -126,7 +127,10 @@ main(int argc, char** argv){
 //   CircuitHamiltonien ch(graph);
 //   cout << ch.getSolution();
 
-   KCol c(graph,atoi(argv[2]));
+//   KCol c(graph,atoi(argv[2]));
+//   cout << c.getSolution();
+
+   Clique c(graph, atoi(argv[2]));
    cout << c.getSolution();
 
   return 0;

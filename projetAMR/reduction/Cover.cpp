@@ -1,4 +1,4 @@
-#include "Cover.h"
+#include "Cover.hpp"
 
 bool isCover(Graph graph, vector<int> vertexes){
 

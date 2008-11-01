@@ -1,4 +1,9 @@
+#include <vector>
+#include <iostream>
+#include <sstream>
+
 #include "KCol.hpp"
+
 
 #define N NB_COLORS
 
@@ -110,6 +115,6 @@ string KCol::getSolution(){
 }
 
 //===========================================================================
-ostream& operator<<(ostream& o, const KCol& ch){
-  return o << ch.graph;
+ostream& operator<<(ostream& o, const KCol& kc){
+  return o << kc.graph;
 }

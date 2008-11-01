@@ -1,4 +1,8 @@
-#include "CircuitHamiltonien.h"
+#include <iostream>
+#include <sstream>
+#include <vector>
+
+#include "CircuitHamiltonien.hpp"
 
 /** Constructeur : **/
 //===========================================================================
