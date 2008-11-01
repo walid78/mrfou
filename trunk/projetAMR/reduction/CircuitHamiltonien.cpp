@@ -152,8 +152,11 @@ string CircuitHamiltonien::getSolution(){
     answer.str()[size-1]= '}';
   }
 
+  cout << "test avant delete : ok" << endl;
+
   delete edge;
-  delete varAssign;
+  //delete varAssign;
+  cout << "test après delete : ok" << endl;
   return answer.str();
   //return generateCNFFormula();
 }
