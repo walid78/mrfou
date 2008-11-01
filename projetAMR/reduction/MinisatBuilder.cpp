@@ -23,28 +23,27 @@ MinisatBuilder::MinisatBuilder(string inputPath,
 bool* MinisatBuilder::readFromMinisat(){
   
   ifstream file((fileName+".sol").c_str(), ios::in);
-
+  
   bool* tab = new bool[nbVertexes];
+  if(file){
+    string line;
     
-    if(file){
-      
-      string line;
-
-      // On récupère la première ligne
-      getline(file, line);
-
-      if(line.find("UNSAT") >= 0)
-	return NULL;
-      
+    // On récupère la première ligne
+    getline(file, line);
+    
+    int unsatFind = line.find("UNSAT");
+    if(unsatFind >= 0 && unsatFind < line.length())
+      return NULL;
+    
       if(line.find("SAT") < 0){
 	cerr << "ERROR";
 	exit(0);
       }
-
+      
       while(getline(file, line)){
 	int length = line.length();
 	string number = "";
-	  
+	
 	for(int i = 0; i < length - 1; i++){
 	  if(line[i] == ' '){
 	    int valeur = atoi(number.c_str());
@@ -100,5 +99,7 @@ bool* MinisatBuilder::solve(){
   
   system(("./minisat/simp/minisat " + fileName + ".sat " + fileName + ".sol").c_str());
 
-  return readFromMinisat();
+  bool* tab = readFromMinisat();
+
+  return tab;
 }
