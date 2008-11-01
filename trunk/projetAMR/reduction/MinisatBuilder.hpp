@@ -11,6 +11,7 @@ public:
 
 private:
   char* inputPath;
+  char* outputPath;
   int nbVertexes;
   int nbClauses;
   string CNFFormula;

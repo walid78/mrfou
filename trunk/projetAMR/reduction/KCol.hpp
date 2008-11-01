@@ -5,7 +5,7 @@
 #include <iostream>
 #include <sstream>
 
-#include "Graph.h"
+#include "Graph.hpp"
 //#include "MinisatBuilder.hpp"
 
 using namespace std;

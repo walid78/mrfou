@@ -1,6 +1,6 @@
 #include <cassert>
 
-#include "Graph.h"
+#include "Graph.hpp"
 
 /** Constructeur : **/
 //===========================================================================

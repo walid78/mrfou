@@ -26,9 +26,10 @@ bool* MinisatBuilder::readFromMinisat(){
   } //strncat aurait peut-être était mieux, à voir
   
   strcat(path, ".gout");
+  outputPath = path;
   
   ifstream file(path, ios::in);
-  bool* tab(/*valeur à récupérer grace à writetoMinisat*/);
+  bool* tab(nbVertexes);
     
     if(file){
       
@@ -63,7 +64,6 @@ bool* MinisatBuilder::readFromMinisat(){
     }
   file.close();
   return tab;
-  //  return NULL;
 }
 
 void MinisatBuilder::writeToMinisat(){
@@ -73,6 +73,7 @@ void MinisatBuilder::writeToMinisat(){
   if(file){
     string s;
     s = "c "; //Si on veut mettre un commentaire
+    s += "\n";
     file.write(s, s.length);
     
     s = "p cnf ";
@@ -87,22 +88,18 @@ void MinisatBuilder::writeToMinisat(){
   file.close();
 }
 
-//Rajouter une fonction solve qui prend en parametre une string et 
-//retourne tab booléen qui ecrit dans minisat, lance minisat et récupère le solution
-
 bool* MinisatBuilder::solve(){
   //a faire, c'est lui qui fait tout, alors au boulot
   //Penser aussi à regarder le execvp
   writeToMinisat();
   
-  //faire le execvp, ET RAJOUTER LES BONNE LIB
+  //faire le execvp, ET RAJOUTER LES BONNES LIB
   if(fork()){
     char* args[2];
     args[0] = inputPath;
-    args[1] = ""; //TODO récupérer le nom du fichier de sortie
+    args[1] = outputPath;
     execvp("./minisat", args);
   }
   
   return readFromMinisat();
-  //  return NULL;
 }
