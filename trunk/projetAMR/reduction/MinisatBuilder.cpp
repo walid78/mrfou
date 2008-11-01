@@ -22,53 +22,53 @@ MinisatBuilder::MinisatBuilder(string inputPath,
 
 bool* MinisatBuilder::readFromMinisat(){
   
-//   char* path = (char *)"";
-//   for(int i = 0; inputPath[i] != '\0' && inputPath[i] != '.'; ++i){
-//     char tmp = inputPath[i]; //ça ne marche pas, problème de type
-//     strcat(path, tmp);
-//   } //strncat aurait peut-être était mieux, à voir
-  
-//   strcat(path, ".gout");
-  
   ifstream file((fileName+".sol").c_str(), ios::in);
+
   bool* tab = new bool[nbVertexes];
     
     if(file){
       
       string line;
-      int SATFind = 0;
+
+      // On récupère la première ligne
+      getline(file, line);
+
+      if(line.find("UNSAT") >= 0)
+	return NULL;
+      
+//       // Obligatoire
+//       if(line.find("SAT") >= 0)
+// 	SATFind = 1;
+      
+      if(line.find("SAT") < 0)
+	exit(0);
       
       while(getline(file, line)){
-	if(SATFind == 0 && line.find("SAT") >= 0)
-	  SATFind = 1;
-
-	if(SATFind == 0 && line.find("UNSAT") >= 0)
-	  return NULL;
+// 	cout << "TESTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT" << endl;
 	
-	if(SATFind == 1){
-	  int length = line.length();
-	  string number = "";
+	int length = line.length();
+	string number = "";
 	  
-	  for(int i = 0; i < length - 1; i++){
-	    if(line[i] == ' '){
-	      int valeur = atoi(number.c_str());
-	      number = "";
-	      //Traitement des variables
-	      tab[valeur] = (valeur > 0);
-	    }
-	    else{
-	      if(line[i] == '0' && i == length - 1) //Ceci ne doit en
-		//theorie ne jamais arriver
- 	      break;
-	      else
-		number += line[i];
-	    }
-	  }	
-	}
+	for(int i = 0; i < length - 1; i++){
+	  if(line[i] == ' '){
+	    int valeur = atoi(number.c_str());
+	    number = "";
+	    //Traitement des variables
+	    tab[valeur] = (valeur > 0);
+	  }
+	  else{
+	    if(line[i] == '0' && i == length - 1) //Ceci ne doit en
+	      //theorie ne jamais arriver
+	      break;
+	    else
+	      number += line[i];
+	  }
+	}	
       }
     }
-  file.close();
-  return tab;
+
+    file.close();
+    return tab;
 }
 
 void MinisatBuilder::writeToMinisat(){
@@ -99,7 +99,10 @@ bool* MinisatBuilder::solve(){
 
   writeToMinisat();
   
-  system(("./minisat/simp/minisat " + fileName + ".sat " + fileName + ".sol").c_str());
+  if (system(NULL)) puts ("Ok");
+  else exit (1);
   
+  system(("./minisat/simp/minisat " + fileName + ".sat " + fileName + ".sol").c_str());
+
   return readFromMinisat();
 }
