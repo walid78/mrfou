@@ -17,7 +17,6 @@ MinisatBuilder::MinisatBuilder(string inputPath,
 						  nbClauses(nbClauses), 
 						  CNFFormula(CNFFormula){
   fileName = inputPath.substr(0,inputPath.size()-4);
-  cout << fileName;
 }
 
 bool* MinisatBuilder::readFromMinisat(){
@@ -87,8 +86,8 @@ bool* MinisatBuilder::solve(){
 
   writeToMinisat();
   
-  if (system(NULL)) puts ("Ok");
-  else exit (1);
+  //  if (system(NULL)) puts ("Ok");
+  //else exit (1);
   
   system(("./minisat/simp/minisat " + fileName + ".sat " + fileName + ".sol").c_str());
 

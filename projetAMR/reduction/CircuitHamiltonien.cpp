@@ -127,7 +127,6 @@ string CircuitHamiltonien::getSolution(){
   */
   int* edge;
   
-  cout << "TESTTSJKMHFMKJDSQHFDLKJHLDJKHLSFKJ" << endl;
   //solve renvoie -1 lorsque c'est non sat
   if(varAssign == NULL)
     answer << "Le graphe n'admet pas de circuit Hamiltonien.";
@@ -152,11 +151,9 @@ string CircuitHamiltonien::getSolution(){
     answer.str()[size-1]= '}';
   }
 
-  cout << "test avant delete : ok" << endl;
-
   delete edge;
   //delete varAssign;
-  cout << "test après delete : ok" << endl;
+
   return answer.str();
   //return generateCNFFormula();
 }
