@@ -74,19 +74,21 @@ bool* MinisatBuilder::readFromMinisat(){
 void MinisatBuilder::writeToMinisat(){
 
   ofstream file((fileName+".sat").c_str(), ios::out);
-  
+  //  cout << nbVertexes << " " << nbClauses << endl;
+
   if(file){
     string s;
     s = "c "; //Si on veut mettre un commentaire
     s += "\n";
     file << s;
     
-    s = "p cnf ";
+    /*s = "p cnf ";
     s += nbVertexes;
     s += " ";
     s += nbClauses;
     s += "\n";
-    file << s;
+    file << s;*/
+    file << "p cnf " << nbVertexes << " " << nbClauses << endl;
     
     file << CNFFormula;
   }
