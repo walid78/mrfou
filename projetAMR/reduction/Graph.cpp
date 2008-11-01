@@ -5,8 +5,8 @@
 
 /** Constructeur : **/
 //===========================================================================
-Graph::Graph(const int nodes, char* path):nbVertexes(nodes),
-					  pathFile(path){
+Graph::Graph(const int nodes, string path):nbVertexes(nodes),
+					   pathFile(path){
   for(int i=0 ; i<nodes ; ++i)
     //Initialisation d'une liste pour chaque sommet i où la première case 
     //contient le nombre de sommets en relation avec i dans le graphe
@@ -69,7 +69,7 @@ int Graph::getNbNeighbours(int originNode){
 }
 
 //===========================================================================
-char* Graph::getPathFile(void){
+string Graph::getPathFile(void){
   return pathFile;
 }
 

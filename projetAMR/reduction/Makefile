@@ -1,6 +1,6 @@
 SHELL= bash
 TARGET= solve
-OBJS= Graph.o Solve.o Cover.o CircuitHamiltonien.o  KCol.o Clique.o #MinisatBuilder.o
+OBJS= Graph.o Solve.o Cover.o CircuitHamiltonien.o  KCol.o Clique.o MinisatBuilder.o
 CXXFLAGS = -Wall -g
 CXX= g++
 LDFLAGS=

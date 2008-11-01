@@ -12,8 +12,8 @@
 using namespace std;
 
 int
-getNbVertexes(char* path){
-  ifstream file(path, ios::in);  // on ouvre le fichier en lecture
+getNbVertexes(string path){
+  ifstream file(path.c_str(), ios::in);  // on ouvre le fichier en lecture
   int max = -1;
 
   if(file){  // si l'ouverture a reussi
@@ -55,10 +55,10 @@ getNbVertexes(char* path){
 }
 
 Graph
-readGraph(char* path){
+readGraph(string path){
   int nbVertex = getNbVertexes(path);
   Graph graph(nbVertex, path);
-  ifstream file(path, ios::in);  // on ouvre le fichier en lecture
+  ifstream file(path.c_str(), ios::in);  // on ouvre le fichier en lecture
   
   if(file){  // si l'ouverture a reussi
     string line;
@@ -104,7 +104,6 @@ readGraph(char* path){
 
 int
 main(int argc, char** argv){
-
   Graph graph = readGraph(argv[1]);
   cout << "Graph :" << endl << graph << endl;
   

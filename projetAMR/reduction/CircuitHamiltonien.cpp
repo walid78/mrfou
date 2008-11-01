@@ -3,10 +3,12 @@
 #include <vector>
 
 #include "CircuitHamiltonien.hpp"
+#include "MinisatBuilder.hpp"
 
 /** Constructeur : **/
 //===========================================================================
-CircuitHamiltonien::CircuitHamiltonien(Graph g):graph(g){
+CircuitHamiltonien::CircuitHamiltonien(Graph g):graph(g),
+						pathFile(g.getPathFile()){
   int nbVertexes = g.getNbVertexes();
 
   nbVars = 0;
@@ -108,40 +110,40 @@ int* CircuitHamiltonien::getEdgeFromVar(int var){
 
 //===========================================================================
 string CircuitHamiltonien::getSolution(){
-//   stringstream answer;
-//   MinisatBuilder mb(pathFile,
-// 		    graph.getNbVertexes(),
-// 		    nbClauses,
-// 		    generateCNFFormula()
-// 		    );
+  stringstream answer;
+  MinisatBuilder mb(pathFile,
+		    graph.getNbVertexes(),
+		    nbClauses,
+		    generateCNFFormula()
+		    );
 
-//   bool* varAssign = mb.solve();
-//   int* edge;
+  bool* varAssign = mb.solve();
+  int* edge;
   
-//   //solve renvoie -1 lorsque c'est non sat
-//   if(varAssign[0] == -1)
-//     answer << "Le graphe n'admet pas de circuit Hamiltonien.";
-//   else{
-//     answer << "Le graphe admet un circuit Hamiltonien." << endl <<
-//       "Il suffit de considérer l'ensemble d'arêtes suivant :" << endl <<
-//       "{ ";
+  //solve renvoie -1 lorsque c'est non sat
+  if(varAssign == NULL)
+    answer << "Le graphe n'admet pas de circuit Hamiltonien.";
+  else{
+    answer << "Le graphe admet un circuit Hamiltonien." << endl <<
+      "Il suffit de considérer l'ensemble d'arêtes suivant :" << endl <<
+      "{ ";
     
-//     for(int i=0 ; i<nbVars ; ++i){
-//       if((edge = getEdgeFromVar(i)) != NULL)
-// 	answer << edge[0] << "-" << edge[1] << ", ";
-//       else{
-// 	cerr << "Problème dans le programme." << endl;
-// 	exit(0);
-//       }
-//     }
+    for(int i=0 ; i<nbVars ; ++i){
+      if((edge = getEdgeFromVar(i)) != NULL)
+	answer << edge[0] << "-" << edge[1] << ", ";
+      else{
+	cerr << "Problème dans le programme." << endl;
+	exit(0);
+      }
+    }
 
-//     int size = answer.str().size();
-//     answer.str()[size-2]= ' ';
-//     answer.str()[size-1]= '}';
-//   }
+    int size = answer.str().size();
+    answer.str()[size-2]= ' ';
+    answer.str()[size-1]= '}';
+  }
 
-//   return answer.str();
-   return generateCNFFormula();
+  return answer.str();
+  //return generateCNFFormula();
 }
 
 //===========================================================================
