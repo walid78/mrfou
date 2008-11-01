@@ -94,8 +94,10 @@ void MinisatBuilder::writeToMinisat(){
 }
 
 bool* MinisatBuilder::solve(){
+
+  writeToMinisat();
   
-  system(("./minisat/simp/minisat_static " + fileName + ".sat " + fileName + ".sol").c_str());
+  system(("./minisat/simp/minisat " + fileName + ".sat " + fileName + ".sol").c_str());
   
   return readFromMinisat();
 }

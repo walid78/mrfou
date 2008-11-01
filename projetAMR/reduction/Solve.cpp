@@ -105,7 +105,7 @@ readGraph(string path){
 int
 main(int argc, char** argv){
   Graph graph = readGraph(argv[1]);
-  cout << "Graph :" << endl << graph << endl;
+  //cout << "Graph :" << endl << graph << endl; //JE VIENS DE COMMENTER
   
   //   vector<int> cover;
   //   cover.push_back(0);
@@ -124,7 +124,7 @@ main(int argc, char** argv){
 
   /*tmp*/
    CircuitHamiltonien ch(graph);
-   cout << ch.getSolution();
+   /*cout << */ch.getSolution(); //JE VIENS DE COMMENTER
 
 //   KCol c(graph,atoi(argv[2]));
 //   cout << c.getSolution();
