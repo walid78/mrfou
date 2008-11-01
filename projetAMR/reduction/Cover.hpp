@@ -1,7 +1,7 @@
 #ifndef COVER_H
 #define COVER_H
 
-#include "Graph.h"
+#include "Graph.hpp"
 
 using namespace std;
 

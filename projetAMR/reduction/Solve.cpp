@@ -3,9 +3,9 @@
 #include <fstream>
 #include <string>
 
-#include "Graph.h"
-#include "Cover.h"
-#include "CircuitHamiltonien.h"
+#include "Graph.hpp"
+#include "Cover.hpp"
+#include "CircuitHamiltonien.hpp"
 #include "KCol.hpp"
 
 using namespace std;
