@@ -13,11 +13,10 @@
 MinisatBuilder::MinisatBuilder(char* inputPath,
 			       int nbVertexes,
 			       int nbClauses,
-			       string CNFFormula) 
-  : inputPath(inputPath), 
-    nbVertexes(nbVertexes), 
-    nbClauses(nbClauses), 
-    CNFFormula(CNFFormula){
+			       string CNFFormula):inputPath(inputPath), 
+						  nbVertexes(nbVertexes), 
+						  nbClauses(nbClauses), 
+						  CNFFormula(CNFFormula){
   ;
 }
 

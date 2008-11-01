@@ -1,7 +1,6 @@
-
 SHELL= bash
 TARGET= solve
-OBJS= Graph.o Solve.o Cover.o CircuitHamiltonien.o  KCol.o MinisatBuilder.o
+OBJS= Graph.o Solve.o Cover.o CircuitHamiltonien.o  KCol.o Clique.o #MinisatBuilder.o
 CXXFLAGS = -Wall -g
 CXX= g++
 LDFLAGS=
@@ -27,6 +26,9 @@ MinisatBuilder.o: MinisatBuilder.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 KCol.o: KCol.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+Clique.o: Clique.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
