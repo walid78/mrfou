@@ -131,7 +131,7 @@ main(int argc, char** argv){
 
 //    Clique c(graph, atoi(argv[2]));
 //    cout << c.getSolution();
+
    exit(0);
-   cout << "babar" << endl;
    return EXIT_SUCCESS;
 }
