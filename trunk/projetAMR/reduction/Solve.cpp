@@ -122,14 +122,14 @@ main(int argc, char** argv){
   //  cout << graph.getNbVertexes() << " " << graph.getNbEdges() << endl;
   
 
-   CircuitHamiltonien ch(graph);
-   cout << ch.getSolution() << endl;
+//    CircuitHamiltonien ch(graph);
+//    cout << ch.getSolution() << endl;
 
 //   KCol c(graph,atoi(argv[2]));
 //   cout << c.getSolution() << endl;
 
-//    Clique c(graph, atoi(argv[2]));
-//    cout << c.getSolution();
+   Clique c(graph, atoi(argv[2]));
+   cout << c.getSolution() << endl;
    exit(0);
    return EXIT_SUCCESS;
 }

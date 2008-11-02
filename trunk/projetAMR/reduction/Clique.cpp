@@ -46,9 +46,9 @@ string Clique::generateCNFFormula(){
   int nbVertexes = graph.getNbVertexes();
 
   /* Chaque noeud est dans la clique <=>
-     Au moins un noeud est le j^ième sommet de la clique */
+     Au moins un noeud est le jième sommet de la clique */
   CNFFormula << "c Chaque noeud est dans la clique <=>" << endl;
-  CNFFormula << "c Au moins un noeud est le j^ième sommet de la clique" << endl;
+  CNFFormula << "c Au moins un noeud est le jième sommet de la clique" << endl;
   for(int j=0 ; j<cliqueSize ; ++j){
     for(int i=0 ; i<nbVertexes ; ++i){
       CNFFormula << vars[i][j] << " ";
@@ -58,9 +58,9 @@ string Clique::generateCNFFormula(){
   }
  
   /* Un noeud a exactement une position dans la clique <=>
-     Aucun noeud n'est le j^ième et le l^ième sommet de la clique */
+     Aucun noeud n'est le jième et le lième sommet de la clique */
   CNFFormula << "c Un noeud a exactement une position dans la clique <=>" << endl;
-  CNFFormula << "c Aucun noeud n'est le j^ième et le k^ième sommet de la clique" << endl;
+  CNFFormula << "c Aucun noeud n'est le jième et le kième sommet de la clique" << endl;
   for(int i=0 ; i<nbVertexes ; ++i)
     for(int j=0 ; j<cliqueSize ; ++j)
       for(int k=j+1 ; k<cliqueSize ; ++k){
@@ -100,46 +100,42 @@ string Clique::generateCNFFormula(){
 	nbClauses++;
       }
     
-  CNFFormula << nbClauses;
-
   return CNFFormula.str();
 }
 
 //===========================================================================
 string Clique::getSolution(){
   stringstream answer;
-//   MinisatBuilder mb(pathFile,
-// 		    graph.getNbVertexes(),
-// 		    nbClauses,
-// 		    generateCNFFormula()
-// 		    );
+  MinisatBuilder mb(pathFile,
+		    nbVars,
+		    nbClauses,
+		    generateCNFFormula()
+		    );
 
-//   bool* varAssign = mb.solve();
-//   int* edge;
+  string s;
+  bool* varAssign = mb.solve();
   
-//   //solve renvoie -1 lorsque c'est non sat
-//   if(varAssign == NULL)
-//     return << "Le graphe n'admet pas de circuit Hamiltonien.";
-//   else{
-//     answer << "Le graphe admet un circuit Hamiltonien." << endl <<
-//       "Il suffit de considérer l'ensemble d'arêtes suivant :" << endl <<
-//       "{ ";
+  //solve renvoie NULL lorsque c'est non sat
+  if(varAssign == NULL){
+    answer << "Le graphe n'admet pas de clique de taille " << cliqueSize << ".";
+    s = answer.str();
+  }else{
+    answer << "Le graphe admet une clique de taille " << cliqueSize << "." << 
+      endl << "Il suffit de considérer les sommets suivants :" << 
+      endl << "{ ";
     
-//     for(int i=0 ; i<nbVars ; ++i){
-//       if((edge = getEdgeFromVar(i)) != NULL)
-// 	answer << edge[0] << "-" << edge[1] << ", ";
-//       else{
-// 	cerr << "Problème dans le programme." << endl;
-// 	exit(0);
-//       }
-//     }
+    for(int i=0 ; i<nbVars ; ++i){
+      if(varAssign[i])
+	answer << (i)/3 << ", ";
+    }
 
-//     int size = answer.str().size();
-//     answer.str()[size-2]= ' ';
-//     answer.str()[size-1]= '}';
-//   }
+    s = answer.str();
+    int size = s.size();
+    s[size-2]= ' ';
+    s[size-1]= '}';
+  }
 
-  return answer.str();
+  return s;
 }
 
 //===========================================================================
