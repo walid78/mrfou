@@ -150,7 +150,6 @@ string CircuitHamiltonien::getSolution(){
     s[size-1]= '}';
   }
 
-  delete edge;
   return s;
 }
 
