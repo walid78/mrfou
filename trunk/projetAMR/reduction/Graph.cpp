@@ -86,6 +86,27 @@ int Graph::getMaxDegre(void){
   return max;
 }
 
+Graph Graph::complementary(void){
+  bool isNotInGraph[nbVertexes];
+
+  Graph comp(nbVertexes, pathFile);
+  
+  for(int i=0 ; i<nbVertexes ; ++i){
+
+    for(int j=0 ; j<nbVertexes ; ++j)
+      isNotInGraph[j] = true;
+    isNotInGraph[i] = false;
+    
+    for(int j=1 ; j<=graph[i][0] ; ++j)
+      isNotInGraph[graph[i][j]] = false;
+
+    for(int j=0 ; j<nbVertexes ; ++j)
+      if(isNotInGraph[j])
+	comp.addEdges(i, j);
+  }
+  return comp;
+}
+
 /** Opérateurs : **/
 //===========================================================================
 vector<int> Graph::operator[](const int originNode){
