@@ -51,10 +51,11 @@ bool* MinisatBuilder::readFromMinisat(){
 	    int valeur = atoi(number.c_str());
 	    number = "";
 	    //Traitement des variables
-	    if(valeur>0)
+	    /*	    if(valeur>0)
 	      tab[valeur-1] = true;
 	    else
-	      tab[(-valeur)-1] = false;
+	    tab[(-valeur)-1] = false;*/
+	    tab[abs(valeur) - 1] = (valeur > 0);
 	  }
 	  else{
 	    if(line[i] == '0' && i == length - 1) //Ceci ne doit en
