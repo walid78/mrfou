@@ -99,7 +99,7 @@ int* CircuitHamiltonien::getEdgeFromVar(int var){
   int* edge = new int[2];
   int nbVertexes = graph.getNbVertexes();
 
-  cout << var << endl;
+  // cout << var << endl;
   
   for(int i=0 ; i<nbVertexes ; ++i)
     for(int j=0 ; j<nbVertexes ; ++j)
