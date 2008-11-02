@@ -8,6 +8,7 @@
 #include "Cover.hpp"
 #include "CircuitHamiltonien.hpp"
 #include "KCol.hpp"
+#include "VertexCover.hpp"
 
 using namespace std;
 
@@ -161,6 +162,11 @@ main(int argc, char** argv){
 
   case 3:
     {
+      if(argc > 3){
+	VertexCover vc(graph, atoi(argv[3]));
+	cout << vc.getSolution() << endl;
+      }else
+	usage();
       break;
     }
 
@@ -184,6 +190,10 @@ main(int argc, char** argv){
       break; //Ne sert à rien mais je le mets
     }
   }
+
+  //   cout << "Graph : " << endl << graph << endl;
+
+//   cout << "Comp : " << endl << graph.complementary() << endl;
   
   return EXIT_SUCCESS;
 }

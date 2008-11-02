@@ -104,6 +104,16 @@ string Clique::generateCNFFormula(){
 }
 
 //===========================================================================
+bool* Clique::transmitSolution(){
+  MinisatBuilder mb(pathFile,
+		    nbVars,
+		    nbClauses,
+		    generateCNFFormula()
+		    );
+  return mb.solve();
+}
+
+//===========================================================================
 string Clique::getSolution(){
   stringstream answer;
   MinisatBuilder mb(pathFile,
@@ -126,7 +136,7 @@ string Clique::getSolution(){
     
     for(int i=0 ; i<nbVars ; ++i){
       if(varAssign[i])
-	answer << (i)/3 << ", ";
+	answer << (i/cliqueSize) << ", ";
     }
 
     s = answer.str();
