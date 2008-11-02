@@ -34,8 +34,10 @@ bool* MinisatBuilder::readFromMinisat(){
     tab[0] = false;
 
     int unsatFind = line.find("UNSAT");
+
     if(unsatFind >= 0 && unsatFind < line.length())
-      return NULL;
+       return NULL;
+    
     
       if(line.find("SAT") < 0){
 	cerr << "ERROR";
