@@ -15,14 +15,14 @@ void
 usage(void){
   cerr << "Usage : ./solve <fichier_du_graphe> <numéro_du_problème> [paramètres]" << endl;
   cerr << "\tProblème 1 : k-coloriabilité" << endl;
-  cerr << "\t\tParamètres : k" << endl;
+  cerr << "\t\tParamètre obligatoire : k" << endl;
   cerr << "\tProblème 2 : Circuit Hamiltonien" << endl;
   cerr << "\tProblème 3 : Couverture de sommet" << endl;
-  cerr << "\t\tParamètres : taille_de_la_couverture" << endl;
+  cerr << "\t\tParamètre obligatoire : taille_de_la_couverture" << endl;
   cerr << "\tProblème 4 : Clique" << endl;
-  cerr << "\t\tParamètres : taille_de_la_clique" << endl;
+  cerr << "\t\tParamètre obligatoire : taille_de_la_clique" << endl;
   cerr << "\tProblème 5 : Ensemble indépendant" << endl;
-  cerr << "\t\tParamètres : taille_de_l_ensemble" << endl;
+  cerr << "\t\tParamètre obligatoire : taille_de_l_ensemble" << endl;
   exit(EXIT_FAILURE);
 }
 
