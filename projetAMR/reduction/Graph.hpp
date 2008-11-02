@@ -28,6 +28,7 @@ class Graph{
   
   vector<int> operator[](const int originNode);
   
+  Graph complementary(void);
   int getMaxDegre(void);
   int getNbVertexes(void);
   int getNbEdges(void);
