@@ -43,7 +43,7 @@ bool* MinisatBuilder::readFromMinisat(){
 	cerr << "ERROR";
 	exit(0);
       }
-      
+
       while(getline(file, line)){
 	int length = line.length();
 	string number = "";
