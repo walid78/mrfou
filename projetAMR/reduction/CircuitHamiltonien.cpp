@@ -126,8 +126,8 @@ string CircuitHamiltonien::getSolution(){
   int* edge;
   
   //solve renvoie NULL lorsque c'est non sat
-  if(!varAssign[0])
-    answer << "Le graphe n'admet pas de circuit Hamiltonien.";
+  if(varAssign == NULL)
+    return "Le graphe n'admet pas de circuit Hamiltonien.";
   else{
     answer << "Le graphe admet un circuit Hamiltonien." << endl <<
       "Il suffit de considérer l'ensemble d'arêtes suivant :" << endl <<
@@ -151,7 +151,6 @@ string CircuitHamiltonien::getSolution(){
   }
 
   delete edge;
-  delete varAssign;
   return s;
 }
 
