@@ -11,9 +11,9 @@
 #include "MinisatBuilder.hpp"
 
 MinisatBuilder::MinisatBuilder(string inputPath,
-			       int nbVertexes,
+			       int nbVars,
 			       int nbClauses,
-			       string CNFFormula):nbVertexes(nbVertexes), 
+			       string CNFFormula):nbVars(nbVars), 
 						  nbClauses(nbClauses), 
 						  CNFFormula(CNFFormula){
   fileName = inputPath.substr(0,inputPath.size()-4);
@@ -23,13 +23,16 @@ bool* MinisatBuilder::readFromMinisat(){
   
   ifstream file((fileName+".sol").c_str(), ios::in);
   
-  bool* tab = new bool[nbVertexes];
+  bool* tab = new bool[nbVars];
+
   if(file){
     string line;
     
     // On récupère la première ligne
     getline(file, line);
     
+    tab[0] = false;
+
     int unsatFind = line.find("UNSAT");
     if(unsatFind >= 0 && unsatFind < line.length())
       return NULL;
@@ -48,7 +51,10 @@ bool* MinisatBuilder::readFromMinisat(){
 	    int valeur = atoi(number.c_str());
 	    number = "";
 	    //Traitement des variables
-	    tab[valeur] = (valeur > 0);
+	    if(valeur>0)
+	      tab[valeur-1] = true;
+	    else
+	      tab[(-valeur)-1] = false;
 	  }
 	  else{
 	    if(line[i] == '0' && i == length - 1) //Ceci ne doit en
@@ -60,9 +66,10 @@ bool* MinisatBuilder::readFromMinisat(){
 	}
       }
     }
+  
+  file.close();
 
-    file.close();
-    return tab;
+  return tab;
 }
 
 void MinisatBuilder::writeToMinisat(){
@@ -75,7 +82,7 @@ void MinisatBuilder::writeToMinisat(){
     s += "\n";
     file << s;
     
-    file << "p cnf " << nbVertexes << " " << nbClauses << endl;
+    file << "p cnf " << nbVars << " " << nbClauses << endl;
     
     file << CNFFormula;
   }
