@@ -97,8 +97,12 @@ string CircuitHamiltonien::generateCNFFormula(){
 //===========================================================================
 int* CircuitHamiltonien::getEdgeFromVar(int var){
   int* edge = new int[2];
-  for(int i=0 ; i<nbVars ; ++i)
-    for(int j=0 ; j<nbVars ; ++j)
+  int nbVertexes = graph.getNbVertexes();
+
+  cout << var << endl;
+  
+  for(int i=0 ; i<nbVertexes ; ++i)
+    for(int j=0 ; j<nbVertexes ; ++j)
       if(vars[i][j] == var){
 	edge[0] = i;
 	edge[1] = j;
@@ -112,23 +116,17 @@ int* CircuitHamiltonien::getEdgeFromVar(int var){
 string CircuitHamiltonien::getSolution(){
   stringstream answer;
   MinisatBuilder mb(pathFile,
-		    graph.getNbVertexes(),
+		    nbVars,
 		    nbClauses,
 		    generateCNFFormula()
 		    );
-
-   bool* varAssign = mb.solve();
+  string s;
+  bool* varAssign = mb.solve();
   
-  //cout << varAssign[0];
-  /*
-  for(unsigned i=0 ; i<sizeof(varAssign)/sizeof(bool) ; ++i)
-    cout << i << ":" << (varAssign[i]?"true":"false") << ", ";
-  cout << endl;
-  */
   int* edge;
   
-  //solve renvoie -1 lorsque c'est non sat
-  if(varAssign == NULL)
+  //solve renvoie NULL lorsque c'est non sat
+  if(!varAssign[0])
     answer << "Le graphe n'admet pas de circuit Hamiltonien.";
   else{
     answer << "Le graphe admet un circuit Hamiltonien." << endl <<
@@ -137,7 +135,7 @@ string CircuitHamiltonien::getSolution(){
     
     for(int i=0 ; i<nbVars ; ++i){
       if(varAssign[i]){
-	if((edge = getEdgeFromVar(i)) != NULL)
+	if((edge = getEdgeFromVar(i+1)) != NULL)
 	  answer << edge[0] << "-" << edge[1] << ", ";
 	else{
 	  cerr << "Problème dans le programme." << endl;
@@ -147,15 +145,14 @@ string CircuitHamiltonien::getSolution(){
     }
 
     int size = answer.str().size();
-    answer.str()[size-2]= ' ';
-    answer.str()[size-1]= '}';
+    s = answer.str();
+    s[size-2]= ' ';
+    s[size-1]= '}';
   }
 
   delete edge;
-  //delete varAssign;
-
-  return answer.str();
-  //return generateCNFFormula();
+  delete varAssign;
+  return s;
 }
 
 //===========================================================================
