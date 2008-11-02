@@ -116,7 +116,6 @@ string KCol::getSolution(){
     s[size-1]= '}';
   }
 
-  delete varAssign;
   return s;
 }
 
