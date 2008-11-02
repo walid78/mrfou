@@ -9,6 +9,7 @@
 #include "CircuitHamiltonien.hpp"
 #include "KCol.hpp"
 #include "VertexCover.hpp"
+#include "IndepSet.hpp"
 
 using namespace std;
 
@@ -181,6 +182,11 @@ main(int argc, char** argv){
     }
   case 5:
     {
+      if(argc > 3){
+	IndepSet is(graph, atoi(argv[3]));
+	cout << is.getSolution() << endl;
+      }else
+	usage();
       break;
     }
   default :
