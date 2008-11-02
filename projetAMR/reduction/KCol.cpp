@@ -93,9 +93,10 @@ string KCol::getSolution(){
   int nbVertexes = graph.getNbVertexes();
   string s;
       
-  if(varAssign == NULL)
+  if(varAssign == NULL){
     answer << "Le graphe n'admet pas de " << N << "-Coloration.";
-  else{
+    return answer.str();
+  }else{
     answer << "Le graphe admet une " << N << "-Coloration." << endl <<
       "Il suffit de considérer la coloration des sommets suivante :" << endl <<
       "{ ";
