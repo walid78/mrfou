@@ -3,15 +3,16 @@
 #include <sstream>
 
 #include "KCol.hpp"
-
+#include "MinisatBuilder.hpp"
 
 #define N NB_COLORS
 
 /** Constructeur : **/
 //===========================================================================
 KCol::KCol(Graph g, int nbColors):graph(g),
-				  NB_COLORS(nbColors){
-  nbVars = g.getNbVertexes()*3;
+				  NB_COLORS(nbColors),
+				  pathFile(g.getPathFile()){
+  nbVars = g.getNbVertexes()*N;
   nbClauses = 0;
 }
 
@@ -59,12 +60,13 @@ string KCol::generateCNFFormula(){
 	  nbClauses++;
 	}
 
-  
   return CNFFormula.str();
 }
 
 //===========================================================================
 string KCol::getSolution(){
+
+  /* Heuristiques */
   if(N >= graph.getNbVertexes()){
     cout << "Coloration évidente des sommets en prenant pour chacun" <<
       " une couleur différente" << endl;
@@ -77,41 +79,45 @@ string KCol::getSolution(){
       exit(1);
     }
   }
+
+  /* Calcul */
   
-//   stringstream answer;
-//   MinisatBuilder mb(pathFile,
-// 		    graph.getNbVertexes(),
-// 		    nbClauses,
-// 		    generateCNFFormula()
-// 		    );
+  stringstream answer;
+  MinisatBuilder mb(pathFile,
+		    graph.getNbVertexes(),
+		    nbClauses,
+		    generateCNFFormula()
+		    );
 
-//   bool* varAssign = mb.solve();
-//   int nbVertexes = graph.getNbVertexes();
+  bool* varAssign = mb.solve();
+  int nbVertexes = graph.getNbVertexes();
+  string s;
       
-//   if(varAssign == NULL)
-//     answer << "Le graphe n'admet pas de " << N << "-Coloration.";
-//   else{
-//     answer << "Le graphe admet une " << N << "-Coloration." << endl <<
-//       "Il suffit de considérer la coloration des sommets suivante :" << endl <<
-//       "{ ";
+  if(varAssign == NULL)
+    answer << "Le graphe n'admet pas de " << N << "-Coloration.";
+  else{
+    answer << "Le graphe admet une " << N << "-Coloration." << endl <<
+      "Il suffit de considérer la coloration des sommets suivante :" << endl <<
+      "{ ";
     
-//     for(int i=0 ; i<nbVertexes ; ++i){
-//       for(int j=1 ; j<=N ; ++j){
-// 	if(varAssign[N*i+j]){
-// 	  answer << i << " -> C" << j << ", ";
-// 	  if(((i%20) == 0) && (i!=0) && (i!=nbVertexes-1))
-// 	    answer << endl;
-// 	}
-//       }
-//     }
+    for(int i=0 ; i<nbVertexes ; ++i){
+      for(int j=1 ; j<=N ; ++j){
+	if(varAssign[N*i+j-1]){
+	  answer << i << " -> C" << j << ", ";
+	  if(((i%20) == 0) && (i!=0) && (i!=nbVertexes-1))
+	    answer << endl;
+	}
+      }
+    }
 
-//     int size = answer.str().size();
-//     answer.str()[size-2]= ' ';
-//     answer.str()[size-1]= '}';
-//   }
+    s = answer.str();
+    int size = s.size();
+    s[size-2]= ' ';
+    s[size-1]= '}';
+  }
 
-//   return answer.str();
-  return generateCNFFormula();
+  delete varAssign;
+  return s;
 }
 
 //===========================================================================
