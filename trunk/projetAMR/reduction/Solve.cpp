@@ -142,41 +142,48 @@ main(int argc, char** argv){
   
   int problemSelect = atoi(argv[2]);
   switch (problemSelect){
-  case 1 :
-    if(argc >= 4){
-      KCol c(graph,atoi(argv[3]));
-      cout << c.getSolution() << endl;
-    }else
-      usage();
-    break;
-    
-  case 2 :
-    CircuitHamiltonien ch(graph);
-    cout << ch.getSolution() << endl;
-    break;
-    
-  case 3 :
-    
-    break;
-    
-  case 4 :
-    if(argc > 3){
-      Clique c(graph, atoi(argv[3]));
-      cout << c.getSolution() << endl;
-    }else
-      usage();
-    break;
-    
-  case 5 :
-    
-    break;
-    
+  case 1:
+    {
+      if(argc >= 4){
+	KCol c(graph,atoi(argv[3]));
+	cout << c.getSolution() << endl;
+      }else
+	usage();
+      break;
+    }
+
+  case 2:
+    {
+      CircuitHamiltonien ch(graph);
+      cout << ch.getSolution() << endl;
+      break;
+    }
+
+  case 3:
+    {
+      break;
+    }
+
+  case 4:
+    {
+      if(argc > 3){
+	Clique c(graph, atoi(argv[3]));
+	cout << c.getSolution() << endl;
+      }else
+	usage();
+      break;
+    }
+  case 5:
+    {
+      break;
+    }
   default :
-    cerr << "Le numéro du problème est compris entre 1 et 5";
-    usage();
-    break; //Ne sert à rien mais je le mets
+    {
+      cerr << "Le numéro du problème est compris entre 1 et 5";
+      usage();
+      break; //Ne sert à rien mais je le mets
+    }
   }
   
-  exit(0);
   return EXIT_SUCCESS;
 }
