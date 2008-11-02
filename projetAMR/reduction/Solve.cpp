@@ -11,6 +11,21 @@
 
 using namespace std;
 
+void
+usage(void){
+  cerr << "Usage : ./solve <fichier_du_graphe> <numéro_du_problème> [paramètres]" << endl;
+  cerr << "\tProblème 1 : k-coloriabilité" << endl;
+  cerr << "\t\tParamètres : k" << endl;
+  cerr << "\tProblème 2 : Circuit Hamiltonien" << endl;
+  cerr << "\tProblème 3 : Couverture de sommet" << endl;
+  cerr << "\t\tParamètes : taille_de_la_couverture" << endl;
+  cerr << "\tProblème 4 : Clique" << endl;
+  cerr << "\t\tParamètres : taille_de_la_clique" << endl;
+  cerr << "\tProblème 5 : Ensemble indépendant" << endl;
+  cerr << "\t\tParamètres : taille_de_l_ensemble" << endl;
+  exit(EXIT_FAILURE);
+}
+
 int
 getNbVertexes(string path){
   ifstream file(path.c_str(), ios::in);  // on ouvre le fichier en lecture
@@ -104,6 +119,10 @@ readGraph(string path){
 
 int
 main(int argc, char** argv){
+
+  if(argc < 3)
+    usage();
+
   Graph graph = readGraph(argv[1]);
   //cout << "Graph :" << endl << graph << endl; //JE VIENS DE COMMENTER
   
@@ -121,15 +140,43 @@ main(int argc, char** argv){
 
   //  cout << graph.getNbVertexes() << " " << graph.getNbEdges() << endl;
   
-
-//    CircuitHamiltonien ch(graph);
-//    cout << ch.getSolution() << endl;
-
-//   KCol c(graph,atoi(argv[2]));
-//   cout << c.getSolution() << endl;
-
-   Clique c(graph, atoi(argv[2]));
-   cout << c.getSolution() << endl;
-   exit(0);
-   return EXIT_SUCCESS;
+  int problemSelect = atoi(argv[2]);
+  switch (problemSelect){
+  case 1 :
+    if(argc >= 4){
+      KCol c(graph,atoi(argv[3]));
+      cout << c.getSolution() << endl;
+    }else
+      usage();
+    break;
+    
+  case 2 :
+    CircuitHamiltonien ch(graph);
+    cout << ch.getSolution() << endl;
+    break;
+    
+  case 3 :
+    
+    break;
+    
+  case 4 :
+    if(argc > 3){
+      Clique c(graph, atoi(argv[3]));
+      cout << c.getSolution() << endl;
+    }else
+      usage();
+    break;
+    
+  case 5 :
+    
+    break;
+    
+  default :
+    cerr << "Le numéro du problème est compris entre 1 et 5";
+    usage();
+    break; //Ne sert à rien mais je le mets
+  }
+  
+  exit(0);
+  return EXIT_SUCCESS;
 }
