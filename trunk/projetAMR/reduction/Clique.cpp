@@ -7,7 +7,8 @@
 /** Constructeur : **/
 //===========================================================================
 Clique::Clique(Graph g, int size):graph(g),
-				  cliqueSize(size){
+				  cliqueSize(size),
+				  pathFile(g.getPathFile()){
   
   int nbVertexes = g.getNbVertexes();
 
@@ -106,7 +107,7 @@ string Clique::generateCNFFormula(){
 
 //===========================================================================
 string Clique::getSolution(){
-//   stringstream answer;
+  stringstream answer;
 //   MinisatBuilder mb(pathFile,
 // 		    graph.getNbVertexes(),
 // 		    nbClauses,
@@ -117,8 +118,8 @@ string Clique::getSolution(){
 //   int* edge;
   
 //   //solve renvoie -1 lorsque c'est non sat
-//   if(varAssign[0] == -1)
-//     answer << "Le graphe n'admet pas de circuit Hamiltonien.";
+//   if(varAssign == NULL)
+//     return << "Le graphe n'admet pas de circuit Hamiltonien.";
 //   else{
 //     answer << "Le graphe admet un circuit Hamiltonien." << endl <<
 //       "Il suffit de considérer l'ensemble d'arêtes suivant :" << endl <<
@@ -138,8 +139,7 @@ string Clique::getSolution(){
 //     answer.str()[size-1]= '}';
 //   }
 
-//   return answer.str();
-   return generateCNFFormula();
+  return answer.str();
 }
 
 //===========================================================================

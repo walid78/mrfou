@@ -37,6 +37,7 @@ class Clique{
   int nbVars;
   int cliqueSize;
   vector< vector<int> > vars;
+  string pathFile;
 
   //===========================================================================
   /** Fonctions membres **/
