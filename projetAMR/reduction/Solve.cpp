@@ -18,7 +18,7 @@ usage(void){
   cerr << "\t\tParamètres : k" << endl;
   cerr << "\tProblème 2 : Circuit Hamiltonien" << endl;
   cerr << "\tProblème 3 : Couverture de sommet" << endl;
-  cerr << "\t\tParamètes : taille_de_la_couverture" << endl;
+  cerr << "\t\tParamètres : taille_de_la_couverture" << endl;
   cerr << "\tProblème 4 : Clique" << endl;
   cerr << "\t\tParamètres : taille_de_la_clique" << endl;
   cerr << "\tProblème 5 : Ensemble indépendant" << endl;
