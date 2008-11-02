@@ -1,5 +1,5 @@
-#ifndef CLIQUE_HPP
-#define CLIQUE_HPP
+#ifndef VERTEXCOVER_HPP
+#define VERTEXCOVER_HPP
 
 #include <vector>
 #include <iostream>
@@ -7,47 +7,40 @@
 
 #include "Graph.hpp"
 #include "MinisatBuilder.hpp"
+#include "Clique.hpp"
 
 using namespace std;
 
-class Clique{
+class VertexCover{
 
-  friend ostream& operator<<(ostream& o, const Clique& ch);
+  friend ostream& operator<<(ostream& o, const VertexCover& ch);
 
   /*-*-*-*-* PUBLIC *-*-*-*-*/
- public:
-    //===========================================================================
+public:
+  //===========================================================================
   /** Constructeur : **/
-  Clique(Graph g, int size);
+  VertexCover(Graph g, int size);
   
   //===========================================================================
   /** Destructeur : **/
-  ~Clique();
+  ~VertexCover();
   
   //===========================================================================
   /** Fonctions membres : **/
   string getSolution();
-  bool* transmitSolution();
   
   /*-*-*-*-* PRIVATE *-*-*-*-*/
- private:
+private:
   //===========================================================================
   /** Attributs **/
   Graph graph;
-  int nbClauses;
-  int nbVars;
-  int cliqueSize;
-  vector< vector<int> > vars;
-  string pathFile;
-
-  //===========================================================================
-  /** Fonctions membres **/
-  string generateCNFFormula();
+  int coverSize;
+  Clique clique;
 };
 
 //===========================================================================
 /** Opérateur externe : **/
-ostream& operator<<(ostream& o, const Clique& g);
+ostream& operator<<(ostream& o, const VertexCover& g);
 
 
 #endif
