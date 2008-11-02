@@ -144,8 +144,8 @@ string CircuitHamiltonien::getSolution(){
       }
     }
 
-    int size = answer.str().size();
     s = answer.str();
+    int size = s.size();
     s[size-2]= ' ';
     s[size-1]= '}';
   }

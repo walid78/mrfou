@@ -27,6 +27,7 @@ class KCol{
  private:
   //===========================================================================
   /** Attributs **/
+  string pathFile;
   Graph graph;
   int nbClauses;
   int nbVars;
