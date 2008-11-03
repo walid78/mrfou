@@ -43,6 +43,9 @@ class Clique{
   //===========================================================================
   /** Fonctions membres **/
   string generateCNFFormula();
+  int getMinNbEdgesInClique(int size);
+  int getMinNbEdgesWhichObligesClique(int size);
+
 };
 
 //===========================================================================
