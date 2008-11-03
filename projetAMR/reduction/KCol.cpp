@@ -65,24 +65,23 @@ string KCol::generateCNFFormula(){
 
 //===========================================================================
 string KCol::getSolution(){
+  stringstream answer;
 
-  /* Heuristiques */
+  /* Cas faciles */
   if(N >= graph.getNbVertexes()){
-    cout << "Coloration évidente des sommets en prenant pour chacun" <<
-      " une couleur différente" << endl;
-    exit(1);
+    answer << "Coloration évidente des sommets en prenant pour chacun" <<
+      " une couleur différente.";
+    return answer.str();
   }else{
     int maxDegre = graph.getMaxDegre();
     if(N < maxDegre){
-      cout << "Le graphe n'admet pas de " << N << "-Coloration car le degré maximal"<<
-	" d'un sommet du graphe est " << maxDegre << endl;
-      exit(1);
+      answer << "Le graphe n'admet pas de " << N << "-Coloration car le degré "
+	"maximal d'un sommet du graphe est " << maxDegre << ".";
+      return answer.str();
     }
   }
 
   /* Calcul */
-  
-  stringstream answer;
   MinisatBuilder mb(pathFile,
 		    graph.getNbVertexes(),
 		    nbClauses,
