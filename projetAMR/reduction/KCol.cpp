@@ -49,7 +49,6 @@ string KCol::generateCNFFormula(){
 	  
 	}
 
-
   /* Deux sommets qui se suivent n'ont pas la même couleur */
   CNFFormula << "c Deux sommets qui se suivent n'ont pas la même couleur" << endl;
   for(int i=0 ; i<nbVertexes ; ++i)
@@ -72,13 +71,6 @@ string KCol::getSolution(){
     answer << "Coloration évidente des sommets en prenant pour chacun" <<
       " une couleur différente.";
     return answer.str();
-  }else{
-    int maxDegre = graph.getMaxDegre();
-    if(N < maxDegre){
-      answer << "Le graphe n'admet pas de " << N << "-Coloration car le degré "
-	"maximal d'un sommet du graphe est " << maxDegre << ".";
-      return answer.str();
-    }
   }
 
   /* Calcul */
