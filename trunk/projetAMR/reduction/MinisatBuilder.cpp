@@ -31,8 +31,6 @@ bool* MinisatBuilder::readFromMinisat(){
     // On récupère la première ligne
     getline(file, line);
     
-    tab[0] = false;
-
     int unsatFind = line.find("UNSAT");
 
     if(unsatFind >= 0 && unsatFind < line.length())
