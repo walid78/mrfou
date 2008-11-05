@@ -128,21 +128,21 @@ int Clique::easyCases(){
 
   /* Cas faciles */
 
-  //Clique de taille < 1 => Entrée incorrecte
-  if(cliqueSize < 1)
+  //Clique de taille < 0 => Erreur
+  if(cliqueSize < 0)
     return 1;
+
+  //Clique de taille 0 => Toujours vrai
+  if(cliqueSize == 0)
+    return 2;
 
   //Clique de taille 1 => 1 sommet
   else if(cliqueSize == 1)
-    return 2;
+    return 3;
   
   //Clique de taille 2 => 1 arête
-  else if(cliqueSize == 2){
-    if(graph.getNbEdges() > 0)
-      return 3;
-    else
-      return 4;
-  }
+  else if(cliqueSize == 2)
+    return 4;
 
   //Clique de taille supérieure au nombre de sommets => impossible
   else if(cliqueSize > nbVertexes)
@@ -152,7 +152,7 @@ int Clique::easyCases(){
     
     //A partir d'un certain nombre d'arêtes par rapport à un nombre de sommets,
     //Il est obligatoire d'obtenir une clique d'une certaine taille
-    if(getMinNbEdgesWhichObligesClique(nbVertexes) <= graph.getNbEdges()){
+    if(getMinNbEdgesWhichObligesClique(nbVertexes) <= nbEdges){
       return 6;
       
     }else{
@@ -179,10 +179,10 @@ string Clique::getSolution(){
 
   /* Cas faciles 
    * 
-   * 1) Clique de taille < 1 => Entrée incorrecte
-   * 2) Clique de taille 1 => 1 sommet
-   * 3) Clique de taille 2, avec 1 arête => vrai
-   * 4) Clique de taille 2, sans arête dans le graphe => faux
+   * 1) Clique de taille < 0 => Erreur en entrée
+   * 2) Clique de taille 0 => Toujours vrai
+   * 3) Clique de taille 1 => nécessite 1 sommet
+   * 4) Clique de taille 2 => nécessite 1 arête
    * 5) Clique de taille supérieure au nombre de sommets => impossible
    * 6) A partir d'un certain nombre d'arêtes par rapport à un nombre de sommets,
    **** Il est obligatoire d'obtenir une clique d'une certaine taille
@@ -197,26 +197,36 @@ string Clique::getSolution(){
     break;
 
   case 1:
-    // 1) Clique de taille < 1 => Entrée incorrecte
-    answer << "Le nombre entré n'est pas une taille de clique correcte.";
+    // 1) Clique de taille < 0 => Erreur en entrée
+    answer << "Erreur sur la taille de la clique entrée.";
     break;
 
   case 2:
-    // 2) Clique de taille 1 => 1 sommet
-    answer << "Une clique de taille 1 ne nécessite que d'avoir un sommet.";
+    // 2) Clique de taille 0 => Toujours vrai
+    answer << "Tout graphe a une clique de taille 0.";
     break;
-      
+
   case 3:
-    // 3) Clique de taille 2, avec 1 arête => vrai
-    answer << "Le graphe admet une clique de taille 2, il suffit de choisir " << 
-      "n'importe quelle arête.";
+    // 3) Clique de taille 1 => 1 sommet
+    if(nbVertexes > 0)
+      // Avec 1 sommet => vrai
+      answer << "Le graphe admet une clique de taille 1, il suffit de choisir un sommet.";
+    else
+      // Sans sommet => faux
+      answer << "Le graphe n'admet pas de clique de taille 1 car il n'a aucun sommet.";
     break;
       
   case 4:
-    // 4) Clique de taille 2, sans arête dans le graphe => faux
-    answer << "Le graphe n'admet pas de clique de taille 2, car il n'a pas d'arête.";
+    // 4) Clique de taille 2 => nécessite 1 arête
+    if(nbEdges > 0)
+      // Avec 1 arête => vrai
+      answer << "Le graphe admet une clique de taille 2, il suffit de choisir " << 
+	"n'importe quelle arête.";
+    else
+      // Sans arête => faux
+      answer << "Le graphe n'admet pas de clique de taille 2, car il n'a pas d'arête.";
     break;
-
+      
   case 5:
     // 5) Clique de taille supérieure au nombre de sommets => impossible
     answer << "Le graphe n'admet pas de clique de taille " << cliqueSize <<
@@ -253,7 +263,6 @@ string Clique::getSolution(){
   default:
     cerr << "Résultat inattendu" << endl;
     exit(0);
-
   }
 
   if((easyCase > 0) && (easyCase < 8))

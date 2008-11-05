@@ -36,6 +36,8 @@ private:
   Graph graph;
   int coverSize;
   Clique clique;
+  int easyCases();
+  int getMaxNbEdgesInVertexCover(int nbV, int size);
 };
 
 //===========================================================================
