@@ -45,6 +45,7 @@ class Clique{
   string generateCNFFormula();
   int getMinNbEdgesInClique(int size);
   int getMinNbEdgesWhichObligesClique(int size);
+  int easyCases();
 
 };
 
