@@ -67,7 +67,10 @@ string KCol::getSolution(){
   stringstream answer;
 
   /* Cas faciles */
-  if(N >= graph.getNbVertexes()){
+  if(N <= 0){
+    answer << "Le nombre de couleurs proposé n'est pas correct.";
+    return answer.str();
+  }else if(N >= graph.getNbVertexes()){
     answer << "Coloration évidente des sommets en prenant pour chacun" <<
       " une couleur différente.";
     return answer.str();
