@@ -121,8 +121,15 @@ string CircuitHamiltonien::getSolution(){
 		    generateCNFFormula()
 		    );
   string s;
+
+  /* Cas facile */
+  if(graph.getNbEdges() <= graph.getNbVertexes()){
+    answer << "Le graphe n'admet pas de circuit Hamiltonien car il y a moins " <<
+      "d'arêtes que de sommets.";
+    return answer.str();
+  }
+
   bool* varAssign = mb.solve();
-  
   int* edge;
   
   //solve renvoie NULL lorsque c'est non sat
