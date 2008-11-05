@@ -122,71 +122,143 @@ int Clique::getMinNbEdgesWhichObligesClique(int nbVert){
     return getMinNbEdgesWhichObligesClique(nbVert-1) + (nbVert + cliqueSize - 3) / 2;
 }
 
+int Clique::easyCases(){
+
+  int nbVertexes = graph.getNbVertexes();
+
+  /* Cas faciles */
+
+  //Clique de taille < 1 => Entrée incorrecte
+  if(cliqueSize < 1)
+    return 1;
+
+  //Clique de taille 1 => 1 sommet
+  else if(cliqueSize == 1)
+    return 2;
+  
+  //Clique de taille 2 => 1 arête
+  else if(cliqueSize == 2){
+    if(graph.getNbEdges() > 0)
+      return 3;
+    else
+      return 4;
+  }
+
+  //Clique de taille supérieure au nombre de sommets => impossible
+  else if(cliqueSize > nbVertexes)
+    return 5;
+  else{
+    int nbEdges = graph.getNbEdges();
+    
+    //A partir d'un certain nombre d'arêtes par rapport à un nombre de sommets,
+    //Il est obligatoire d'obtenir une clique d'une certaine taille
+    if(getMinNbEdgesWhichObligesClique(nbVertexes) <= graph.getNbEdges()){
+      return 6;
+      
+    }else{
+      int minNbEdgesInClique = getMinNbEdgesInClique(cliqueSize);
+      //Il faut un nombre d'arêtes minimum pour former une clique d'une certaine taille
+      //Exemple : clique 3 -> 3 arêtes min, clique 4 -> 6 arêtes min.
+      if(nbEdges < minNbEdgesInClique){
+	return 7;
+      }
+    }
+  }
+  
+  return 0;
+}
 
 //===========================================================================
 string Clique::getSolution(){
 
   stringstream answer;
   int nbVertexes = graph.getNbVertexes();
+  int easyCase = easyCases();
+  int nbEdges = graph.getNbEdges();
+  char c = ' ';
 
-  /* Cas faciles */
+  /* Cas faciles 
+   * 
+   * 1) Clique de taille < 1 => Entrée incorrecte
+   * 2) Clique de taille 1 => 1 sommet
+   * 3) Clique de taille 2, avec 1 arête => vrai
+   * 4) Clique de taille 2, sans arête dans le graphe => faux
+   * 5) Clique de taille supérieure au nombre de sommets => impossible
+   * 6) A partir d'un certain nombre d'arêtes par rapport à un nombre de sommets,
+   **** Il est obligatoire d'obtenir une clique d'une certaine taille
+   * 7) Il faut un nombre d'arêtes minimum pour former une clique d'une certaine taille
+   **** Exemple : clique 3 -> 3 arêtes min, clique 4 -> 6 arêtes min.
+   *
+   */
 
-  //Clique de taille < 1 => Entrée incorrecte
-  if(cliqueSize < 1){
+  switch(easyCase){
+
+  case 0:
+    break;
+
+  case 1:
+    // 1) Clique de taille < 1 => Entrée incorrecte
     answer << "Le nombre entré n'est pas une taille de clique correcte.";
-    return answer.str();
-  }
+    break;
 
-  //Clique de taille 1 => 1 sommet
-  else if(cliqueSize == 1){
+  case 2:
+    // 2) Clique de taille 1 => 1 sommet
     answer << "Une clique de taille 1 ne nécessite que d'avoir un sommet.";
-    return answer.str();
-  }
+    break;
+      
+  case 3:
+    // 3) Clique de taille 2, avec 1 arête => vrai
+    answer << "Le graphe admet une clique de taille 2, il suffit de choisir " << 
+      "n'importe quelle arête.";
+    break;
+      
+  case 4:
+    // 4) Clique de taille 2, sans arête dans le graphe => faux
+    answer << "Le graphe n'admet pas de clique de taille 2, car il n'a pas d'arête.";
+    break;
 
-  //Clique de taille 2 => 1 arête
-  else if(cliqueSize == 2){
-    if(graph.getNbEdges() > 0){
-      answer << "Le graphe admet une clique de taille 2, il suffit de choisir " << 
-	"n'importe quelle arête.";
-      return answer.str();
-    }else{
-      answer << "Le graphe n'admet pas de clique de taille 2, car il n'a pas d'arête.";
-      return answer.str();
-    }
-  }
-
-  //Clique de taille supérieure au nombre de sommets => impossible
-  else if(cliqueSize > nbVertexes){
+  case 5:
+    // 5) Clique de taille supérieure au nombre de sommets => impossible
     answer << "Le graphe n'admet pas de clique de taille " << cliqueSize <<
       " car le nombre de sommets du graphe (" << nbVertexes << ") est " <<
       "inférieur à cette taille (" << cliqueSize << ").";
-    return answer.str();
-  }else{
-    int nbEdges = graph.getNbEdges();
-    
-    //A partir d'un certain nombre d'arêtes par rapport à un nombre de sommets,
-    //Il est obligatoire d'obtenir une clique d'une certaine taille
-    if(getMinNbEdgesWhichObligesClique(nbVertexes) <= graph.getNbEdges()){
-      answer << "Le graphe admet forcément une clique de taille " << cliqueSize <<
-	" car le nombre d'arêtes du graphe (" << nbEdges << ") oblige le graphe " <<
-	"à contenir une clique de taille (" << cliqueSize << ").";
-      return answer.str();
+    break;
+
+  case 6:
+    // 6) A partir d'un certain nombre d'arêtes par rapport à un nombre de sommets,
+    // Il est obligatoire d'obtenir une clique d'une certaine taille
+    cout << "Le graphe admet forcément une clique de taille " << cliqueSize <<
+      " car le nombre d'arêtes du graphe (" << nbEdges << ") oblige le graphe " <<
+      "à contenir une clique de taille (" << cliqueSize << ")." << endl;
       
-    }else{
-      int minNbEdgesInClique = getMinNbEdgesInClique(cliqueSize);
-      
-      //Il faut un nombre d'arêtes minimum pour former une clique d'une certaine taille
-      //Exemple : clique 3 -> 3 arêtes min, clique 4 -> 6 arêtes min.
-      if(nbEdges < minNbEdgesInClique){
-	answer << "Le graphe n'admet pas de clique de taille " << cliqueSize <<
-	  " car le nombre d'arêtes du graphe (" << nbEdges << ") est " <<
-	  "insuffisant (il en faudrait " << minNbEdgesInClique << ") pour former " <<
-	  "une clique de taille " << cliqueSize << ".";
-	return answer.str();
+      // Voulez-vous trouver une assignation des arêtes 
+      while((c != 'O') && (c != 'N')){
+	printf("Voulez-vous un exemple de clique ? (O/N)\n");
+	scanf("%c",&c);
       }
-    }
+
+      if(c == 'O')
+	easyCase = 8;
+      break;
+
+  case 7:
+    // 7) Il faut un nombre d'arêtes minimum pour former une clique d'une certaine taille
+    // Exemple : clique 3 -> 3 arêtes min, clique 4 -> 6 arêtes min.
+    answer << "Le graphe n'admet pas de clique de taille " << cliqueSize <<
+      " car le nombre d'arêtes du graphe (" << nbEdges << ") est " <<
+      "insuffisant (il en faudrait " << getMinNbEdgesInClique(cliqueSize) << 
+      ") pour former " << "une clique de taille " << cliqueSize << ".";
+    break;
+
+  default:
+    cerr << "Résultat inattendu" << endl;
+    exit(0);
+
   }
-  
+
+  if((easyCase > 0) && (easyCase < 8))
+    return answer.str();
+
   /* Calcul */
   MinisatBuilder mb(pathFile,
 		    nbVars,
