@@ -27,7 +27,9 @@ public:
   
   //===========================================================================
   /** Fonctions membres : **/
+  int getMaxNbEdgesInIndepSet(int nbV, int size);
   string getSolution();
+  int easyCases();
   
   /*-*-*-*-* PRIVATE *-*-*-*-*/
 private:
