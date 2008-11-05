@@ -239,9 +239,9 @@ string Clique::getSolution(){
     // Il est obligatoire d'obtenir une clique d'une certaine taille
     cout << "Le graphe admet forcément une clique de taille " << cliqueSize <<
       " car le nombre d'arêtes du graphe (" << nbEdges << ") oblige le graphe " <<
-      "à contenir une clique de taille (" << cliqueSize << ")." << endl;
+      "à contenir une clique de taille (" << cliqueSize << ").";
       
-      // Voulez-vous trouver une assignation des arêtes 
+      // Voulez-vous trouver une assignation des sommets ?
       while((c != 'O') && (c != 'N')){
 	printf("Voulez-vous un exemple de clique ? (O/N)\n");
 	scanf("%c",&c);
