@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <sstream>
 #include <string>
 #include <vector>
 
@@ -37,39 +38,42 @@ bool* MinisatBuilder::readFromMinisat(){
        return NULL;
     
     
-      if(line.find("SAT") < 0){
-	cerr << "ERROR";
-	exit(0);
-      }
-
-      while(getline(file, line)){
-	int length = line.length();
-	string number = "";
-	
-	for(int i = 0; i < length - 1; i++){
-	  if(line[i] == ' '){
-	    int valeur = atoi(number.c_str());
-	    number = "";
-	    //Traitement des variables
-	    /*	    if(valeur>0)
-	      tab[valeur-1] = true;
-	    else
-	    tab[(-valeur)-1] = false;*/
-	    tab[abs(valeur) - 1] = (valeur > 0);
-	  }
+    if(line.find("SAT") < 0){
+      cerr << "ERROR";
+      exit(0);
+    }
+    
+    while(getline(file, line)){
+      int length = line.length();
+      string number = "";
+      
+      for(int i = 0; i < length - 1; i++){
+	if(line[i] == ' '){
+	  int valeur = atoi(number.c_str());
+	  number ="";
+	  //Traitement des variables
+	  /*	    if(valeur>0)
+		    tab[valeur-1] = true;
+		    else
+		    tab[(-valeur)-1] = false;*/
+	  tab[abs(valeur) - 1] = (valeur > 0);
+	}
+	else{
+	  if(line[i] == '0' && i == length - 1) //Ceci ne doit en
+	    //theorie ne jamais arriver
+	    break;
 	  else{
-	    if(line[i] == '0' && i == length - 1) //Ceci ne doit en
-	      //theorie ne jamais arriver
-	      break;
-	    else
-	      number += line[i];
+	    number += ""+line[i];
+	    //number << ""<< line[i];
+	    //	      cout << "LINE I :"<< line[i]<<endl;
 	  }
 	}
       }
     }
+  }
   
   file.close();
-
+  
   return tab;
 }
 
