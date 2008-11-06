@@ -96,18 +96,19 @@ readGraph(string path){
 	  break;
 	case ' ':
 	  current = atoi(number.c_str());
-	  graph.addEdges(last,current);
+	  if(last != -1)
+	    graph.addEdges(last,current);
 	  number = "";
 	  last = -1;
 	  break;
 	default:
-	  number += line[i];
+	  number += ""+line[i];
 	}
       }
       //Ici on traite le cas du dernier numero de la ligne!
       current = atoi(number.c_str());
-      //cout << ++tmp << ":" << current << endl;
-      graph.addEdges(last,current);
+      if(last != -1)
+      	graph.addEdges(last,current);
       number = "";
       last = -1;
     }

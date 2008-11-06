@@ -99,8 +99,8 @@ string KCol::getSolution(){
       for(int j=1 ; j<=N ; ++j){
 	if(varAssign[N*i+j-1]){
 	  answer << i << " -> C" << j << ", ";
-	  if(((i%20) == 0) && (i!=0) && (i!=nbVertexes-1))
-	    answer << endl;
+	  //	  if(((i%10) == 0) && (i!=0) && (i!=nbVertexes-1))
+	  // answer << endl;
 	}
       }
     }
