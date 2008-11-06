@@ -78,12 +78,13 @@ string KCol::getSolution(){
 
   /* Calcul */
   MinisatBuilder mb(pathFile,
-		    graph.getNbVertexes(),
+		    nbVars,
 		    nbClauses,
 		    generateCNFFormula()
 		    );
 
   bool* varAssign = mb.solve();
+
   int nbVertexes = graph.getNbVertexes();
   string s;
       

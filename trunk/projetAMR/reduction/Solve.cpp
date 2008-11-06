@@ -102,7 +102,7 @@ readGraph(string path){
 	  last = -1;
 	  break;
 	default:
-	  number += ""+line[i];
+	  number += line[i];
 	}
       }
       //Ici on traite le cas du dernier numero de la ligne!
@@ -127,8 +127,7 @@ main(int argc, char** argv){
     usage();
 
   Graph graph = readGraph(argv[1]);
-  //cout << "Graph :" << endl << graph << endl; //JE VIENS DE COMMENTER
-  
+  cout << "Graph :" << endl << graph << endl; //JE VIENS DE COMMENTER
   //   vector<int> cover;
   //   cover.push_back(0);
   //   cover.push_back(2);
@@ -201,6 +200,6 @@ main(int argc, char** argv){
   //   cout << "Graph : " << endl << graph << endl;
 
 //   cout << "Comp : " << endl << graph.complementary() << endl;
-  
+  //exit(1);
   return EXIT_SUCCESS;
 }

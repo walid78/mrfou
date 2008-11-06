@@ -63,7 +63,7 @@ bool* MinisatBuilder::readFromMinisat(){
 	    //theorie ne jamais arriver
 	    break;
 	  else{
-	    number += ""+line[i];
+	    number += line[i];
 	    //number << ""<< line[i];
 	    //	      cout << "LINE I :"<< line[i]<<endl;
 	  }
