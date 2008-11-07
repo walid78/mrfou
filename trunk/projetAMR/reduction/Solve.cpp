@@ -131,6 +131,12 @@ main(int argc, char** argv){
     usage();
 
   Graph graph = readGraph(argv[1]);
+
+  if(graph.getNbVertexes() == 0){
+    cerr << "Erreur : Le graphe n'a pas de sommets.";
+    exit(0);
+  }
+    
   //  cout << "Graph :" << endl << graph << endl; //JE VIENS DE COMMENTER
   //   vector<int> cover;
   //   cover.push_back(0);
@@ -205,5 +211,5 @@ main(int argc, char** argv){
 
 //   cout << "Comp : " << endl << graph.complementary() << endl;
   //exit(1);
-  return EXIT_SUCCESS;
+  return 1;
 }
