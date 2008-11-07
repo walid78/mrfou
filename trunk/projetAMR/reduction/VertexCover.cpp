@@ -42,14 +42,18 @@ int VertexCover::easyCases(){
   if(coverSize < 0)
     return 1;
 
+  //VC de taille == 0 => Vrai s'il n'y a aucune arête
+  if(coverSize == 0)
+    return 2;
+
   //VC de taille > nombre de sommets => Impossible
   else if(coverSize > nbVertexes)
-    return 2;
+    return 3;
 
   //Pour que k sommets puissent représenter une VC dans un graphe de taille n,
   //Il ne faut pas que le nombre d'arêtes dépasse un certain nombre.
   else if(graph.getNbEdges() > getMaxNbEdgesInVertexCover(nbVertexes, coverSize))
-    return 3;
+    return 4;
   
   return 0;
 }
@@ -59,14 +63,15 @@ int VertexCover::easyCases(){
 string VertexCover::getSolution(){
   stringstream answer;
   int nbVertexes = graph.getNbVertexes();
-  
+  int nbEdges = graph.getNbEdges();
   int easyCase = easyCases();
 
   /* Cas faciles 
    * 
    * 1) VC de taille < 0 => Erreur
-   * 2) VC de taille > nombre de sommets => Impossible
-   * 3) Pour que k sommets puissent représenter une VC dans un graphe de taille n,
+   * 2) VC de taille == 0 => Vrai s'il n'y a aucune arête
+   * 3) VC de taille > nombre de sommets => Impossible
+   * 4) Pour que k sommets puissent représenter une VC dans un graphe de taille n,
    **** Il ne faut pas que le nombre d'arêtes dépasse un certain nombre.
    *
    */
@@ -82,14 +87,23 @@ string VertexCover::getSolution(){
     break;
    
   case 2:
-    // 2) VC de taille > nombre de sommets => Impossible
+    // 2) VC de taille == 0 => Vrai s'il n'y a aucune arête
+    if(nbEdges == 0)
+      answer << "Un graphe sans arête admet toujours une couverture par sommets";
+    else
+      answer << "Le graphe n'admet pas de couverture par sommets de taille 0 car il" <<
+	" a des arêtes.";
+    break;
+   
+  case 3:
+    // 3) VC de taille > nombre de sommets => Impossible
     answer << "Le graphe n'admet pas de couverture par sommets de taille " << coverSize << 
       " car le nombre de sommets du graphe (" << nbVertexes << ") est " <<
       "inférieur à cette taille (" << coverSize << ").";
     break;
    
-  case 3:
-    // 3) Pour que k sommets puissent représenter une VC dans un graphe de taille n,
+  case 4:
+    // 4) Pour que k sommets puissent représenter une VC dans un graphe de taille n,
     // Il ne faut pas que le nombre d'arêtes dépasse un certain nombre.
     answer << "Le graphe n'admet pas de couverture de taille " << coverSize <<
       " car le nombre d'arêtes du graphe (" << graph.getNbEdges() << ") est " <<
@@ -103,7 +117,7 @@ string VertexCover::getSolution(){
     exit(0);
   }
 
-  if((easyCase > 0) && (easyCase < 4))
+  if((easyCase > 0) && (easyCase < 5))
     return answer.str();
 
 
