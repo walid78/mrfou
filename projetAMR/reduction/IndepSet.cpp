@@ -70,9 +70,9 @@ int IndepSet::easyCases(){
 string IndepSet::getSolution(){
   stringstream answer;
   int nbVertexes = graph.getNbVertexes();
-  char c = ' ';
   int easyCase = easyCases();
-  
+  string line;
+   
   /* Cas faciles
    *
    * 1) IS de taille < 0 => Erreur
@@ -128,14 +128,16 @@ string IndepSet::getSolution(){
       indepSetSize << " car le nombre trop faible d'arêtes du graphe (" << 
       graph.getNbEdges() << ") oblige le graphe à contenir un ensemble indépendant " <<
       "de cette taille." << endl;
- 
+
     // Voulez-vous trouver une assignation des sommets ?
-    while((c != 'O') && (c != 'N')){
-      printf("Voulez-vous un exemple d'ensemble indépendant ? (O/N)\n");
-      scanf("%c",&c);
+    while((line.compare("O")) && (line.compare("N"))){
+//       printf("Voulez-vous un exemple d'ensemble indépendant ? (O/N)\n");
+//       scanf("%c",&c);
+      cout << "Voulez-vous un exemple d'ensemble indépendant ? (O/N) " << endl;
+      cin >> line;
     }
 
-    if(c == 'O')
+    if(line.compare("O"))
       easyCase = 7;
     break;
    
