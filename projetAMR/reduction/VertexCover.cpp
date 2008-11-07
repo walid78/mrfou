@@ -83,7 +83,7 @@ string VertexCover::getSolution(){
    
   case 2:
     // 2) VC de taille > nombre de sommets => Impossible
-    answer << "Le graphe n'admet pas de couverture par sommets de taille" << coverSize << 
+    answer << "Le graphe n'admet pas de couverture par sommets de taille " << coverSize << 
       " car le nombre de sommets du graphe (" << nbVertexes << ") est " <<
       "inférieur à cette taille (" << coverSize << ").";
     break;
