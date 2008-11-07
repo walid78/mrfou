@@ -17,11 +17,13 @@ CircuitHamiltonien::CircuitHamiltonien(Graph g):graph(g),
   // Remplissage du tableau des variables en mettant cliqueSize variables k par 
   // sommet pour exprimer le fait que le sommet est en k^ième position
   for(int i=0 ; i<nbVertexes ; ++i){
-    vars.push_back(vector<int>(nbVertexes, -1));
-    for(int j=0 ; j<nbVertexes ; ++j)
+    vars.push_back(vector<int>(nbVertexes+1, -1));
+    for(int j=0 ; j<nbVertexes+1 ; ++j)
       vars[i][j] = ++nbVars;
+    
   }
   
+
   // //Initialisation du tableau vars à -1
 //   for(int i=0 ; i<nbVertexes ; ++i)
 //     vars.push_back(vector<int>(nbVertexes, -1));
@@ -48,32 +50,36 @@ string CircuitHamiltonien::generateCNFFormula(){
   int nbVertexes = graph.getNbVertexes();
 
 
-  /* Chaque noeud est dans la clique <=>
-     Au moins un noeud est le jième sommet de la clique */
-  CNFFormula << "c Chaque noeud est dans la clique <=>" << endl;
-  CNFFormula << "c Au moins un noeud est le jième sommet de la clique" << endl;
-  for(int j=0 ; j<nbVertexes ; ++j){
-    for(int i=0 ; i<nbVertexes ; ++i){
+  /* Chaque noeud est dans le circuit <=>
+     Au moins un noeud est le jième sommet du circuit */
+  CNFFormula << "c Chaque noeud est dans le circuit <=>" << endl;
+  CNFFormula << "c Au moins un noeud est le jième sommet du circuit" << endl;
+  for(int j=0 ; j<nbVertexes+1 ; ++j){
+      for(int i=0 ; i<nbVertexes ; ++i){
       CNFFormula << vars[i][j] << " ";
     }
     CNFFormula << "0" << endl;
     nbClauses++;
   }
  
-  /* Un noeud a exactement une position dans la clique <=>
-     Aucun noeud n'est le jième et le lième sommet de la clique */
-  CNFFormula << "c Un noeud a exactement une position dans la clique <=>" << endl;
-  CNFFormula << "c Aucun noeud n'est le jième et le kième sommet de la clique" << endl;
+  /* Un noeud a exactement une position dans le circuit sauf pour le premier/dernier <=>
+     Aucun noeud n'est le jième et le kième sommet du circuit (!(j==0 && k==nbVertexes)) */
+  CNFFormula << "c Un noeud a exactement une position dans le circuit " << 
+    "sauf pour le premier/dernier <=>" << endl;
+  CNFFormula << "c Aucun noeud n'est le jième et le kième sommet du circuit " << 
+    "(!(j==0 && k==nbVertexes))" << endl;
   for(int i=0 ; i<nbVertexes ; ++i)
-    for(int j=0 ; j<nbVertexes ; ++j)
-      for(int k=j+1 ; k<nbVertexes ; ++k){
-	CNFFormula << "-" << vars[i][j] << " -" << vars[i][k] << " 0" << endl;
-	nbClauses++;
+    for(int j=0 ; j<nbVertexes-1 ; ++j)
+      for(int k=j+1 ; k<nbVertexes+1 ; ++k){
+	if(!(j==0 && k==nbVertexes)){
+	  CNFFormula << "-" << vars[i][j] << " -" << vars[i][k] << " 0" << endl;
+	  nbClauses++;
+	}
       }
 
-  /* Deux sommets non voisins ne peuvent pas être ensemble dans la clique */
-  CNFFormula << "c Deux sommets non voisins ne peuvent pas être ensemble " << 
-    "dans la clique" << endl;
+  /* Deux sommets non voisins ne peuvent pas se suivre dans le circuit */
+  CNFFormula << "c Deux sommets non voisins ne peuvent pas se suivre " << 
+    "dans le circuit" << endl;
 
   for(int i=0 ; i<nbVertexes ; ++i){
     vector<bool> noEdge(nbVertexes, true);
@@ -83,97 +89,36 @@ string CircuitHamiltonien::generateCNFFormula(){
       noEdge[graph[i][j]] = false;
     }
 
-    for(int i2=i+1 ; i2<nbVertexes ; ++i2)
+    for(int i2=0 ; i2<nbVertexes ; ++i2)
       if(noEdge[i2])
-		  for(int j=0 ; j<nbVertexes ; ++j){
-			 //			 for(int k=0 ; k<cliqueSize ; ++k)
-			 //if(j != k){
-			 CNFFormula << "-" << vars[i][j] << " -" << vars[i2][j+1] << " 0" << endl;
-			 nbClauses++;
-		  }
+	for(int j=0 ; j<nbVertexes ; ++j){
+	  CNFFormula << "-" << vars[i][j] << " -" << vars[i2][j+1] << " 0" << endl;
+	  nbClauses++;
+	}
   }
    
-  /* Deux sommets n'ont pas la même position dans la clique
-   */
-  CNFFormula << "c Deux sommets n'ont pas la même position dans la clique" << endl;
+  /* Deux sommets n'ont pas la même position dans le circuit */
+  CNFFormula << "c Deux sommets n'ont pas la même position dans le circuit" << endl;
   for(int i=0 ; i<nbVertexes ; ++i)
-    for(int i2=i+1; i2<nbVertexes ; ++i2)
-      for(int j=0 ; j<nbVertexes ; ++j){
-		  CNFFormula << "-" << vars[i][j] << " -" << vars[i2][j] << " 0" << endl;
-		  nbClauses++;
+    for(int j=0 ; j<nbVertexes+1 ; ++j)
+      for(int i2=i+1; i2<nbVertexes ; ++i2){
+	CNFFormula << "-" << vars[i][j] << " -" << vars[i2][j] << " 0" << endl;
+	nbClauses++;
       }
 
-//   /* Au moins un arc sortant */
-//   CNFFormula << "c Au moins un arc sortant" << endl;
-//   for(int i=0 ; i<nbVertexes ; ++i){
-//     for(int j=0 ; j<graph.getNbNeighbours(i) ; ++j){
-//       CNFFormula << vars[i][graph[i][j]] << " ";
-//     }
-//     CNFFormula << "0" << endl;
-//     nbClauses++;
-//   }
+  /* Le dernier sommet doit etre le premier du circuit*/
+  CNFFormula << "c Le dernier sommet du circuit doit être le premier de la" << 
+    "couverture" << endl;
+  for(int i=0 ; i<nbVertexes ; ++i){
+    //     for(int j=1 ; j<nbVertexes ; ++j){
+    // 	CNFFormula << "-" << vars[i][j] << " -" << vars[i][nbVertexes] << " 0" << endl;
+    // 	nbClauses++;
+    //     }
+    CNFFormula << "-" << vars[i][0] << " " << vars[i][nbVertexes] << " 0" << endl;
+    CNFFormula << vars[i][0] << " -" << vars[i][nbVertexes] << " 0" << endl;
+  }
 
-//   /* Pas deux arcs sortants */
-//   CNFFormula << "c Pas deux arcs sortants" << endl;
-//   for(int i=0 ; i<nbVertexes ; ++i)
-//     for(int j=0 ; j<graph.getNbNeighbours(i) ; ++j)
-//       for (int k=0 ; k<graph.getNbNeighbours(i); ++k)
-// 	if(graph[i][j] < graph[i][k]){
-// 	  CNFFormula << "-" << vars[i][graph[i][j]] << " " << 
-// 	    "-" << vars[i][graph[i][k]] << " 0" <<endl;
-// 	  nbClauses++;
-// 	}
-
-//   /* Au moins un arc entrant */
-//   CNFFormula << "c Au moins un arc entrant" << endl;
-//   for(int i=0 ; i<nbVertexes ; ++i){
-//     for(int j=0 ; j<graph.getNbNeighbours(i) ; ++j){
-//       CNFFormula << vars[graph[i][j]][i] << " ";
-//     }
-//     CNFFormula << "0" << endl;
-//     nbClauses++;
-//   }
-
-//   /* Pas deux arcs entrants */
-//   CNFFormula << "c Pas deux arcs entrants" << endl;
-//   for(int i=0 ; i<nbVertexes ; ++i)
-//     for(int j=0 ; j<graph.getNbNeighbours(i) ; ++j)
-//       for (int k=0 ; k<graph.getNbNeighbours(i); ++k)
-// 	if(graph[i][j] < graph[i][k]){
-// 	  CNFFormula << "-" << vars[graph[i][j]][i] << " " << 
-// 	    "-" << vars[graph[i][k]][i] << " 0" <<endl;
-// 	  nbClauses++;
-// 	}
-  
-//   /* Pas de double arcs */
-//   CNFFormula << "c Pas de double arcs" << endl;
-//   for(int i=0 ; i<nbVertexes ; ++i)
-//     for(int j=0 ; j<graph.getNbNeighbours(i) ; ++j)
-//       if(i<graph[i][j]){
-// 	CNFFormula << "-" << vars[i][graph[i][j]] << " " << 
-// 	  "-" << vars[graph[i][j]][i] << " 0" << endl;
-// 	nbClauses++;
-//       }
-  
   return CNFFormula.str();
-}
-
-//===========================================================================
-int* CircuitHamiltonien::getEdgeFromVar(int var){
-  int* edge = new int[2];
-  int nbVertexes = graph.getNbVertexes();
-
-  // cout << var << endl;
-  
-  for(int i=0 ; i<nbVertexes ; ++i)
-    for(int j=0 ; j<nbVertexes ; ++j)
-      if(vars[i][j] == var){
-	edge[0] = i;
-	edge[1] = j;
-	return edge;
-      }
-
-  return NULL;
 }
 
 //===========================================================================
@@ -181,7 +126,7 @@ string CircuitHamiltonien::getSolution(){
   stringstream answer;
   int nbVertexes = graph.getNbVertexes();  
   /* Cas facile */
-  if(graph.getNbEdges() <= graph.getNbVertexes()){
+  if(graph.getNbEdges() < graph.getNbVertexes()){
     answer << "Le graphe n'admet pas de circuit Hamiltonien car il y a moins " <<
       "d'arêtes que de sommets.";
     return answer.str();
@@ -196,14 +141,7 @@ string CircuitHamiltonien::getSolution(){
   
   string s;
   bool* varAssign = mb.solve();
-  
-	 for(int i=0 ; i < nbVertexes ; ++i){
-		for(int j=0 ; j < nbVertexes ; ++j)
-		  cout <<vars[i][j]<<" | ";
-		cout << endl;
-	 }
 
-	 exit(1);
   //solve renvoie NULL lorsque c'est non sat
   if(varAssign == NULL){
     answer << "Le graphe n'admet pas de circuit Hamiltonien.";
@@ -211,14 +149,18 @@ string CircuitHamiltonien::getSolution(){
   }else{
 
     answer << "Le graphe admet un circuit Hamiltonien." << 
-
       endl << "Il suffit de considérer les arêtes suivantes :" << 
       endl << "{ ";
     
-    for(int i=0 ; i<nbVars ; ++i){
+    int pos[nbVertexes+1];
+    
+    for(int i=0 ; i<nbVars ; ++i)
       if(varAssign[i])
-		  answer << (i/nbVertexes) << ", ";
-    }
+	pos[i%(nbVertexes+1)] = i/(nbVertexes+1);
+
+    for(int i=0 ; i<nbVertexes ; ++i)
+      answer << pos[i] << "-" << pos[i+1] << ", ";
+    
     
     s = answer.str();
     int size = s.size();

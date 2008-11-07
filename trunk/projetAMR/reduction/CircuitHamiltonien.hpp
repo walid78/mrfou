@@ -36,7 +36,6 @@ class CircuitHamiltonien{
   //===========================================================================
   /** Fonctions membres **/
   string generateCNFFormula();
-  int* getEdgeFromVar(int var);
 };
 
 //===========================================================================
