@@ -64,8 +64,10 @@ getNbVertexes(string path){
       number = "";
     }
   }
-  else  // sinon
+  else{  // sinon
     cerr << "Impossible d'ouvrir le fichier !" << endl;
+    exit(0);
+  }
   
   file.close();  // on ferme le fichier
   return max+1;
@@ -113,8 +115,10 @@ readGraph(string path){
       last = -1;
     }
   }
-  else  // sinon
+  else{  // sinon
     cerr << "Impossible d'ouvrir le fichier !" << endl;
+    exit(0);
+  }
   
   file.close();  // on ferme le fichier
   return graph;
