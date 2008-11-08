@@ -1,9 +1,55 @@
  \section{Choix}
- 
-  \subsection{Langage}
+ Dans cette partie, nous allons présenter quelques uns des choix que
+ nous avons faits concernant notre programme.
 
+  \subsection{Langage}
+  Nous avions le choix de faire ce projet en \emph{C} ou en
+  \emph{C++}. Nous avons choisi \emph{C++} pour la simple raison que des
+  structures de données intéressantes (notamment \emph{vector}) sont
+  déjà présentes dans ce langage alors qu'elles ne le sont pas dans le
+  langage \emph{C}.
+  
   \subsection{Structure de données}
+  Dans ce projet, nous avions à faire le choix d'une structure de
+  données pour représenter les graphes. Nous avons suivi les conseils en
+  décidant d'utiliser des listes d'adjacence.\\
+
+  Plusieurs raisons nous ont poussés à utiliser les listes d'adjacence
+  plutôt que d'autres structures\footnote{Il n'y a ici, pas de bon choix
+  à proprement parler, le mieux serait de faire au cas par cas (nous en
+  discuterons dans le bilan du rapport).} :
+  \begin{enumerate}
+   \item La liste d'adjacence est une des structures qui prend le moins
+	 de place en mémoire car elle ne stocke que les sommets voisins
+	 (contrairement à une matrice d'adjacence par exemple).
+   \item La liste d'adjacence est très efficace lorsqu'on a à
+	 considérer la liste des voisins des sommets (c'est son essence
+	 même), ce qui est le cas pour nos réductions.
+   \item La liste d'adjacence est évidemment plus efficace que n'importe
+	 quelle structure d'incidence lorsqu'il s'agit de considérer les
+	 sommets plutôt que les arêtes.
+  \end{enumerate}
 
   \input{archi}
 
   \subsection{Extension des fichiers}
+  Étant donné que nous générons des fichiers avec notre programme, nous
+  avons aussi choisi des noms et extensions différentes selon le but du
+  fichier.\\
+
+  En effet nous avons introduit trois extensions différentes :
+  \begin{enumerate}
+   \item \emph{graph.gin} $\leadsto$ Fichier graphe de type
+	 \emph{gengraph} passé en paramètre par l'utilisateur au
+	 programme
+   \item \emph{graph.sat} $\leadsto$ Fichier qui contient la formule de
+	 type \emph{CNF\footnote{Conjunctive Normal Form}} généré par
+	 notre programme à partir du choix du problème et du graphe.
+   \item \emph{graph.sol} $\leadsto$ Fichier qui contient la solution
+	 retournée par \emph{minisat}.
+  \end{enumerate}
+  ~\\
+  \indent Nous avons fait le choix de laisser ces fichiers sur le disque
+  après exécution du programme, dans le cas où l'utilisateur
+  souhaiterait y jeter un \oe{}il\footnote{Les utilisateurs que nous
+  sommes ont beaucoup apprécié cette possibilité.}.
