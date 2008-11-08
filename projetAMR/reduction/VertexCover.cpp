@@ -42,7 +42,7 @@ int VertexCover::easyCases(){
   if(coverSize < 0)
     return 1;
 
-  //VC de taille == 0 => Vrai s'il n'y a aucune arête
+  //VC de taille 0 => Vrai s'il n'y a aucune arête
   if(coverSize == 0)
     return 2;
 
@@ -69,7 +69,7 @@ string VertexCover::getSolution(){
   /* Cas faciles 
    * 
    * 1) VC de taille < 0 => Erreur
-   * 2) VC de taille == 0 => Vrai s'il n'y a aucune arête
+   * 2) VC de taille 0 => Vrai s'il n'y a aucune arête
    * 3) VC de taille > nombre de sommets => Impossible
    * 4) Pour que k sommets puissent représenter une VC dans un graphe de taille n,
    **** Il ne faut pas que le nombre d'arêtes dépasse un certain nombre.
@@ -87,7 +87,7 @@ string VertexCover::getSolution(){
     break;
    
   case 2:
-    // 2) VC de taille == 0 => Vrai s'il n'y a aucune arête
+    // 2) VC de taille 0 => Vrai s'il n'y a aucune arête
     if(nbEdges == 0)
       answer << "Un graphe sans arête admet toujours une couverture par sommets";
     else

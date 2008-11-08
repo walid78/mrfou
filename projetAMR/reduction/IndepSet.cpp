@@ -79,7 +79,7 @@ string IndepSet::getSolution(){
    * 2) IS de taille 0 => Toujours vrai
    * 3) IS de taille 1 => Nécessite la présence d'un seul sommet
    * 4) IS de taille supérieure au nombre de sommets => Impossible
-   * 5) On a forcément un IS si le nombre d'arête est trop faible
+   * 5) On a forcément un IS d'une certaine taille si le nombre d'arête est trop faible
    * 6) Pour que k sommets puissent former un IS dans un graphe de taille n,
    **** Il ne faut pas que le nombre d'arêtes dépasse un certain nombre
    **** Exemple : Pour un IS de taille 1 dans un graphe de 4 sommets, le nombre

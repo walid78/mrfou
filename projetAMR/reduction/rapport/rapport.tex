@@ -33,7 +33,7 @@
 %%%%% Marges %%%%%
 %\addtolength{\textwidth}{3cm}
 \addtolength{\oddsidemargin}{-1.3cm}
-\textheight=25cm % longueur utile de la page
+\textheight=24cm % longueur utile de la page
 \topmargin=-1cm % marge haute
 %\bottommargin=-1cm % marge haute
 \headsep=20pt % séparation 20 points entre entête et texte
@@ -50,6 +50,17 @@
 \setcounter{tocdepth}{3}
 
 %%%%% Types enumerate %%%%%
+\let\enumeratesav\enumerate
+\let\endenumeratesav\endenumerate
+
+\renewenvironment{enumerate}{
+\enumeratesav
+% \setlength{\itemindent}{5pt}
+ \setlength{\itemsep}{0.5pt}
+ \setlength{\parskip}{0pt}
+ \setlength{\parsep}{0pt}}
+\endenumeratesav
+
 \renewcommand{\labelenumi}{-}
 \renewcommand{\labelenumii}{$\bullet$}
 \renewcommand{\labelenumiii}{$\star$}

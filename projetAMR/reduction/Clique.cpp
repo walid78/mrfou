@@ -122,6 +122,7 @@ int Clique::getMinNbEdgesWhichObligesClique(int nbVert){
     return getMinNbEdgesWhichObligesClique(nbVert-1) + (nbVert + cliqueSize - 3) / 2;
 }
 
+//===========================================================================
 int Clique::easyCases(){
 
   int nbVertexes = graph.getNbVertexes();
