@@ -67,16 +67,22 @@ string KCol::getSolution(){
   stringstream answer;
 
   /* Cas faciles */
+
+  //Le nombre de couleurs est négatif  
   if(N <= 0){
     answer << "Le nombre de couleurs proposé n'est pas correct.";
     return answer.str();
-  }else if(N >= graph.getNbVertexes()){
+  }
+  //Le nombre de couleurs est supérieur au nombre de sommets
+  else if(N >= graph.getNbVertexes()){
     answer << "Coloration évidente des sommets en prenant pour chacun" <<
       " une couleur différente.";
     return answer.str();
   }
 
+
   /* Calcul */
+
   MinisatBuilder mb(pathFile,
 		    nbVars,
 		    nbClauses,

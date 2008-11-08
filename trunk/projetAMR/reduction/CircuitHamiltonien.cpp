@@ -107,13 +107,20 @@ string CircuitHamiltonien::generateCNFFormula(){
 string CircuitHamiltonien::getSolution(){
   stringstream answer;
   int nbVertexes = graph.getNbVertexes();  
+  int NB_MAX_EDGES = nbVertexes * (nbVertexes-1) / 2;
+
   /* Cas facile */
   if(graph.getNbEdges() < graph.getNbVertexes()){
     answer << "Le graphe n'admet pas de circuit Hamiltonien car il y a moins " <<
       "d'arêtes que de sommets.";
     return answer.str();
+  }else if(graph.getNbEdges() == NB_MAX_EDGES){
+    answer << "Le graphe admet un circuit Hamiltonien évident car c'est un graphe " <<
+      "complet. Il suffit de prendre une arête sortante pour chaque sommet qui mène " << 
+      "à un sommet non déjà visité et finir par le sommet de départ.";
+    return answer.str();
   }
-
+    
   /* Calcul */
   MinisatBuilder mb(pathFile,
 		    nbVars,

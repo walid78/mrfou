@@ -1,12 +1,112 @@
  \section{Idées des réductions}
+ Nous allons dans cette partie vous présenter très brièvement les idées
+ de réductions que nous avons utilisées. Afin de respecter la limite de
+ taille du rapport, nous allons seulement citer les quelques propriétés,
+ caractérisant nos problèmes, qui nous ont permis de générer les
+ formules \emph{CNF}.
+ 
+ Nous citerons aussi ce que nous avons appelé les ``cas
+ faciles'', c'est à dire les cas où nous n'avons pas besoin de
+ \emph{minisat} pour répondre à nos problèmes (problème de décision).
 
   \subsection{\emph{K-Col} $\leq_P$ \emph{SAT}}
+  \underline{Propriétés caractérisant \emph{K-Col} :}
+  \begin{enumerate}
+   \item Chaque sommet est colorié
+   \item Il n'y a qu'une seule couleur par sommet
+   \item Deux sommets qui se suivent n'ont pas la même couleur
+  \end{enumerate}
+
+  \underline{Cas faciles :}
+  \begin{enumerate}
+   \item Le nombre de couleurs est négatif
+   \item Le nombre de couleurs est supérieur au nombre de sommets
+  \end{enumerate}
 
   \subsection{\emph{Circuit Hamiltonien} $\leq_P$ \emph{SAT}}
+  \underline{Propriétés caractérisant \emph{Circuit Hamiltonien} :}
+  \begin{enumerate}
+   \item Chaque noeud est dans le circuit
+   \item Un noeud a exactement une position dans le circuit sauf pour le
+	 premier/dernier
+   \item Deux sommets non voisins ne peuvent pas se suivre dans le
+	 circuit
+   \item Deux sommets n'ont pas la même position dans le circuit
+   \item Le dernier sommet du circuit doit aussi être le premier
+  \end{enumerate}
+
+  \underline{Cas faciles :}
+  \begin{enumerate}
+   \item Le nombre de d'arête du graphe est strictement inférieur au
+	 nombre de sommets
+   \item Le graphe est un graph complet $\Rightarrow$ Toujours vrai
+  \end{enumerate}
 
   \subsection{\emph{Clique} $\leq_P$ \emph{SAT}}
+  \underline{Propriétés caractérisant \emph{Clique} :}
+  \begin{enumerate}
+   \item Chaque noeud est dans la clique
+   \item Un noeud a exactement une position dans la clique
+   \item Deux sommets non voisins ne peuvent pas être ensemble dans la
+	 clique
+   \item Deux sommets n'ont pas la même position dans la clique
+  \end{enumerate}
+
+  \underline{Cas faciles :}
+  \begin{enumerate}
+   \item \emph{Clique} de taille négative $\Rightarrow$ Erreur en entrée
+   \item \emph{Clique} de taille 0 $\Rightarrow$ Toujours vrai
+   \item \emph{Clique} de taille 1 $\Rightarrow$ Nécessite 1 seul sommet
+   \item \emph{Clique} de taille 2 $\Rightarrow$ Nécessite 1 seule arête
+   \item \emph{Clique} de taille supérieure au nombre de sommets
+	 $\Rightarrow$ Impossible
+   \item A partir d'un certain nombre d'arêtes par rapport à un nombre
+	 de sommets, il est obligatoire d'obtenir une clique d'une
+	 certaine taille
+   \item Il faut un nombre d'arêtes minimum pour former une clique d'une
+	 certaine taille
+  \end{enumerate}
 
   \subsection{\emph{Ensemble indépendant} $\leq_P$ \emph{SAT}}
+  \underline{Propriétés caractérisant \emph{Ensemble Indépendant (IS)} :}
+  \begin{enumerate}
+   \item Inutiles car il y a une équivalence pour Ensemble indépendant
+	 de taille $k$ sur $G = (V,E)$ et \emph{Clique} de taille $k$
+	 sur $\overline{G}$
+  \end{enumerate}
+
+  \underline{Cas faciles :}
+  \begin{enumerate}
+   \item \emph{IS} de taille négative $\Rightarrow$ Erreur
+   \item \emph{IS} de taille $0$ $\Rightarrow$ Toujours vrai
+   \item \emph{IS} de taille $1$ $\Rightarrow$ Nécessite 1 seul sommet
+   \item \emph{IS} de taille supérieure au nombre de sommets
+	 $\Rightarrow$ Impossible
+   \item On a forcément un \emph{IS} d'une certaine taille si le nombre
+	 d'arêtes est trop faible
+   \item Pour que $k$ sommets puissent former un \emph{IS} dans un
+	 graphe de taille $n$, il ne faut pas que le nombre d'arêtes
+	 dépasse un certain nombre.
+  \end{enumerate}
 
   \subsection{\emph{Couverture par sommets} $\leq_P$ \emph{SAT}}
+  \underline{Propriétés caractérisant \emph{Couverture par sommets (VC)}
+  :}
+  \begin{enumerate}
+   \item Inutiles car il y a une équivalence pour \emph{Couverture par
+	 sommets} de taille $k$ sur $G = (V,E)$ et \emph{Clique} de
+	 taille $|V|-k$ sur $\overline{G}$
+  \end{enumerate}
+
+  \underline{Cas faciles :}
+  \begin{enumerate}
+   \item \emph{VC} de taille négative $\Rightarrow$ Erreur
+   \item \emph{VC} de taille $0$ $\Rightarrow$ Vrai s'il n'y a aucune
+	 arête
+   \item \emph{VC} de taille supérieure au nombre de sommets
+	 $\Rightarrow$ Impossible 
+   \item Pour que k sommets puissent représenter une \emph{VC} dans un
+	 graphe de taille $n$, il ne faut pas que le nombre d'arêtes
+	 dépasse un certain nombre.
+  \end{enumerate}
 
