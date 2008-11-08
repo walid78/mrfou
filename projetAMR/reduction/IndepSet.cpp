@@ -129,15 +129,13 @@ string IndepSet::getSolution(){
       graph.getNbEdges() << ") oblige le graphe à contenir un ensemble indépendant " <<
       "de cette taille." << endl;
 
-    // Voulez-vous trouver une assignation des sommets ?
+    // Voulez-vous un exemple d'ensemble indépendant ?
     while((line.compare("O")) && (line.compare("N"))){
-//       printf("Voulez-vous un exemple d'ensemble indépendant ? (O/N)\n");
-//       scanf("%c",&c);
       cout << "Voulez-vous un exemple d'ensemble indépendant ? (O/N) " << endl;
       cin >> line;
     }
 
-    if(line.compare("O"))
+    if(!line.compare("O"))
       easyCase = 7;
     break;
    

@@ -20,20 +20,7 @@ CircuitHamiltonien::CircuitHamiltonien(Graph g):graph(g),
     vars.push_back(vector<int>(nbVertexes+1, -1));
     for(int j=0 ; j<nbVertexes+1 ; ++j)
       vars[i][j] = ++nbVars;
-    
   }
-  
-
-  // //Initialisation du tableau vars à -1
-//   for(int i=0 ; i<nbVertexes ; ++i)
-//     vars.push_back(vector<int>(nbVertexes, -1));
-  
-//   //Remplissage du tableau des variables en mettant une variable par arc
-//   for(int i=0 ; i<nbVertexes ; ++i){
-//     for(int j=0 ; j<g.getNbNeighbours(i) ; ++j){
-//       vars[i][g[i][j]] = ++nbVars;
-//     }
-//   }
 }
 
 /** Destructeur : **/
@@ -106,14 +93,9 @@ string CircuitHamiltonien::generateCNFFormula(){
 	nbClauses++;
       }
 
-  /* Le dernier sommet doit etre le premier du circuit*/
-  CNFFormula << "c Le dernier sommet du circuit doit être le premier de la" << 
-    "couverture" << endl;
+  /* Le dernier sommet du circuit doit aussi être le premier */
+  CNFFormula << "c Le dernier sommet du circuit doit aussi être le premier" << endl;
   for(int i=0 ; i<nbVertexes ; ++i){
-    //     for(int j=1 ; j<nbVertexes ; ++j){
-    // 	CNFFormula << "-" << vars[i][j] << " -" << vars[i][nbVertexes] << " 0" << endl;
-    // 	nbClauses++;
-    //     }
     CNFFormula << "-" << vars[i][0] << " " << vars[i][nbVertexes] << " 0" << endl;
     CNFFormula << vars[i][0] << " -" << vars[i][nbVertexes] << " 0" << endl;
   }
@@ -167,34 +149,6 @@ string CircuitHamiltonien::getSolution(){
     s[size-2]= ' ';
     s[size-1]= '}';
   }
-
- //  bool* varAssign = mb.solve();
-//   int* edge;
-  
-//   //solve renvoie NULL lorsque c'est non sat
-//   if(varAssign == NULL)
-//     return "Le graphe n'admet pas de circuit Hamiltonien.";
-//   else{
-//     answer << "Le graphe admet un circuit Hamiltonien." << endl <<
-//       "Il suffit de considérer l'ensemble d'arêtes suivant :" << endl <<
-//       "{ ";
-    
-//     for(int i=0 ; i<nbVars ; ++i){
-//       if(varAssign[i]){
-// 	if((edge = getEdgeFromVar(i+1)) != NULL)
-// 	  answer << edge[0] << "-" << edge[1] << ", ";
-// 	else{
-// 	  cerr << "Problème dans le programme." << endl;
-// 	  exit(0);
-// 	}
-//       }
-//     }
-
-//     s = answer.str();
-//     int size = s.size();
-//     s[size-2]= ' ';
-//     s[size-1]= '}';
-//   }
 
   return s;
 }

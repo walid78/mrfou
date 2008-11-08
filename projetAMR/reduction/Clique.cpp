@@ -175,7 +175,7 @@ string Clique::getSolution(){
   int nbVertexes = graph.getNbVertexes();
   int easyCase = easyCases();
   int nbEdges = graph.getNbEdges();
-  char c = ' ';
+  string line;
 
   /* Cas faciles 
    * 
@@ -241,15 +241,16 @@ string Clique::getSolution(){
       " car le nombre d'arêtes du graphe (" << nbEdges << ") oblige le graphe " <<
       "à contenir une clique de taille (" << cliqueSize << ").";
       
-      // Voulez-vous trouver une assignation des sommets ?
-      while((c != 'O') && (c != 'N')){
-	printf("Voulez-vous un exemple de clique ? (O/N)\n");
-	scanf("%c",&c);
-      }
+ 
+    // Voulez-vous un exemple de clique ?
+    while((line.compare("O")) && (line.compare("N"))){
+      cout << "Voulez-vous un exemple de clique ? (O/N) " << endl;
+      cin >> line;
+    }
 
-      if(c == 'O')
-	easyCase = 8;
-      break;
+    if(!line.compare("O"))
+      easyCase = 8;
+    break;
 
   case 7:
     // 7) Il faut un nombre d'arêtes minimum pour former une clique d'une certaine taille
