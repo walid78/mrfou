@@ -133,7 +133,7 @@ main(int argc, char** argv){
   Graph graph = readGraph(argv[1]);
 
   if(graph.getNbVertexes() == 0){
-    cerr << "Erreur : Le graphe n'a pas de sommets.";
+    cerr << "Erreur : Le graphe n'a pas de sommets." << endl;
     exit(0);
   }
     
@@ -201,7 +201,7 @@ main(int argc, char** argv){
     }
   default :
     {
-      cerr << "Le numéro du problème est compris entre 1 et 5";
+      cerr << "Le numéro du problème est compris entre 1 et 5" << endl;
       usage();
       break; //Ne sert à rien mais je le mets
     }
