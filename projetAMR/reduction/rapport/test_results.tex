@@ -25,16 +25,26 @@
 	 explose alors qu'il n'y a rien de plus simple à trouver. Cas
 	 que nous avons résolue mais si on enlève une arête à un graphe
 	 complet le problème perciste.\\
-   \item \emph{Couverture de sommet:} Si on lance ces deux
+   \item \emph{Couverture par sommets:} Si on lance ces deux
 	 réductions sur un graphe de type chemin de taille 100 et que
 	 l'on cherche une couverture de sommet de taille 50 ou
 	 inférieur (qui n'est pas satisfaisable dans ce denier cas) le
 	 temps d'exécution explose litéralement alors quen TD, nous
 	 avons vu que pour ce genre de graphe il existe une ``formule''
 	 et que pour un nombre de sommet paire $n$, la plus petite
-	 couverture de sommet est de taille $n/2$ (voir Annexe 1).
+	 couverture de sommet est de taille $n/2$ (voir Annexe 1 page \pageref{an1}).
   \end{itemize}
   ~\newline
   \indent Sur des graphes de taille correcte à l'echelle papier (i.e. 4 ou 5
-  sommets), les resulats ont tous été concluant comme espéré (voir
-  Annexe 2 et plus).
+  sommets), les resulats ont tous été concluant comme espéré. Voici le
+  résultat de \emph{Circuit Hamiltonien} (\ref{ham} page \pageref{ham}) sur le
+  graphe \ref{graphe} page \pageref{graphe} (voir aussi Annexe 2 page
+  \pageref{an2}).
+
+  \begin{figure}[!ht]
+   \begin{center}
+    \includegraphics[width=12cm]{images/chemin.eps}
+    \caption{\emph{Circuit Hamiltonien} sur le graphe
+    \ref{graphe}.\label{ham}}
+   \end{center}
+  \end{figure}
