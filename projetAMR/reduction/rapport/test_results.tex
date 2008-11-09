@@ -1,1 +1,34 @@
  \section{Tests et résultats}
+  Pour vérifier le bon fonctionnement de notre programme, nous avons
+  effectué plusieurs tests.
+  \subsection{Tests}
+  Nous avons fait plusieurs tests sur différents types de fichiers
+  d'entrés. Ces fichiers tests sont disponibles dans le répertoire
+  \emph{jeux}. Nous avons testé notre progrmme sur des fichiers vides,
+  et différents types de graphes. Des graphes à une seule arête, et des
+  graphes générés par le programme \emph{gengraph}: des cliques à 100
+  sommets, un chemin à 100 sommet, un graphe complet de 100 sommets, un
+  arbre à 100 sommets ...
+  \subsection{Résultats des tests}
+  Ces tests nous ont permis de mettre en avant quelques erreurs de
+  programmation que nous avons corrigés mais surtout de trouver des cas
+  simples, dont nous avons parlé dans les parties précédentes, et de
+  voir les limites des réductions et de \emph{minisat}.\newline
+  \begin{itemize}
+   \item \emph{Circuit Hamiltonien:} Si on lançait la recherche d'un
+	 Circuit Hamiltonien sur un graphe complet, à cause du grand
+	 nombre de clauses, le temps d'exécution de \emph{minisat}
+	 explose alors qu'il n'y a rien de plus simple à trouver. Cas
+	 que nous avons résolue mais si on enlève une arête à un graphe
+	 complet le problème perciste.\\
+   \item \emph{Couverture de sommet:} Si on lance ces deux
+	 réductions sur un graphe de type chemin de taille 100 et que
+	 l'on cherche une couverture de sommet de taille 50 ou
+	 inférieur (qui n'est pas satisfaisable dans ce denier cas) le
+	 temps d'exécution explose litéralement alors quen TD, nous
+	 avons vu que pour ce genre de graphe il existe une ``formule''
+	 et que pour un nombre de sommet paire $n$, la plus petite
+	 couverture de sommet est de taille $n/2$ (voir Annexe 1).
+   \item 
+
+  \end{itemize}
