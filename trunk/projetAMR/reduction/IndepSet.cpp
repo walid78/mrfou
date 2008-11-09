@@ -45,7 +45,7 @@ int IndepSet::easyCases(){
   if(indepSetSize == 1)
     return 3;
 
-  //IS de taille supérieure au nombre de sommets => Impossible
+  //IS de taille strictement supérieure au nombre de sommets => Impossible
   else if(indepSetSize > nbVertexes)
     return 4;
   else{
@@ -78,7 +78,7 @@ string IndepSet::getSolution(){
    * 1) IS de taille < 0 => Erreur
    * 2) IS de taille 0 => Toujours vrai
    * 3) IS de taille 1 => Nécessite la présence d'un seul sommet
-   * 4) IS de taille supérieure au nombre de sommets => Impossible
+   * 4) IS de taille strictement supérieure au nombre de sommets => Impossible
    * 5) On a forcément un IS d'une certaine taille si le nombre d'arête est trop faible
    * 6) Pour que k sommets puissent former un IS dans un graphe de taille n,
    **** Il ne faut pas que le nombre d'arêtes dépasse un certain nombre
@@ -116,7 +116,7 @@ string IndepSet::getSolution(){
     break;
    
   case 4:
-    // 4) IS de taille supérieure au nombre de sommets => Impossible
+    // 4) IS de taille strictement supérieure au nombre de sommets => Impossible
     answer << "Le graphe n'admet pas d'ensemble indépendant de taille " << 
       indepSetSize << " car le nombre de sommets du graphe (" << nbVertexes << 
       ") est " << "inférieur à cette taille (" << indepSetSize << ").";
