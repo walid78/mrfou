@@ -24,7 +24,7 @@
   \end{enumerate}
 
   \subsection{\emph{Circuit Hamiltonien} $\leq_P$ \emph{SAT}}
-  \underline{Propriétés caractérisant \emph{Circuit Hamiltonien} :}
+  \underline{Propriétés caractérisant \emph{Circuit Hamiltonien (HC)} :}
   \begin{enumerate}
    \item Chaque noeud est dans le circuit
    \item Un noeud a exactement une position dans le circuit sauf pour le
@@ -37,9 +37,9 @@
 
   \underline{Cas faciles :}
   \begin{enumerate}
-   \item Le nombre de d'arête du graphe est strictement inférieur au
+   \item Le nombre d'arêtes du graphe est strictement inférieur au
 	 nombre de sommets
-   \item Le graphe est un graph complet $\Rightarrow$ Toujours vrai
+   \item Le graphe est un graphe complet $\Rightarrow$ Toujours vrai
   \end{enumerate}
 
   \subsection{\emph{Clique} $\leq_P$ \emph{SAT}}
@@ -58,8 +58,8 @@
    \item \emph{Clique} de taille 0 $\Rightarrow$ Toujours vrai
    \item \emph{Clique} de taille 1 $\Rightarrow$ Nécessite 1 seul sommet
    \item \emph{Clique} de taille 2 $\Rightarrow$ Nécessite 1 seule arête
-   \item \emph{Clique} de taille supérieure au nombre de sommets
-	 $\Rightarrow$ Impossible
+   \item \emph{Clique} de taille strictement supérieure au nombre de
+	 sommets $\Rightarrow$ Impossible
    \item A partir d'un certain nombre d'arêtes par rapport à un nombre
 	 de sommets, il est obligatoire d'obtenir une clique d'une
 	 certaine taille
@@ -80,7 +80,7 @@
    \item \emph{IS} de taille négative $\Rightarrow$ Erreur
    \item \emph{IS} de taille $0$ $\Rightarrow$ Toujours vrai
    \item \emph{IS} de taille $1$ $\Rightarrow$ Nécessite 1 seul sommet
-   \item \emph{IS} de taille supérieure au nombre de sommets
+   \item \emph{IS} de taille strictement supérieure au nombre de sommets
 	 $\Rightarrow$ Impossible
    \item On a forcément un \emph{IS} d'une certaine taille si le nombre
 	 d'arêtes est trop faible
@@ -103,7 +103,7 @@
    \item \emph{VC} de taille négative $\Rightarrow$ Erreur
    \item \emph{VC} de taille $0$ $\Rightarrow$ Vrai s'il n'y a aucune
 	 arête
-   \item \emph{VC} de taille supérieure au nombre de sommets
+   \item \emph{VC} de taille strictement supérieure au nombre de sommets
 	 $\Rightarrow$ Impossible 
    \item Pour que k sommets puissent représenter une \emph{VC} dans un
 	 graphe de taille $n$, il ne faut pas que le nombre d'arêtes

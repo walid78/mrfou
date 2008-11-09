@@ -145,7 +145,7 @@ int Clique::easyCases(){
   else if(cliqueSize == 2)
     return 4;
 
-  //Clique de taille supérieure au nombre de sommets => impossible
+  //Clique de taille strictement supérieure au nombre de sommets => impossible
   else if(cliqueSize > nbVertexes)
     return 5;
   else{
@@ -184,7 +184,7 @@ string Clique::getSolution(){
    * 2) Clique de taille 0 => Toujours vrai
    * 3) Clique de taille 1 => nécessite 1 sommet
    * 4) Clique de taille 2 => nécessite 1 arête
-   * 5) Clique de taille supérieure au nombre de sommets => impossible
+   * 5) Clique de taille strictement supérieure au nombre de sommets => impossible
    * 6) A partir d'un certain nombre d'arêtes par rapport à un nombre de sommets,
    **** Il est obligatoire d'obtenir une clique d'une certaine taille
    * 7) Il faut un nombre d'arêtes minimum pour former une clique d'une certaine taille
@@ -229,7 +229,7 @@ string Clique::getSolution(){
     break;
       
   case 5:
-    // 5) Clique de taille supérieure au nombre de sommets => impossible
+    // 5) Clique de taille strictement supérieure au nombre de sommets => impossible
     answer << "Le graphe n'admet pas de clique de taille " << cliqueSize <<
       " car le nombre de sommets du graphe (" << nbVertexes << ") est " <<
       "inférieur à cette taille (" << cliqueSize << ").";

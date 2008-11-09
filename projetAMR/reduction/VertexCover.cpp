@@ -46,7 +46,7 @@ int VertexCover::easyCases(){
   if(coverSize == 0)
     return 2;
 
-  //VC de taille > nombre de sommets => Impossible
+  //VC de taille strictement supérieure nombre de sommets => Impossible
   else if(coverSize > nbVertexes)
     return 3;
 
@@ -70,7 +70,7 @@ string VertexCover::getSolution(){
    * 
    * 1) VC de taille < 0 => Erreur
    * 2) VC de taille 0 => Vrai s'il n'y a aucune arête
-   * 3) VC de taille > nombre de sommets => Impossible
+   * 3) VC de taille strictement supérieure nombre de sommets => Impossible
    * 4) Pour que k sommets puissent représenter une VC dans un graphe de taille n,
    **** Il ne faut pas que le nombre d'arêtes dépasse un certain nombre.
    *
@@ -96,7 +96,7 @@ string VertexCover::getSolution(){
     break;
    
   case 3:
-    // 3) VC de taille > nombre de sommets => Impossible
+    // 3) VC de taille strictement supérieure nombre de sommets => Impossible
     answer << "Le graphe n'admet pas de couverture par sommets de taille " << coverSize << 
       " car le nombre de sommets du graphe (" << nbVertexes << ") est " <<
       "inférieur à cette taille (" << coverSize << ").";
