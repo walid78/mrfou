@@ -1,22 +1,32 @@
-\subsection{Dépendances et Relations}
-
-Le programme est simple d'utilisation puisqu'il suffit de le lancer avec un fichier d'entrée de type graphe issu du programme \emph{gengraph} de \emph{C. Gavoile} ainsi qu'avec le numéro du problème et éventuellement des paramètres propre au problème. \\
-Le programme se déroule de la manière suivante :\\
-\begin{itemize}
-\item Le fichier de graphe est lu à partir du fichier de graphe fournit.
-\item Selon le problème sélectionné, on lance la réduction correspondante.
-\item Une formulation en clause de type SAT est créé et envoyé au SATSolver \emph{Minisat}.
-\item \emph{Minisat} crée une solution (si celà est possible).
-\item La solution fournit est analysé afin de pouvoir être traité. De cette manière, nous connaissons la solution au problème voulu sur le graphe passé en parmètre.
-\end{itemize}
-En décrivant l'exécution du programme de cette façon, il est aisé de
-voir apparaître les relations entre les modules de notre programme. La
-fonction principale \emph{main} contenu dans Solve.cpp joues le rôle du
-trie des arguments et construction du graphe. Ensuite, est appelé la
-réduction voulu contenu dans les fichiers portant le nom d'un problème
-(ou leur abréviation). Une fois la réduction effectuée par ce fichier,
-celui-ci appelle un parser pour \emph{Minisat} qui bien sur gère le fait
-d'écrire un fichier d'entrée à \emph{Minisat}, lance le SATSolver et
-analyse sa sortie. La sortie analysé, une assignation des variables est
-créée, celle-ci nous permettra de donner l'ensemble des arêtes ou sommet
-nécessaire pour la résolution du problème donné sur le graphe donné.
+  \subsection{Dépendances et Relations}
+  Le programme est simple d'utilisation puisqu'il suffit de le lancer
+  avec un fichier d'entrée de type graphe issu du programme
+  \emph{gengraph} de \emph{C. Gavoille} ainsi qu'avec le numéro du
+  problème et éventuellement des paramètres propres au problème.\\
+  Le programme se déroule de la manière suivante :
+  \begin{enumerate}
+   \item Le fichier de graphe est lu à partir du fichier de graphe
+	 fourni. 
+   \item Selon le problème sélectionné, on lance la réduction
+	 correspondante. 
+   \item Une formulation en clauses de type \emph{CNF} est créée et
+	 envoyée au \emph{SATSolver} \emph{Minisat}. 
+   \item \emph{Minisat} crée une solution (si cela est possible).
+   \item La solution fournie est analysée afin de pouvoir être
+	 traitée. De cette manière, nous connaissons la solution au
+	 problème voulu sur le graphe passé en paramètre. 
+  \end{enumerate}
+  
+  En décrivant l'exécution du programme de cette façon, il est aisé de
+  voir apparaître les relations entre les modules de notre programme.\\
+  La fonction principale \emph{main}, contenue dans \emph{Solve.cpp},
+  joue le rôle du tri des arguments et de construction du
+  graphe. Ensuite, est appelée la réduction voulue, contenue dans les
+  fichiers portant le nom d'un problème (ou leur abréviation). Une fois
+  la réduction effectuée par ce fichier, celui-ci appelle un ``parser''
+  pour \emph{Minisat} qui gère le fait d'écrire un fichier d'entrée à
+  \emph{Minisat}, lance le \emph{SATSolver} et analyse sa sortie. Une
+  fois la sortie analysée, une assignation des variables est
+  créée. Celle-ci nous permet alors de donner l'ensemble des arêtes ou
+  sommets nécessaire pour la résolution du problème donné sur le graphe
+  donné.

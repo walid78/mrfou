@@ -1,7 +1,65 @@
  \section{Bilan}
-
- \subsection{Difficultés rencontrées}
  
- \subsection{Améliorations}
+  \subsection{Difficultés rencontrées}
+  Tout au long de notre projet, nous nous sommes heurtés à des
+  difficultés.
 
- \subsection{Conclusion}
+  Nous avons eu quelques soucis de démarrage avec ce que l'on appelle
+  communément la barrière du langage. En effet, n'ayant jamais créé un
+  programme en \emph{C++}, les évidences, pour nous, n'en étaient
+  pas. Les pointeurs que nous avions gentiment mis de côté dans notre
+  esprit se sont rappelés à nous via des erreurs de
+  compilation\footnote{Ce qui, vous en conviendrez, n'est pas la plus
+  agréable façon de se retrouver.}. Cela nous a suivi tout au long de
+  notre développement et continuera, à l'évidence, à nous suivre dans la
+  suite du projet. 
+
+  Au niveau des réductions, nous avons eu quelques problèmes, mais rien
+  d'anormal. Nous avons de temps en temps oublié quelques propriétés
+  mais nous nous en rendions assez rapidement compte en faisant tourner
+  le programme sur des exemples.\\
+  Néanmoins, \emph{Circuit Hamiltonien} nous a pris à revers dans la
+  dernière ligne droite. En effet, nous n'avions pas considéré le cas du
+  graphe formé de deux losanges rejoints par une arête (voir fig.?? page
+  ?? en annexe). Une refonte totale de notre réduction a dû être opérée
+  car nous avions utilisé des variables sur les arêtes, ce qui
+  n'élminait pas le problème. C'est en nous inspirant de la réduction de
+  \emph{Clique} à \emph{SAT} que nous avons refait celle pour
+  \emph{Circuit Hamiltonien}.
+
+  Nous avons eu aussi des problèmes au niveau de la concordance des
+  différents emplois du temps qui fut pour nous
+  \emph{NP-difficile}. Néanmoins ce problème n'était pas à l'insu de
+  notre plein gré, car la composition du groupe ne nous était pas
+  imposée.
+
+  Dernier problème et non le moindre, la contrainte de temps et le
+  chevauchement des projets. En effet, nous n'avons pas pu faire tout ce
+  que nous aurions aimé réaliser. Nous allons donc vous donner quelques
+  idées d'améliorations que nous avons eues mais que nous n'avons pas pu
+  inclure dans notre programme.
+  
+  \subsection{Améliorations}
+  Nous allons rapidement vous donner une courte liste des choses que
+  nous aurions aimé mettre en place dans le projet mais n'ont pas pu
+  l'être :
+  \begin{enumerate}
+   \item Vérifier les formats des fichiers en entrée\footnote{Nous avons
+	 remarqué que si \emph{Solve.cpp} était un graphe, alors il
+	 admettrait un \emph{Ensemble Indépendant} de taille $5$.} 
+   \item Trouver plus de ``cas faciles''
+   \item Donner le choix d'afficher ou pas l'exécution de
+	 \emph{minisat}. Il faudrait gérer l'option -v qui, si elle
+	 présente, permettrait d'afficher l'exécution de minisat, et
+	 sinon, écrirait cette exécution dans \emph{graph.min} (il faut
+	 utiliser une redirection de la sortie d'erreur de
+	 \emph{minisat} ($2>$))
+   \item Gérer les envois de signaux. Typiquement, durant l'exécution de
+	 \emph{minisat}, si on fait un \emph{C-c}, le résultat affiché
+	 est quelque peu effrayant
+   \item Utiliser des structures de graphe différentes selon les
+	 réductions
+  \end{enumerate}
+  
+  \subsection{Conclusion}
+  
