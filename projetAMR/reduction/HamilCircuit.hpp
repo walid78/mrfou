@@ -1,23 +1,23 @@
-#ifndef CIRCUITHAMILTONIEN_HPP
-#define CIRCUITHAMILTONIEN_HPP
+#ifndef HAMILCIRCUIT_HPP
+#define HAMILCIRCUIT_HPP
 
 #include "Graph.hpp"
 
 using namespace std;
 
-class CircuitHamiltonien{
+class HamilCircuit{
 
-  friend ostream& operator<<(ostream& o, const CircuitHamiltonien& ch);
+  friend ostream& operator<<(ostream& o, const HamilCircuit& ch);
 
   /*-*-*-*-* PUBLIC *-*-*-*-*/
  public:
     //===========================================================================
   /** Constructeur : **/
-  CircuitHamiltonien(Graph g);
+  HamilCircuit(Graph g);
   
   //===========================================================================
   /** Destructeur : **/
-  ~CircuitHamiltonien();
+  ~HamilCircuit();
   
   //===========================================================================
   /** Fonctions membres : **/
@@ -40,7 +40,7 @@ class CircuitHamiltonien{
 
 //===========================================================================
 /** Opérateur externe : **/
-ostream& operator<<(ostream& o, const CircuitHamiltonien& g);
+ostream& operator<<(ostream& o, const HamilCircuit& g);
 
 
 #endif

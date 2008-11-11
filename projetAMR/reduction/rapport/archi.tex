@@ -24,9 +24,20 @@
   graphe. Ensuite, est appelée la réduction voulue, contenue dans les
   fichiers portant le nom d'un problème (ou leur abréviation). Une fois
   la réduction effectuée par ce fichier, celui-ci appelle un ``parser''
-  pour \emph{Minisat} qui gère le fait d'écrire un fichier d'entrée à
-  \emph{Minisat}, lance le \emph{SATSolver} et analyse sa sortie. Une
-  fois la sortie analysée, une assignation des variables est
-  créée. Celle-ci nous permet alors de donner l'ensemble des arêtes ou
-  sommets nécessaire pour la résolution du problème donné sur le graphe
-  donné.
+  pour \emph{Minisat} (dans \emph{MinisatBuilder.cpp}) qui gère le fait
+  d'écrire un fichier d'entrée à \emph{Minisat}, lancer le
+  \emph{SATSolver} et analyser sa sortie. Une fois la sortie analysée,
+  une assignation des variables est donnée. Celle-ci nous permet alors
+  de donner l'ensemble des arêtes ou sommets nécessaire définissant une
+  solution du problème donné sur le graphe donné.\\
+
+  Voici un graphe représentant simplement les relations entre les
+  différentes parties du programme (fig.\ref{grapheExec} page
+  \pageref{grapheExec}).
+  \begin{figure}[!ht]
+   \begin{center}
+    \includegraphics{images/grapheExec.eps}
+    \caption{Relations entre les différentes parties du
+    programme\label{grapheExec}}
+   \end{center}
+  \end{figure}

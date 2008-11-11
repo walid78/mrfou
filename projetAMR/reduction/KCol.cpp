@@ -10,8 +10,8 @@
 /** Constructeur : **/
 //===========================================================================
 KCol::KCol(Graph g, int nbColors):graph(g),
-				  NB_COLORS(nbColors),
-				  pathFile(g.getPathFile()){
+				  pathFile(g.getPathFile()),
+				  NB_COLORS(nbColors){
   nbVars = g.getNbVertexes()*N;
   nbClauses = 0;
 }

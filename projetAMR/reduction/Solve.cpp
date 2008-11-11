@@ -6,7 +6,7 @@
 #include "Graph.hpp"
 #include "Clique.hpp"
 #include "Cover.hpp"
-#include "CircuitHamiltonien.hpp"
+#include "HamilCircuit.hpp"
 #include "KCol.hpp"
 #include "VertexCover.hpp"
 #include "IndepSet.hpp"
@@ -166,7 +166,7 @@ main(int argc, char** argv){
 
   case 2:
     {
-      CircuitHamiltonien ch(graph);
+      HamilCircuit ch(graph);
       cout << ch.getSolution() << endl;
       break;
     }

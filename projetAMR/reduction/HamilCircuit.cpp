@@ -2,12 +2,12 @@
 #include <sstream>
 #include <vector>
 
-#include "CircuitHamiltonien.hpp"
+#include "HamilCircuit.hpp"
 #include "MinisatBuilder.hpp"
 
 /** Constructeur : **/
 //===========================================================================
-CircuitHamiltonien::CircuitHamiltonien(Graph g):graph(g),
+HamilCircuit::HamilCircuit(Graph g):graph(g),
 						pathFile(g.getPathFile()){
   int nbVertexes = g.getNbVertexes();
 
@@ -25,13 +25,13 @@ CircuitHamiltonien::CircuitHamiltonien(Graph g):graph(g),
 
 /** Destructeur : **/
 //===========================================================================
-CircuitHamiltonien::~CircuitHamiltonien(){
+HamilCircuit::~HamilCircuit(){
 	
 }
 
 /** Fonctions membres : **/
 //===========================================================================
-string CircuitHamiltonien::generateCNFFormula(){
+string HamilCircuit::generateCNFFormula(){
   stringstream CNFFormula;
   
   int nbVertexes = graph.getNbVertexes();
@@ -104,7 +104,7 @@ string CircuitHamiltonien::generateCNFFormula(){
 }
 
 //===========================================================================
-string CircuitHamiltonien::getSolution(){
+string HamilCircuit::getSolution(){
   stringstream answer;
   int nbVertexes = graph.getNbVertexes();  
   int NB_MAX_EDGES = nbVertexes * (nbVertexes-1) / 2;
@@ -161,6 +161,6 @@ string CircuitHamiltonien::getSolution(){
 }
 
 //===========================================================================
-ostream& operator<<(ostream& o, const CircuitHamiltonien& ch){
+ostream& operator<<(ostream& o, const HamilCircuit& ch){
   return o << ch.graph;
 }
