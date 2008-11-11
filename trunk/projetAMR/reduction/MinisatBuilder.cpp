@@ -18,7 +18,7 @@ MinisatBuilder::MinisatBuilder(string inputPath,
 						  nbClauses(nbClauses), 
 						  CNFFormula(CNFFormula){
   fileName = inputPath.substr(0,inputPath.size()-4);
-}
+						  }
 
 bool* MinisatBuilder::readFromMinisat(){
   
@@ -33,7 +33,7 @@ bool* MinisatBuilder::readFromMinisat(){
     getline(file, line);
     
     int unsatFind = line.find("UNSAT");
-
+    
     if(unsatFind >= 0 && unsatFind < (int)line.length())
        return NULL;
     
@@ -52,21 +52,14 @@ bool* MinisatBuilder::readFromMinisat(){
 	  int valeur = atoi(number.c_str());
 	  number ="";
 	  //Traitement des variables
-	  /*	    if(valeur>0)
-		    tab[valeur-1] = true;
-		    else
-		    tab[(-valeur)-1] = false;*/
 	  tab[abs(valeur) - 1] = (valeur > 0);
 	}
 	else{
 	  if(line[i] == '0' && i == length - 1) //Ceci ne doit en
 	    //theorie ne jamais arriver
 	    break;
-	  else{
+	  else
 	    number += line[i];
-	    //number << ""<< line[i];
-	    //	      cout << "LINE I :"<< line[i]<<endl;
-	  }
 	}
       }
     }
@@ -97,9 +90,6 @@ void MinisatBuilder::writeToMinisat(){
 bool* MinisatBuilder::solve(){
 
   writeToMinisat();
-  
-  //  if (system(NULL)) puts ("Ok");
-  //else exit (1);
   
   system(("./minisat/simp/minisat " + fileName + ".sat " + fileName + ".sol").c_str());
 
