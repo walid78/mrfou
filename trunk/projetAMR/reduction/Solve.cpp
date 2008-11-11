@@ -98,7 +98,7 @@ readGraph(string path){
 	  break;
 	case ' ':
 	  current = atoi(number.c_str());
-	  if(last != -1)
+	  if(last != -1)//si on ne rentre pas dans le if le sommet n' pas d'aretes.
 	    graph.addEdges(last,current);
 	  number = "";
 	  last = -1;
