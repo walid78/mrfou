@@ -137,21 +137,6 @@ main(int argc, char** argv){
     exit(0);
   }
     
-  //  cout << "Graph :" << endl << graph << endl; //JE VIENS DE COMMENTER
-  //   vector<int> cover;
-  //   cover.push_back(0);
-  //   cover.push_back(2);
-  
-  //   bool test = isCover(graph, cover);
-  //   cout <<"TEST COVER " << (test?"OK":"KO") <<endl;
-
-  //   cout << graph.getNbVertexes() << " " << graph.getNbEdges() << endl;
-
-  // Rajoute une arete
-  //   graph.addEdges(3,4);
-
-  //  cout << graph.getNbVertexes() << " " << graph.getNbEdges() << endl;
-  
   int problemSelect = atoi(argv[2]);
   switch (problemSelect){
   case 1:
@@ -203,13 +188,9 @@ main(int argc, char** argv){
     {
       cerr << "Le numéro du problème est compris entre 1 et 5" << endl;
       usage();
-      break; //Ne sert à rien mais je le mets
+      break;
     }
   }
 
-  //   cout << "Graph : " << endl << graph << endl;
-
-//   cout << "Comp : " << endl << graph.complementary() << endl;
-  //exit(1);
   return 1;
 }
