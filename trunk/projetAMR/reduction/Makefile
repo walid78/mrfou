@@ -4,8 +4,14 @@ OBJS= Graph.o Solve.o HamilCircuit.o KCol.o Clique.o VertexCover.o IndepSet.o Mi
 CXXFLAGS = -Wall -g
 CXX= g++
 LDFLAGS=
+MINISAT_DIR= minisat/simp
 
-all: $(TARGET)
+all: minisat $(TARGET)
+
+minisat:
+	unzip minisat2-070721.zip
+	@(cd $(MINISAT_DIR) && $(MAKE) rs)
+	@(mv $(MINISAT_DIR)/minisat_static $(MINISAT_DIR)/minisat)
 
 $(TARGET): $(OBJS)
 	$(CXX) $(CXXFLAGS) $^ -o $@
@@ -38,4 +44,6 @@ clean:
 	-rm -f $(TARGET) *.o 
 
 polish: clean
-	rm -f *# *~
+	rm -f *# *~ 
+	rm -Rf minisat
+
