@@ -82,8 +82,7 @@ string Clique::generateCNFFormula(){
 	    }
   }
    
-  /* Deux sommets n'ont pas la même position dans la clique
-   */
+  /* Deux sommets n'ont pas la même position dans la clique */
   CNFFormula << "c Deux sommets n'ont pas la même position dans la clique" << endl;
   for(int i=0 ; i<nbVertexes ; ++i)
     for(int i2=i+1; i2<nbVertexes ; ++i2)
