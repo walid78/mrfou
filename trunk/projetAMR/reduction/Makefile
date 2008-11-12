@@ -6,11 +6,14 @@ CXX= g++
 LDFLAGS=
 MINISAT_DIR= minisat/simp
 
-all: minisat $(TARGET)
+all: minisat gengraph $(TARGET)
 
 minisat:
+	@echo -e "\033[31mUnzipping minisat\033[0m"
 	unzip minisat2-070721.zip
+	@echo -e "\033[31mCompilation minisat\033[0m"
 	@(cd $(MINISAT_DIR) && $(MAKE) rs)
+	@echo -e "\033[31mCompilation Reductions : solve\033[0m"
 	@(mv $(MINISAT_DIR)/minisat_static $(MINISAT_DIR)/minisat)
 
 $(TARGET): $(OBJS)
@@ -44,6 +47,5 @@ clean:
 	-rm -f $(TARGET) *.o 
 
 polish: clean
-	rm -f *# *~ 
-	rm -Rf minisat
-
+	rm -f *# *~ gengraph/gengraph
+	rm -Rf minisat/
