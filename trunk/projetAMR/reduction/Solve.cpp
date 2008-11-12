@@ -13,6 +13,8 @@
 
 using namespace std;
 
+/**Fonction usage**/
+//===========================================================================
 void
 usage(void){
   cerr << "Usage : ./solve <fichier_du_graphe> <numéro_du_problème> [paramètres]" << endl;
@@ -27,6 +29,9 @@ usage(void){
   cerr << "\t\tParamètre obligatoire : taille_de_l_ensemble" << endl;
   exit(EXIT_FAILURE);
 }
+
+/** Fonction donnant la taille du graphe(nombre de sommets) **/
+//===========================================================================
 
 int
 getNbVertexes(string path){
@@ -72,6 +77,8 @@ getNbVertexes(string path){
   file.close();  // on ferme le fichier
   return max+1;
 }
+/**Fonction qui crée le graphe**/
+//===========================================================================
 
 Graph
 readGraph(string path){
@@ -124,6 +131,7 @@ readGraph(string path){
   return graph;
 }
 
+//===========================================================================
 int
 main(int argc, char** argv){
 
