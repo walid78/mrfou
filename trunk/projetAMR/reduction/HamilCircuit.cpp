@@ -104,24 +104,65 @@ string HamilCircuit::generateCNFFormula(){
 }
 
 //===========================================================================
-string HamilCircuit::getSolution(){
-  stringstream answer;
+int HamilCircuit::easyCases(){
+
+  int nbEdges = graph.getNbEdges();
   int nbVertexes = graph.getNbVertexes();  
   int NB_MAX_EDGES = nbVertexes * (nbVertexes-1) / 2;
 
-  /* Cas facile */
-  if(graph.getNbEdges() < graph.getNbVertexes()){
+  /* Cas faciles */
+
+  //Le nombre d'arêtes du graphe est strictement inférieur au nombre de sommets
+  if(nbEdges < graph.getNbVertexes())
+    return 1;
+
+  //Le graphe est un graphe complet => Toujours vrai
+  else if(nbEdges == NB_MAX_EDGES)
+    return 2;
+
+  else 
+    return 0;
+}
+
+//===========================================================================
+string HamilCircuit::getSolution(){
+  stringstream answer;
+  int easyCase = easyCases();
+
+  /* Cas faciles 
+   * 
+   * 1) Le nombre d'arêtes du graphe est strictement inférieur au nombre de sommets
+   * 2) Le graphe est un graphe complet => Toujours vrai
+   *
+   */
+
+  switch(easyCase){
+    
+  case 0:
+    break;
+
+  case 1:
+    // 1) Le nombre d'arêtes du graphe est strictement inférieur au nombre de sommets
     answer << "Le graphe n'admet pas de circuit Hamiltonien car il y a moins " <<
       "d'arêtes que de sommets.";
-    return answer.str();
-  }else if(graph.getNbEdges() == NB_MAX_EDGES){
+    break;
+
+  case 2:
+    // 2) Le graphe est un graphe complet => Toujours vrai
     answer << "Le graphe admet un circuit Hamiltonien évident car c'est un graphe " <<
       "complet. Il suffit de prendre une arête sortante pour chaque sommet qui mène " << 
       "à un sommet non déjà visité et finir par le sommet de départ.";
-    return answer.str();
+    break;
+
+  default:
+    cerr << "Résultat inattendu" << endl;
+    exit(0);
   }
     
-  /* Calcul */
+  if((easyCase > 0) && (easyCase < 3))
+    return answer.str();
+
+ /* Calcul */
   MinisatBuilder mb(pathFile,
 		    nbVars,
 		    nbClauses,
@@ -130,6 +171,7 @@ string HamilCircuit::getSolution(){
   
   string s;
   bool* varAssign = mb.solve();
+  int nbVertexes = graph.getNbVertexes();  
 
   //solve renvoie NULL lorsque c'est non sat
   if(varAssign == NULL){

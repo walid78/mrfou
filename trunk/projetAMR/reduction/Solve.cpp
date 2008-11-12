@@ -17,7 +17,7 @@ using namespace std;
 //===========================================================================
 void
 usage(void){
-  cerr << "Usage : ./solve <fichier_du_graphe> <numéro_du_problème> [paramètres]" << endl;
+  cerr << "Usage : ./solve <fichier_du_graphe> <numéro_du_problème [paramètres]>" << endl;
   cerr << "\tProblème 1 : k-coloriabilité" << endl;
   cerr << "\t\tParamètre obligatoire : k" << endl;
   cerr << "\tProblème 2 : Circuit Hamiltonien" << endl;

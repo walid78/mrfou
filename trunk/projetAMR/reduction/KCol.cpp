@@ -63,23 +63,57 @@ string KCol::generateCNFFormula(){
 }
 
 //===========================================================================
-string KCol::getSolution(){
-  stringstream answer;
+int KCol::easyCases(){
 
   /* Cas faciles */
 
   //Le nombre de couleurs est négatif  
-  if(N <= 0){
-    answer << "Le nombre de couleurs proposé n'est pas correct.";
-    return answer.str();
-  }
+  if(N <= 0)
+    return 1;
+
   //Le nombre de couleurs est supérieur au nombre de sommets
-  else if(N >= graph.getNbVertexes()){
+  else if(N >= graph.getNbVertexes())
+    return 2;
+  
+  else 
+    return 0;
+}
+
+//===========================================================================
+string KCol::getSolution(){
+  stringstream answer;
+  int easyCase = easyCases();
+
+  /* Cas faciles 
+   * 
+   * 1) Le nombre de couleurs est négatif  
+   * 2) Le nombre de couleurs est supérieur au nombre de sommets
+   *
+   */
+
+  switch(easyCase){
+    
+  case 0:
+    break;
+
+  case 1:
+    // 1) Le nombre de couleurs est négatif  
+    answer << "Le nombre de couleurs proposé n'est pas correct.";
+    break;
+
+  case 2:
+    // 2) Le nombre de couleurs est supérieur au nombre de sommets
     answer << "Coloration évidente des sommets en prenant pour chacun" <<
       " une couleur différente.";
-    return answer.str();
-  }
+    break;
 
+  default:
+    cerr << "Résultat inattendu" << endl;
+    exit(0);
+  }
+    
+  if((easyCase > 0) && (easyCase < 3))
+    return answer.str();
 
   /* Calcul */
 

@@ -13,6 +13,7 @@ Graph::Graph(const int nodes, string path):nbVertexes(nodes),
     graph.push_back(vector<int>(1,0));
 }
 
+//===========================================================================
 Graph::Graph(const Graph& g):nbVertexes(g.graph.size()),
 			     pathFile(g.pathFile){
   for(unsigned i=0 ; i<g.graph.size() ; ++i){
@@ -86,6 +87,7 @@ int Graph::getMaxDegre(void){
   return max;
 }
 
+//===========================================================================
 Graph Graph::complementary(void){
   bool isNotInGraph[nbVertexes];
 
