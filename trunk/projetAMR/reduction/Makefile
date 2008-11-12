@@ -1,6 +1,6 @@
 SHELL= bash
 TARGET= solve
-OBJS= Graph.o Solve.o Cover.o HamilCircuit.o KCol.o Clique.o VertexCover.o IndepSet.o MinisatBuilder.o
+OBJS= Graph.o Solve.o HamilCircuit.o KCol.o Clique.o VertexCover.o IndepSet.o MinisatBuilder.o
 CXXFLAGS = -Wall -g
 CXX= g++
 LDFLAGS=
@@ -11,9 +11,6 @@ $(TARGET): $(OBJS)
 	$(CXX) $(CXXFLAGS) $^ -o $@
 
 Graph.o: Graph.cpp
-	$(CXX) $(CXXFLAGS) -c $< -o $@
-
-Cover.o: Cover.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 Solve.o: Solve.cpp

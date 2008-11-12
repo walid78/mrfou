@@ -5,7 +5,6 @@
 
 #include "Graph.hpp"
 #include "Clique.hpp"
-#include "Cover.hpp"
 #include "HamilCircuit.hpp"
 #include "KCol.hpp"
 #include "VertexCover.hpp"
