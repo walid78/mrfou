@@ -11,6 +11,8 @@
 #include "Graph.hpp"
 #include "MinisatBuilder.hpp"
 
+/** Constructeur : **/
+//===========================================================================
 MinisatBuilder::MinisatBuilder(string inputPath,
 			       int nbVars,
 			       int nbClauses,
@@ -20,6 +22,19 @@ MinisatBuilder::MinisatBuilder(string inputPath,
   fileName = inputPath.substr(0,inputPath.size()-4);
 						  }
 
+
+//===========================================================================
+/** Fonctions membres : **/
+bool* MinisatBuilder::solve(){
+
+  writeToMinisat();
+  
+  system(("./minisat/simp/minisat " + fileName + ".sat " + fileName + ".sol").c_str());
+
+  return readFromMinisat();
+}
+
+//===========================================================================
 bool* MinisatBuilder::readFromMinisat(){
   
   ifstream file((fileName+".sol").c_str(), ios::in);
@@ -70,6 +85,7 @@ bool* MinisatBuilder::readFromMinisat(){
   return tab;
 }
 
+//===========================================================================
 void MinisatBuilder::writeToMinisat(){
 
   ofstream file((fileName+".sat").c_str(), ios::out);
@@ -85,13 +101,4 @@ void MinisatBuilder::writeToMinisat(){
     file << CNFFormula;
   }
   file.close();
-}
-
-bool* MinisatBuilder::solve(){
-
-  writeToMinisat();
-  
-  system(("./minisat/simp/minisat " + fileName + ".sat " + fileName + ".sol").c_str());
-
-  return readFromMinisat();
 }
