@@ -1,0 +1,27 @@
+
+-- incrémente le compteur C à chaque fois que X vaut vrai et qui le réinitialise
+-- lorsque R est vrai. Plus précisément la valeur de C est le nombre d'instants où X a été
+-- vrai depuis le dernier instant où R a été vrai, ou depuis l'instant initial, inclus.
+node cpt_reset (X: bool; R: bool) returns (C: int);
+let
+  C = if R
+      then 
+        0
+      else 
+        (0 -> pre C) + (if X then 1 else 0);
+tel
+
+-- s est vrai à chaque fois qu'une seconde d'écoule, jalon est vrai lorsqu'à chaque
+-- fois qu'un jalon est rencontré sur la voie et djalon est la distance au jalon précédent
+-- exprimée en mètres. Le flux de sortie v est la vitesse du train en m/s.
+node vitesse (s: bool; jalon: bool; djalon: real) returns (v: real);
+var tmp: real;
+let
+  tmp = real cpt_reset(s, jalon);
+  v = if (not jalon)
+      then
+        0. -> pre v
+      else
+-- NOT CORRECT -> TO REVIEW
+        djalon / 1. -> pre tmp;
+tel
