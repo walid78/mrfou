@@ -1,0 +1,42 @@
+node voteur2oo3 (E1,E2,E3:bool) returns (S:bool);
+let
+  S = (E2 and E3) or (E1 and (E2 or E3));
+tel
+
+node voteur2oo3_valide_old (E1,E2,E3:bool; V:bool) returns (S:bool);
+let
+  S = if V 
+      then 
+        voteur2oo3(E1,E2,E3) 
+      else 
+        -- choix d'initialisation à true
+        (true -> pre S);
+tel
+
+node voteur2oo3_valide (E1,E2,E3:bool; V:bool) returns (S:bool);
+let
+  S = current(voteur2oo3(E1,E2,E3) when (true -> V));
+tel
+
+node voteur2oo3_valide_lent (E1,E2,E3:bool; V:bool) returns ((S:bool) when V);
+let
+  S = voteur2oo3(E1,E2,E3) when (true -> V);
+tel
+  
+node voteur2oo3_valide3 (E1,E2,E3:bool; V1,V2,V3:bool) returns (S:bool);
+let
+  S = voteur2oo3_valide(E1, E2, E3, V1 and V2 and V3);
+tel 
+
+node voteur2oo3_valide2 (E1,E2,E3:bool; V1,V2,V3:bool) returns (S:bool);
+let
+  S = voteur2oo3_valide(E1, E2, E3, voteur2oo3(V1, V2, V3));
+tel
+
+node voteur2oo3_valide2_bis (E1,E2,E3:bool; V1,V2,V3:bool) returns (S:bool);
+let
+  S = if (V1 and V2 and not V3) then voteur2oo3(E1, E2, (true -> (pre S))) else 
+        if (V1 and not V2 and V3) then voteur2oo3(E1, (true -> (pre S)), E3) else 
+          if (not V1 and V2 and V3) then voteur2oo3((true -> (pre S)), E2, E3) else
+            voteur2oo3_valide3(E1, E2, E3, V1, V2, V3);
+tel
