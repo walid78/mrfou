@@ -142,20 +142,20 @@ Tree Graph::createTree(void){
     color[i] = e.WHITE;
 
   for(int i = 0; i < nbNodes; ++i)
-    if(color[graph[i]] == e.WHITE){ //Pas du tout sure de ça
-      g.addEdges(u, graph[i]);
-      depthCover(graph[i], g);
+    if(color[i] == e.WHITE){ //Pas du tout sure de ça
+      g.addEdges(u, i);
+      depthCover(i, g);
     }
 }
 
-//Code mauvais mais algo juste
-void Graph::depthCover(vector<int> u, Graph g){
+//Code mauvais mais algo juste quoi que le code est peut-être bon
+void Graph::depthCover(int u, Graph g){
   color[u] = e.GREY;
   int nbNodes = getNbNeighbours(u);
 
   for(int i = 0; i < nbNodes; ++i)
     if(color[u[i] == e.WHITE){
-	g.addEdges(u, u[i]);
+	g.addEdges(graph[u], graph[u][i]);
 	depthCover(i, g);
       }
 
