@@ -1,0 +1,242 @@
+%%%%% Remove ? to make this file compilable %%%%%
+% TO COMPILE %
+
+%%%%%%%%%%                             %%%%%%%%%%
+%%%%%%%%%% AUTO INSERTION D'UNE ENTETE %%%%%%%%%%
+%%%%%%%%%%                             %%%%%%%%%%
+%%%%%%%%%%     POUR UN FICHIER TEX     %%%%%%%%%%
+%%%%%%%%%%                             %%%%%%%%%%
+
+%%%%%%          %%%%%%
+%%%%%% PACKAGES %%%%%%
+%%%%%%          %%%%%%
+
+\documentclass[a4paper]{article}
+\usepackage{fullpage}
+\usepackage[utf8]{inputenc}
+\usepackage[francais]{babel}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{color} 
+\usepackage{enumerate}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{wasysym}
+\usepackage{chemarrow}
+\usepackage[colorlinks=true, urlcolor=blue]{hyperref}
+\usepackage[french,boxed,linesnumbered,ruled]{algorithm2e}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usetikzlibrary{automata}
+
+%%%%%%              %%%%%%
+%%%%%% MISE EN PAGE %%%%%%
+%%%%%%              %%%%%%
+
+
+%%%%% Marges %%%%%
+\addtolength{\textwidth}{-1cm}
+\addtolength{\oddsidemargin}{-0.8cm}
+\textheight=21cm % longueur utile de la page
+\topmargin=0cm % marge haute
+\headsep=40pt % séparation 20 points entre entête et texte
+%\footskip=20pt % idem séparation pied de page
+
+%%%%% Entetes et Enpieds de pages %%%%%
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{\footnotesize{\textit{Bruno Bassac, Geoffrey Graveaud, Fabien
+Kuntz}}}
+\rhead{\footnotesize{\textit{Bases de données avancées - Michel
+Prudence, Christian Rétoré}}}
+
+%%%%% Numérotation sections %%%%
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+
+%%%%% Types enumerate %%%%%
+\let\enumeratesav\enumerate
+\let\endenumeratesav\endenumerate
+
+% \renewenvironment{enumerate}{
+% \enumeratesav
+%  \setlength{\itemsep}{0.5pt}
+%  \setlength{\parskip}{0pt}
+%  \setlength{\parsep}{0pt}}
+% \endenumeratesav
+
+\newenvironment{tikz_mrfou}{
+\begin{tikzpicture}[->,>=stealth,shorten >=1pt,auto,node
+ distance=2cm,on grid,semithick,inner sep=2pt,bend
+ angle=30,font=\small, initial text=]
+}{\end{tikzpicture}}
+
+\renewcommand{\labelenumi}{\indent-}
+\renewcommand{\labelenumii}{\indent$\bullet$}
+\renewcommand{\labelenumiii}{\indent$\star$}
+\renewcommand{\labelenumiv}{\indent\_}
+
+%%%%% Titre %%%%%
+\newlength{\larg}
+\setlength{\larg}{14.5cm}
+
+%%%Zone de Code%%%
+\definecolor{gray}{gray}{0.86}  
+
+\lstset{numbers=left, tabsize=2, frame=single, breaklines=true,
+basicstyle=\ttfamily,numberstyle=\tiny\ttfamily, framexleftmargin=13mm,
+backgroundcolor=\color{gray}, xleftmargin=14mm} 
+
+\newsavebox{\fmbox}
+\newenvironment{fmpage}[1]{\begin{lrbox}{\fmbox}\begin{minipage}{#1}}{\end{minipage}\end{lrbox}\fbox{\usebox{\fmbox}}}
+
+
+%%%%%%          %%%%%%
+%%%%%% DOCUMENT %%%%%%
+%%%%%%          %%%%%%
+
+
+\begin{document}
+
+
+%%%%% Page de présentation %%%%%
+\thispagestyle{empty}
+
+\setlength{\unitlength}{1in}
+
+%%%%% Image de fond %%%%%
+%\begin{picture}(0,0)
+% \put(0.2,-7){\includegraphics[width=\textwidth]{images/bx1_trans.eps}}
+%\end{picture}
+
+\begin{flushright}
+ \noindent {\rule{\larg}{0.5mm}}
+\end{flushright}
+\vspace{7mm}
+\begin{flushright}
+ \Huge{\bf Bases de données avancées} \\
+ \Huge{\bf Projet} \\
+ ~\\
+ \huge{Gestion d'une agence de voyage}\\
+\end{flushright}
+\vspace{7mm}
+\begin{flushright}
+ {\rule{\larg}{0.5mm}}
+\end{flushright}
+\vspace{2mm}
+\begin{flushright}
+ \large{\bf Professeurs : Michel Prudence, Christian Rétoré} \\
+ ~\\
+ \large{Master 2 Informatique}\\
+ ~\\
+ % \today
+ \vspace{9cm}
+ \large{Bruno Bassac, Geoffrey Graveaud, Fabien Kuntz}
+{\rule{\larg}{0.5mm}}
+\end{flushright}
+
+\newpage
+
+\addtolength{\oddsidemargin}{1cm}
+
+%%%%% Table des matières %%%%%
+\thispagestyle{empty}
+\tableofcontents
+\newpage
+
+\setcounter{page}{1}
+
+
+%%%%%%              %%%%%%
+%%%%%% ZONE DE CODE %%%%%%
+%%%%%%              %%%%%%
+
+% \include{01-}
+
+%%%%%%               %%%%%%
+%%%%%% /ZONE DE CODE %%%%%%
+%%%%%%               %%%%%%
+
+
+
+
+\end{document}
+
+
+
+%%%%%%           %%%%%%
+%%%%%% /DOCUMENT %%%%%%
+%%%%%%           %%%%%%
+
+
+
+
+%%%%% Texte italique %%%%%
+%  \textit{} 
+
+%%%%% Liste %%%%
+%%% Itemize %%%
+%  \begin{itemize}
+%   \item item1\\
+%   \item item2
+%  \end{itemize}
+
+%%% Enumerate %%%
+%  \begin{enumerate}
+%   \item item1
+%   \item item2
+%  \end{enumerate}
+
+%%%%% Tabulations %%%%%
+%   \begin{tabbing}
+%    XX\=XX\=\kill
+%    \>(OrdresEnonce.v, ligne 244)\\
+%    \>\>test2
+%   \end{tabbing}
+ 
+%%%%% Note de pied de page %%%%%
+%  \footnote{test}
+
+%%%%% Référence %%%%%
+%   \label{ref}
+%% Plus loin :
+%   \ref{ref}
+%   \pageref{ref}
+
+%%%%% Code %%%%%
+% \begin{lstlisting}
+%      List<Integer> lexBFS2 = new ArrayList<Integer>();
+%      lexBFS2.add(3);
+%      lexBFS2.add(2);
+%      lexBFS2.add(4);
+%      lexBFS2.add(1);
+%      lexBFS2.add(0);    
+%      assertNotNull(lexBFS2);	
+%      assertEquals(lexBFS2,Graphs.lexBFS(nogYComp));
+%   \end{lstlisting}
+
+%%%%% Inclure une figure %%%%%
+%  \begin{figure}[!ht]
+%   \begin{center}
+%	\includegraphics[width=7cm]{figs/cours1/fig2.eps}
+%	\caption{\emph{MT2} : Calcul non déterministe}
+%   \end{center}
+%  \end{figure}
+
+%%%%% Dessiner une figure %%%%% 
+% \begin{tikzpicture}[->,>=stealth,shorten >=1pt,auto,node
+%  distance=2cm,on grid,semithick,inner sep=2pt,bend
+%  angle=45,font=\small]
+%  \node[initial,state] (1) {$q_1$}
+%  edge [loop above] node {b} ();
+%  \node[state] (2) [right=of 1] {$q_2$}
+%  edge [<-]  node {a} (1)
+%  edge [loop above] node {b} ();
+%  \node[state,right=of 2] (3) {$q_3$}
+%  edge [->, bend right] node {b} (2)
+%  edge [<-, bend left] node {a} (2);
+%  \node[state,below=of 2,accepting] (4) {$q_4$}
+%  edge [<-] node {b} (2)
+%  edge [loop right] node {b} ();
+% \end{tikzpicture}
