@@ -91,7 +91,7 @@ int Graph::getMaxDegre(void){
 Graph Graph::complementary(void){
   bool isNotInGraph[nbVertexes];
 
-  Graph comp(nbVertexes, pathFile);
+  Graph comp(nbVertexes, getPathFile());
   
   for(int i=0 ; i<nbVertexes ; ++i){
 
@@ -144,12 +144,12 @@ Tree Graph::createTree(void){
   for(int i = 0; i < nbNodes; ++i)
     if(color[i] == e.WHITE){ //Pas du tout sure de ça
       g.addEdges(u, i);
-      depthCover(i, g);
+      depthCover(i, g, color);
     }
 }
 
 //Code mauvais mais algo juste quoi que le code est peut-être bon
-void Graph::depthCover(int u, Graph g){
+void Graph::depthCover(int u, Graph g, e[] color){
   color[u] = e.GREY;
   int nbNodes = getNbNeighbours(u);
 
