@@ -21,7 +21,6 @@ Tree Tree::getTree(){
   }
 }
 
-
 vector<int> Tree::vertexCover1() {
   vector<int> vertexCover();
   int last = 0;

@@ -1,6 +1,8 @@
 #ifndef TREE_HPP
 #define TREE_HPP
 
+#include <vector>
+
 #include "Graph.hpp"
 
 class Tree{
