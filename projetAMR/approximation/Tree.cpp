@@ -37,28 +37,45 @@ vector<int> Tree::vertexCover1() {
   return vertexCover;
 }
 
-//Algo du cours Ã  regarder (oui, je l'ai prÃ©ter)
 vector<int> Tree::vertexCover2() {
+  vector<int> vertexCover();
+  vector<int> destroyVertex();
+  vertexCover2(vertexCover, destroyVertex);
+}
+
+//Pour la récursion
+vector<int> Tree::vertexCover2(vector<int> vertexCover, vector<int> destroyVertex) {
   //Chercher une feuille v
-  int leaf = findLeaf();
+  int leaf = findLeaf(destroyVertex);
+  if(leaf == -1)
+    return vertexCover;
 
   //Retenir dans la couverture le sommet u voisin du sommet v
   vector<int> neighboors = graph.getNeighbours(leaf);
   int vertex = neighboors[0];
-  index = 0;
-  vector<int> vertexCover[index++] = vertex;
+  vertexCover.push_back(vertex);
 
   //Eliminer toutes les aretes incidentes à u
   //FAUT TROUVER LE TRUC MAGIQUE
+  destroyVertex.push_back(vertex); //On rajoute dans la liste des
+  //sommets détruits
+
 
   //Travailler avec la foret restante
   //FAIRE L'APPEL RECURSIF
+  return vertexCover2(vertexCover, destroyVertex);
 }
 
-int Tree::findLeaf() { //Vérifier que les sommets sont toujours couvrable
+int Tree::findLeaf(vector<int> destroyVertex) { //Vérifier que les sommets sont toujours couvrable
   int length = graph.getNbVertexes();
   for(int i = 1; i < length; ++i) {
-    if(graph.getNeighbours(i) == 1)
+    if(graph.getNeighbours(i) == 1 && !(destroyVertex.at(i) > 0)) //On vérifie que i n'est pas dans les sommets détruits
       return i;
   }
+  return -1;
+}
+
+//C'est l'algo glouton
+vector<int> Tree::vertexCover3() {
+
 }
