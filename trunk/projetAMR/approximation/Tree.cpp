@@ -46,39 +46,29 @@ void Tree::makeTreeDFS_aux(Graph& g, int node, bool* mark){
 
 //===========================================================================
 bool* Tree::coverTree(){
-  bool* mark = new bool(nbVertexes);
   bool* cover = new bool(nbVertexes);
 
-  for(int i=0 ; i<nbVertexes ; ++i){
+  for(int i=0 ; i<nbVertexes ; ++i)
     cover[i] = false;
-    mark[i] = false;
-  }
 
-  coverTree_aux(root, mark, cover);
+  coverTree_aux(root, cover);
 
   return cover;
 }
 
 //===========================================================================
-bool Tree::coverTree_aux(int node, bool* mark, bool* cover){
+bool Tree::coverTree_aux(int node, bool* cover){
   bool markFather = true;
 
-  mark[node] = true;
-  
   if(tree.getNbNeighbours(node) == 0)
     //Papa doit être marqué
     return true;
 
   vector<int> neighbours = tree.getNeighbours(node);
   for(unsigned i=0 ; i < neighbours.size() ; ++i){
-    cout << "BBBBB :: " << node << endl;
-    if(!(mark[neighbours[i]])){
-      if(coverTree_aux(neighbours[i], mark, cover)){
-	cout << "AAAAA :: " << node << endl;
-	
-	cover[node] = true;
-	markFather = false;
-      }
+    if(coverTree_aux(neighbours[i], cover)){
+      cover[node] = true;
+      markFather = false;
     }
   }
   return markFather;
