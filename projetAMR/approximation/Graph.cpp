@@ -155,7 +155,7 @@ void Graph::depthCover(int u, Graph g, e[] color){
 
   for(int i = 0; i < nbNodes; ++i)
     if(color[u[i] == e.WHITE){
-	g.addEdges(graph[u], graph[u][i]);
+	g.addEdges(u, graph.getNeighboors()[i]);
 	depthCover(i, g);
       }
 
