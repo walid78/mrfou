@@ -4,8 +4,6 @@
 #include <vector>
 #include <string>
 
-#include "Tree.hpp"
-
 using namespace std;
 
 class Graph{
@@ -36,15 +34,12 @@ class Graph{
   int getNbEdges(void);
   int getNbNeighbours(int originNode);
   string getPathFile(void);
-
-  Tree createTree(void);
   
  private:
   vector< vector<int> > graph;
   int nbVertexes;
   string pathFile;
 
-  void depthCover(int u, Graph g, e[] color);
 };
 
 //===========================================================================
