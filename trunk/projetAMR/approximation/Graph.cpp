@@ -35,14 +35,18 @@ Graph::~Graph(){
 /** Fonctions membres : **/
 //===========================================================================
 void Graph::addEdges(const int originNode, const int destNode){
+  addArc(originNode, destNode);
+  addArc(destNode, originNode);
+}
+
+//==========================================================================
+void Graph::addArc(int originNode, int destNode){
   for(int i=1 ; i<=graph[originNode][0] ; ++i)
     if(graph[originNode][i] == destNode)
       return ;
 	
   graph[originNode].push_back(destNode);
   graph[originNode][0]++;
-  graph[destNode].push_back(originNode);
-  graph[destNode][0]++;
 }
 
 //===========================================================================
