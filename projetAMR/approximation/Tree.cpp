@@ -77,12 +77,12 @@ int Tree::findLeaf(vector<int> destroyVertex) { //Vérifier que les sommets sont 
   }*/
 
 vector<int> Tree::vertexCover2() {
-  vector<int> vertexCover();
+  vector<int> vertexCover = new vector();
   depthCover(vertexCover);
   return vertexCover;
 }
 
-void Tree::depthCover(vector<int> vertexCover){
+void Tree::depthCover(vector<int> *vertexCover){
   int nbNodes = getNbVertexes();
 
   // INITIALISATION
@@ -97,7 +97,7 @@ void Tree::depthCover(vector<int> vertexCover){
     }
 }
 
-bool Tree::depthCover(int u, vector<int> vertexCover, e[] color){
+bool Tree::depthCover(int u, vector<int> *vertexCover, e[] color){
   color[u] = e.GREY;
 
   int nbNodes = getNbNeighbours(u);
