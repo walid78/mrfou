@@ -6,6 +6,9 @@
 class Tree{
   
 public:
+
+  friend ostream& operator<<(ostream& o, const Tree& t);
+
   //===========================================================================
   /** Constructeur : **/
   Tree(Graph& g, int r); 
@@ -32,5 +35,9 @@ private:
   void makeTreeDFS_aux(Graph& g, int node, bool* mark);
   
 };
+
+//===========================================================================
+/** Opérateur : **/
+ostream& operator<<(ostream& o, const Tree& t);
 
 #endif
