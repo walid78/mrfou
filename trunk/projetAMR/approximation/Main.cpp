@@ -132,7 +132,13 @@ main(int argc, char** argv){
 
   Tree tree = Tree(graph, 0);
 
-  cout << tree << endl;
+  
+  cout << "Arbre rapport:" << tree << endl;
+  
+  bool* cover = tree.coverTree();
 
+  for(int i=0 ; i<graph.getNbVertexes() ; ++i)
+    cout << cover[i] << " ";
+  cout << endl;
   return 1;
 }
