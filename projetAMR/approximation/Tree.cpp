@@ -61,6 +61,8 @@ bool* Tree::coverTree(){
 
 //===========================================================================
 bool Tree::coverTree_aux(int node, bool* mark, bool* cover){
+  bool markFather = true;
+
   mark[node] = true;
   
   if(tree.getNbNeighbours(node) == 0)
@@ -69,14 +71,17 @@ bool Tree::coverTree_aux(int node, bool* mark, bool* cover){
 
   vector<int> neighbours = tree.getNeighbours(node);
   for(unsigned i=0 ; i < neighbours.size() ; ++i){
+    cout << "BBBBB :: " << node << endl;
     if(!(mark[neighbours[i]])){
       if(coverTree_aux(neighbours[i], mark, cover)){
+	cout << "AAAAA :: " << node << endl;
+	
 	cover[node] = true;
-	return false;
+	markFather = false;
       }
     }
   }
-  return true;
+  return markFather;
 }
 
 
