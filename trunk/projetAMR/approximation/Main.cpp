@@ -132,5 +132,7 @@ main(int argc, char** argv){
 
   Tree tree = Tree(graph, 0);
 
+  cout << tree << endl;
+
   return 1;
 }

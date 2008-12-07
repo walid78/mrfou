@@ -43,3 +43,8 @@ void Tree::makeTreeDFS_aux(Graph& g, int node, bool* mark){
   }
 }
 
+/** Opérateurs : **/
+//===========================================================================
+ostream& operator<<(ostream& o, const Tree& t){
+  return o << t.tree;
+}
