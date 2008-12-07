@@ -8,7 +8,7 @@
 
 using namespace std;
 
-/**Fonction usage**/
+/** Fonction usage **/
 //===========================================================================
 void
 usage(void){
