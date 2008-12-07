@@ -133,7 +133,7 @@ main(int argc, char** argv){
   Tree tree = Tree(graph, 0);
 
   
-  cout << "Arbre rapport:" << tree << endl;
+  cout << "Arbre rapport:" << endl << tree << endl;
   
   bool* cover = tree.coverTree();
 
