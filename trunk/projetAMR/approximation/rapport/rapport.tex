@@ -1,0 +1,218 @@
+% TO COMPILE %
+
+%%%%%%%%%%                             %%%%%%%%%%
+%%%%%%%%%% AUTO INSERTION D'UNE ENTETE %%%%%%%%%%
+%%%%%%%%%%                             %%%%%%%%%%
+%%%%%%%%%%     POUR UN FICHIER TEX     %%%%%%%%%%
+%%%%%%%%%%                             %%%%%%%%%%
+
+%%%%%%          %%%%%%
+%%%%%% PACKAGES %%%%%%
+%%%%%%          %%%%%%
+
+\documentclass[a4paper]{article}
+\usepackage{fullpage}
+\usepackage[utf8]{inputenc}
+\usepackage[francais]{babel}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{color} 
+\usepackage{enumerate}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{wasysym}
+\usepackage{chemarrow}
+\usepackage[colorlinks=true, urlcolor=blue]{hyperref}
+
+%%%%%%              %%%%%%
+%%%%%% MISE EN PAGE %%%%%%
+%%%%%%              %%%%%%
+
+
+%%%%% Marges %%%%%
+%\addtolength{\textwidth}{3cm}
+\addtolength{\oddsidemargin}{-1.3cm}
+\textheight=24cm % longueur utile de la page
+\topmargin=-1cm % marge haute
+%\bottommargin=-1cm % marge haute
+\headsep=20pt % séparation 20 points entre entête et texte
+%\footskip=30pt % idem séparation pied de page
+\addtolength{\footskip}{20pt}
+
+%%%%% Entetes et Enpieds de pages %%%%%
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{\footnotesize{\textit{Ludovic Brochard, Fabien Kuntz, Benoît Védrenne}}}
+\rhead{\footnotesize{\textit{Projet Algorithmes du Monde Réel}}}
+
+%%%%% Numérotation sections %%%%
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+
+%%%%% Types enumerate %%%%%
+\let\enumeratesav\enumerate
+\let\endenumeratesav\endenumerate
+
+\renewenvironment{enumerate}{
+\enumeratesav
+ \setlength{\itemsep}{0.5pt}
+ \setlength{\parskip}{0pt}
+ \setlength{\parsep}{0pt}}
+\endenumeratesav
+
+\renewcommand{\labelenumi}{-}
+\renewcommand{\labelenumii}{$\bullet$}
+\renewcommand{\labelenumiii}{$\star$}
+\renewcommand{\labelenumiv}{\_}
+
+%%%%% Titre %%%%%
+\newlength{\larg}
+\setlength{\larg}{14.5cm}
+
+%%%Zone de Code%%%
+\definecolor{gray}{gray}{0.86}  
+
+\lstset{numbers=left, tabsize=2, frame=single, breaklines=true,
+basicstyle=\ttfamily,numberstyle=\tiny\ttfamily, framexleftmargin=13mm,
+backgroundcolor=\color{gray}, xleftmargin=14mm} 
+
+\newsavebox{\fmbox}
+\newenvironment{fmpage}[1]{\begin{lrbox}{\fmbox}\begin{minipage}{#1}}{\end{minipage}\end{lrbox}\fbox{\usebox{\fmbox}}}
+
+
+%%%%%%          %%%%%%
+%%%%%% DOCUMENT %%%%%%
+%%%%%%          %%%%%%
+
+
+\begin{document}
+
+
+%%%%% Page de présentation %%%%%
+\thispagestyle{empty}
+
+\setlength{\unitlength}{1in}
+
+%%%%% Image de fond %%%%%
+% \begin{picture}(0,0)
+% \put(0.2,-7){\includegraphics[width=\textwidth]{images/bx1_trans.eps}}
+% \end{picture}
+
+\begin{flushright}
+ \noindent {\rule{\larg}{0.5mm}}
+\end{flushright}
+\vspace{7mm}
+\begin{flushright}
+ \Huge{\bf Algorithmes du Monde Réel} \\
+ \Huge{\bf Projet} \\
+ ~\\
+ \huge{Partie 2 - Approximations}\\
+ % \Large{\bf{\emph{Fabien Kuntz}}}
+\end{flushright}
+\vspace{7mm}
+\begin{flushright}
+ {\rule{\larg}{0.5mm}}
+\end{flushright}
+\vspace{2mm}
+\begin{flushright}
+ \large{\bf Professeurs : M. Zeitoun, A. Muscholl, C. Gavoille} \\
+ ~\\
+ \large{Master 2 Informatique}\\
+ ~\\
+ % \today
+ \vspace{10cm}
+ \large{Ludovic Brochard, Fabien Kuntz, Benoît Védrenne}
+{\rule{\larg}{0.5mm}}
+\end{flushright}
+
+\newpage
+
+\addtolength{\oddsidemargin}{1cm}
+
+%%%%% Table des matières %%%%%
+\thispagestyle{empty}
+\tableofcontents
+\newpage
+
+\setcounter{page}{1}
+
+
+%%%%%%              %%%%%%
+%%%%%% ZONE DE CODE %%%%%%
+%%%%%%              %%%%%%
+
+ \section{VC et arbres}
+ \include{part1q1}
+ \include{part1q2}
+ 
+ \section{VC et graphes}
+ \include{part2q1}
+ \include{part2q2}
+ \include{part2q3}
+ \include{part2q4}
+
+%%%%%%               %%%%%%
+%%%%%% /ZONE DE CODE %%%%%%
+%%%%%%               %%%%%%
+
+\end{document}
+
+%%%%%%           %%%%%%
+%%%%%% /DOCUMENT %%%%%%
+%%%%%%           %%%%%%
+
+
+
+
+%%%%% Texte italique %%%%%
+%  \textit{} 
+
+%%%%% Liste %%%%
+%%% Itemize %%%
+%  \begin{itemize}
+%   \item item1\\
+%   \item item2
+%  \end{itemize}
+
+%%% Enumerate %%%
+%  \begin{enumerate}
+%   \item item1
+%   \item item2
+%  \end{enumerate}
+
+%%%%% Tabulations %%%%%
+%   \begin{tabbing}
+%    XX\=XX\=\kill
+%    \>(OrdresEnonce.v, ligne 244)\\
+%    \>\>test2
+%   \end{tabbing}
+ 
+%%%%% Note de pied de page %%%%%
+%  \footnote{test}
+
+%%%%% Référence %%%%%
+%   \label{ref}
+%% Plus loin :
+%   \ref{ref}
+%   \pageref{ref}
+
+%%%%% Code %%%%%
+% \begin{lstlisting}
+%      List<Integer> lexBFS2 = new ArrayList<Integer>();
+%      lexBFS2.add(3);
+%      lexBFS2.add(2);
+%      lexBFS2.add(4);
+%      lexBFS2.add(1);
+%      lexBFS2.add(0);    
+%      assertNotNull(lexBFS2);	
+%      assertEquals(lexBFS2,Graphs.lexBFS(nogYComp));
+%   \end{lstlisting}
+
+%%%%% Figure %%%%%
+%  \begin{figure}[!ht]
+%   \begin{center}
+%	\includegraphics[width=7cm]{figs/cours1/fig2.eps}
+%	\caption{\emph{MT2} : Calcul non déterministe}
+%   \end{center}
+%  \end{figure}
