@@ -2,6 +2,7 @@
 #define TREE_HPP
 
 #include <vector>
+#include <string>
 
 #include "Graph.hpp"
 
