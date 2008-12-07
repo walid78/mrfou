@@ -5,6 +5,8 @@ CXXFLAGS = -Wall -g
 CXX= g++
 LDFLAGS=
 
+all: $(TARGET) clean
+
 $(TARGET): $(OBJS)
 	$(CXX) $(CXXFLAGS) $^ -o $@
 
