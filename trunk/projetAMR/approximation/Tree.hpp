@@ -3,14 +3,12 @@
 
 #include "Graph.hpp"
 
-using namespace std;
-
 class Tree{
   
 public:
   //===========================================================================
   /** Constructeur : **/
-  Tree(Graph& g, int node); 
+  Tree(Graph& g, int r); 
 
   //===========================================================================
   /** Destructeur : **/
@@ -30,8 +28,8 @@ private:
 
   //===========================================================================
   /** Fonctions membres : **/
-  void makeTreeDFS(Graph& g, int node);
- //  void makeTreeDFS_aux(const Graph& g, int node);
+  void makeTreeDFS(Graph& g, int r);
+  void makeTreeDFS_aux(Graph& g, int node, bool* mark);
   
 };
 

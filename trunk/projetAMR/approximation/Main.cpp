@@ -4,7 +4,7 @@
 #include <string>
 
 #include "Graph.hpp"
-// #include "Tree.hpp"
+#include "Tree.hpp"
 
 using namespace std;
 
@@ -129,6 +129,8 @@ main(int argc, char** argv){
     cerr << "Erreur : Le graphe n'a pas de sommets." << endl;
     exit(0);
   }
+
+  Tree tree = Tree(graph, 0);
 
   return 1;
 }
