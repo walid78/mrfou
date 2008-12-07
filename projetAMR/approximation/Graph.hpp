@@ -24,6 +24,7 @@ class Graph{
   //===========================================================================
   /** Fonctions membres : **/
   void addEdges(const int originNode, const int destNode);
+  void addArc(const int originNode, const int destNode);
   
   vector<int> getNeighbours(const int originNode);
   
