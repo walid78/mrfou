@@ -1,6 +1,6 @@
 SHELL= bash
 TARGET= main
-OBJS= Graph.o Main.o #Tree.o
+OBJS= Graph.o Main.o Tree.o
 CXXFLAGS = -Wall -g
 CXX= g++
 LDFLAGS=
