@@ -20,7 +20,7 @@ Main.o: Main.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
-	-rm -f $(TARGET) *.o 
+	rm -f *.o 
 
 polish: clean
-
+	rm -f $(TARGET)
