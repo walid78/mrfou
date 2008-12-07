@@ -3,8 +3,6 @@
 
 #include "Graph.hpp"
 
-const enum e = {WHITE, GREY, BLACK};
-
 /** Constructeur : **/
 //===========================================================================
 Graph::Graph(const int nodes, string path):nbVertexes(nodes),
@@ -15,6 +13,7 @@ Graph::Graph(const int nodes, string path):nbVertexes(nodes),
     graph.push_back(vector<int>(1,0));
 }
 
+//===========================================================================
 Graph::Graph(const Graph& g):nbVertexes(g.graph.size()),
 			     pathFile(g.pathFile){
   for(unsigned i=0 ; i<g.graph.size() ; ++i){
@@ -88,10 +87,11 @@ int Graph::getMaxDegre(void){
   return max;
 }
 
+//===========================================================================
 Graph Graph::complementary(void){
   bool isNotInGraph[nbVertexes];
 
-  Graph comp(nbVertexes, getPathFile());
+  Graph comp(nbVertexes, pathFile);
   
   for(int i=0 ; i<nbVertexes ; ++i){
 
@@ -126,38 +126,4 @@ ostream& operator<<(ostream& o, const Graph& g){
   }
 	
   return o;
-}
-
-//Le coup du vector est non compilable mais je n'arrive 
-//pas à trouver pour l'instant
-Tree Graph::createTree(void){
-  int nbNodes = getNbVertexes();
-  Tree tree(nbNodes);
-
-  Graph g = tree.getGraph();
-
-  // INITIALISATION
-  e[] color = new e[nbNodes];
-  for(int i = 0; i < nbNodes; ++i)
-    color[i] = e.WHITE;
-
-  for(int i = 0; i < nbNodes; ++i)
-    if(color[i] == e.WHITE){ //Pas du tout sure de ça
-      g.addEdges(u, i);
-      depthCover(i, g, color);
-    }
-}
-
-//Code mauvais mais algo juste quoi que le code est peut-être bon
-void Graph::depthCover(int u, Graph g, e[] color){
-  color[u] = e.GREY;
-  int nbNodes = getNbNeighbours(u);
-
-  for(int i = 0; i < nbNodes; ++i)
-    if(color[u[i] == e.WHITE){
-	g.addEdges(u, graph.getNeighboors()[i]);
-	depthCover(i, g);
-      }
-
-  color[u] = e.BLACK;
 }
