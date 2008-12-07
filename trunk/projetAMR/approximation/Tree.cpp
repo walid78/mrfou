@@ -1,5 +1,7 @@
 #include "Tree.hpp"
 
+const enum e = {WHITE, GREY, BLACK};
+
 Tree::Tree(int nodes):graph(nodes, ""){
 
 }
@@ -36,7 +38,7 @@ vector<int> Tree::vertexCover1() {
   return vertexCover;
 }
 
-vector<int> Tree::vertexCover2() {
+/*vector<int> Tree::vertexCover2() {
   vector<int> vertexCover();
   vector<int> destroyVertex();
   vertexCover2(vertexCover, destroyVertex);
@@ -72,7 +74,63 @@ int Tree::findLeaf(vector<int> destroyVertex) { //Vérifier que les sommets sont 
       return i;
   }
   return -1;
+  }*/
+
+vector<int> Tree::vertexCover2() {
+  vector<int> vertexCover();
+  depthCover(vertexCover);
+  return vertexCover;
 }
+
+void Tree::depthCover(vector<int> vertexCover){
+  int nbNodes = getNbVertexes();
+
+  // INITIALISATION
+  e[] color = new e[nbNodes];
+  for(int i = 0; i < nbNodes; ++i)
+    color[i] = e.WHITE;
+
+  for(int i = 0; i < nbNodes; ++i)
+    if(color[i] == e.WHITE){ //Pas du tout sure de ça
+      //g.addEdges(u, i);
+      depthCover(i, g, color);
+    }
+}
+
+bool Tree::depthCover(int u, vector<int> vertexCover, e[] color){
+  color[u] = e.GREY;
+
+  int nbNodes = getNbNeighbours(u);
+  if(nbNodes == 1){
+    //Faire en sorte de marquer le père
+    //vector<int> nodes = graph.getNeighboors(u);
+    //int node = nodes[0];
+    //Ne pas marquer le sommet node
+    return false;
+  }
+
+  //C'est faux car on marque des trucs faux, 
+  //Je pense qu'il faut vérifier la présence du sommet
+  //dans le vecteur vertexCover
+  if(depthCover(u, g, color) && !(vertexCover.at(u) > 0)){
+    //Ne pas marquer u
+    return false;
+  } else {
+    //Marquer u
+    vertexCover.push_back(u);
+    return true;
+  }
+
+  /*for(int i = 0; i < nbNodes; ++i)
+    if(color[u[i] == e.WHITE){
+
+	g.addEdges(u, graph.getNeighboors()[i]);
+	depthCover(i, g, color);
+      }
+
+      color[u] = e.BLACK;*/
+}
+
 
 //C'est l'algo glouton
 vector<int> Tree::vertexCover3() {
