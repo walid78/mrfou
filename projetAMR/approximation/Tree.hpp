@@ -10,7 +10,7 @@ class Tree{
 public:
   //===========================================================================
   /** Constructeur : **/
-  Tree(Graph g, int node); 
+  Tree(Graph& g, int node); 
 
   //===========================================================================
   /** Destructeur : **/
@@ -30,7 +30,7 @@ private:
 
   //===========================================================================
   /** Fonctions membres : **/
-  void makeTreeDFS(Graph g, int node);
+  void makeTreeDFS(Graph& g, int node);
  //  void makeTreeDFS_aux(const Graph& g, int node);
   
 };
