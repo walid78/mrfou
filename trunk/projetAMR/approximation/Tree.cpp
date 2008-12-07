@@ -2,13 +2,14 @@
 
 /** Constructeur : **/
 //===========================================================================
-Tree::Tree(const Graph& g, int node):nbVertexes(g.getNbVertexes()){
+Tree::Tree(const Graph& g, int node):nbVertexes(g.getNbVertexes()),
+				     root(node){
   makeTreeDFS(g, node);
 }
 
 
-Tree::Tree(const Graph& g){
-  this(g, 0);
+Tree::Tree(const Graph& g):root(0){
+  Tree(g, 0);
 }
 
 /** Fonctions membres : **/
