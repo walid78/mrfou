@@ -15,6 +15,7 @@ class Graph{
   /** Constructeur : **/
   Graph(const int nb_nodes, string path); 
   Graph(const Graph& g); 
+  Graph();
 
   //===========================================================================
   /** Destructeur : **/

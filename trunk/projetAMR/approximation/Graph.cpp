@@ -23,6 +23,10 @@ Graph::Graph(const Graph& g):nbVertexes(g.graph.size()),
   }
 }
 
+Graph::Graph(){
+  Graph(0,"");
+}
+
 /** Destructeur : **/
 //===========================================================================
 Graph::~Graph(){
