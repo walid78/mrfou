@@ -91,9 +91,9 @@ void Tree::depthCover(vector<int> vertexCover){
     color[i] = e.WHITE;
 
   for(int i = 0; i < nbNodes; ++i)
-    if(color[i] == e.WHITE){ //Pas du tout sure de ça
+    if(color[i] == e.WHITE){
       //g.addEdges(u, i);
-      depthCover(i, g, color);
+      depthCover(i, vertexCover, color);
     }
 }
 
@@ -112,6 +112,7 @@ bool Tree::depthCover(int u, vector<int> vertexCover, e[] color){
   //C'est faux car on marque des trucs faux, 
   //Je pense qu'il faut vérifier la présence du sommet
   //dans le vecteur vertexCover
+  //JE CROIS QUE C'EST CORRIGE
   if(depthCover(u, g, color) && !(vertexCover.at(u) > 0)){
     //Ne pas marquer u
     return false;
@@ -134,5 +135,5 @@ bool Tree::depthCover(int u, vector<int> vertexCover, e[] color){
 
 //C'est l'algo glouton
 vector<int> Tree::vertexCover3() {
-
+  
 }
