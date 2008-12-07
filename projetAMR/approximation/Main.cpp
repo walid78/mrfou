@@ -131,9 +131,9 @@ main(int argc, char** argv){
   }
 
   Tree tree = Tree(graph, 0);
-
   
-  cout << "Arbre rapport:" << endl << tree << endl;
+  cout << "Graphe :" << endl << graph << endl;
+  cout << "Arbre :" << endl << tree << endl;
   
   bool* cover = tree.coverTree();
 
