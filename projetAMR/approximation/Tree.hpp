@@ -21,6 +21,8 @@ public:
   /** Fonctions membres : **/
   bool isLeaf();
   int getRoot();
+  bool* coverTree();
+  bool coverTree_aux(int node, bool* mark, bool* cover);
   
 private:
   //===========================================================================
