@@ -152,14 +152,13 @@ main(int argc, char** argv){
 //   bool* cover = tree.coverProject();
 
   bool* cover;  
+  Tree tree(graph, 0);
 
-  switch (atoi(arg[2])){
+  switch (atoi(argv[2])){
   case 1:
-    Tree tree(graph, 0);
     cover = tree.coverTree();
     break;
   case 2:
-    Tree tree(graph, 0);
     cover = tree.coverProject();
     break;
   default:
