@@ -67,8 +67,10 @@ void Graph::removeArc(int originNode, int destNode){
 
 //===========================================================================
 int* Graph::getRandomArc(){
-  if(getNbArcs() == 0)
+  
+  if(getNbArcs() == 0){
     return NULL;
+  }
 
   for(int i=0 ; i<nbVertexes ; ++i){
     if(graph[i][0] != 0){
@@ -78,7 +80,6 @@ int* Graph::getRandomArc(){
       return arc;
     }
   }
-
   return NULL;
 }
 
@@ -117,8 +118,8 @@ int Graph::getNbNeighbours(int originNode){
 
 //===========================================================================
 bool* Graph::coverCourses(){
-  bool* cover = new bool(nbVertexes);
-  int* arc = new int[2];
+  bool* cover = new bool[nbVertexes];
+  int* arc;
   Graph copy = Graph(this);
   
   for(int i=0 ; i<nbVertexes ; ++i)
@@ -131,8 +132,8 @@ bool* Graph::coverCourses(){
       copy.removeEdge(arc[0], j);
       copy.removeEdge(arc[1], j);
     }
+    delete[]arc;
   }
-
   return cover;
 }
 

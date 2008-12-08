@@ -153,7 +153,7 @@ main(int argc, char** argv){
 
   bool* cover;  
   Tree tree(graph, 0);
-
+ 
   switch (atoi(argv[2])){
   case 1:
     cover = tree.coverTree();
@@ -174,6 +174,7 @@ main(int argc, char** argv){
     if(cover[i])
       cout << i << " ";
   cout << endl;
-
+  delete[]cover;
+  
   return EXIT_SUCCESS;
 }
