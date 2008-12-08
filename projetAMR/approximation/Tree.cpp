@@ -23,13 +23,14 @@ Tree::~Tree(){
 void Tree::makeTreeDFS(Graph& g, int r){
   tree = Graph(nbVertexes);
   
-  bool* mark = new bool(nbVertexes);
+  bool* mark = new bool[nbVertexes];
   
   for(int i=0 ; i<nbVertexes ; ++i){
     mark[i] = false;
   }
 
   makeTreeDFS_aux(g, r, mark);
+  delete[]mark;
 }
 
 //==========================================================================
@@ -38,7 +39,7 @@ void Tree::makeTreeDFS_aux(Graph& g, int node, bool* mark){
   vector<int> neighbours = g.getNeighbours(node);
   for(unsigned i=0 ; i < neighbours.size() ; ++i){
     if(!(mark[neighbours[i]])){
-      tree.addArc(node, neighbours[i]);
+      tree.addArc(node, neighbours[i]); 
       makeTreeDFS_aux(g, neighbours[i], mark);
     }
   }
@@ -46,7 +47,7 @@ void Tree::makeTreeDFS_aux(Graph& g, int node, bool* mark){
 
 //===========================================================================
 bool* Tree::coverTree(){
-  bool* cover = new bool(nbVertexes);
+  bool* cover = new bool[nbVertexes];
 
   for(int i=0 ; i<nbVertexes ; ++i)
     cover[i] = false;
@@ -77,7 +78,7 @@ bool Tree::coverTree_aux(int node, bool* cover){
 
 //===========================================================================
 bool* Tree::coverProject(){
-  bool* cover = new bool(nbVertexes);
+  bool* cover = new bool[nbVertexes];
 
   for(int i=0 ; i<nbVertexes ; ++i)
     cover[i] = true;
