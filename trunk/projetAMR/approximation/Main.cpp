@@ -135,10 +135,12 @@ main(int argc, char** argv){
   cout << "Graphe :" << endl << graph << endl;
   cout << "Arbre :" << endl << tree << endl;
   
-  bool* cover = tree.coverTree();
+  //  bool* cover = tree.coverTree();
+  bool* cover = tree.coverProject();
 
   for(int i=0 ; i<graph.getNbVertexes() ; ++i)
     cout << cover[i] << " ";
   cout << endl;
-  return 1;
+
+  return EXIT_SUCCESS;
 }

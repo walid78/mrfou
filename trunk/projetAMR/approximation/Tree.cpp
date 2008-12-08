@@ -84,6 +84,32 @@ bool Tree::coverTree_aux(int node, bool* cover){
 
 }
 
+//===========================================================================
+bool* Tree::coverProject(){
+  bool* cover = new bool(nbVertexes);
+
+  for(int i=0 ; i<nbVertexes ; ++i)
+    cover[i] = true;
+
+  coverProject_aux(root, cover);
+
+  return cover;
+}
+
+//===========================================================================
+void Tree::coverProject_aux(int node, bool* cover){
+  int nbNeighbours = tree.getNbNeighbours(node);
+
+  if(nbNeighbours == 0){
+    //Papa doit être marqué
+    cover[node] = false;
+    return ;
+  }else{
+    for(int i=0 ; i < nbNeighbours ; ++i)
+      coverProject_aux(tree[node][i], cover);
+  }
+}
+
 
 /** Opérateurs : **/
 //===========================================================================
