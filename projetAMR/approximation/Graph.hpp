@@ -13,8 +13,8 @@ class Graph{
  public:
   //===========================================================================
   /** Constructeur : **/
-  Graph(const int nb_nodes, string path); 
-  Graph(const Graph& g); 
+  Graph(const int nb_nodes); 
+  Graph(const Graph* g); 
   Graph();
 
   //===========================================================================
@@ -23,25 +23,25 @@ class Graph{
   
   //===========================================================================
   /** Fonctions membres : **/
-  void addEdges(const int originNode, const int destNode);
+  void addEdge(const int originNode, const int destNode);
   void addArc(const int originNode, const int destNode);
-  
+  void removeEdge(const int originNode, const int destNode);
+  void removeArc(const int originNode, const int destNode);
+ 
+  int* getRandomArc();
   vector<int> getNeighbours(const int originNode);
-  
   vector<int> operator[](const int originNode);
   
-  Graph complementary(void);
-  int getMaxDegre(void);
   int getNbVertexes(void);
   int getNbEdges(void);
+  int getNbArcs(void);
   int getNbNeighbours(int originNode);
-  string getPathFile(void);
   
+  bool* coverCourses();
+
  private:
   vector< vector<int> > graph;
   int nbVertexes;
-  string pathFile;
-
 };
 
 //===========================================================================

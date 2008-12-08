@@ -67,8 +67,8 @@ getNbVertexes(string path){
 
 Graph
 readGraph(string path){
-  int nbVertex = getNbVertexes(path);
-  Graph graph(nbVertex, path);
+  int nbVertexes = getNbVertexes(path);
+  Graph graph(nbVertexes);
   ifstream file(path.c_str(), ios::in);  // on ouvre le fichier en lecture
   
   if(file){  // si l'ouverture a reussi
@@ -84,14 +84,14 @@ readGraph(string path){
 	case '-':
 	  current = atoi(number.c_str());
 	  if(last >= 0)
-	    graph.addEdges(last,current);
+	    graph.addEdge(last,current);
        	  last = current;
 	  number = "";
 	  break;
 	case ' ':
 	  current = atoi(number.c_str());
 	  if(last != -1)//si on ne rentre pas dans le if le sommet n'a pas d'aretes.
-	    graph.addEdges(last,current);
+	    graph.addEdge(last,current);
 	  number = "";
 	  last = -1;
 	  break;
@@ -102,7 +102,7 @@ readGraph(string path){
       //Ici on traite le cas du dernier numero de la ligne!
       current = atoi(number.c_str());
       if(last != -1)
-      	graph.addEdges(last,current);
+      	graph.addEdge(last,current);
       number = "";
       last = -1;
     }
@@ -130,13 +130,25 @@ main(int argc, char** argv){
     exit(0);
   }
 
-  Tree tree = Tree(graph, 0);
   
-  cout << "Graphe :" << endl << graph << endl;
-  cout << "Arbre :" << endl << tree << endl;
+//   cout << "Graphe avant supp 1-2:" << endl << graph << endl;
   
-  //  bool* cover = tree.coverTree();
-  bool* cover = tree.coverProject();
+//   graph.removeEdge(1,2);
+  
+//   cout << "Graphe après supp 1-2:" << endl << graph << endl;
+
+  
+  /* Algo perso */
+//   bool* cover = tree.coverTree();
+
+  /* Algo Projet */
+//   Tree tree = Tree(graph, 0);
+//   cout << "Arbre :" << endl << tree << endl;
+//   bool* cover = tree.coverProject();
+
+
+  /* Algo Cours */
+  bool* cover = graph.coverCourses();  
 
   for(int i=0 ; i<graph.getNbVertexes() ; ++i)
     cout << cover[i] << " ";

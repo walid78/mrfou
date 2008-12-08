@@ -5,8 +5,7 @@
 
 /** Constructeur : **/
 //===========================================================================
-Graph::Graph(const int nodes, string path):nbVertexes(nodes),
-					   pathFile(path){
+Graph::Graph(const int nodes):nbVertexes(nodes){
   for(int i=0 ; i<nodes ; ++i)
     //Initialisation d'une liste pour chaque sommet i où la première case 
     //contient le nombre de sommets en relation avec i dans le graphe
@@ -14,17 +13,16 @@ Graph::Graph(const int nodes, string path):nbVertexes(nodes),
 }
 
 //===========================================================================
-Graph::Graph(const Graph& g):nbVertexes(g.graph.size()),
-			     pathFile(g.pathFile){
-  for(unsigned i=0 ; i<g.graph.size() ; ++i){
+Graph::Graph(const Graph* g):nbVertexes(g->graph.size()){
+  for(unsigned i=0 ; i<g->graph.size() ; ++i){
     graph.push_back(vector<int>());
-    for(int j=0 ; j<=g.graph[i][0] ; ++j)
-      graph[i].push_back(g.graph[i][j]);
+    for(int j=0 ; j<=g->graph[i][0] ; ++j)
+      graph[i].push_back(g->graph[i][j]);
   }
 }
 
 Graph::Graph(){
-  Graph(0,"");
+  Graph(0);
 }
 
 /** Destructeur : **/
@@ -34,7 +32,7 @@ Graph::~Graph(){
 
 /** Fonctions membres : **/
 //===========================================================================
-void Graph::addEdges(const int originNode, const int destNode){
+void Graph::addEdge(const int originNode, const int destNode){
   addArc(originNode, destNode);
   addArc(destNode, originNode);
 }
@@ -47,6 +45,41 @@ void Graph::addArc(int originNode, int destNode){
 	
   graph[originNode].push_back(destNode);
   graph[originNode][0]++;
+}
+
+//===========================================================================
+void Graph::removeEdge(const int originNode, const int destNode){
+  removeArc(originNode, destNode);
+  removeArc(destNode, originNode);
+}
+
+//==========================================================================
+void Graph::removeArc(int originNode, int destNode){
+  for(int i=1 ; i<=graph[originNode][0] ; ++i){
+    if(graph[originNode][i] == destNode){
+      graph[originNode].erase(graph[originNode].begin()+i);
+      graph[originNode][0]--;
+      return ;
+    }
+  }
+}
+
+//===========================================================================
+int* Graph::getRandomArc(){
+  int* arc = new int[2];
+
+  if(getNbArcs() == 0)
+    return NULL;
+
+  for(int i=0 ; i<nbVertexes ; ++i){
+    if(graph[i][0] != 0){
+      arc[0] = i;
+      arc[1] = graph[i][1];
+      return arc;
+    }
+  }
+
+  return NULL;
 }
 
 //===========================================================================
@@ -64,12 +97,17 @@ int Graph::getNbVertexes(void){
 
 //===========================================================================
 int Graph::getNbEdges(void){
-  int nb_edges = 0;
+  return getNbArcs()/2;
+}
+
+//===========================================================================
+int Graph::getNbArcs(void){
+  int nb_arcs = 0;
   
   for(unsigned i=0 ; i<graph.size() ; ++i)
-    nb_edges += graph[i][0];
+    nb_arcs += graph[i][0];
 
-  return nb_edges/2;
+  return nb_arcs;
 }
 
 //===========================================================================
@@ -78,44 +116,26 @@ int Graph::getNbNeighbours(int originNode){
 }
 
 //===========================================================================
-string Graph::getPathFile(void){
-  return pathFile;
-}
-
-//===========================================================================
-int Graph::getMaxDegre(void){
-  int max=0;
+bool* Graph::coverCourses(){
+  bool* cover = new bool(nbVertexes);
+  int* arc = new int[2];
+  Graph copy = Graph(this);
+  
   for(int i=0 ; i<nbVertexes ; ++i)
-    if(graph[i][0] == nbVertexes-1)
-      return nbVertexes-1;
-    else if(graph[i][0] > max){
-      max=graph[i][0];
+    cover[i] = false;
+  
+  while((arc = copy.getRandomArc()) != NULL){
+    cover[arc[0]] = true;
+    cover[arc[1]] = true;
+    for(int j=0 ; j<nbVertexes ; ++j){
+      copy.removeEdge(arc[0], j);
+      copy.removeEdge(arc[1], j);
     }
-  
-  return max;
-}
-
-//===========================================================================
-Graph Graph::complementary(void){
-  bool isNotInGraph[nbVertexes];
-
-  Graph comp(nbVertexes, pathFile);
-  
-  for(int i=0 ; i<nbVertexes ; ++i){
-
-    for(int j=0 ; j<nbVertexes ; ++j)
-      isNotInGraph[j] = true;
-    isNotInGraph[i] = false;
-    
-    for(int j=1 ; j<=graph[i][0] ; ++j)
-      isNotInGraph[graph[i][j]] = false;
-
-    for(int j=0 ; j<nbVertexes ; ++j)
-      if(isNotInGraph[j])
-	comp.addEdges(i, j);
   }
-  return comp;
+
+  return cover;
 }
+
 
 /** Opérateurs : **/
 //===========================================================================
