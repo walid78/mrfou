@@ -21,6 +21,7 @@ Graph::Graph(const Graph* g):nbVertexes(g->graph.size()){
   }
 }
 
+//===========================================================================
 Graph::Graph(){
   Graph(0);
 }
@@ -66,13 +67,12 @@ void Graph::removeArc(int originNode, int destNode){
 
 //===========================================================================
 int* Graph::getRandomArc(){
-  int* arc = new int[2];
-
   if(getNbArcs() == 0)
     return NULL;
 
   for(int i=0 ; i<nbVertexes ; ++i){
     if(graph[i][0] != 0){
+      int* arc = new int[2];
       arc[0] = i;
       arc[1] = graph[i][1];
       return arc;
