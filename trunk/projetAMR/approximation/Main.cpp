@@ -12,6 +12,11 @@ using namespace std;
 //===========================================================================
 void
 usage(void){
+  cerr << "main <graphe> <algorithme souhaité>" << endl;
+  cerr << "\t Algorithme possible :" << endl;
+  cerr << "\t\t 1 : Algorithme récursif par parcoours en profondeur." << endl;
+  cerr << "\t\t 2 : Algorithme de retrait des feuilles." << endl;
+  cerr << "\t\t 3 : Algorithme utilisant le couplage maximal." << endl;
   exit(EXIT_FAILURE);
 }
 
@@ -120,7 +125,7 @@ readGraph(string path){
 int
 main(int argc, char** argv){
 
-  if(argc < 2)
+  if(argc < 3)
     usage();
 
   Graph graph = readGraph(argv[1]);
@@ -146,12 +151,29 @@ main(int argc, char** argv){
 //   cout << "Arbre :" << endl << tree << endl;
 //   bool* cover = tree.coverProject();
 
+  bool* cover;  
+
+  switch (atoi(arg[2])){
+  case 1:
+    Tree tree(graph, 0);
+    cover = tree.coverTree();
+    break;
+  case 2:
+    Tree tree(graph, 0);
+    cover = tree.coverProject();
+    break;
+  default:
+    cover = graph.coverCourses();
+  }
 
   /* Algo Cours */
-  bool* cover = graph.coverCourses();  
+  //  bool* cover = graph.coverCourses();  
 
+  cout << "Couverture de sommet : ";
   for(int i=0 ; i<graph.getNbVertexes() ; ++i)
-    cout << cover[i] << " ";
+    //cout << cover[i] << " ";
+    if(cover[i])
+      cout << i << " ";
   cout << endl;
 
   return EXIT_SUCCESS;
