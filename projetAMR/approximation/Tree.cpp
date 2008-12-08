@@ -92,7 +92,6 @@ void Tree::coverProject_aux(int node, bool* cover){
   int nbNeighbours = tree.getNbNeighbours(node);
 
   if(nbNeighbours == 0){
-    //Papa doit être marqué
     cover[node] = false;
     return ;
   }else{
