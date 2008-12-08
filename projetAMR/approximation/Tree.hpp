@@ -22,6 +22,8 @@ public:
   int getRoot();
   bool* coverTree();
   bool coverTree_aux(int node, bool* cover);
+  bool* coverProject();
+  void coverProject_aux(int node, bool* cover);
   
 private:
   //===========================================================================
