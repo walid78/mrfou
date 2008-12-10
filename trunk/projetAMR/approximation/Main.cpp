@@ -3,6 +3,7 @@
 #include <fstream>
 #include <string>
 
+#include "timing.h"
 #include "Graph.hpp"
 #include "Tree.hpp"
 
@@ -134,43 +135,38 @@ main(int argc, char** argv){
     cerr << "Erreur : Le graphe n'a pas de sommets." << endl;
     exit(0);
   }
-
   
-//   cout << "Graphe avant supp 1-2:" << endl << graph << endl;
-  
-//   graph.removeEdge(1,2);
-  
-//   cout << "Graphe après supp 1-2:" << endl << graph << endl;
-
-  
-  /* Algo perso */
-//   bool* cover = tree.coverTree();
-
-  /* Algo Projet */
-//   Tree tree = Tree(graph, 0);
-//   cout << "Arbre :" << endl << tree << endl;
-//   bool* cover = tree.coverProject();
-
   bool* cover;  
   Tree tree(graph, 0);
- 
+  timing_t timer1,timer2;
+
+  timing timer;
+
   switch (atoi(argv[2])){
   case 1:
+    timer.get_tick(&timer1);
     cover = tree.coverTree();
+    timer.get_tick(&timer2);
     break;
   case 2:
+    timer.get_tick(&timer1);
     cover = tree.coverProject();
+    timer.get_tick(&timer2);
+    break;
+  case 3:
+    timer.get_tick(&timer1);
+    cover = graph.coverCourses();
+    timer.get_tick(&timer2);
     break;
   default:
-    cover = graph.coverCourses();
+    usage();
   }
 
-  /* Algo Cours */
-  //  bool* cover = graph.coverCourses();  
-
+  long double usec = timer.diff_usec(&timer1, &timer2);
+  cout << "Temps d'execution du programme: " << usec <<" µs"<<endl;
+  
   cout << "Couverture de sommet : ";
   for(int i=0 ; i<graph.getNbVertexes() ; ++i)
-    //cout << cover[i] << " ";
     if(cover[i])
       cout << i << " ";
   cout << endl;
