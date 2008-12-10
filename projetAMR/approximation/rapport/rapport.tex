@@ -24,6 +24,10 @@
 \usepackage{wasysym}
 \usepackage{chemarrow}
 \usepackage[colorlinks=true, urlcolor=blue]{hyperref}
+\usepackage[boxed,linesnumbered,ruled]{algorithm2e}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usetikzlibrary{automata}
 
 %%%%%%              %%%%%%
 %%%%%% MISE EN PAGE %%%%%%
@@ -65,6 +69,13 @@
 \renewcommand{\labelenumii}{$\bullet$}
 \renewcommand{\labelenumiii}{$\star$}
 \renewcommand{\labelenumiv}{\_}
+
+\newenvironment{tikz_mrfou}{
+\begin{tikzpicture}[->,>=stealth,shorten >=1pt,auto,node
+ distance=2cm,on grid,semithick,inner sep=2pt,bend
+ angle=30,font=\small, initial text=]
+}{\end{tikzpicture}}
+
 
 %%%%% Titre %%%%%
 \newlength{\larg}
