@@ -19,16 +19,22 @@
 
   \begin{figure}[!ht]
    \begin{center}
-    \begin{tabular}{|c|c|c|c|}
+    \begin{tabular}{|c|c|c|c|c|c|c|}
+     \cline{2-7}
+     \multicolumn{1}{c|}{} & \multicolumn{2}{|c|}{ex32-12.gin}
+     &\multicolumn{2}{|c|}{testTree100.gin} &
+     \multicolumn{2}{|c|}{testTree1000.gin}\\ 
+     \cline{2-7}
+     \multicolumn{1}{c|}{} & algoP & algoC & algoP & algoC & algoP &
+     algoC\\
      \hline
-     & ex32-12.gin & testTree100.gin & testTree1000.gin\\
+     Temps d'execution(en $\mu$s) & 0&0 &1 &1 &2& 2\\
      \hline
-     Temps d'execution(en $\mu$s) & 0 & 1 & 2\\
-     \hline
-     Taille de la couverture & 0 & 1 & 2\\
+     Taille de la couverture & 0&0 & 1&1 & 2&2\\
      \hline
     \end{tabular}
     \caption{Tableau comparatif des exécutions des plusieurs
-    exemples.\label{tableau}} 
+    exemples (algoP: Algorithme du projet et algoC: Algorithme par
+    couplage maximum).\label{tableau}} 
    \end{center}
   \end{figure}  
