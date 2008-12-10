@@ -13,8 +13,8 @@
   graphes: \emph{ex32-12.gin, testTree1000.gin, testTree100.gin}.\newline
   \indent Le calcul des temps d'exécution ce fait à l'aide des fichiers
   \emph{timing.cc} et \emph{timing.h} que nous avons récupérés des
-  projets \emph{Padico\footnote{http://gforge.inria.fr/projects/padico}}
-  et \emph{Adage\footnote{http://gforge.inria.fr/projects/adage}} de
+  projets \emph{Padico\footnote{\url{http://gforge.inria.fr/projects/padico}}}
+  et \emph{Adage\footnote{\url{http://gforge.inria.fr/projects/adage}}} de
   l'\emph{INRIA.}\newline
 
   \begin{figure}[!ht]
@@ -39,3 +39,22 @@
     couplage maximum).\label{tableau}} 
    \end{center}
   \end{figure}  
+
+  On peut constater sur le tableau \ref{tableau} page \pageref{tableau}
+  le temps d'exécution de l'algorithme du couplage maximum est bien plus
+  long que l'alogoritme du projet. Pour le graphe de taille 1000, le
+  temps d'exécution est $95$ fois plus rapide pour l'algorithme du
+  projet. Il faut toutefois faire attention à ce chiffre car
+  l'implémentation de notre structure de graphe n'est pas optimisée pour
+  la suppression des arêtes ce qui ne nous permet pas de faire une
+  comparaison précise.\newline
+  \indent Néanmoins, si l'on compare la taille des couvertures
+  retounées, on constate que là aussi l'algorithme du projet est bien
+  meilleur. On voit que sur un graphe à 1000 sommets, ce dernier trouve
+  une converture à $365$ sommets contre $576$ pour l'autre. De plus, les
+  tests étant réalisés sur différents types de graphes, et notemment
+  \emph{ex32-12.gin, testTree1000.gin, testTree100.gin} qui sont des
+  arbres, que plus le graphe comportera un minimum de cycle et aura
+  beaucoup de feuilles (des graphe assez développé quand même car un
+  graphe étoile n'irai pas), plus la différence entre les deux
+  algorithmes se faira sentir. 
