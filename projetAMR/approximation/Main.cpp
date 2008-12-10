@@ -165,11 +165,16 @@ main(int argc, char** argv){
   long double usec = timer.diff_usec(&timer1, &timer2);
   cout << "Temps d'execution du programme: " << usec <<" µs"<<endl;
   
+  int nbVertexinCover=0;
   cout << "Couverture par sommet : ";
+
   for(int i=0 ; i<graph.getNbVertexes() ; ++i)
-    if(cover[i])
+    if(cover[i]){
+      nbVertexinCover++;
       cout << i << " ";
+    }
   cout << endl;
+  cout << "Couverture sur "<< nbVertexinCover << " sommet."<< endl;
   delete[]cover;
   
   return EXIT_SUCCESS;
