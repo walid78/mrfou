@@ -1,14 +1,18 @@
 SHELL= bash
 TARGET= main
-OBJS= Graph.o Main.o Tree.o
+OBJS= Graph.o Main.o Tree.o  timing.o
 CXXFLAGS = -Wall -g
 CXX= g++
+CC=gcc
 LDFLAGS=
 
 all: $(TARGET) #clean
 
 $(TARGET): $(OBJS)
 	$(CXX) $(CXXFLAGS) $^ -o $@
+
+timing.o: timing.cc
+	$(CC) $(CXXFLAGS) -c $< -o $@
 
 Graph.o: Graph.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
