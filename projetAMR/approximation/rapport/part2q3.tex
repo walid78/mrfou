@@ -1,1 +1,70 @@
-\subsection{Question 3}
+  \subsection{Question 3}
+  Considérons le graphe segment de trois sommets suivant :
+  \begin{center}
+   \begin{tikz_mrfou}
+
+    %% Nodes %%
+    \node[bluenode] (0) {$0$};
+    \node[bluenode, right of=0] (1) {$1$};
+    \node[bluenode, right of=1] (2) {$2$};
+
+    %% Edges %%
+    \path[-]
+
+    (0)
+    edge node {} (1)
+    
+    (1) 
+    edge node {} (2)
+    ;
+
+   \end{tikz_mrfou}
+  \end{center}
+
+  La couverture minimale de ce graphe est $\{1\}$ de taille 1.
+
+  \begin{center}
+   \begin{tikz_mrfou}
+    
+    %% Nodes %%
+    \node[bluenode] (0) {$0$};
+    \node[rednode, right of=0] (1) {$1$};
+    \node[bluenode, right of=1] (2) {$2$};
+
+    %% Edges %%
+    \path[-]
+
+    (0)
+    edge node {} (1)
+    
+    (1) 
+    edge node {} (2)
+    ;
+
+   \end{tikz_mrfou}
+  \end{center}
+
+  L'algorithme du projet, lui, va retourner les sommets non feuilles de
+  ce graphe qui est un arbre, c'est-à-dire par exemple $\{0,1\}$ qui
+  sera de taille deux fois plus grande.
+
+  \begin{center}
+   \begin{tikz_mrfou}
+    
+    %% Nodes %%
+    \node[rednode] (0) {$0$};
+    \node[rednode, right of=0] (1) {$1$};
+    \node[bluenode, right of=1] (2) {$2$};
+
+    %% Edges %%
+    \path[-]
+
+    (0)
+    edge node {} (1)
+    
+    (1) 
+    edge node {} (2)
+    ;
+
+   \end{tikz_mrfou}
+  \end{center}
