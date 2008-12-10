@@ -2,7 +2,7 @@ SHELL= bash
 TARGET= main
 OBJS= Graph.o Main.o Tree.o  timing.o
 CXXFLAGS = -Wall -g
-CXX= g++
+CXX= g++-4.2
 CC=gcc
 LDFLAGS=
 
