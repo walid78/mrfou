@@ -57,9 +57,9 @@
 
     \tikzstyle{rednode}=[circle,draw=red!50,fill=red!20,thick, inner
     sep=0pt,minimum size=6mm]
-
-%     \tikzstyle{oddnode}=[rectangle,draw=black!50,fill=black!20,thick, inner
-%     sep=0pt,minimum size=5mm]  
+    
+    \tikzstyle{bluetnode}=[black, draw=blue!50,fill=blue!20,rounded corners]
+    \tikzstyle{redtnode}=[draw=red!50,fill=red!20,rounded corners]
     
     \begin{center}
      \begin{tikz_mrfou}
@@ -116,7 +116,6 @@
 
      \end{tikz_mrfou}
     \end{center}
-
     On applique alors notre algorithme.
 
     \begin{center}
@@ -275,17 +274,17 @@
 
      \end{tikz_mrfou}
     \end{center}
-     L'algorithme nous retourne alors la couverture : $[1,0,1,0]$.
+     L'algorithme nous retourne alors le tableau de booléens $[1,0,1,0]$
+     qui correspond à la couverture $\{0,2\}$.
 
 
     \paragraph{Implémentation et complexité :\\}
 
     \indent Nous avons implémenté cet algorithme dans le fichier
     \emph{Tree.cpp}. Les méthodes sont \emph{coverTree} et
-    \emph{coverTree\_aux}.
-
-    Notre algorithme n'utilise qu'un parcours en profondeur et des
-    calculs constants (le calcul du nombre de voisins d'un sommet est
-    aussi constant car nous avons stocké le degré d'un n\oe{}ud dans la
-    structure de graphe), il est donc de la complexité du parcours en
-    profondeur, c'est-à-dire linéaire.
+    \emph{coverTree\_aux}.\\
+    Il n'utilise qu'un parcours en profondeur et des calculs constants
+    (le calcul du nombre de voisins d'un sommet est aussi constant car
+    nous avons stocké le degré des n\oe{}uds dans la structure du
+    graphe). La complexité est donc celle du parcours en profondeur,
+    c'est-à-dire linéaire.
