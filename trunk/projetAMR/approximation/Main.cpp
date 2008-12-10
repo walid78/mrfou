@@ -165,7 +165,7 @@ main(int argc, char** argv){
   long double usec = timer.diff_usec(&timer1, &timer2);
   cout << "Temps d'execution du programme: " << usec <<" µs"<<endl;
   
-  cout << "Couverture de sommet : ";
+  cout << "Couverture par sommet : ";
   for(int i=0 ; i<graph.getNbVertexes() ; ++i)
     if(cover[i])
       cout << i << " ";
