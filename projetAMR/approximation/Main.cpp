@@ -14,7 +14,7 @@ void
 usage(void){
   cerr << "main <graphe> <algorithme souhaité>" << endl;
   cerr << "\t Algorithme possible :" << endl;
-  cerr << "\t\t 1 : Algorithme récursif par parcoours en profondeur." << endl;
+  cerr << "\t\t 1 : Algorithme récursif de couplage minimal sur un arbre." << endl;
   cerr << "\t\t 2 : Algorithme de retrait des feuilles." << endl;
   cerr << "\t\t 3 : Algorithme utilisant le couplage maximal." << endl;
   exit(EXIT_FAILURE);
