@@ -1,1 +1,291 @@
-\subsection{Question 2}
+  \subsection{Question 2}
+  
+    \paragraph{Idée de l'algorithme :\\}
+    Afin de calculer une couverture de taille minimale sur un arbre $T$,
+    nous utilisons un parcours en profondeur de l'arbre.\\
+    En utilisant la Question 1 (\ref{part1q1} page \pageref{part1q1}),
+    nous marquons les sommets qui sont parents d'une ou plusieurs
+    feuilles car les feuilles sont de degré $1$. Ensuite, lors de la
+    partie ``retour'' de la récursion, nous allons marqué les sommets
+    qui sont pères de sommets non marqués.\\
+
+    Pour qu'un sommet sache s'il doit être marqué, chacun de ses fils va
+    lui dire \emph{''Marque toi !''}($true$) ou \emph{''Je suis déjà
+    marqué donc tu n'as pas besoin de l'être vis-à-vis de
+    moi.''}($false$).
+
+    Marquer un sommet revient à mettre la case qui lui correspond dans
+    le tableau de booléen $cover$ à $true$.
+
+    \paragraph{Algorithme :\\}
+    \begin{algorithm}
+     \SetLine
+     $\mathbf{global~var}$ $cover$ : Boolean table;\\
+     \Begin{
+       \ForEach{$v \in V$}{
+         $cover[v] := false$;
+       }
+       coverTree\_aux($root$);\\
+       ~\\
+       \Return{$cover$};
+     }
+     \caption{coverTree(): Boolean table}
+    \end{algorithm}
+
+    \begin{algorithm}
+     \SetLine
+     $\mathbf{local~var}$ $markFather := true$ : Boolean;\\
+     \Begin{
+       \If{$v$ is a leaf}{
+         \Return{$true$};
+       }
+       \ForEach{$(v,w) \in E$}{
+         \If{coverTree\_aux($w$)}{
+           $cover[node] := true$;\\
+           $markFather := false$;
+         }
+       }
+       ~\\
+       \Return{$markFather$};
+     }
+     \caption{coverTree\_aux(Vertex $v$): Booléen}
+    \end{algorithm}
+     
+    \paragraph{Exemple :\\}
+    \tikzstyle{bluenode}=[circle,draw=blue!50,fill=blue!20,thick, inner
+    sep=0pt,minimum size=6mm]
+
+    \tikzstyle{rednode}=[circle,draw=red!50,fill=red!20,thick, inner
+    sep=0pt,minimum size=6mm]
+
+%     \tikzstyle{oddnode}=[rectangle,draw=black!50,fill=black!20,thick, inner
+%     sep=0pt,minimum size=5mm]  
+    
+    \begin{center}
+     \begin{tikz_mrfou}
+
+      %% Nodes %%
+      \node[bluenode] (0) {$0$};
+      \node[bluenode, above right of=0] (1) {$1$};
+      \node[bluenode, below right of=1] (2) {$2$};
+      \node[bluenode, below right of=0] (3) {$3$};
+
+      %% Edges %%
+      \path[-]
+
+      (0)
+      edge node {} (1)
+      edge node {} (2)
+      edge node {} (3)
+      
+      (1) 
+      edge node {} (2)
+
+      (2)
+      edge node {} (3)
+      ;
+
+     \end{tikz_mrfou}
+    \end{center}
+
+    À partir du graphe, on calcule un arbre correspondant par un
+    parcours en profondeur à partir du sommet $0$ (à l'aide du
+    constructeur de \emph{Tree.cpp}).
+
+    \begin{center}
+     \begin{tikz_mrfou}
+
+      %% Nodes %%
+      \node[bluenode] (0) {$0$};
+      \node[bluenode, above right of=0] (1) {$1$};
+      \node[bluenode, below right of=1] (2) {$2$};
+      \node[bluenode, below right of=0] (3) {$3$};
+
+      %% Edges %%
+      \path[-]
+
+      (0)
+      edge node {} (1)
+      
+      (1) 
+      edge node {} (2)
+
+      (2)
+      edge node {} (3)
+      ;
+
+     \end{tikz_mrfou}
+    \end{center}
+
+    On applique alors notre algorithme.
+
+    \begin{center}
+     \begin{tikz_mrfou}
+
+      %% Nodes %%
+      \node[bluenode] (0) {$0$};
+      \node[bluenode, above right of=0] (1) {$1$};
+      \node[bluenode, below right of=1] (2) {$2$};
+      \node[bluenode, below right of=0] (3) {$3$};
+
+      %% Edges %%
+      \path[-]
+
+      (0)
+      edge [->, blue] node {} (1)
+      
+      (1) 
+      edge node {} (2)
+
+      (2)
+      edge node {} (3)
+      ;
+
+     \end{tikz_mrfou}
+     \begin{tikz_mrfou}
+
+      %% Nodes %%
+      \node[bluenode] (0) {$0$};
+      \node[bluenode, above right of=0] (1) {$1$};
+      \node[bluenode, below right of=1] (2) {$2$};
+      \node[bluenode, below right of=0] (3) {$3$};
+
+      %% Edges %%
+      \path[-]
+
+      (0)
+      edge [->, blue] node {} (1)
+      
+      (1) 
+      edge [->, blue] node {} (2)
+
+      (2)
+      edge node {} (3)
+      ;
+
+     \end{tikz_mrfou}
+     \begin{tikz_mrfou}
+
+      %% Nodes %%
+      \node[bluenode] (0) {$0$};
+      \node[bluenode, above right of=0] (1) {$1$};
+      \node[bluenode, below right of=1] (2) {$2$};
+      \node[bluenode, below right of=0] (3) {$3$};
+
+      %% Edges %%
+      \path[-]
+
+      (0)
+      edge [->, blue] node {} (1)
+      
+      (1) 
+      edge [->, blue] node {} (2)
+
+      (2)
+      edge [->, blue] node {} (3)
+      ;
+
+     \end{tikz_mrfou}
+     \begin{tikz_mrfou}
+
+      %% Nodes %%
+      \node[bluenode] (0) {$0$};
+      \node[bluenode, above right of=0] (1) {$1$};
+      \node[bluenode, below right of=1] (2) {$2$};
+      \node[bluenode, below right of=0] (3) {$3$};
+
+      %% Edges %%
+      \path[-]
+
+      (0)
+      edge [->, blue] node {} (1)
+      
+      (1) 
+      edge [->, blue] node {} (2)
+
+      (2)
+      edge [<-, red] node {$true$} (3)
+      ;
+
+     \end{tikz_mrfou}
+     \begin{tikz_mrfou}
+
+      %% Nodes %%
+      \node[bluenode] (0) {$0$};
+      \node[bluenode, above right of=0] (1) {$1$};
+      \node[rednode, below right of=1] (2) {$2$};
+      \node[bluenode, below right of=0] (3) {$3$};
+
+      %% Edges %%
+      \path[-]
+
+      (0)
+      edge [->, blue] node {} (1)
+      
+      (1) 
+      edge [<-, red] node {$false$} (2)
+
+      (2)
+      edge [<-, red] node {$true$} (3)
+      ;
+
+     \end{tikz_mrfou}
+     \begin{tikz_mrfou}
+
+      %% Nodes %%
+      \node[bluenode] (0) {$0$};
+      \node[bluenode, above right of=0] (1) {$1$};
+      \node[rednode, below right of=1] (2) {$2$};
+      \node[bluenode, below right of=0] (3) {$3$};
+
+      %% Edges %%
+      \path[-]
+
+      (0)
+      edge [<-, red] node {$true$} (1)
+      
+      (1) 
+      edge [<-, red] node {$false$} (2)
+
+      (2)
+      edge [<-, red] node {$true$} (3)
+      ;
+
+     \end{tikz_mrfou}
+     \begin{tikz_mrfou}
+
+      %% Nodes %%
+      \node[rednode] (0) {$0$};
+      \node[bluenode, above right of=0] (1) {$1$};
+      \node[rednode, below right of=1] (2) {$2$};
+      \node[bluenode, below right of=0] (3) {$3$};
+
+      %% Edges %%
+      \path[-]
+
+      (0)
+      edge [<-, red] node {$true$} (1)
+      
+      (1) 
+      edge [<-, red] node {$false$} (2)
+
+      (2)
+      edge [<-, red] node {$true$} (3)
+      ;
+
+     \end{tikz_mrfou}
+    \end{center}
+     L'algorithme nous retourne alors la couverture : $[1,0,1,0]$.
+
+
+    \paragraph{Implémentation et complexité :\\}
+
+    \indent Nous avons implémenté cet algorithme dans le fichier
+    \emph{Tree.cpp}. Les méthodes sont \emph{coverTree} et
+    \emph{coverTree\_aux}.
+
+    Notre algorithme n'utilise qu'un parcours en profondeur et des
+    calculs constants (le calcul du nombre de voisins d'un sommet est
+    aussi constant car nous avons stocké le degré d'un n\oe{}ud dans la
+    structure de graphe), il est donc de la complexité du parcours en
+    profondeur, c'est-à-dire linéaire.
