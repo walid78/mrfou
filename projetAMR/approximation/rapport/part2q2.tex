@@ -1,3 +1,29 @@
   \subsection{Question 2}
-  Le but, ici, est de faire la comparaison entre l'algorithme vu dans la
-  partie 2.1 et l'alogorithme basé sur un couplage maximum.
+  Le but ici est de faire la comparaison entre l'algorithme du projet vu
+  dans la question précédente (\ref{part2q1} page \pageref{part2q1}) et
+  l'alogorithme vu en cours basé sur un couplage maximum.\newline
+  \indent L'algoritme du couplage maximum est implémenté dans le fichier
+  \emph{Graph.cpp} par la méthode \emph{coverCourses()} et l'algorithme
+  du projet est implémenté dans \emph{Tree.cpp} par la méthode
+  \emph{coverProject()} et la fonction \emph{coverProject\_aux()}.\newline
+  \indent Pour comparer ces deux algorithmes, nous allons comparer leur
+  temps d'exécution et surtout la taille de la couverture trouvé. Le
+  résultat de ces comparaisons se trouve dans le tableau \ref{tableau}
+  page \pageref{tableau}. Toutes les comparaison sont faites sur trois
+  graphes: \emph{ex32-12.gin, testTree1000.gin, testTree100.gin}.\newline
+  \indent La comparaison des temps d'exécution ce fait à l'aide des
+  fichiers \emph{timing.cc} et \emph{timing.h} que nous avons récuperés
+  des projets \emph{Padico} et \emph{Adage} de l'\emph{INRIA.}\newline
+  \begin{center}
+   \begin{tabular}{|c|c|c|c|}
+    \hline
+    & ex32-12.gin & testTree100.gin & testTree1000.gin\\
+    \hline
+    Temps d'execution(en $\mu$s) & 0 & 1 & 2\\
+    \hline
+    Taille de la couverture & 0 & 1 & 2\\
+    \hline
+    \caption{Tableau comparatif des exécutions des plsuieurs exemples.\label{tableau}}
+   \end{tabular}
+  \end{center}
+  
