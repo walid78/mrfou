@@ -3,7 +3,6 @@ TARGET= main
 OBJS= Graph.o Main.o Tree.o  timing.o
 CXXFLAGS = -Wall -g
 CXX= g++-4.2
-CC=gcc
 LDFLAGS=
 
 all: $(TARGET) #clean
@@ -12,7 +11,7 @@ $(TARGET): $(OBJS)
 	$(CXX) $(CXXFLAGS) $^ -o $@
 
 timing.o: timing.cc
-	$(CC) $(CXXFLAGS) -c $< -o $@
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 Graph.o: Graph.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
