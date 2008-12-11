@@ -28,7 +28,6 @@ class Graph{
   void removeEdge(const int originNode, const int destNode);
   void removeArc(const int originNode, const int destNode);
  
-  int* getRandomArc();
   vector<int> getNeighbours(const int originNode);
   vector<int> operator[](const int originNode);
   
@@ -38,8 +37,10 @@ class Graph{
   int getNbNeighbours(int originNode);
   
   bool* coverCourses();
+  bool* coverProject();
 
  private:
+  int* getOneArc();
   vector< vector<int> > graph;
   int nbVertexes;
 };
