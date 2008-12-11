@@ -2,6 +2,7 @@
 #include <iostream>
 
 #include "Graph.hpp"
+#include "Tree.hpp"
 
 /** Constructeur : **/
 //===========================================================================
@@ -66,7 +67,7 @@ void Graph::removeArc(int originNode, int destNode){
 }
 
 //===========================================================================
-int* Graph::getRandomArc(){
+int* Graph::getOneArc(){
   
   if(getNbArcs() == 0){
     return NULL;
@@ -125,7 +126,7 @@ bool* Graph::coverCourses(){
   for(int i=0 ; i<nbVertexes ; ++i)
     cover[i] = false;
   
-  while((arc = copy.getRandomArc()) != NULL){
+  while((arc = copy.getOneArc()) != NULL){
     cover[arc[0]] = true;
     cover[arc[1]] = true;
     for(int j=0 ; j<nbVertexes ; ++j){
@@ -137,6 +138,10 @@ bool* Graph::coverCourses(){
   return cover;
 }
 
+bool* Graph::coverProject(){
+  Tree tree(*this, 0);
+  return tree.coverProject();
+}
 
 /** Opérateurs : **/
 //===========================================================================

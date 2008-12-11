@@ -137,11 +137,13 @@ main(int argc, char** argv){
   }
   
   bool* cover;  
-  Tree tree(graph, 0);
   timing_t timer1,timer2;
 
   timing timer;
 
+  Tree tree(graph,0);
+
+  
   switch (atoi(argv[2])){
   case 1:
     timer.get_tick(&timer1);
@@ -150,7 +152,7 @@ main(int argc, char** argv){
     break;
   case 2:
     timer.get_tick(&timer1);
-    cover = tree.coverProject();
+    cover = graph.coverProject();
     timer.get_tick(&timer2);
     break;
   case 3:
@@ -161,7 +163,7 @@ main(int argc, char** argv){
   default:
     usage();
   }
-
+    
   long double usec = timer.diff_usec(&timer1, &timer2);
   cout << "Temps d'execution du programme: " << usec <<" µs"<<endl;
   
