@@ -17,26 +17,28 @@ Voici la présentation des différentes tables que nous avons établie. Elles so
 
 \begin{itemize}
 <<<<<<< .mine
-\item Destination(ID\_Dest integer,Nom varchar2,Pays varchar2);\\
-\item Hotel(ID\_Hotel integer, ID\_Dest integer,Nom varchar2,Addresse varchar2, ID\_Classe integer, capac\_S integer, capac\_D integer);\\
+\item Destination(ID\_Dest integer,Nom varchar2(20),Pays varchar2(20));\\
+\item Hotel(ID\_Hotel integer, ID\_Dest integer,Nom varchar2(20),Addresse varchar2(50), ID\_Classe integer, capac\_S integer, capac\_D integer);\\
 \item Classe\_Hotel(ID\_Classe integer, Prix\_S integer, Prix\_D integer);\\
 =======
-\item Destination(ID\_Dest integer,Nom_Hotel varchar2,Pays varchar2);\\
-\item Hotel(ID\_Hotel integer, ID\_Dest integer,Nom_Hotel varchar2,Addresse varchar2, ID\_Classe integer, capac\_S integer, capac\_D integer);\\
+\item Destination(ID\_Dest integer,Nom_Hotel varchar2(20),Pays varchar2(20));\\
+\item Hotel(ID\_Hotel integer, ID\_Dest integer,Nom_Hotel varchar2(20),Addresse varchar2(20), ID\_Classe integer, capac\_S integer, capac\_D integer);\\
 \item Classe\_Hotel(ID\_Classe integer, Prix\_S integer, Prix\_D integer);\\
 >>>>>>> .r174
-\item Circuit(ID\_Circuit integer,Nom\_Circuit varchar2);\\
+\item Circuit(ID\_Circuit integer,Nom\_Circuit varchar2(20));\\
 \item Assoc\_Hotel\_Circuit(ID\_Hotel integer, ID\_Circuit integer);\\
 \item Assoc\_Dest\_Circuit(ID\_Dest integer, ID\_Circuit integer);\\
-\item Sejour(ID\_Sejour integer, Duree integer, Texte\_Description varchar2, Coeff float);\\
+\item Sejour(ID\_Sejour integer, Duree integer, Description varchar2(50), Coeff float);\\
 \item Assoc\_Prix\_Sejour\_Circuit(ID\_Circuit integer, ID\_Sejour integer, Prix float);\\
 \item Vol(ID\_Vol integer, ID\_Dest integer, Prix\_Enfant float, Prix\_Adulte float);\\
 <<<<<<< .mine
-\item Client(ID\_Client integer,Addresse varchar2,Tel number(10), Nom varchar2, Prénom varchar2, Age integer, Email varchar2, Classe\_sociale varchar2, ID\_Dest\_Préférée integer, Investissement\_Moyen float);\\
-\item Facturation(ID\_Facture integer, Date\_Facture timestamp, Addresse\_Client varchar2, Tel number(10), Nom varchar2, Prénom varchar2, Nom\_Dest Varchar2, Pays\_Dest varchar2, Nom\_Hotel varchar2, Address\_Hotel varchar2, Classe\_Hotel varchar2, Prix\_S integer, Prix\_D integer, Nom\_circuit varchar2, Durée\_séjour integer, Prix\_Circuit float, Prix\_Vol\_Enfant float, prix\_Vol\_Adulte float, Description\_Séjour varchar2, Coeff\_Séjour float, Total\_Vol float, Total\_Hotel float,  Total\_Circuit float, Total\_Facture float, Age integer, Classe\_sociale varchar2, Dest\_Pref varchar2, Invest\_Moyen float);\\
+\item Client(ID\_Client integer,Addresse varchar2(50),Tel varchar2(10), Nom varchar2(20), Prenom varchar2(20), Age integer, Email varchar2(30), Classe\_sociale varchar2(20), ID\_Dest\_Preferee integer, Investissement\_Moyen float);\\
+
+\item Facturation(ID\_Facture integer, Date\_Facture date, Addresse\_Client varchar2(50), Tel varchar2(10), Nom varchar2(20), Prenom varchar2(20), Nom\_Dest varchar2(20), Pays\_Dest varchar2(20), Nom\_Hotel varchar2(20), Address\_Hotel varchar2(50), Classe\_Hotel varchar2(20), Prix\_S integer, Prix\_D integer, Nom\_circuit varchar2(20), Duree\_sejour integer, Prix\_Circuit float, Prix\_Vol\_Enfant float, prix\_Vol\_Adulte float, Description\_Sejour varchar2(50), Coeff\_Sejour float, Total\_Vol float, Total\_Hotel float,  Total\_Circuit float, Total\_Facture float, Age integer, Classe\_sociale varchar2(20), Dest\_Pref varchar2(20), Invest\_Moyen float);\\
 =======
-\item Client(ID\_Client integer,Addresse varchar2,Tel number, Nom varchar2, Prénom varchar2,Email varchar2, Age integer, Classe\_sociale varchar2, ID\_Dest\_Préférée integer, Investissement\_Moyen float);\\
-\item Facturation(ID\_Facture integer, Date\_Facture timestamp, Addresse\_Client varchar2, Tel number, Nom varchar2, Prenom varchar2, Nom\_Dest Varchar2, Pays\_Dest varchar2, Nom\_Hotel varchar2, Address\_Hotel varchar2, Classe\_Hotel integer, Prix\_S integer, Prix\_D integer, Nom\_circuit varchar2, Duree\_sejour integer, Prix\_Circuit float, Prix\_Vol\_Enfant float, prix\_Vol\_Adulte float, Texte\_Description\_Sejour varchar2, Coeff\_Sejour float, Total\_Vol float, Total\_Hotel float,  Total\_Circuit float, Total\_Facture float, \textit{Age integer}, \textit{Classe\_sociale varchar2}, \textit{Dest\_Pref varchar2}, \textit{Invest\_Moyen float} );\\
+\item Client(ID\_Client integer,Addresse varchar2(50),Tel varchar2(10), Nom varchar2(20), Prenom varchar2(20),Email varchar2(30), Age integer, Classe\_sociale varchar2(20), ID\_Dest\_Preferee integer, Investissement\_Moyen float);\\
+
+\item Facturation(ID\_Facture integer, Date\_Facture date, Addresse\_Client varchar2(50), Tel varchar2(10), Nom varchar2(20), Prenom varchar2(20), Nom\_Dest varchar2(20), Pays\_Dest varchar2(20), Nom\_Hotel varchar2(20), Address\_Hotel varchar2(50), Classe\_Hotel integer, Prix\_S integer, Prix\_D integer, Nom\_circuit varchar2(20), Duree\_sejour integer, Prix\_Circuit float, Prix\_Vol\_Enfant float, prix\_Vol\_Adulte float, Texte\_Description\_Sejour varchar2(50), Coeff\_Sejour float, Total\_Vol float, Total\_Hotel float,  Total\_Circuit float, Total\_Facture float, \textit{Age integer}, \textit{Classe\_sociale varchar2(20)}, \textit{Dest\_Pref varchar2(20)}, \textit{Invest\_Moyen float} );\\
 >>>>>>> .r174
 \end{itemize}
 
@@ -81,7 +83,7 @@ ID\_hotel& ID\_dest& Nom & Addresse &ID\_classe & Capac\_S & Capac\_D  \\
 \hline
 2 & 4& L'hôte&Rue du serveur& 2 & 10 & 10\\
 \hline
-3 & 3& Hérie&Rue de la blague& 5 & 40 & 35\\
+3 & 3& Herie&Rue de la blague& 5 & 40 & 35\\
 \hline
 \end{tabular}
 \end{center}
@@ -188,9 +190,9 @@ ID\_Dest& ID\_Circuit \\
 \begin{center}
 \begin{tabular}{|l|c|c|c|}
 \hline
-\multicolumn{4}{|c|}{Séjour}\\
+\multicolumn{4}{|c|}{Sejour}\\
 \hline
-ID\_Séjour& Durée & Texte\_Description& Coeff\\
+ID\_Sejour& Duree & Description& Coeff\\
 \hline
 1 & 10& Cool & 1\\
 \hline
@@ -211,9 +213,9 @@ ID\_Séjour& Durée & Texte\_Description& Coeff\\
 \begin{center}
 \begin{tabular}{|l|c|c|}
 \hline
-\multicolumn{3}{|c|}{Assoc\_Prix\_Séjour\_Circuit}\\
+\multicolumn{3}{|c|}{Assoc\_Prix\_Sejour\_Circuit}\\
 \hline
-ID\_Circuit& ID\_Séjour & Prix\\
+ID\_Circuit& ID\_Sejour & Prix\\
 \hline
 1 & 2& 100.00\\
 \hline
@@ -265,7 +267,7 @@ I\_Moyen est l'investissement moyen du client,
 \hline
 \multicolumn{10}{|c|}{Client}\\
 \hline
-ID\_C& Addr& Tel & Nom & Prénom & Age & Email&C\_S & ID\_DP &I\_Moyen\\
+ID\_C& Addr& Tel & Nom & Prenom & Age & Email&C\_S & ID\_DP &I\_Moyen\\
 \hline
 1 & & &&  &  & &&&\\
 \hline
@@ -290,6 +292,5 @@ Mettre le \textit{budget\_du\_client} ? C'est optionnelle mais les agences de vo
 \textbf{Version revue le \today}
 =======
 
-\textbf{Bon week end !}
 >>>>>>> .r174
 \end{document}
