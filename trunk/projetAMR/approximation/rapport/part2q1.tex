@@ -1,3 +1,23 @@
  \section{VC et graphes}
 	
-  \subsection{Question 1\label{part2q1} }
+  \subsection{Question 1\label{part2q1}}
+  L'algorithme du projet renvoie tous les sommets non feuilles de
+  l'arbre $T$ obtenu à partir d'un parcours en profondeur du graphe
+  d'origine $G$. Pour montrer que l'on obtient bien une couverture de
+  $G$, il faut montrer qu'il n'y a pas d'arêtes entre les feuilles de
+  l'arbre (les feuilles sont les seuls sommets qui ne sont pas dans la
+  couverture).
+
+  Soient $u$ et $v$ deux feuilles de l'arbre $T$. Il ne peut pas exister
+  une arête entre $u$ et $v$ dans le graphe d'après la définition du
+  parcours en profondeur. En effet, soit $u$ est un descendant de $v$
+  dans le parcours et alors $v$ n'est pas une feuille de $T$, soit $v$
+  est un descendant de $u$ dans le parcours et donc $u$ n'est pas une
+  feuille de $T$ \footnote{Démonstration par infusion sur les feuilles
+  de $T$}.
+
+  Il n'y a donc aucune arête possible entre les feuilles de l'arbre dans
+  le graphe $G$, on en déduit ainsi que l'algorithme du projet retourne
+  bien une couverture.
+
+  
