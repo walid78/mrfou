@@ -143,7 +143,6 @@ main(int argc, char** argv){
 
   Tree tree(graph,0);
 
-  
   switch (atoi(argv[2])){
   case 1:
     timer.get_tick(&timer1);
@@ -164,6 +163,8 @@ main(int argc, char** argv){
     usage();
   }
     
+  cout << graph;
+  
   long double usec = timer.diff_usec(&timer1, &timer2);
   cout << "Temps d'execution du programme: " << usec <<" µs"<<endl;
   
