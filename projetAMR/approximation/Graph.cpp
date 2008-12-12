@@ -149,18 +149,19 @@ bool* Graph::coverCourses2(){
   }
 
   while(i<nbVertexes){
-    if(cover[i])
+    while(cover[i])
       ++i;
     while(j<=graph[i][0]){
       if(!cover[graph[i][j]]){
 	cover[i] = true; 
 	cover[graph[i][j]] = true;
-	i++;
-	j=1;
+	break;
+      }else{
+	++j;
       }
-      ++j;
     }
     ++i;
+    j=1;
   }
 
   return cover;
