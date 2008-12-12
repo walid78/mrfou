@@ -15,7 +15,7 @@ void
 usage(void){
   cerr << "main <graphe> <algorithme souhaité>" << endl;
   cerr << "\t Algorithme possible :" << endl;
-  cerr << "\t\t 1 : Algorithme récursif de couplage minimal sur un arbre." << endl;
+  cerr << "\t\t 1 : Algorithme récursif de couverture par sommets sur un arbre." << endl;
   cerr << "\t\t 2 : Algorithme de retrait des feuilles." << endl;
   cerr << "\t\t 3 : Algorithme utilisant le couplage maximal." << endl;
   exit(EXIT_FAILURE);
@@ -169,7 +169,7 @@ main(int argc, char** argv){
   cout << "Temps d'execution du programme: " << usec <<" µs"<<endl;
   
   int nbVertexinCover=0;
-  cout << "Couverture par sommet : ";
+  cout << "Couverture par sommets : ";
 
   for(int i=0 ; i<graph.getNbVertexes() ; ++i)
     if(cover[i]){
@@ -177,8 +177,10 @@ main(int argc, char** argv){
       cout << i << " ";
     }
   cout << endl;
-  cout << "Couverture sur "<< nbVertexinCover << " sommet."<< endl;
-  delete[]cover;
+  cout << "Couverture sur " << nbVertexinCover << " sommet" 
+       << ((nbVertexinCover < 2)?"":"s") << endl; 
+
+  delete[] cover;
   
   return EXIT_SUCCESS;
 }
