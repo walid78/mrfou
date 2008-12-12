@@ -157,7 +157,7 @@ main(int argc, char** argv){
     break;
   case 3:
     timer.get_tick(&timer1);
-    cover = graph.coverCourses();
+    cover = graph.coverCourses2();
     timer.get_tick(&timer2);
     break;
   default:

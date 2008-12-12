@@ -37,6 +37,7 @@ class Graph{
   int getNbNeighbours(int originNode);
   
   bool* coverCourses();
+  bool* coverCourses2();
   bool* coverProject();
 
  private:
