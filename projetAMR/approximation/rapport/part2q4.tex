@@ -1,1 +1,17 @@
-\subsection{Question 4}
+  \subsection{Question 4}
+  \emph{Montrer que $G$ possède un couplage maximal $M$ de taille au moins
+  $|S|/2$}
+  
+  $M$ est un couplage du graphe, donc on sait que toute couverture doit
+  être de taille au moins $|M|$ (il est obligatoire de choisir au moins
+  l'un des deux sommets de chacune des arêtes du couplage). On a donc :
+  \begin{center}
+   $|OPT| \geq |M|$ $\iff$ $|OPT| \geq |S|/2$ $\iff$ $2 * |OPT| \geq
+   |S|$
+  \end{center}
+
+  Nous avons donc $|S| \leq 2 * |OPT|$ et on sait que l'algorithme
+  atteint le cas double (voir question précédente \ref{part2q3} page
+  \pageref{part2q3}), on peut donc en déduire que l'algorithme du projet
+  est $2$-approché.
+  
