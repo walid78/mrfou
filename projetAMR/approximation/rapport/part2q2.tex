@@ -3,9 +3,9 @@
   dans la question précédente (\ref{part2q1} page \pageref{part2q1}) et
   l'alogorithme vu en cours basé sur un couplage maximum.\newline
   \indent L'algorithme du couplage maximum est implémenté dans le fichier
-  \emph{Graph.cpp} par la méthode \emph{coverCourses()} et l'algorithme
-  du projet est implémenté dans \emph{Tree.cpp} par la méthode
-  \emph{coverProject()} et la fonction \emph{coverProject\_aux()}.\newline
+  \emph{Graph.cpp} par la méthode \emph{coverCourses2()} et l'algorithme
+  du projet est implémenté dans \emph{Graph.cpp} par la méthode
+  \emph{coverProject()}.\newline
   \indent Pour comparer ces deux algorithmes, nous allons mesurer leur
   temps d'exécution et surtout la taille de la couverture trouvée. Le
   résultat de ces mesures se trouve dans le tableau \ref{tableau}
@@ -42,14 +42,11 @@
 
   On peut constater sur le tableau \ref{tableau} page \pageref{tableau}
   le temps d'exécution de l'algorithme du couplage maximum est bien plus
-  long que l'alogoritme du projet. Pour le graphe de taille 1000, le
-  temps d'exécution est $95$ fois plus rapide pour l'algorithme du
-  projet. Il faut toutefois faire attention à ce chiffre car
-  l'implémentation de notre structure de graphe n'est pas optimisée pour
-  la suppression des arêtes ce qui ne nous permet pas de faire une
-  comparaison précise.\newline
+  rapide que l'alogoritme du projet. Pour le graphe de taille 1000, le
+  temps d'exécution est $70$ fois plus rapide pour l'algorithme de
+  couplage.\newline
   \indent Néanmoins, si l'on compare la taille des couvertures
-  retounées, on constate que là aussi l'algorithme du projet est bien
+  retounées, on constate que l'algorithme du projet est bien
   meilleur. On voit que sur un graphe à 1000 sommets, ce dernier trouve
   une converture à $365$ sommets contre $576$ pour l'autre. De plus, les
   tests étant réalisés sur différents types de graphes, et notemment
@@ -57,4 +54,4 @@
   arbres, que plus le graphe comportera un minimum de cycle et aura
   beaucoup de feuilles (des graphe assez développé quand même car un
   graphe étoile n'irai pas), plus la différence entre les deux
-  algorithmes se faira sentir. 
+  algorithmes se faira sentir.
