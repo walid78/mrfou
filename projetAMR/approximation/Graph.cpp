@@ -138,6 +138,35 @@ bool* Graph::coverCourses(){
   return cover;
 }
 
+//===========================================================================
+bool* Graph::coverCourses2(){
+  bool* cover = new bool[nbVertexes];
+  int i = 0;
+  int j = 1;
+
+  for(int i=0 ; i<nbVertexes ; ++i){
+    cover[i] = false;
+  }
+
+  while(i<nbVertexes){
+    if(cover[i])
+      ++i;
+    while(j<=graph[i][0]){
+      if(!cover[graph[i][j]]){
+	cover[i] = true; 
+	cover[graph[i][j]] = true;
+	i++;
+	j=1;
+      }
+      ++j;
+    }
+    ++i;
+  }
+
+  return cover;
+}
+
+//===========================================================================
 bool* Graph::coverProject(){
   Tree tree(*this, 0);
   return tree.coverProject();
