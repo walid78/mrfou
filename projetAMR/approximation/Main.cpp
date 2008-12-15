@@ -13,11 +13,11 @@ using namespace std;
 //===========================================================================
 void
 usage(void){
-  cerr << "main <graphe> <algorithme souhaité>" << endl;
-  cerr << "\t Algorithme possible :" << endl;
-  cerr << "\t\t 1 : Algorithme récursif de couverture par sommets sur un arbre." << endl;
-  cerr << "\t\t 2 : Algorithme de retrait des feuilles." << endl;
-  cerr << "\t\t 3 : Algorithme utilisant le couplage maximal." << endl;
+  cerr << "./cover <graphe> <algorithme souhaité>" << endl;
+  cerr << " Algorithme possible :" << endl;
+  cerr << "  1 : Algorithme récursif de calcul d'une couverture minimale *sur un arbre*" << endl;
+  cerr << "  2 : Algorithme du projet : calcul d'une couverture approchée (retrait des feuilles)" << endl;
+  cerr << "  3 : Algorithme du cours : calcul d'une couverture approchée (couplage maximal)" << endl;
   exit(EXIT_FAILURE);
 }
 

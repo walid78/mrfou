@@ -1,11 +1,11 @@
 SHELL= bash
-TARGET= main
+TARGET= cover
 OBJS= Graph.o Main.o Tree.o  timing.o
 CXXFLAGS = -Wall -g
 CXX= g++-4.2
 LDFLAGS=
 
-all: $(TARGET) clean
+all: $(TARGET)
 
 $(TARGET): $(OBJS)
 	$(CXX) $(CXXFLAGS) $^ -o $@
