@@ -6,18 +6,20 @@
    En utilisant la Question 1 (\ref{part1q1} page \pageref{part1q1}),
    nous marquons les sommets qui sont parents d'une ou plusieurs
    feuilles car les feuilles sont de degré $1$. Ensuite, lors de la
-   partie ``retour'' de la récursion, nous allons marqué les sommets
+   partie ``retour'' de la récursion, nous allons marquer les sommets
    qui sont pères de sommets non marqués.\\
 
    Pour qu'un sommet sache s'il doit être marqué, chacun de ses fils va
    lui dire \emph{''Marque toi !''}($true$) ou \emph{''Je suis déjà
    marqué donc tu n'as pas besoin de l'être vis-à-vis de
-   moi.''}($false$).
+   moi.''}\footnote{Certains fils sont plus bavards que
+   d'autres.}($false$).
 
    Marquer un sommet revient à mettre la case qui lui correspond dans
-   le tableau de booléen $cover$ à $true$.
-
+   le tableau de booléens $cover$ à $true$.
+   
    \subsubsection{Algorithme}
+   ~
    \begin{algorithm}[!ht]
      \SetLine
      $\mathbf{global~var}$ $cover$ : Boolean table;\\
@@ -48,7 +50,7 @@
        ~\\
        \Return{$markFather$};
      }
-     \caption{coverTree\_aux(Vertex $v$): Booléen}
+     \caption{coverTree\_aux(Vertex $v$): Boolean}
    \end{algorithm}
    
    \subsubsection{Exemple}
@@ -57,37 +59,9 @@
 
    \tikzstyle{rednode}=[circle,draw=red!50,fill=red!20,thick, inner
    sep=0pt,minimum size=6mm]
-    
-   \begin{center}
-    \begin{tikz_mrfou}
-
-     %% Nodes %%
-     \node[bluenode] (0) {$0$};
-     \node[bluenode, above right of=0] (1) {$1$};
-     \node[bluenode, below right of=1] (2) {$2$};
-     \node[bluenode, below right of=0] (3) {$3$};
-
-     %% Edges %%
-     \path[-]
-
-     (0)
-     edge node {} (1)
-     edge node {} (2)
-     edge node {} (3)
-     
-     (1) 
-     edge node {} (2)
-
-     (2)
-     edge node {} (3)
-     ;
-
-    \end{tikz_mrfou}
-   \end{center}
-
-   À partir du graphe, on calcule un arbre correspondant par un
-   parcours en profondeur à partir du sommet $0$ (à l'aide du
-   constructeur de \emph{Tree.cpp}).
+   
+   On nous donne un arbre en entrée sur lequel on souhaite trouver une
+   couverture par sommets.
 
    \begin{center}
     \begin{tikz_mrfou}
@@ -113,6 +87,7 @@
 
     \end{tikz_mrfou}
    \end{center}
+
    On applique alors notre algorithme.
 
    \begin{center}
@@ -275,12 +250,9 @@
     qui correspond à la couverture $\{0,2\}$.
 
 
-   \subsubsection{Implémentation et complexité}
-   \indent Nous avons implémenté cet algorithme dans le fichier
-   \emph{Tree.cpp}. Les méthodes sont \emph{coverTree} et
-   \emph{coverTree\_aux}.\\
-   Il n'utilise qu'un parcours en profondeur et des calculs constants
-   (le calcul du nombre de voisins d'un sommet est aussi constant car
-   nous avons stocké le degré des n\oe{}uds dans la structure du
-   graphe). La complexité est donc celle du parcours en profondeur,
-   c'est-à-dire linéaire.
+   \subsubsection{Complexité}
+   L'algorithme n'utilise qu'un parcours en profondeur et des calculs
+   constants (le calcul du nombre de voisins d'un sommet est aussi
+   constant car nous avons stocké le degré des n\oe{}uds dans la
+   structure du graphe). La complexité est donc celle du parcours en
+   profondeur, c'est-à-dire linéaire.
