@@ -7,7 +7,7 @@ drop table Destination;
 drop table Hotel;
 drop table Classe_Hotel;
 drop table Circuit;
-drop table Assoc_Hotel_Circuit;
+--drop table Assoc_Hotel_Circuit;
 drop table Assoc_Dest_Circuit;
 drop table Sejour;
 drop table Assoc_Prix_Sejour_Circuit;
@@ -81,35 +81,37 @@ EXTENT MANAGEMENT LOCAL AUTOALLOCATE ;
 
 --CREATION DES TABLES
 
-create table Destination(ID_Dest number,Nom_Destination varchar2(20),Pays varchar2(20)) tablespace ts0;
-create table Circuit(ID_Circuit number,Nom_Circuit varchar2(20))tablespace ts0 ;
+create table Destination(ID_Dest number primary key,Nom_Destination varchar2(20) not null ,Pays varchar2(20) not null) tablespace ts0;
+create table Circuit(ID_Circuit number primary key,Nom_Circuit varchar2(20)not null)tablespace ts0 ;
 create table Assoc_Dest_Circuit(ID_Dest number, ID_Circuit number)tablespace ts0 ;
 
 
-create table Hotel(ID_Hotel number, ID_Dest number,Nom_Hotel varchar2(20),Addresse varchar2(50),
-					ID_Classe number, capac_S number, capac_D number)tablespace ts0 ;		
+create table Hotel(ID_Hotel number primary key, ID_Dest number not null,Nom_Hotel varchar2(20) not null,Addresse varchar2(50) default('adresse inconnue') ,
+					ID_Classe number default(1), Capac_S number default(0) CHECK (Capac_S >0), Capac_D number default(0) CHECK (Capac_D >0)  )tablespace ts0 ;		
 
-create table Classe_Hotel(ID_Classe number, Prix_S float, Prix_D float)tablespace ts0 ;
+create table Classe_Hotel(ID_Classe number primary key, Prix_S float not null CHECK (Prix_S >0.0) , Prix_D float not null CHECK (Prix_D >0.0) )tablespace ts0 ;
 
-create table Assoc_Hotel_Circuit(ID_Hotel number, ID_Circuit number)tablespace ts0 ;
+--create table Assoc_Hotel_Circuit(ID_Hotel number, ID_Circuit number)tablespace ts0 ;
 
-create table Sejour(ID_Sejour number, Duree number, Description varchar2(50), Coeff float)tablespace ts0 ;					
+create table Sejour(ID_Sejour number primary key, Duree number not null CHECK (Duree >0) , Description varchar2(50) default(' '), Coeff float default (1.0) CHECK (Coeff >0.0)     )tablespace ts0 ;					
 
-create table Assoc_Prix_Sejour_Circuit(ID_Circuit number, ID_Sejour number, Prix float)tablespace ts0 ;
+create table Assoc_Prix_Sejour_Circuit(ID_Circuit number, ID_Sejour number, Prix float not null  CHECK (Prix >0.0)  )tablespace ts0 ;
 
-create table Vol(ID_Vol number, ID_Dest number, Prix_Enfant float, Prix_Adulte float)tablespace ts0 ;
+create table Vol(ID_Vol number primary key, ID_Dest number, Prix_Enfant float CHECK (Prix_Enfant >0.0) , Prix_Adulte float CHECK (Prix_Adulte >0.0) )tablespace ts0 ;
 
-create table Client(ID_Client number,Addresse varchar2(50),Tel varchar2(10), Nom varchar2(20),Prenom varchar2(20), Age number, 
-					Email varchar2(30),Classe_sociale varchar2(20), ID_Dest_Preferee number, Investissement_Moyen float)tablespace ts0 ;
+create table Client(ID_Client number primary key ,Addresse varchar2(50),Tel varchar2(10), Nom varchar2(20) not null,Prenom varchar2(20)not null, Age number   CHECK (Age >0 and Age < 150) , 
+					Email varchar2(30),Classe_sociale varchar2(20), ID_Dest_Preferee number, Investissement_Moyen float CHECK (Investissement_Moyen > 0.0))tablespace ts0 ;
 
-create table Facturation(ID_Facture number, Date_Facture date, 
-						Addresse_Client varchar2(50), Tel varchar2(10), Nom varchar2(20), Prenom varchar2(20), 
-						Nom_Dest varchar2(20), Pays_Dest varchar2(20), 
-						Nom_Hotel varchar2(20), Address_Hotel varchar2(50),Classe_Hotel number, Prix_S float, Prix_D float,
-						Nom_circuit varchar2(20), Duree_sejour number, Prix_Circuit float, 
-						Prix_Vol_Enfant float,Prix_Vol_Adulte float, 
-						Description_Sejour varchar2(50), Coeff_Sejour float,
-						Total_Vol float, Total_Hotel float, Total_Circuit float, Total_Facture float,
+create table Facturation(ID_Facture number primary key, Date_Facture date default trunc(sysdate), 
+       	     			    	   	
+						Addresse_Client varchar2(50) not null, Tel varchar2(10) not null, Nom varchar2(20) not null, Prenom varchar2(20) not null, 
+						Nom_Dest varchar2(20)not null, Pays_Dest varchar2(20) not null, 
+						Nom_Hotel varchar2(20)not null, Address_Hotel varchar2(50) not null,Classe_Hotel number not null,
+						Prix_S float not null , Prix_D float not null,
+						Nom_circuit varchar2(20)not null, Duree_sejour number not null, Prix_Circuit float not null, 
+						Prix_Vol_Enfant float not null ,Prix_Vol_Adulte float not null, 
+						Description_Sejour varchar2(50) not null, Coeff_Sejour float not null,
+						Total_Vol float not null , Total_Hotel float not null, Total_Circuit float not null, Total_Facture float not null,
 						Age number, Classe_sociale varchar2(20), Dest_Pref varchar2(20), Invest_Moyen float )
 
 
@@ -166,16 +168,16 @@ INSERT INTO Circuit VALUES (4,'Hockenheim') ;
 
 -- Remplissage de la table Assoc_Hotel_Circuit --
 
-INSERT INTO Assoc_Hotel_Circuit VALUES (1,2);
-INSERT INTO Assoc_Hotel_Circuit VALUES (1,2);
-INSERT INTO Assoc_Hotel_Circuit VALUES (3,3);
-INSERT INTO Assoc_Hotel_Circuit VALUES (4,1);
+--INSERT INTO Assoc_Hotel_Circuit VALUES (1,2);
+--INSERT INTO Assoc_Hotel_Circuit VALUES (1,2);
+--INSERT INTO Assoc_Hotel_Circuit VALUES (3,3);
+--INSERT INTO Assoc_Hotel_Circuit VALUES (4,1);
 
 -- Remplissage de la table Assoc_Dest_Circuit --
 
-INSERT INTO Assoc_Hotel_Circuit VALUES (1,4);
-INSERT INTO Assoc_Hotel_Circuit VALUES (2,3);
-INSERT INTO Assoc_Hotel_Circuit VALUES (2,1);
+INSERT INTO Assoc_Dest_Circuit VALUES (1,4);
+INSERT INTO Assoc_Dest_Circuit VALUES (2,3);
+INSERT INTO Assoc_Dest_Circuit VALUES (2,1);
 
 -- Remplissage de la table Séjour --
 
