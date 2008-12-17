@@ -34,12 +34,12 @@ if($page == "")
   $page=liste_ingr;
 
 $pages = array(
-			   "ajouter_ingr" => "pages/ajouter_ingredient.php",
-			   "ajouter_repas" => "pages/ajouter_repas.php",
-			   "liste_courses" => "pages/liste_courses.php",
-			   "liste_courses_reset" => "pages/liste_courses_reset.php",
-			   "liste_ingr" => "pages/liste_ingredients.php",
-			   "liste_repas" => "pages/liste_repas.php",
+// 			   "ajouter_ingr" => "pages/ajouter_ingredient.php",
+// 			   "ajouter_repas" => "pages/ajouter_repas.php",
+// 			   "liste_courses" => "pages/liste_courses.php",
+// 			   "liste_courses_reset" => "pages/liste_courses_reset.php",
+// 			   "liste_ingr" => "pages/liste_ingredients.php",
+// 			   "liste_repas" => "pages/liste_repas.php"
 			   );
 
 include $pages[$page];
