@@ -65,13 +65,13 @@ a:hover, a:focus
 #menu 
 {
   background-color: grey;
-  width: 145px;
+  width: 144px;
   float: left;
   border-style: solid;
   border-color: black;
   border-width: 1px;
   border-top: none;
-  border-right: none;
+//  border-right: none;
   padding-left:5px;
   padding-top:5px;
   padding-bottom:5px;

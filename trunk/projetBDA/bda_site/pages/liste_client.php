@@ -10,36 +10,46 @@ $db = "(DESCRIPTION =
   )";
 
 $login = "burno";
-
 $user = "burno";
+
+$nb_column=0;
+$table_name = "CLIENT";
 
 //Connexion à la base
 $connect = ocilogon($login, $user, $db) or die( "Could not connect to Oracle database!");
 
-$query = "select * from Client";
+echo "  
+<table border=1>
+";
 
-//On parse la requête à effectuer sans oublier de lui passer la chaine de connexion en paramêtre
-$stmt = oci_parse($connect, $query);
+$query = "SELECT column_name FROM user_tab_cols WHERE table_name='".$table_name."'";
+$stmt = ociparse($connect, $query);
+ociexecute($stmt,OCI_DEFAULT);
 
-//On execute la requête en lui passant l'option OCI_DEFAULT
-oci_execute($stmt,OCI_DEFAULT);
-
-
-echo "D&eacute;but----<br>\n\n";
-
-
-while (oci_fetch($stmt)){ //On parcourt les résultats
-//   echo ociresult($stmt,1).", "; //On récupère le premier champ de la ma_table
-//   echo ociresult($stmt,2).", "; //On récupère le premier champ de la ma_table
-//   echo ociresult($stmt,3).", "; //On récupère le premier champ de la ma_table
-//   echo ociresult($stmt,4).", "; //On récupère le premier champ de la ma_table
-//   echo ociresult($stmt,5).", "; //On récupère le premier champ de la ma_table
-//   echo ociresult($stmt,6)." <br/>"; //On récupère le premier champ de la ma_table
-  print_r();
+echo "<tr>";
+while(OCIFetchInto ($stmt, $row, OCI_NUM)){
+  foreach($row as $tmp)
+    echo "<td>".$tmp."</td>";     
 }
-  
+  echo "</tr>";
 
-echo "<br>----fin\n\n";
+
+
+/* Nouvelle requete */
+$query = "select * from client";
+$stmt = ociparse($connect, $query);
+ociexecute($stmt,OCI_DEFAULT);
+
+while(OCIFetchInto ($stmt, $row, OCI_NUM)){
+  echo "<tr>";
+  
+  foreach($row as $tmp)
+    echo "<td>".$tmp."</td>"; 
+  
+  echo "</tr>";
+}
+
+echo "</table>";
 
 //On se déconnecte du serveur
 ocilogoff($connect);
