@@ -1,0 +1,94 @@
+body 
+{
+  background-color: white;
+  font-family: verdana;
+  font-size: 11px;
+  color: black;
+  }
+
+h1 
+{
+  font-weight: bold;
+  font-size: 14px;
+  border-width: 1px;
+  border-style: solid;
+  text-align: center;
+  margin-left: 40px;
+  margin-right: 40px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-bottom: 20px;
+  }
+
+h2
+{
+  font-weight: bold;
+  font-size: 12px;
+  border-width: 1px;
+  font-style: italic;
+  text-decoration: underline;
+  }
+
+
+a 
+{
+  color: #000099; 
+  }
+
+a:hover, a:focus 
+{
+  color: #006699;
+  }
+
+#site 
+{
+  margin-left: auto;
+  margin-right: auto;
+  width: 1000px;
+  }
+
+#haut
+{
+  background-image: url("images/bann.jpg");
+  width: 998px;
+  height: 149px;
+  border-style: solid;
+  border-color: black;
+  border-width: 1px;
+  }
+
+#centre
+{ 
+  width: 1000px;
+  }
+
+#menu 
+{
+  background-color: grey;
+  width: 144px;
+  float: left;
+  border-style: solid;
+  border-color: black;
+  border-width: 1px;
+  border-top: none;
+  border-right: none;
+  padding-left:5px;
+  padding-top:5px;
+  padding-bottom:5px;
+  }
+
+#page
+{
+  background-color: grey;
+  padding-right: 5px;
+  margin-left: 0px;
+  width: 837px;
+  float: right;
+  border-style: solid;
+  border-color: black;
+  border-width: 1px;
+  border-top: none;
+  padding-left:5px;
+  padding-top:5px;
+  padding-bottom:5px;
+  }
