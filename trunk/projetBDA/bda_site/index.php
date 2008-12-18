@@ -46,7 +46,8 @@ if($page == "")
   $page=liste_ingr;
 
 $pages = array(
-	       "liste_client" => "pages/liste_client.php"
+	       "liste_client" => "pages/liste_client.php",
+	       "liste_dest" => "pages/liste_dest.php"
 // 			   "ajouter_ingr" => "pages/ajouter_ingredient.php",
 // 			   "ajouter_repas" => "pages/ajouter_repas.php",
 // 			   "liste_courses" => "pages/liste_courses.php",
