@@ -13,7 +13,7 @@ $login = "burno";
 $user = "burno";
 
 $nb_column=0;
-$table_name = "CLIENT";
+$table_name = "DESTINATION";
 
 //Connexion à la base
 $connect = ocilogon($login, $user, $db) or die( "Could not connect to Oracle database!");
