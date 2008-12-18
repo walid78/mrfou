@@ -22,13 +22,6 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
             <a href="?page=liste_client">Liste des clients</a><br/>
             <a href="?page=liste_dest">Liste des destinations</a><br/>
             <a href="?page=liste_hotel">Liste des hôtels</a><br/>
-   <!--
-            <a href="?page=ajouter_repas">Ajouter un repas</a><br/>
-            <a href="?page=ajouter_ingr">Ajouter un ingrédient</a><br/>
-            <a href="?page=liste_courses">Liste des courses</a><br/>
-            <a href="?page=liste_ingr">Liste des ingrédients</a><br/>
-            <a href="?page=liste_repas">Liste des repas</a><br/>
-   -->
    
           <center><h2>Saisie</h2></center>
             => Second temps
@@ -43,18 +36,13 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 $page = $_GET['page'];
 
 if($page == "")
-  $page=liste_ingr;
+  $page=liste_client;
 
 $pages = array(
 	       "liste_client" => "pages/liste_client.php",
+	       "liste_hotel" => "pages/liste_hotel.php",
 	       "liste_dest" => "pages/liste_dest.php"
-// 			   "ajouter_ingr" => "pages/ajouter_ingredient.php",
-// 			   "ajouter_repas" => "pages/ajouter_repas.php",
-// 			   "liste_courses" => "pages/liste_courses.php",
-// 			   "liste_courses_reset" => "pages/liste_courses_reset.php",
-// 			   "liste_ingr" => "pages/liste_ingredients.php",
-// 			   "liste_repas" => "pages/liste_repas.php"
-			   );
+	      );
 
 include $pages[$page];
 

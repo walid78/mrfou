@@ -1,3 +1,5 @@
+<h1>Liste des clients</h1>
+
 <?php
 
 $db = "(DESCRIPTION =
@@ -18,8 +20,9 @@ $table_name = "CLIENT";
 //Connexion à la base
 $connect = ocilogon($login, $user, $db) or die( "Could not connect to Oracle database!");
 
-echo "  
-<table border=1>
+echo " 
+<center>
+  <table border=1>
 ";
 
 $query = "SELECT column_name FROM user_tab_cols WHERE table_name='".$table_name."'";
@@ -49,7 +52,9 @@ while(OCIFetchInto ($stmt, $row, OCI_NUM)){
   echo "</tr>";
 }
 
-echo "</table>";
+echo "
+  </table>
+</center>";
 
 //On se déconnecte du serveur
 ocilogoff($connect);

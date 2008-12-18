@@ -1,4 +1,4 @@
-<h1>Liste des destinations</h1>
+<h1>Liste des h&ocirc;tels</h1>
 
 <?php
 
@@ -15,12 +15,12 @@ $login = "burno";
 $user = "burno";
 
 $nb_column=0;
-$table_name = "DESTINATION";
+$table_name = "HOTEL";
 
 //Connexion à la base
 $connect = ocilogon($login, $user, $db) or die( "Could not connect to Oracle database!");
 
-echo "
+echo "  
 <center>
   <table border=1>
 ";
