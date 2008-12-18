@@ -1,3 +1,270 @@
+\section{Les tables :partie stockages des données}
 Les tables :partie stockages des données
 la logistique : emplacement des stocks, du serveur, répartition géographique des clients...
 description de nos tables
+
+section\{Présentation des tables\}
+Voici la présentation des différentes tables que nous avons établie. Elles sont présentées sous la forme \textit{Nom\_de\_la\_table(élément1 type, élément2 type, $\dots$}. Peu de description est fournie car, pour la plupart des tables, leur nom est évocateur. A noter que les tables ne sont pas du tout définitive et que ce qui est écrit en \textit{italique} est optionnelle.\bigskip
+
+\begin{itemize}
+\item Destination(ID\_Dest integer,Nom\_Hotel varchar2(20),Pays varchar2(20));\\
+\item Hotel(ID\_Hotel integer, ID\_Dest integer,Nom\_Hotel varchar2(20),Addresse varchar2(20), ID\_Classe integer, capac\_S integer, capac\_D integer);\\
+\item Classe\_Hotel(ID\_Classe integer, Prix\_S integer, Prix\_D integer);\\
+\item Circuit(ID\_Circuit integer,Nom\_Circuit varchar2(20));\\
+\item Assoc\_Hotel\_Circuit(ID\_Hotel integer, ID\_Circuit integer);\\
+\item Assoc\_Dest\_Circuit(ID\_Dest integer, ID\_Circuit integer);\\
+\item Sejour(ID\_Sejour integer, Duree integer, Description varchar2(50), Coeff float);\\
+\item Assoc\_Prix\_Sejour\_Circuit(ID\_Circuit integer, ID\_Sejour integer, Prix float);\\
+\item Vol(ID\_Vol integer, ID\_Dest integer, Prix\_Enfant float, Prix\_Adulte float);\\
+\item Client(ID\_Client integer,Addresse varchar2(50),Tel varchar2(10), Nom varchar2(20), Prenom varchar2(20), Age integer, Email varchar2(30), Classe\_sociale varchar2(20), ID\_Dest\_Preferee integer, Investissement\_Moyen float);\\
+
+\item Facturation(ID\_Facture integer, Date\_Facture date, Addresse\_Client varchar2(50), Tel varchar2(10), Nom varchar2(20), Prenom varchar2(20), Nom\_Dest varchar2(20), Pays\_Dest varchar2(20), Nom\_Hotel varchar2(20), Address\_Hotel varchar2(50), Classe\_Hotel varchar2(20), Prix\_S integer, Prix\_D integer, Nom\_circuit varchar2(20), Duree\_sejour integer, Prix\_Circuit float, Prix\_Vol\_Enfant float, prix\_Vol\_Adulte float, Description\_Sejour varchar2(50), Coeff\_Sejour float, Total\_Vol float, Total\_Hotel float,  Total\_Circuit float, Total\_Facture float, Age integer, Classe\_sociale varchar2(20), Dest\_Pref varchar2(20), Invest\_Moyen float);\\
+\end{itemize}
+
+\section{Exemples de tables}
+
+%%%%%%%%%%% Destination %%%%%%%%%%%
+
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{|l|c|c|}
+\hline
+\multicolumn{3}{|c|}{Destination}\\
+\hline
+ID\_dest& Nom & Pays \\
+\hline
+1 & Bordeaux& France\\
+\hline
+2 & Valence& France\\
+\hline
+3 & Valence& Espagne\\
+\hline
+4 & Barcelone& Espagne\\
+\hline
+5 & Paris& France\\
+\hline
+\end{tabular}
+\end{center}
+\caption{Table Destination}
+\end{table}
+
+%%%%%%%%%%% Table Hotel %%%%%%%%%%%
+
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{|l|c|c|c|c|c|c|}
+\hline
+\multicolumn{7}{|c|}{Hotel}\\
+\hline
+ID\_hotel& ID\_dest& Nom & Addresse &ID\_classe & Capac\_S & Capac\_D  \\
+\hline
+1 & 1& California&rue de LA& 4 & 20 & 10\\
+\hline
+2 & 4& L'hôte&Rue du serveur& 2 & 10 & 10\\
+\hline
+3 & 3& Herie&Rue de la blague& 5 & 40 & 35\\
+\hline
+\end{tabular}
+\end{center}
+\caption{Table Hotel}
+\end{table}
+\newpage
+
+%%%%%%%%%%% Table Classe Hotel %%%%%%%%%%%
+
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{|l|c|c|}
+\hline
+\multicolumn{3}{|c|}{Classe\_Hotel}\\
+\hline
+ID\_classe& Prix\_S & Prix\_D \\
+\hline
+1 & 10.00& 20.00\\
+\hline
+2 & 25.00& 45.00\\
+\hline
+3 & 30.00& 60.00\\
+\hline
+4 &  45.00& 80.00\\
+\hline
+5 & 60.00& 80.00\\
+\hline
+\end{tabular}
+\end{center}
+\caption{Table Classe\_Hotel}
+\end{table}
+
+%%%%%%%%%%% Table Circuit %%%%%%%%%%%
+
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{|l|c|}
+\hline
+\multicolumn{2}{|c|}{Circuit}\\
+\hline
+ID\_circuit& nom \\
+\hline
+1 & Mont\_Fuji\\
+\hline
+2 & Catalogne\\
+\hline
+3 & Monaco\\
+\hline
+4 &  Hockenheim\\
+\hline
+\end{tabular}
+\end{center}
+\caption{Table Circuit}
+\end{table}
+
+%%%%%%%%%%% Table Assoc_Hotel_Circuit %%%%%%%%%%%
+
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{|l|c|}
+\hline
+\multicolumn{2}{|c|}{Assoc\_Hotel\_Circuit}\\
+\hline
+ID\_circuit& ID\_Hotel \\
+\hline
+1 & 2\\
+\hline
+1 & 2\\
+\hline
+3 & 3\\
+\hline
+4 & 1 \\
+\hline
+\end{tabular}
+\end{center}
+\caption{Table Assoc\_Hotel\_Circuit}
+\end{table}
+\newpage
+
+%%%%%%%%%%% Table Assoc_Dest_Circuit %%%%%%%%%%%
+
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{|l|c|}
+\hline
+\multicolumn{2}{|c|}{Assoc\_Dest\_Circuit}\\
+\hline
+ID\_Dest& ID\_Circuit \\
+\hline
+1 & 4\\
+\hline
+2 & 3\\
+\hline
+2 & 1\\
+\hline
+\end{tabular}
+\end{center}
+\caption{Table Assoc\_Dest\_Circuit}
+\end{table}
+
+%%%%%%%%%%% Table Séjour %%%%%%%%%%%
+
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{|l|c|c|c|}
+\hline
+\multicolumn{4}{|c|}{Sejour}\\
+\hline
+ID\_Sejour& Duree & Description& Coeff\\
+\hline
+1 & 10& Cool & 1\\
+\hline
+2 & 10& Funny& 1\\
+\hline
+3 & 21& Chiant& 0.5\\
+\hline
+4 & 21& Fatiguant& 0.4\\
+\hline
+\end{tabular}
+\end{center}
+\caption{Table Séjour}
+\end{table}
+
+%%%%%%%%%%% Table Assoc_Prix_Séjour_Circuit %%%%%%%%%%%
+
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{|l|c|c|}
+\hline
+\multicolumn{3}{|c|}{Assoc\_Prix\_Sejour\_Circuit}\\
+\hline
+ID\_Circuit& ID\_Sejour & Prix\\
+\hline
+1 & 2& 100.00\\
+\hline
+2 & 2& 115.00\\
+\hline
+2 & 4& 50.00\\
+\hline
+4 & 3& 65.00\\
+\hline
+\end{tabular}
+\end{center}
+\caption{Table Assoc\_Prix\_Séjour\_Circuit}
+\end{table}
+\newpage
+%%%%%%%%%%% Table Vol %%%%%%%%%%%
+
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{|l|c|c|c|}
+\hline
+\multicolumn{4}{|c|}{Vol}\\
+\hline
+ID\_Vol& ID\_dest & Prix\_Enfant& Prix\_Adulte\\
+\hline
+1 & 1& 10.00 & 20.00\\
+\hline
+2 & 1& 15.00& 40.00\\
+\hline
+3 & 2& 9.00& 21.00\\
+\hline
+4 & 4& 12.00& 24.00\\
+\hline
+\end{tabular}
+\end{center}
+\caption{Table Vol}
+\end{table}
+
+%%%%%%%%%%% Table Client %%%%%%%%%%%
+
+\begin{table}[h]
+ID\_C est l'identifiant client,
+C\_S est classe sociale,
+ID\_DP est la destination préférée du client,
+\textbf{Le nom de la destination préférée du client a été enlevée.}
+I\_Moyen est l'investissement moyen du client,
+\bigskip
+
+\begin{tabular}{|l|c|c|c|c|c|c|c|c|c|}
+\hline
+\multicolumn{10}{|c|}{Client}\\
+\hline
+ID\_C& Addr& Tel & Nom & Prenom & Age & Email&C\_S & ID\_DP &I\_Moyen\\
+\hline
+1 & & &&  &  & &&&\\
+\hline
+2 & & &&  &  & &&&\\
+\hline
+3 & & &&  &  & &&&\\
+\hline
+\end{tabular}
+\caption{Table Client}
+\end{table}
+
+%%%%%%%%%%% Table Facturation %%%%%%%%%%%
+
+\textbf{Pour la table facturation, je m'en sens pas le courage sur papier car elle est vraiment grande :) }
+
+\section{Quelques idées optionnelles en plus}
+Rajouter les \textit{Dates\_de\_Départ} et de \textit{Dates\_de\_Retour} ?? \\
+Citer la \textit{ville de départ} ? \\
+Mettre le \textit{budget\_du\_client} ? C'est optionnelle mais les agences de voyages le font. \\
+
+\end{document}
