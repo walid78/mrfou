@@ -1,0 +1,63 @@
+Destination :			number + 2*varchar2(20) = 22+2*20=62 octets
+	       			nb de ligne : 50 destination (cf cahier des  	charges)
+	      			total : 3Ko
+
+Circuit : 			number+varchar2(20)=22+20 =42o
+	  			nb de ligne : 3 circuit par destination : 3*50=	  150
+	  			total : 6.3Ko
+
+Assoc_Dest_Circuit:		2*number = 44o.
+				nb ligne = 3*50
+				total=6.6Ko
+
+Hotel :				5*number + varchar2(20) + varchar2(50) = 180o
+      			 	nb ligne = 10 hotel par circuit : 10*3*50
+				total : 270 ko
+
+Classe-Hotel : 			number + 2*float =22+44=66o
+				nb : 5 
+				total : 330o
+
+Sejour : 			2*number + varchar2(50) + float = 44+50+22 =116o
+				nb ligne :  2 
+				total : 232 o
+
+
+Etape				2*number + varchar2(50) = 44+50 = 94o
+				nb : 5*3*50 = 750o
+				total : 70.5 ko
+
+
+
+
+Reservation			2*number + date = 44+7 = 51o
+				nb lignes : nb_max_client * nb_max_etapes : 400 personnes * 3 circuit * 50 dest = 60k
+				total : 3.06Mo
+
+
+
+
+Assoc_Prix_Sejour_Circuit	2*number + float = 44+22=66o
+				nb lignes : 2*150 = 300
+				total =19.8 Ko
+
+
+Vol				2*number + 2* float = 22*4 = 88o
+				nb_lignes = 100 vols * 50 dest = 5k
+				total : 440k
+
+CLient				3*number + float + varchar2(50)+10 +30 +3*20 = 238o
+				nb = 400*12*10=48k
+				total = 11.424Mo		
+
+
+Facturation			6*number + date+ 10 + 3*50 +8*20+11*float = 701 o
+				nb = 400*12*10 * 5 etapes = 240k
+				total : 168.24 Mo
+
+
+Total T0 : 15,4 Mo
+T1->T10 = 168.24 Mo / 10 = 17Mo -> 20 Mo
+
+
+
