@@ -1,0 +1,42 @@
+******************pour la partie application ********************
+
+
+Pouvoir lister/ajouter/supprimer les clients, hotels, vols, destinations, circuits, étapes,classes d'hotel,séjours ....
+
+pouvoir lister les noms/prénom des clients.
+en cliquant sur un client, sa fiche complete s'affiche (possibilité de modifier les infos)
+un bouton "nouveau voyage" qui:
+
+Liste les destinations, sur un clic de destination, afficher les circuits disponibles pour cette destination et les types de séjour.
+Puis sont affichés les hotels disponibles pour ce circuit.
+A ce moment : choix des chambres (Simples ou doubles)
+->remplissage de la table réservation
+
+Ensuite passer au choix des vols ( pouvoir en ajouter, en enlever, en selectioner 1 pour la commande)
+
+
+
+
+
+afficher toutes les factures, celles d'un client particulier, selon une certaine date
+
+
+Statistiques :
+destinations les plus demandées
+Chiffre d'affaire du mois / année
+hotels les + demandés
+
+
+***************pour la partie Rapport**********************
+
+dessiner au propre le shemas relationnel
+rédiger la page de calcul de l'occupation mémoire des tables
+
+
+
+*********************Pour la partie Base de donnée***********
+PROCEDURE STOCKEE A REVOIR
+ajouter en 1° la ligne de facture avec le 1°hotel issue de la table réservation pour ce client + le séjour + vol + ...
+ajouter seulement les infos des hotels pour chaque autre ligne de la table réservation
+
+QUAND VIDER LA TABLE DE RESERVATION ? (pour moi , une fois que la facture est entrée ds la table)
