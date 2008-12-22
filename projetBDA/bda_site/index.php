@@ -22,6 +22,11 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
             <a href="?page=liste_client">Liste des clients</a><br/>
             <a href="?page=liste_dest">Liste des destinations</a><br/>
             <a href="?page=liste_hotel">Liste des hôtels</a><br/>
+            <a href="?page=liste_circuit">Liste des circuits</a><br/>
+            <a href="?page=liste_vol">Liste des vols</a><br/>
+            <a href="?page=liste_etape">Liste des &eacute;tapes</a><br/>
+            <a href="?page=liste_classe">Liste des classes d'h&ocirc;tel</a><br/>
+            <a href="?page=liste_sejour">Liste des s&eacute;jours</a><br/>
    
           <center><h2>Saisie</h2></center>
             => Second temps
@@ -41,6 +46,11 @@ if($page == "")
 $pages = array(
 	       "liste_client" => "pages/liste_client.php",
 	       "liste_hotel" => "pages/liste_hotel.php",
+	       "liste_vol" => "pages/liste_vol.php",
+	       "liste_circuit" => "pages/liste_circuit.php",
+	       "liste_etape" => "pages/liste_etape.php",
+	       "liste_classe" => "pages/liste_classe.php",
+	       "liste_sejour" => "pages/liste_sejour.php",
 	       "liste_dest" => "pages/liste_dest.php"
 	      );
 
