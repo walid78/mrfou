@@ -29,9 +29,15 @@ hotels les + demand�s
 
 ***************pour la partie Rapport**********************
 
+
 dessiner au propre le shemas relationnel
 
-Saisir les ecemples de remplissage facturation.
+Saisir les exemples de remplissage facturation.
+Faire afficher les tableaux LA OU il faut
+
+revoir le probleme d'accentuation
+
+
 
 *********************Pour la partie Base de donn�e***********
 PROCEDURE STOCKEE A REVOIR
