@@ -5,7 +5,7 @@
 include("functions.php");
 
 $link = connect_db();
-list_table("CLASSE", $link);
+list_table("CLASSE_HOTEL", $link);
 disconnect_db($link);
 
 ?>
