@@ -112,7 +112,8 @@ create table Assoc_Dest_Circuit(
 create table Etape(	
 	ID_Etape number ,
 	ID_Circuit number ,
-	Descriptif varchar(50) default ' ')  tablespace ts0  ;
+	Descriptif varchar(50) default ' ' ,
+	CONSTRAINT etape_pk PRIMARY KEY (ID_Etape, ID_Circuit))  tablespace ts0  ;
 
 create table Reservation ( 
 	ID_Client number not null, 

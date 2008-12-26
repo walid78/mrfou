@@ -1,7 +1,6 @@
 <?php
 
-/* Global variables */
-
+  //============================================================================
 function connect_db(){
 
   $db = "(DESCRIPTION =
@@ -19,37 +18,54 @@ function connect_db(){
   $link = ocilogon($login, $user, $db) or die( "Could not connect to Oracle database!");
 
   return $link;
-}
+  }
 
+  //============================================================================
 function disconnect_db($link){
   ocilogoff($link);
 }
 
+  //============================================================================
 function list_table($table_name, $link){
+  /* Variables globales */
   $i=0;
+  $nb_keys = 0;
 
   echo "
-<form action=\"pages/traitement_supp.php\" method=\"post\">\n";
+<form action=\"pages/traitement_supp.php?table_name=".$table_name."\" method=\"post\">\n";
 
   echo "  
-<center>
-  <table border=1>";
+  <center>
+    <table border=1>";
 
   $query = "SELECT column_name FROM user_tab_cols WHERE table_name='".$table_name."'";
   $stmt = ociparse($link, $query);
   ociexecute($stmt,OCI_DEFAULT);
 
   echo "
-    <tr>";
+      <tr>";
   while(OCIFetchInto ($stmt, $row, OCI_NUM)){
     foreach($row as $tmp)
       echo "
-      <td>".$tmp."</td>";     
+	<td>".$tmp."</td>";     
   }
   echo "
-      <td>DEL</td>
-    </tr>";
+	<td>DEL</td>
+      </tr>";
 
+
+  /* Recuperation des cles primaire */
+
+  $query = "SELECT column_name FROM user_cons_columns WHERE constraint_name in 
+(SELECT index_name FROM user_constraints WHERE table_name='".$table_name."' and CONSTRAINT_TYPE='P')";
+
+  $stmt = ociparse($link, $query);
+  ociexecute($stmt,OCI_DEFAULT);
+
+  while(OCIFetchInto ($stmt, $row, OCI_NUM)){
+    foreach($row as $tmp)
+      $keys[$nb_keys++] = $tmp;     
+  }
 
 
   /* Nouvelle requete */
@@ -60,28 +76,88 @@ function list_table($table_name, $link){
 
   while(OCIFetchInto ($stmt, $row, OCI_NUM)){
     echo "
-    <tr>";
-  
+      <tr>";
+	
     foreach($row as $tmp){
-      if($id==0)
-	$id=$tmp;
       echo "
-      <td>".$tmp."</td>"; 
+	<td>".$tmp."</td>"; 
     }
-    
+	
+    if($table_name != "ETAPE"){
+      echo "
+	<td><input type=\"checkbox\" 
+                   name=\"row".$i++."\" 
+                   value=\"".$keys[0]."=".$row[0]."\"/></td>";
+    }else{
+      echo "
+	<td><input type=\"checkbox\"
+                   name=\"row".$i++."\" 
+                   value=\"".$keys[0]."=".$row[0]."&".$keys[1]."=".$row[1]."\"/></td>";
+    }
+
     echo "
-      <td><input type=\"checkbox\" name=\"".$table_name."".$i++."\" value=\"".$id."\"/></td>
-    </tr>";
-    $id=$i=0;
+      </tr>";
   }
 
   echo "
-  </table>
-</center>";
-
-  echo "
+    </table>
+    <input align=\"right\" type=\"reset\" value=\"Tout d&eacute;s&eacute;lectionner\"/> 
+    <input align=\"right\" type=\"submit\" value=\"Supprimer\"/>
+  </center>
 </form>";
 
+}
+
+  //============================================================================
+function traitement_supp($link){
+
+  /* Variables globales */
+
+  $table_name = $_GET['table_name'];
+  $nb_rows = 0;
+  $nb_rows_to_del = 0;
+  $nb_keys = 0;
+
+  /* Traitement */
+
+  // Recuperation du nombre d'entrees
+  $query = "SELECT count(*) FROM ".$table_name;
+  $stmt = ociparse($link, $query);
+  ociexecute($stmt,OCI_DEFAULT);
+
+  while(OCIFetchInto ($stmt, $row, OCI_NUM))
+    $nb_rows = $row[0];
+
+  // Recuperation des lignes a supprimer
+  for($i=0 ; $i < $nb_rows ; $i++){
+    if($_POST['row'.$i] != ""){
+      $rows_to_del[$nb_rows_to_del++] = $_POST['row'.$i];
+    }
+  }
+
+  if($nb_rows_to_del == 0){
+    //   deconnect_db($link);
+    //   header('location: ../index.php?page=liste_repas&mess=err_plat');
+    exit("Aucune ligne s&eacute;lectionn&eacute;e");
+  }
+
+  foreach($rows_to_del as $row){
+    $query = "DELETE FROM ".$table_name." WHERE (";
+
+    parse_str($row, $elems);
+   
+    foreach($elems as $elem)
+      //      $query = $query
+      echo $elems."<br/>";
+    
+    $query = $query.")";
+   
+    //   $stmt = ociparse($link, $query);
+    //   ociexecute($stmt,OCI_DEFAULT);
+
+    //echo $query."<br/>";
+   
+  }
 }
 
 ?>
