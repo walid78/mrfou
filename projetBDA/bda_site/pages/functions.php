@@ -38,6 +38,8 @@ function list_table($table_name, $link){
   <center>
     <table border=1>";
 
+  /* Récupération des noms des colonnes */
+
   $query = "SELECT column_name FROM user_tab_cols WHERE table_name='".$table_name."'";
   $stmt = ociparse($link, $query);
   ociexecute($stmt,OCI_DEFAULT);
@@ -166,6 +168,28 @@ function traitement_supp($link){
     echo $query."<br/>";
    
   }
+}
+
+function form_add($table_name){
+  /* Variables */
+  $i=0;
+
+  /* Récupération des noms des colonnes */
+
+  $query = "SELECT column_name FROM user_tab_cols WHERE table_name='".$table_name."'";
+  $stmt = ociparse($link, $query);
+  ociexecute($stmt,OCI_DEFAULT);
+
+  echo "
+<form action=\"pages/traitement_ajout.php?table_name=".$table_name."\" method=\"post\">";
+
+  while(OCIFetchInto ($stmt, $row, OCI_NUM)){
+    foreach($row as $tmp){
+      echo "
+  ".$tmp." : <input type=\"text\" title=\"".$tmp."\" name=\"col".$i++."\" value=\"\"/><br/>";
+    }
+  }
+  
 }
 
 ?>
