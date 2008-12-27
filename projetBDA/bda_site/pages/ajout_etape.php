@@ -1,10 +1,10 @@
-<h1>Ajouter un client</h1>
+<h1>Ajouter une &eacute;tape</h1>
 
 <?php
-   
+
 include("functions.php");
 $link = connect_db();
-form_add("CLIENT", $link);
+form_add("ETAPE", $link);
 disconnect_db($link);
 
 ?>
