@@ -116,7 +116,6 @@ function traitement_supp($link){
   $table_name = $_GET['table_name'];
   $nb_rows = 0;
   $nb_rows_to_del = 0;
-  $nb_keys = 0;
 
   /* Traitement */
 
@@ -141,21 +140,30 @@ function traitement_supp($link){
     exit("Aucune ligne s&eacute;lectionn&eacute;e");
   }
 
+  // Requete de suppression pour chaque ligne selectionnee
   foreach($rows_to_del as $row){
-    $query = "DELETE FROM ".$table_name." WHERE (";
+    $query = "DELETE FROM ".$table_name." WHERE ( ";
 
+    // on recupere les donnees dans un tableau de type "cle prim" => "valeur"
+    // exemple : "id_circuit" => "2"
     parse_str($row, $elems);
-   
-    foreach($elems as $elem)
-      //      $query = $query
-      echo $elems."<br/>";
+
+    $i=0;
+    foreach($elems as $elem){
+      $keys = array_keys($elems);
+      if($i>0)
+	$query = $query."AND ";
+      $query = $query."".$keys[$i++]."=".$elem." ";
+    }
     
     $query = $query.")";
    
+
+    /* A décommenter pour mettre en place la suppression */
     //   $stmt = ociparse($link, $query);
     //   ociexecute($stmt,OCI_DEFAULT);
 
-    //echo $query."<br/>";
+    echo $query."<br/>";
    
   }
 }
