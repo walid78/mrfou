@@ -29,10 +29,14 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
             <a href="?page=liste_sejour">Liste des s&eacute;jours</a><br/>
    
           <center><h2>Saisie</h2></center>
-            => Second temps
             <a href="?page=ajout_client">Ajouter un client</a><br/>
             <a href="?page=ajout_dest">Ajouter une destination</a><br/>
             <a href="?page=ajout_hotel">Ajouter un hôtel</a><br/>
+            <a href="?page=ajout_circuit">Ajouter un circuit</a><br/>
+            <a href="?page=ajout_vol">Ajouter un vol</a><br/>
+            <a href="?page=ajout_etape">Ajouter une &eacute;tape</a><br/>
+            <a href="?page=ajout_classe">Ajouter une classe d'h&ocirc;tel</a><br/>
+            <a href="?page=ajout_sejour">Ajouter un s&eacute;jour</a><br/>
         </div>
 
         <div id="page">
@@ -51,7 +55,15 @@ $pages = array(
 	       "liste_etape" => "pages/liste_etape.php",
 	       "liste_classe" => "pages/liste_classe.php",
 	       "liste_sejour" => "pages/liste_sejour.php",
-	       "liste_dest" => "pages/liste_dest.php"
+	       "liste_dest" => "pages/liste_dest.php",
+	       "ajout_client" => "pages/ajout_client.php",
+	       "ajout_hotel" => "pages/ajout_hotel.php",
+	       "ajout_vol" => "pages/ajout_vol.php",
+	       "ajout_circuit" => "pages/ajout_circuit.php",
+	       "ajout_etape" => "pages/ajout_etape.php",
+	       "ajout_classe" => "pages/ajout_classe.php",
+	       "ajout_sejour" => "pages/ajout_sejour.php",
+	       "ajout_dest" => "pages/ajout_dest.php"
 	      );
 
 include $pages[$page];
