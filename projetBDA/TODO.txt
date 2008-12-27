@@ -2,6 +2,8 @@
 
 
 Pouvoir ajouter les clients, hotels, vols, destinations, circuits, �tapes,classes d'hotel,s�jours ....
+=> Faire un peu mieux que ce qui est actuellement fait, en faisant simplement une page par ajout ça ira plus vite à coder
+
 
 pouvoir lister les noms/pr�nom des clients.
 en cliquant sur un client, sa fiche complete s'affiche (possibilit� de modifier les infos)
