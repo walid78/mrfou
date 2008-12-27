@@ -170,7 +170,7 @@ function traitement_supp($link){
   }
 }
 
-function form_add($table_name){
+function form_add($table_name, $link){
   /* Variables */
   $i=0;
 
@@ -181,15 +181,20 @@ function form_add($table_name){
   ociexecute($stmt,OCI_DEFAULT);
 
   echo "
-<form action=\"pages/traitement_ajout.php?table_name=".$table_name."\" method=\"post\">";
+<center>
+  <form action=\"pages/traitement_ajout.php?table_name=".$table_name."\" method=\"post\">";
 
   while(OCIFetchInto ($stmt, $row, OCI_NUM)){
     foreach($row as $tmp){
       echo "
-  ".$tmp." : <input type=\"text\" title=\"".$tmp."\" name=\"col".$i++."\" value=\"\"/><br/>";
+    <input type=\"text\" title=\"".$tmp."\" name=\"col".$i++."\" value=\"".$tmp."\"/><br/>";
     }
   }
   
+  echo "
+    <input type=\"submit\" value=\"Ajouter\"/>
+  </form>
+</center>";
 }
 
 ?>
