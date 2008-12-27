@@ -1,7 +1,7 @@
 ******************pour la partie application ********************
 
 
-Pouvoir lister/ajouter/supprimer les clients, hotels, vols, destinations, circuits, �tapes,classes d'hotel,s�jours ....
+Pouvoir ajouter les clients, hotels, vols, destinations, circuits, �tapes,classes d'hotel,s�jours ....
 
 pouvoir lister les noms/pr�nom des clients.
 en cliquant sur un client, sa fiche complete s'affiche (possibilit� de modifier les infos)
