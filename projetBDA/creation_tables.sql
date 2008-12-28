@@ -503,3 +503,217 @@ BEGIN
 AjoutFacture(1,2,1,1,1,2,2);
 commit;
 END;
+
+-- Sequences
+CREATE SEQUENCE seq_client START WITH 0;
+CREATE SEQUENCE seq_dest START WITH 0;
+CREATE SEQUENCE seq_hotel START WITH 0;
+CREATE SEQUENCE seq_circuit START WITH 0;
+CREATE SEQUENCE seq_vol START WITH 0;
+CREATE SEQUENCE seq_etape START WITH 0;
+CREATE SEQUENCE seq_classe START WITH 0;
+CREATE SEQUENCE seq_sejour START WITH 0;
+
+-- Fonctions stockees pour les ajouts
+----------------------------------------
+CREATE OR REPLACE PROCEDURE ajout_client(
+  adresse varchar,
+  tel number(10),
+  nom varchar,
+  prenom varchar,
+  age number(3),
+  email varchar,
+  classe_sociale varchar,
+  id_dest_preferee number,
+  investissement_moyen number)
+as
+-- Variables --
+id_client client.id_client%type;
+
+-- Programme --
+begin
+  SELECT seq_client.NEXTVAL INTO id_client FROM dual;
+
+  INSERT INTO client
+  VALUES (
+  	 id_client,
+	 adresse,
+	 tel,
+	 nom,
+	 prenom,
+	 age,
+	 email,
+	 classe_sociale,
+	 id_dest_preferee,
+	 investissement_moyen
+	 );
+
+end;
+/
+
+----------------------------------------
+CREATE OR REPLACE PROCEDURE ajout_dest(
+  nom_destination varchar,
+  pays varchar)
+as
+-- Variables --
+id_dest dest.id_dest%type;
+
+-- Programme --
+begin
+  SELECT seq_dest.NEXTVAL INTO id_dest FROM dual;
+
+  INSERT INTO dest
+  VALUES (
+  	 id_dest,
+	 nom_destination,
+	 pays
+	 );
+
+end;
+/
+
+----------------------------------------
+CREATE OR REPLACE PROCEDURE ajout_hotel(
+  id_etape number,
+  nom_hotel varchar,
+  adresse varchar,
+  id_classe number,
+  capa_s number,
+  capa_d number)
+as
+-- Variables --
+id_hotel hotel.id_hotel%type;
+
+-- Programme --
+begin
+  SELECT seq_hotel.NEXTVAL INTO id_hotel FROM dual;
+
+  INSERT INTO hotel
+  VALUES (
+  	 id_hotel,
+	 id_etape,
+	 nom_hotel,
+	 adresse,
+	 id_classe,
+	 capa_s,
+	 capa_d
+	 );
+
+end;
+/
+
+----------------------------------------
+CREATE OR REPLACE PROCEDURE ajout_circuit(
+  nom_circuit varchar)
+as
+-- Variables --
+id_circuit circuit.id_circuit%type;
+
+-- Programme --
+begin
+  SELECT seq_circuit.NEXTVAL INTO id_circuit FROM dual;
+
+  INSERT INTO circuit
+  VALUES (
+  	 id_circuit,
+	 nom_circuit
+	 );
+
+end;
+/
+
+----------------------------------------
+CREATE OR REPLACE PROCEDURE ajout_vol(
+  id_dest number,
+  prix_enfant number,
+  prix_adulte number)
+as
+-- Variables --
+id_vol vol.id_vol%type;
+
+-- Programme --
+begin
+  SELECT seq_vol.NEXTVAL INTO id_vol FROM dual;
+
+  INSERT INTO vol
+  VALUES (
+  	 id_vol,
+	 id_dest,
+	 prix_enfant,
+	 prix_adulte
+	 );
+
+end;
+/
+
+----------------------------------------
+CREATE OR REPLACE PROCEDURE ajout_etape(
+  no_etape number,
+  id_circuit number,
+  descriptif varchar)
+as
+-- Variables --
+id_etape etape.id_etape%type;
+
+-- Programme --
+begin
+  SELECT seq_etape.NEXTVAL INTO id_etape FROM dual;
+
+  INSERT INTO etape
+  VALUES (
+  	 id_etape,
+	 no_etape,
+	 id_circuit,
+	 descriptif
+	 );
+
+end;
+/
+
+----------------------------------------
+CREATE OR REPLACE PROCEDURE ajout_classe(
+  prix_s number,
+  prix_d number)
+as
+-- Variables --
+id_classe classe.id_classe%type;
+
+-- Programme --
+begin
+  SELECT seq_classe.NEXTVAL INTO id_classe FROM dual;
+
+  INSERT INTO classe
+  VALUES (
+  	 id_classe,
+	 prix_s,
+	 prix_d
+	 );
+
+end;
+/
+
+----------------------------------------
+CREATE OR REPLACE PROCEDURE ajout_sejour(
+  duree number,
+  description varchar,
+  coeff number)
+as
+-- Variables --
+id_sejour sejour.id_sejour%type;
+
+-- Programme --
+begin
+  SELECT seq_sejour.NEXTVAL INTO id_sejour FROM dual;
+
+  INSERT INTO sejour
+  VALUES (
+  	 id_sejour,
+	 duree,
+	 description,
+	 coeff
+	 );
+
+end;
+/
+
