@@ -2,7 +2,9 @@
 
 
 Pouvoir ajouter les clients, hotels, vols, destinations, circuits, �tapes,classes d'hotel,s�jours ....
-=> Faire un peu mieux que ce qui est actuellement fait, en faisant simplement une page par ajout ça ira plus vite à coder
+
+Procedures basiques sont faites pour ajouter, il faut les ameliorer en prenant en compte les 
+conditions d'ajout (capacité des hotels etc...) et les vérifier aussi.
 
 
 pouvoir lister les noms/pr�nom des clients.
