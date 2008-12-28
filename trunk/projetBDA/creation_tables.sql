@@ -110,10 +110,10 @@ create table Assoc_Dest_Circuit(
 
 --passer les 2 clés en en une clé composée. 
 create table Etape(	
-	ID_Etape number ,
+	ID_Etape number primary key,
+	No_Etape number default(1) check (No_Etape > 0),
 	ID_Circuit number ,
-	Descriptif varchar(50) default ' ' ,
-	CONSTRAINT etape_pk PRIMARY KEY (ID_Etape, ID_Circuit))  tablespace ts0  ;
+	Descriptif varchar(50) default ' ')  tablespace ts0  ;
 
 create table Reservation ( 
 	ID_Client number not null, 
