@@ -266,7 +266,7 @@ INSERT INTO Assoc_Dest_Circuit VALUES (2,1);
 -- Remplissage de la table Séjour --
 
 INSERT INTO Sejour VALUES (1,10,'Courte durée',1.5) ;
-INSERT INTO Sejour VALUES (2,10,'Longue durée',1.0) ;
+INSERT INTO Sejour VALUES (2,21,'Longue durée',1.0) ;
 
 
 -- Remplissage de la table Assoc_Prix_Séjour_Circuit --
