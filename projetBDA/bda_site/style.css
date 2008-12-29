@@ -64,7 +64,7 @@ a:hover, a:focus
 
 #menu 
 {
-  background-color: grey;
+  background-color: lightblue;
   width: 154px;
   float: left;
   border-style: solid;
@@ -79,7 +79,7 @@ a:hover, a:focus
 
 #page
 {
-  background-color: grey;
+  background-color: lightblue;
   padding-right: 5px;
   margin-left: 0px;
 //  width: 837px;
