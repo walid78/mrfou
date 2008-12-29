@@ -20,12 +20,12 @@ function connect_db(){
   return $link;
   }
 
-  //============================================================================
+//============================================================================
 function disconnect_db($link){
   ocilogoff($link);
 }
 
-  //============================================================================
+//============================================================================
 function list_table($table_name, $link){
   /* Variables globales */
   $i=0;
@@ -110,7 +110,7 @@ function list_table($table_name, $link){
 
 }
 
-  //============================================================================
+//============================================================================
 function traitement_supp($link){
 
   /* Variables globales */
@@ -170,31 +170,85 @@ function traitement_supp($link){
   }
 }
 
-function form_add($table_name, $link){
-  /* Variables */
-  $i=0;
+//============================================================================
+function traitement_ajout($link){
 
-  /* Récupération des noms des colonnes */
+  /* Variables globales */
 
-  $query = "SELECT column_name FROM user_tab_cols WHERE table_name='".$table_name."'";
+  $table_name = $_GET['table_name'];
+  $funcadd= "ajout_";
+
+  switch($table_name){
+
+  case "CLIENT":
+    $funcadd = $funcadd."client";
+    break;
+
+  case "DESTINATION":
+    $funcadd = $funcadd."dest";
+    break;
+
+  case "HOTEL":
+    $funcadd = $funcadd."hotel";
+    break;
+
+  case "CIRCUIT":
+    $funcadd = $funcadd."circuit";
+    break;
+
+  case "VOL":
+    $funcadd = $funcadd."vol";
+    break;
+
+  case "ETAPE":
+    $funcadd = $funcadd."etape";
+    break;
+
+  case "CLASSE_HOTEL":
+    $funcadd = $funcadd."classe";
+    break;
+
+  case "SEJOUR":
+    $funcadd = $funcadd."sejour";
+    break;
+
+  default:
+    exit("Problème table inconnue.");
+  }
+
+  /* Traitement */
+
+  // Recuperation du nombre d'entrees
+//  $query = "SELECT count(*) FROM ".$table_name;
+  $query = "SELECT count(column_name) FROM user_tab_cols WHERE table_name='".$table_name."'";
   $stmt = ociparse($link, $query);
   ociexecute($stmt,OCI_DEFAULT);
 
-  echo "
-<center>
-  <form action=\"pages/traitement_ajout.php?table_name=".$table_name."\" method=\"post\">";
+  while(OCIFetchInto ($stmt, $row, OCI_NUM))
+    $nb_rows = $row[0];
+  echo $nb_rows."<br/>";
 
-  while(OCIFetchInto ($stmt, $row, OCI_NUM)){
-    foreach($row as $tmp){
-      echo "
-    <input type=\"text\" title=\"".$tmp."\" name=\"col".$i++."\" value=\"".$tmp."\"/><br/>";
-    }
+  // Recuperation des colonnes à ajouter
+  for($i=0 ; $i < $nb_rows-1 ; $i++){
+    $col_to_add[$i] = $_POST['col'.$i];
   }
+
+  $query = $funcadd."(";
+  $i=0;
+  foreach($col_to_add as $col){
+    if($i++ == 0)
+      $query = $query."".$col;
+    else
+      $query = $query.", ".$col;
+  }
+  $query = $query.");";
   
-  echo "
-    <input type=\"submit\" value=\"Ajouter\"/>
-  </form>
-</center>";
+  echo $query."<br/>";
+
+  /* A décommenter pour mettre en place la suppression */
+  //   $stmt = ociparse($link, $query);
+  //   ociexecute($stmt,OCI_DEFAULT);
+  
 }
 
 ?>

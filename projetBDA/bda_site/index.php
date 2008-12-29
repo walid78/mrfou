@@ -18,25 +18,28 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
       <div id="centre">
    
         <div id="menu">
+	  <center><h2>R&eacute;servation</h2></center>
+          <a href="?page=valider_reserv">Valider une r&eacute;servation</a><br/>
+
           <center><h2>Consultation</h2></center>
-            <a href="?page=liste_client">Liste des clients</a><br/>
-            <a href="?page=liste_dest">Liste des destinations</a><br/>
-            <a href="?page=liste_hotel">Liste des hôtels</a><br/>
-            <a href="?page=liste_circuit">Liste des circuits</a><br/>
-            <a href="?page=liste_vol">Liste des vols</a><br/>
-            <a href="?page=liste_etape">Liste des &eacute;tapes</a><br/>
-            <a href="?page=liste_classe">Liste des classes d'h&ocirc;tel</a><br/>
-            <a href="?page=liste_sejour">Liste des s&eacute;jours</a><br/>
-   
+          <a href="?page=liste_client">Liste des clients</a><br/>
+          <a href="?page=liste_dest">Liste des destinations</a><br/>
+          <a href="?page=liste_hotel">Liste des hôtels</a><br/>
+          <a href="?page=liste_circuit">Liste des circuits</a><br/>
+          <a href="?page=liste_vol">Liste des vols</a><br/>
+          <a href="?page=liste_etape">Liste des &eacute;tapes</a><br/>
+          <a href="?page=liste_classe">Liste des classes d'h&ocirc;tel</a><br/>
+          <a href="?page=liste_sejour">Liste des s&eacute;jours</a><br/>
+	  
           <center><h2>Saisie</h2></center>
-            <a href="?page=ajout_client">Ajouter un client</a><br/>
-            <a href="?page=ajout_dest">Ajouter une destination</a><br/>
-            <a href="?page=ajout_hotel">Ajouter un hôtel</a><br/>
-            <a href="?page=ajout_circuit">Ajouter un circuit</a><br/>
-            <a href="?page=ajout_vol">Ajouter un vol</a><br/>
-            <a href="?page=ajout_etape">Ajouter une &eacute;tape</a><br/>
-            <a href="?page=ajout_classe">Ajouter une classe d'h&ocirc;tel</a><br/>
-            <a href="?page=ajout_sejour">Ajouter un s&eacute;jour</a><br/>
+          <a href="?page=ajout_client">Ajouter un client</a><br/>
+          <a href="?page=ajout_dest">Ajouter une destination</a><br/>
+          <a href="?page=ajout_hotel">Ajouter un hôtel</a><br/>
+          <a href="?page=ajout_circuit">Ajouter un circuit</a><br/>
+          <a href="?page=ajout_vol">Ajouter un vol</a><br/>
+          <a href="?page=ajout_etape">Ajouter une &eacute;tape</a><br/>
+          <a href="?page=ajout_classe">Ajouter une classe d'h&ocirc;tel</a><br/>
+          <a href="?page=ajout_sejour">Ajouter un s&eacute;jour</a><br/>
         </div>
 
         <div id="page">
@@ -63,7 +66,8 @@ $pages = array(
 	       "ajout_etape" => "pages/ajout_etape.php",
 	       "ajout_classe" => "pages/ajout_classe.php",
 	       "ajout_sejour" => "pages/ajout_sejour.php",
-	       "ajout_dest" => "pages/ajout_dest.php"
+	       "ajout_dest" => "pages/ajout_dest.php",
+	       "valider_reserv" => "pages/valider_reserv.php"
 	      );
 
 include $pages[$page];

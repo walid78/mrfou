@@ -1,11 +1,9 @@
-<h1>Ajouter une classe d'h&ocirc;tel</h1>
+<h1>Ajouter une classe d'<!--'-->h&ocirc;tel</h1>
 
-<?php
-
-include("functions.php");
-
-$link = connect_db();
-form_add("CLASSE_HOTEL", $link);
-disconnect_db($link);
-
-?>
+<center>
+  <form action="pages/traitement_ajout.php?table_name=CLASSE_HOTEL" method="post">
+    <input type="text" title="PRIX_S" name="col0" value="PRIX_S"/><br/>
+    <input type="text" title="PRIX_D" name="col1" value="PRIX_D"/><br/>
+    <input type="submit" value="Ajouter"/>
+  </form>
+</center>
