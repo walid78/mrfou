@@ -44,14 +44,12 @@ a:hover, a:focus
 {
   margin-left: auto;
   margin-right: auto;
- // width: 1000px;
   width: 1150px;
   }
 
 #haut
 {
-//  background-image: url("images/bann.jpg");
-//  width: 998px;
+  background-image: url("images/fond.jpg");
   width: 1148px;
   height: 149px;
   border-style: solid;
@@ -61,14 +59,13 @@ a:hover, a:focus
 
 #centre
 { 
-//  width: 1000px;
   width: 1150px;
   }
 
 #menu 
 {
   background-color: grey;
-  width: 144px;
+  width: 154px;
   float: left;
   border-style: solid;
   border-color: black;
@@ -86,7 +83,7 @@ a:hover, a:focus
   padding-right: 5px;
   margin-left: 0px;
 //  width: 837px;
-  width: 987px;
+  width: 977px;
   float: right;
   border-style: solid;
   border-color: black;
