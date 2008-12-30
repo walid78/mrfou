@@ -1,10 +1,16 @@
-
+/*
+ * File:   main.c
+ * Author: eewans fkuntz
+ *
+ * Created on 19 décembre 2008, 22:22
+ */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
 
+/*Affiche le tableau passé entre paramètre*/
 void affiche(int *tableau, int tailleTableau) {
     int i;
 
@@ -13,6 +19,7 @@ void affiche(int *tableau, int tailleTableau) {
     }
 }
 
+/*
 void remplir(int *tableau, int tailleTableau) {
     long i;
 
@@ -20,7 +27,9 @@ void remplir(int *tableau, int tailleTableau) {
         tableau[i] = -1;
     }
 }
+ */
 
+/*retourne le nombre de lignes du fichier passé entre paramètre*/
 int nbLignes(FILE *fp) {
     int n = 0, c;
 
@@ -32,6 +41,7 @@ int nbLignes(FILE *fp) {
     return n;
 }
 
+/*Parse la grille du fichier passé entre paramètre dans le tableau passé entre paramètre*/
 int parserGrille(char *filename, int *tab) {
     int position = 0;
     
@@ -56,16 +66,16 @@ int parserGrille(char *filename, int *tab) {
         caractereActuel = fgetc(fp); // On lit le caractère
         //printf("%c", caractereActuel);
 
-        if (isdigit(caractereActuel)){
+        if ( (caractereActuel-'0') >=0 && (caractereActuel-'0') <=9 ){
 
-            tab[position]=caractereActuel;
+            tab[position]=caractereActuel-'0';
             printf("%c ", caractereActuel);
             position++;
         }
 
-        if(caractereActuel=='_'){
+        else if(caractereActuel=='_'){
             printf("%c ", caractereActuel);
-            tab[position]==-1;
+            tab[position]=-1;
             position++;
         }
 
@@ -97,57 +107,3 @@ int main(int argc, char *argv[]) {
     //remplir(tab,15);
     //affiche(tab,15);
 }
-
-
-
-
-
-
-
-
-/*
- * File:   main.c
- * Author: eewans
- *
- * Created on 19 décembre 2008, 22:22
- */
-
-/*
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <ctype.h>
-
-void remplirZero(int **matrice, int taille){
-    int i,j;
-
-    for(int i=0;i<taille;i++)
-        for(int j=0;j<taille;j++){
-            matrice[i][j]=0;
-        }
-}
-
-
-void AfficheMatrice(int **Mat, int nbSommets) {
-
-    int i, j;
-
-    for (i = 0; i < nbSommets; i++) {
-        for (j = 0; j < nbSommets; j++)
-            printf("%d ", Mat[i][j]);
-        printf("\n");
-    }
-}
-
-int main(int argc, char ** argv) {
-    int tab[10][10];
-    remplirZero(&tab,10);
- */
-//T = afficher_fichier(T, 4);
-/*
-
-
-}
- */
-
-
