@@ -14,7 +14,7 @@
 void affiche(int *tableau, int tailleTableau) {
     int i;
 
-    for (i = 0; i < tailleTableau; i++) {
+    for (i = 0; i <= tailleTableau; i++) {
         printf("%i\n", tableau[i]);
     }
 }
@@ -79,6 +79,12 @@ int parserGrille(char *filename, int *tab) {
             position++;
         }
 
+        else if(caractereActuel >='A' && caractereActuel <= 'F'){
+            printf("%c ", caractereActuel);
+            tab[position]=caractereActuel -'A'+10;
+            position++;
+        }
+
 
     } while (caractereActuel != EOF);
 
@@ -90,7 +96,7 @@ int parserGrille(char *filename, int *tab) {
 }
 
 int main(int argc, char *argv[]) {
-    FILE *fp = fopen("/home/eewans/grids/4x4-1.txt", "r");
+    FILE *fp = fopen("/home/eewans/grids/lettres.txt", "r");
     int lignes = nbLignes(fp);
     int taille = lignes * lignes - 1;
 
@@ -99,7 +105,7 @@ int main(int argc, char *argv[]) {
     int tab [taille];
 
 
-    parserGrille("/home/eewans/grids/4x4-1.txt", tab);
+    parserGrille("/home/eewans/grids/lettres.txt", tab);
     //remplir(tab, taille);
     affiche(tab,taille);
 
