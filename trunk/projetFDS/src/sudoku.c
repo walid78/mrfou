@@ -1,25 +1,57 @@
-/*
- * File:   main.c
- * Author: eewans fkuntz
- *
- * Created on 19 décembre 2008, 22:22
- */
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
 #include <math.h>
+#include <stdint.h>
 
-typedef unsigned short uint16_t;
+//Nombre de couleurs
+int n;
+
+//Dimension
+int d;
+
+int* test(uint16_t x){
+  int nb_coul = 0;
+  
+  if(x==(uint16_t)-1)
+    return NULL;
+
+  //Tableau des couleurs initialisé à -1
+  int *coul = (int*)malloc(n*sizeof(int));
+  for(int i=0 ; i<n ; ++i)
+    coul[i] = -1;
+
+  for(int i=0 ; i<n ; ++i){
+    if(x>>i & 1){
+      coul[nb_coul] = i;
+    }
+    nb_coul++;
+  }
+
+  return coul;
+}
+
+
 
 /*Affiche le tableau passé entre paramètre*/
-void affiche(int *tableau, int tailleTableau) {
-  int i;
-
-  for (i = 0; i <= tailleTableau; i++) {
-    printf("%i\n", tableau[i]);
+void affiche(uint16_t *grille, int n) {
+  int *coul;
+  for(int i=0 ; i<n ; ++i){
+    for(int j=0 ; j<n ; ++j) {
+      printf("{");
+      coul = test(grille[n*i+j]);
+      if(coul != NULL){
+	for(int k=0 ; k<n ; ++k){
+	  if(coul[k] != -1)
+	    printf("%i", coul[k]);
+	}
+      }
+      printf("}");
+    }
+    printf("\n");
   }
+  free(coul);
 }
 
 /*
@@ -46,7 +78,7 @@ int nbLignes(FILE *fp) {
 }
 
 /*Parse la grille du fichier passé entre paramètre dans le tableau passé entre paramètre*/
-int parserGrille(FILE *fp, int *tab) {
+int parserGrille(FILE *fp, uint16_t *tab) {
   int position = 0;
   int caractereActuel;
 
@@ -61,7 +93,7 @@ int parserGrille(FILE *fp, int *tab) {
 
       if ( (caractereActuel-'0') >=0 && (caractereActuel-'0') <=9 ){
 	// C'est un chiffre
-	tab[position]=caractereActuel-'0';
+	tab[position]=pow(2,(caractereActuel-'0'));
 	printf("%c ", caractereActuel);
 	position++;
       }
@@ -76,14 +108,14 @@ int parserGrille(FILE *fp, int *tab) {
       else if(caractereActuel >='A' && caractereActuel <= 'F'){
 	// C'est une lettre correspondant a un nombre hexadecimal
 	printf("%c ", caractereActuel);
-	tab[position]=caractereActuel -'A'+10;
+	tab[position]=pow(2,(caractereActuel -'A'+10));
 	position++;
       }
 
 
     } while (caractereActuel != EOF);
 
-  printf("parsage fini position = %i \n",position);
+  printf(" Parsage fini position = %i \n",position);
 
   fseek(fp, 0, SEEK_SET); 
   return EXIT_SUCCESS;
@@ -96,20 +128,43 @@ int main(int argc, char *argv[]) {
   char *filename = argv[1];
   FILE *fp = fopen(filename, "r");
 
-  int n = nbLignes(fp);
-  int d = sqrt(n);
+  n = nbLignes(fp);
+  d = sqrt(n);
 
   printf("Taille du tableau : %ix%i\n", n, n);
-  //uint16_t grille[n*n];
-  int tab[n*n];
+  uint16_t grille[n*n];
+/*   uint16_t t=4; */
+  /* int tab[n*n]; */
 
-  parserGrille(fp, tab);
-  //remplir(tab, taille);
-  //affiche(tab,taille);
+  parserGrille(fp, grille); 
+   affiche(grille, n);
 
-  //int tab[15];
-  //remplir(tab,15);
-  //affiche(tab,15);
+  for(int i=0 ; i<n*n ; ++i)
+    printf("%u ",grille[i]);
+  printf("\n");
+  
+ /*  uint32_t tmp = -1; */
+
+/*   int* tmp2 = test(tmp); */
+
+/*   if(tmp2==NULL) */
+/*     printf("NULL"); */
+/*   else */
+/*     for(int i=0 ; i<n ; ++i) */
+/*       printf("%i ",tmp2[i]); */
+  
+/*   printf("\n"); */
+
+/*   free(tmp2); */
+
+
+
+/*   remplir(tab, taille); */
+/*   affiche(tab,taille); */
+
+/*   int tab[15]; */
+/*   remplir(tab,15); */
+/*   affiche(tab,15); */
 
   
   fclose(fp);
