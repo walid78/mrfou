@@ -49,8 +49,14 @@ void affiche_coul_presentes(uint16_t x){
 }
 
 //==============================================================================
+bool est_vide(uint16_t x){
+  return ((x & ((1<<n)-1)) == 0);
+}
+
+//==============================================================================
 bool est_singl(uint16_t x){
-  return ((x & (x-1)) == 0);
+  
+  return !est_vide(x) && (((x & (x-1)) & ((1<<n)-1)) == 0);
 }
 
 /*Affiche le tableau passé entre paramètre*/
@@ -69,6 +75,7 @@ void affiche(uint16_t *grille) {
       }else
 	printf("bottom");
       printf("}");
+/*       printf(" "); */
     }
     free(coul);
     printf("\n");
@@ -137,46 +144,29 @@ int parserGrille(FILE *fp, uint16_t *tab) {
 }
 
 //==============================================================================
-uint16_t f(uint16_t X){
-  // X est vide
-  if(X == 0)
-    return 0;
-  
-  // X est un singleton
-  if(est_singl(X))
-    return ~X; 
-    
-  return -1;
-}
-
-//==============================================================================
 uint16_t contraintes(uint16_t* val0, uint16_t* X, int p){
   uint16_t result = 0;
   int q,r;
 
   result |= val0[p];
-
-  /* Nouvelle idée :
-   * Si un singleton est dans un Xq dépendant, 
-   * alors on l'enlève de result
-   */
   
   /* Même colonne */
   for(int q=p%n ; q<nb_pos ; q+=n){
-    if(q != p)
+    if(q != p){
       if(est_singl(val0[q])){
-/* 	printf("X%i =%u",q,val0[q]); */
-/* 	printf("\n"); */
 	result &= (~val0[q]);
       }
-    
+    }
   }
+
   /* Même ligne */
   q = (p/n)*n;
-  for(int i=0 ; i<n ; ++i){
-    if(++q != p)
-      if(est_singl(val0[q]))
+  for(int i=0 ; i<n ; ++i, ++q){
+    if(q != p){
+      if(est_singl(val0[q])){
 	result &= (~val0[q]);
+      }
+    }
   }
   /* Même bloc */
   //calcul du coin supérieur gauche du bloc
@@ -185,9 +175,11 @@ uint16_t contraintes(uint16_t* val0, uint16_t* X, int p){
   for(int i=0 ; i<d ; ++i){
     for(int j=0 ; j<d ; ++j){
       q = (r+j) + (n*i);
-      if(q != p)
-	if(est_singl(val0[q]))
+      if(q != p){
+	if(est_singl(val0[q])){
 	  result &= (~val0[q]);
+	}
+      }
     }
   }
   
@@ -206,16 +198,9 @@ uint16_t* round_robin(uint16_t* val0){
   do{
     change = false;
     for(int i=0 ; i<nb_pos ; ++i){
-      printf("%i:",i);
       new = contraintes(val0, X, i);
-      printf("result=");
-      affiche_coul_presentes(new);
-      printf("\tX%i=",i);
-      affiche_coul_presentes(X[i]);
-      printf("\n");
       //Si new n'est pas inclus dans Xp      
       if((X[i]&new) != new){
-	printf("AHAH\n");
 	change = true;
 	X[i] |= new;
       }
@@ -230,35 +215,28 @@ void sudoku(uint16_t* val0){
   uint16_t* val = round_robin(val0);
   int p;
 
-  printf("val0\n");
-  affiche(val0);
-  printf("val\n");
-  affiche(val);
-
   for(p=0 ; p<nb_pos ; ++p){
-    if(est_singl(val[p]) || val[p] == 0){
-      if(val[p] == 0){
+    if(est_singl(val[p]) || est_vide(val[p])){
+      if(est_vide(val[p])){
 	free(val);
 	return;
       }
-    }else
+    }else{
       break;
+    }
   }
   
-  if(p>nb_pos){
+  if(p>=nb_pos){
     printf("GRILLE SOLUTION\n");
-    affiche(val0);
+    affiche(val);
+    exit(EXIT_SUCCESS);
   }else{
     bool* coul = coul_presentes(val[p]);
     uint16_t* val0_prim = val_copie(val);
     for(int i=0 ; i<n ; ++i){
       if(coul[i]){
 	val0_prim[p] = 1<<i;
-	printf("val0_prim\n");
-	affiche(val0_prim);
-	printf("NOUVEL APPEL\n");
-	sleep(1);
- 	sudoku(val0_prim);
+	sudoku(val0_prim);
       }
     }
     free(val0_prim);
