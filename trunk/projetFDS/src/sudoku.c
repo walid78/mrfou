@@ -6,6 +6,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include <unistd.h>
+/* #include "cudd-2.4.1/cudd/cudd.h" */
 
 //Nombre de couleurs
 int n;
@@ -13,6 +14,12 @@ int n;
 int d;
 //Nombre de positions
 int nb_pos;
+
+//==============================================================================
+void usage(){
+  printf("USAGE : ./sudoku fichier_grille\n");
+  exit(EXIT_FAILURE);
+}
 
 //==============================================================================
 uint16_t* val_copie(uint16_t* val){
@@ -247,6 +254,10 @@ void sudoku(uint16_t* val0){
 
 //==============================================================================
 int main(int argc, char *argv[]) {
+
+  if(argc != 2)
+    usage();
+  
 
   /* Ouverture du fichier */
   char *filename = argv[1];
