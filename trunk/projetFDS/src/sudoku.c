@@ -71,7 +71,7 @@ void affiche(uint16_t *grille) {
   bool* coul;
   for(int i=0 ; i<n ; ++i){
     for(int j=0 ; j<n ; ++j){
-      printf("{");
+      //printf("{");
       coul = coul_presentes(grille[n*i+j]);
       if(coul != NULL){
 	for(int k=0 ; k<n ; ++k){
@@ -80,8 +80,8 @@ void affiche(uint16_t *grille) {
 	}
       }else
 	printf("bottom");
-      printf("}");
-/*       printf(" "); */
+      //printf("}");
+      printf(" "); 
     }
     free(coul);
     printf("\n");
