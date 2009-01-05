@@ -14,23 +14,25 @@ int d;
 //Nombre de positions
 int nb_pos;
 
+/* Fonction usage du programme */
 //==============================================================================
 void usage(){
-  printf("USAGE : ./sudoku fichier_grille\n");
+  fprintf(stderr, "USAGE : ./sudoku fichier_grille\n");
   exit(EXIT_FAILURE);
 }
 
+/* Retourne la copie d'une valuation */
 //==============================================================================
 uint16_t* val_copie(uint16_t* val){
   uint16_t* copie = (uint16_t*)malloc(nb_pos*sizeof(uint16_t));
 
-  for(int i=0 ; i<nb_pos ; ++i){
+  for(int i=0 ; i<nb_pos ; ++i)
     copie[i] = val[i];
-  }
 
   return copie;
 }
 
+/* Renvoie un tableau de booléens qui donne l'ensemble des couleurs présentes */
 //==============================================================================
 bool* coul_presentes(uint16_t x){
   bool* coul = (bool*)malloc(n*sizeof(bool));
@@ -46,56 +48,85 @@ bool* coul_presentes(uint16_t x){
   return coul;
 }
 
-//==============================================================================
-void affiche_coul_presentes(uint16_t x){
-  bool* coul = coul_presentes(x);
-  for(int i=0 ; i<n ; ++i)
-    if(coul[i])
-      printf("%i ", i);
-}
-
+/* Dit si l'ensemble des couleurs possibles est vide */
 //==============================================================================
 bool est_vide(uint16_t x){
   return ((x & ((1<<n)-1)) == 0);
 }
 
+/* Dit s'il n'y a qu'une seule couleur possible */
 //==============================================================================
 bool est_singl(uint16_t x){
   
   return !est_vide(x) && (((x & (x-1)) & ((1<<n)-1)) == 0);
 }
 
-/*Affiche le tableau passé entre paramètre*/
+/* Affiche la grille passée en paramètre */
 //==============================================================================
 void affiche(uint16_t *grille) {
-  bool* coul;
   for(int i=0 ; i<n ; ++i){
     for(int j=0 ; j<n ; ++j){
-      //printf("{");
-      coul = coul_presentes(grille[n*i+j]);
-      if(coul != NULL){
-	for(int k=0 ; k<n ; ++k){
-	  if(coul[k])
-	    printf("%i", k);
-	}
-      }else
-	printf("bottom");
-      //printf("}");
-      printf(" "); 
+      //Si on a toutes les couleurs
+      if(grille[n*i+j] >= (1<<n)-1){
+	printf("_ ");
+      }else{
+	bool* coul = coul_presentes(grille[n*i+j]);
+	if(coul != NULL){
+	  for(int k=0 ; k<n ; ++k){
+	    if(coul[k]){
+	      switch(k){
+	      case 10:
+		printf("A ");
+		break;
+
+	      case 11:
+		printf("B ");
+		break;
+
+	      case 12:
+		printf("C ");
+		break;
+
+	      case 13:
+		printf("D ");
+		break;
+
+	      case 14:
+		printf("E ");
+		break;
+
+	      case 15:
+		printf("F ");
+		break;
+
+	      default:
+		printf("%i ",k);
+		break;
+	      }
+	    }
+	  }
+	}else
+	  printf("bottom");
+	free(coul);
+      }
+      if((j%d == d-1) && (j != 0))
+	printf(" ");
+
     }
-    free(coul);
+    if((i%d == d-1) && (i != 0))
+      printf("\n");
     printf("\n");
   }
 }
 
-/*retourne le nombre de lignes du fichier passé entre paramètre*/
+/* Retourne le nombre de lignes du fichier passé en paramètre */
 //==============================================================================
 int nbLignes(FILE *fp) {
   int n = 0, c;
 
   while ((c = fgetc(fp)) != EOF) {
     if (c == '\n') {
-      n++;
+      ++n;
     }
   }
 
@@ -103,7 +134,7 @@ int nbLignes(FILE *fp) {
   return n;
 }
 
-/*Parse la grille du fichier passé entre paramètre dans le tableau passé entre paramètre*/
+/* Parse le fichier passé en paramètre dans la grille passée en paramètre */
 //==============================================================================
 int parserGrille(FILE *fp, uint16_t *tab) {
   int position = 0;
@@ -120,35 +151,28 @@ int parserGrille(FILE *fp, uint16_t *tab) {
 
       if ( (caractereActuel-'0') >=0 && (caractereActuel-'0') <=9 ){
 	// C'est un chiffre
-	tab[position]=1<<(caractereActuel-'0');
-	printf("%c ", caractereActuel);
-	position++;
+	tab[position++]=1<<(caractereActuel-'0');
       }
 
       else if(caractereActuel=='_'){
 	// C'est un underscore
-	printf("%c ", caractereActuel);
-	tab[position]=(1<<n)-1;
-	position++;
+	tab[position++]=(1<<n)-1;
       }
 
       else if(caractereActuel >='A' && caractereActuel <= 'F'){
 	// C'est une lettre correspondant a un nombre hexadecimal
-	printf("%c ", caractereActuel);
-	tab[position]=1<<(caractereActuel -'A'+10);
-	position++;
+	tab[position++]=1<<(caractereActuel -'A'+10);
       }
 
 
     } while (caractereActuel != EOF);
-
-  printf(" Parsage fini position = %i \n",position);
 
   fseek(fp, 0, SEEK_SET); 
   return EXIT_SUCCESS;
 
 }
 
+/* Utilise le système de contraintes sur la valuation passée en paramètre */
 //==============================================================================
 uint16_t contraintes(uint16_t* val0, int p){
   uint16_t result = 0;
@@ -192,6 +216,7 @@ uint16_t contraintes(uint16_t* val0, int p){
   return result;
 }
 
+/* Applique round-robin pour calculer la solution maximale */
 //==============================================================================
 uint16_t* round_robin(uint16_t* val0){
   uint16_t* X = (uint16_t*)malloc(nb_pos*sizeof(uint16_t));
@@ -216,6 +241,7 @@ uint16_t* round_robin(uint16_t* val0){
   return X;
 }
 
+/* Algorithme Sudoku */
 //==============================================================================
 void sudoku(uint16_t* val0){
   uint16_t* val = round_robin(val0);
@@ -233,7 +259,7 @@ void sudoku(uint16_t* val0){
   }
   
   if(p>=nb_pos){
-    printf("GRILLE SOLUTION\n");
+    printf("GRILLE SOLUTION:\n");
     affiche(val);
     exit(EXIT_SUCCESS);
   }else{
@@ -251,6 +277,7 @@ void sudoku(uint16_t* val0){
   free(val);
 }
 
+/* Fonction principale */
 //==============================================================================
 int main(int argc, char *argv[]) {
 
@@ -265,14 +292,14 @@ int main(int argc, char *argv[]) {
   n = nbLignes(fp);
   d = sqrt(n);
   nb_pos = n*n;
-  printf("Taille du tableau : %ix%i\n", n, n);
   uint16_t* valI = (uint16_t*)malloc(nb_pos*sizeof(uint16_t));
 
   parserGrille(fp, valI);
   fclose(fp);
 
-  printf("GRILLE ENTREE\n");
+  printf("GRILLE ENTREE(%ix%i):\n",n,n);
   affiche(valI);
+  printf("\n");
   sudoku(valI);
 
   free(valI);
