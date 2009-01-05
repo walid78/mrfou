@@ -299,7 +299,6 @@ int main(int argc, char *argv[]) {
 
   printf("GRILLE ENTREE(%ix%i):\n",n,n);
   affiche(valI);
-  printf("\n");
   sudoku(valI);
 
   free(valI);
