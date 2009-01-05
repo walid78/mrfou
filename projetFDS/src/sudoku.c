@@ -6,7 +6,6 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include <unistd.h>
-/* #include "cudd-2.4.1/cudd/cudd.h" */
 
 //Nombre de couleurs
 int n;
@@ -129,7 +128,7 @@ int parserGrille(FILE *fp, uint16_t *tab) {
       else if(caractereActuel=='_'){
 	// C'est un underscore
 	printf("%c ", caractereActuel);
-	tab[position]=-1;
+	tab[position]=(1<<n)-1;
 	position++;
       }
 
@@ -151,7 +150,7 @@ int parserGrille(FILE *fp, uint16_t *tab) {
 }
 
 //==============================================================================
-uint16_t contraintes(uint16_t* val0, uint16_t* X, int p){
+uint16_t contraintes(uint16_t* val0, int p){
   uint16_t result = 0;
   int q,r;
 
@@ -205,7 +204,7 @@ uint16_t* round_robin(uint16_t* val0){
   do{
     change = false;
     for(int i=0 ; i<nb_pos ; ++i){
-      new = contraintes(val0, X, i);
+      new = contraintes(val0, i);
       //Si new n'est pas inclus dans Xp      
       if((X[i]&new) != new){
 	change = true;
