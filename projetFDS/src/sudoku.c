@@ -263,6 +263,13 @@ void sudoku(uint16_t* val0){
     affiche(val);
     exit(EXIT_SUCCESS);
   }else{
+    /* 
+     * Choix de p, ligne 8 de l'algorithme du sujet :
+     *
+     *** le p choisi ici est le premier p pour lequel val[p] n'est
+     *** ni un singleton, ni vide.
+     *
+     */
     bool* coul = coul_presentes(val[p]);
     uint16_t* val0_prim = val_copie(val);
     for(int i=0 ; i<n ; ++i){
