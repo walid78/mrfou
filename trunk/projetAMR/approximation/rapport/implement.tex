@@ -1,0 +1,28 @@
+ \section{Implémentation}
+
+  \subsection{Réutilisation de code}
+  Nous avons réutilisé la classe que nous avions implémentée dans le
+  premier projet pour représenter les graphes ainsi que la partie
+  \emph{''parser''} de la classe principale.
+
+  Il nous restait donc à implémenter la classe d'arbre.
+
+  \subsection{Implémentation de la classe d'arbre}
+  Nous avons donc créé la classe \emph{Tree.cpp} qui dépend de
+  \emph{Graph.cpp} où un arbre est créé à partir d'un parcours en
+  profondeur sur le graphe passé en paramètre.
+
+  \subsection{Algorithmes}
+  L'algorithme de la partie $1$ a été implémenté dans \emph{Tree.cpp}
+  dans la méthode \emph{coverTree}.
+
+  L'algorithme du projet (partie $2$) a été implémenté dans
+  \emph{Graph.cpp} dans la méthode \emph{coverProject}.
+
+  L'algorithme du cours (partie $2$) a été implémenté dans
+  \emph{Graph.cpp} dans la méthode \emph{coverCourses}.
+
+  \subsection{Exécution du programme}
+  Le programme est exécuté à partir de la commande \emph{./cover}, une
+  fonction d'usage est appelée pour donner plus d'informations sur
+  l'exécution.
