@@ -1,0 +1,220 @@
+%%%%% Remove ? to make this file compilable %%%%%
+% TO COMPILE %
+
+%%%%%%%%%%                             %%%%%%%%%%
+%%%%%%%%%% AUTO INSERTION D'UNE ENTETE %%%%%%%%%%
+%%%%%%%%%%                             %%%%%%%%%%
+%%%%%%%%%%     POUR UN FICHIER TEX     %%%%%%%%%%
+%%%%%%%%%%                             %%%%%%%%%%
+
+%%%%%%          %%%%%%
+%%%%%% PACKAGES %%%%%%
+%%%%%%          %%%%%%
+
+\documentclass[8pt]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage[babel=true,kerning=true]{microtype} % probleme avec : tikz
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{color} 
+\usepackage{enumerate}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{wasysym}
+\usepackage{chemarrow}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usetikzlibrary{automata}
+\usetikzlibrary{trees}
+\usetikzlibrary{arrows}
+\usepackage{beamerthemesplit}
+\usetheme{JuanLesPins}
+
+
+
+%%%%%%              %%%%%%
+%%%%%% MISE EN PAGE %%%%%%
+%%%%%%              %%%%%%
+
+
+%%%%% Environnements %%%%%
+
+\newenvironment{tikz_mrfou}{
+\begin{tikzpicture}[->,>=stealth,shorten >=1pt,auto,node
+ distance=1.5cm,on grid, semithick, minimum size=5mm,bend
+ angle=10,font=\small, initial text=, label distance=-1mm]
+}{\end{tikzpicture}}
+
+\tikzstyle{evennode}=[circle,draw=blue!50,fill=blue!20,thick, inner
+sep=0pt,minimum size=6mm]
+
+\tikzstyle{oddnode}=[rectangle,draw=black!50,fill=black!20,thick, inner
+sep=0pt,minimum size=5mm]
+
+\tikzstyle{pointnode}=[circle,draw=black,fill=black, thick, inner
+sep=0pt,minimum size=1mm] 
+
+%%%%%%          %%%%%%
+%%%%%% DOCUMENT %%%%%%
+%%%%%%          %%%%%%
+
+
+\begin{document}
+
+%%%%%%              %%%%%%
+%%%%%% ZONE DE CODE %%%%%%
+%%%%%%              %%%%%%
+
+%% Style bloc %%
+\setbeamertemplate{blocks}[rounded][shadow=true]
+\setbeamercovered{dynamic}
+
+%% Page de garde %%
+\author[Ludovic Brochard, Fabien Kuntz, Benoît Védrenne]{Ludovic
+Brochard, Fabien Kuntz, Benoît Védrenne\\ 
+~\\
+\small Professeurs : Cyril Gavoille, Anca Muscholl, Marc Zeitoun,
+Alexander Zvonkin}
+\institute{\footnotesize Module AMR\\~\\Master S\&T
+Informatique\\~\\Université Bordeaux I\\} 
+\title{Soutenances d'\textit{Algorithmes du Monde Réel}} 
+\date{22 janvier 2009 - 11h40}
+
+\setcounter{page}{1}
+
+%% Debut %%
+\frame{\titlepage}
+\frame{\tableofcontents}
+
+ \section{Introduction}
+ %==============================================================================
+ \frame{\tableofcontents[current]}
+ \include{intro}
+
+ \section{Réductions}
+ %==============================================================================
+ \frame{\tableofcontents[current]}
+ \include{reduc}
+
+ \section{Couverture par sommets}
+ %==============================================================================
+ \frame{\tableofcontents[current]}
+ \include{vc} 
+
+ \section{Algorithmes d'approximations}
+ %==============================================================================
+ \frame{\tableofcontents[current]}
+ \include{approx} 
+  
+ \section{Instances critiques}
+ %==============================================================================
+ \frame{\tableofcontents[current]}
+ \include{inst} 
+
+ \section{Bilan}
+ %==============================================================================
+ \frame{\tableofcontents[current]}
+ \include{bilan}
+
+
+%  \section*{Références}
+%  \begin{frame}[allowframebreaks]
+%   \frametitle{Quelques références}
+%   \nocite{*}
+%   \bibliographystyle{alpha}
+%   \bibliography{biblio}
+%  \end{frame}
+
+%%%%%%               %%%%%%
+%%%%%% /ZONE DE CODE %%%%%%
+%%%%%%               %%%%%%
+
+\end{document}
+
+
+
+%%%%%%           %%%%%%
+%%%%%% /DOCUMENT %%%%%%
+%%%%%%           %%%%%%
+
+
+
+
+%%%%% Texte italique %%%%%
+%  \textit{} 
+
+%%%%% Liste %%%%
+%%% Itemize %%%
+%  \begin{itemize}
+%   \item item1\\
+%   \item item2
+%  \end{itemize}
+
+%%% Enumerate %%%
+%  \begin{enumerate}
+%   \item item1
+%   \item item2
+%  \end{enumerate}
+
+%%%%% Tabulations %%%%%
+%   \begin{tabbing}
+%    XX\=XX\=\kill
+%    \>(OrdresEnonce.v, ligne 244)\\
+%    \>\>test2
+%   \end{tabbing}
+ 
+%%%%% Note de pied de page %%%%%
+%  \footnote{test}
+
+%%%%% Référence %%%%%
+%   \label{ref}
+%% Plus loin :
+%   \ref{ref}
+%   \pageref{ref}
+
+%%%%% Code %%%%%
+% \begin{lstlisting}
+%      List<Integer> lexBFS2 = new ArrayList<Integer>();
+%      lexBFS2.add(3);
+%      lexBFS2.add(2);
+%      lexBFS2.add(4);
+%      lexBFS2.add(1);
+%      lexBFS2.add(0);    
+%      assertNotNull(lexBFS2);	
+%      assertEquals(lexBFS2,Graphs.lexBFS(nogYComp));
+%   \end{lstlisting}
+
+%%%%% Inclure une figure %%%%%
+%  \begin{figure}[!ht]
+%   \begin{center}
+%	\includegraphics[width=7cm]{figs/cours1/fig2.eps}
+%	\caption{\emph{MT2} : Calcul non déterministe}
+%   \end{center}
+%  \end{figure}
+
+%%%%% Dessiner une figure %%%%% 
+%   \begin{center}
+%    \begin{tikz_mrfou}
+
+%     %% Nodes %%
+%     \node[state, initial] (1) {$1$};
+%     \node[state, right of=1] (2) {$2$};
+%     \node[state, right of=2] (3) {$3$};
+
+%     %% Edges %%
+%     \path[->] 
+%     (1) 
+%     edge [loop above] node {b} ()
+%     edge node {a} (2)
+
+%     (2)
+%     edge [loop above] node {b} ()
+%     edge [bend left] node {a} (3)
+
+%     (3)
+%     edge [bend left] node {b} (2);
+
+%    \end{tikz_mrfou}
+%   \end{center}
