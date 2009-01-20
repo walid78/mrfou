@@ -5,13 +5,94 @@
 
     \begin{block}{\only<1,2>{Données}\only<3->{Solution}}
      \begin{center}
-      \only<1,2>{
+      \begin{figure}[!ht]
+       \only<1,2>{
+       \begin{tikz_mrfou}
+	%% Nodes %%
+	\node[gnode] (0) {0};
+	\node[gnode, below left of=0] (1) {1};
+	\node[gnode, below right of=1] (2) {2};
+	\node[gnode, below right of=0] (3) {3};
+	\node[gnode, above left of=1] (4) {4};
+	\node[gnode, below left of=1] (5) {5};
+
+	%% Edges %%
+	\path[-] 
+	(0)
+	edge node {} (1)
+	edge node {} (2)
+	edge node {} (3)
+
+	(1) 
+	edge node {} (2)
+	edge node {} (3)
+	edge node {} (4)
+	edge node {} (5)
+
+	(2)
+	edge node {} (3)
+
+	;
+	
+       \end{tikz_mrfou}
+       \caption{Graphe \emph{poisson}}
+       }\only<3->{
+       \begin{tikz_mrfou}
+	%% Nodes %%
+	\node[bluenode] (0) {0};
+	\node[rednode, below left of=0] (1) {1};
+	\node[greennode, below right of=1] (2) {2};
+	\node[blacknode, below right of=0] (3) {3};
+	\node[blacknode, above left of=1] (4) {4};
+	\node[blacknode, below left of=1] (5) {5};
+
+	%% Edges %%
+	\path[-] 
+	(0)
+	edge node {} (1)
+	edge node {} (2)
+	edge node {} (3)
+
+	(1) 
+	edge node {} (2)
+	edge node {} (3)
+	edge node {} (4)
+	edge node {} (5)
+
+	(2)
+	edge node {} (3)
+
+	;
+	
+       \end{tikz_mrfou}
+       \caption{Graphe \emph{poisson} 4-colorié}
+       }
+      \end{figure}
+     \end{center}
+    \end{block}
+
+   \uncover<2->{
+   \begin{block}{Question\only<3->{/Réponse}}
+    Le graphe est-il 4-coloriable ? \only<3->{\textcolor{turq}{Oui ! \Large\smiley}}
+   \end{block}
+   }
+   \end{frame}
+
+  \subsection{Instance négative}
+  \begin{frame}
+   \frametitle{3-Col}
+
+   \begin{block}{Données}
+    \begin{center}
+     \begin{figure}[!ht]
       \begin{tikz_mrfou}
        %% Nodes %%
        \node[gnode] (0) {0};
        \node[gnode, below left of=0] (1) {1};
        \node[gnode, below right of=1] (2) {2};
        \node[gnode, below right of=0] (3) {3};
+       \node[gnode, above left of=1] (4) {4};
+       \node[gnode, below left of=1] (5) {5};
 
        %% Edges %%
        \path[-] 
@@ -23,6 +104,8 @@
        (1) 
        edge node {} (2)
        edge node {} (3)
+       edge node {} (4)
+       edge node {} (5)
 
        (2)
        edge node {} (3)
@@ -30,43 +113,18 @@
        ;
        
       \end{tikz_mrfou}
-      }\only<3->{
-      \begin{tikz_mrfou}
-       %% Nodes %%
-       \node[bluenode] (0) {0};
-       \node[rednode, below left of=0] (1) {1};
-       \node[greennode, below right of=1] (2) {2};
-       \node[blacknode, below right of=0] (3) {3};
+      \caption{Graphe \emph{poisson}}
+     \end{figure}
+    \end{center}
+   \end{block}
 
-       %% Edges %%
-       \path[-] 
-       (0)
-       edge node {} (1)
-       edge node {} (2)
-       edge node {} (3)
-
-       (1) 
-       edge node {} (2)
-       edge node {} (3)
-
-       (2)
-       edge node {} (3)
-
-       ;
-       
-      \end{tikz_mrfou}
-      }
-     \end{center}
-    \end{block}
-
-    \uncover<2->{
-    \begin{block}{Question\only<3->{/Réponse}}
-     Le graphe est-il 4-coloriable ? \only<3->{\alert<3->{Oui !}}
-    \end{block}
-    }
-   \end{frame}
-
-  \subsection{Instance négative}
-  
+   \uncover<2->{
+   \begin{block}{Question\only<3->{/Réponse}}
+    Le graphe est-il 3-coloriable ? \only<3->{\textcolor{red}{Non !
+    \Large \frownie}}
+   \end{block}
+   }
+  \end{frame}
 
   \subsection{Bonus: les ``cas faciles''}
+   
