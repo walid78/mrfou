@@ -1,6 +1,72 @@
 %% reduc.tex %%
-  \subsection{Instance positive}
+   \subsection{Instance positive}
+   \begin{frame}
+    \frametitle{4-Col}
+
+    \begin{block}{\only<1,2>{Données}\only<3->{Solution}}
+     \begin{center}
+      \only<1,2>{
+      \begin{tikz_mrfou}
+       %% Nodes %%
+       \node[gnode] (0) {0};
+       \node[gnode, below left of=0] (1) {1};
+       \node[gnode, below right of=1] (2) {2};
+       \node[gnode, below right of=0] (3) {3};
+
+       %% Edges %%
+       \path[-] 
+       (0)
+       edge node {} (1)
+       edge node {} (2)
+       edge node {} (3)
+
+       (1) 
+       edge node {} (2)
+       edge node {} (3)
+
+       (2)
+       edge node {} (3)
+
+       ;
+       
+      \end{tikz_mrfou}
+      }\only<3->{
+      \begin{tikz_mrfou}
+       %% Nodes %%
+       \node[bluenode] (0) {0};
+       \node[rednode, below left of=0] (1) {1};
+       \node[greennode, below right of=1] (2) {2};
+       \node[blacknode, below right of=0] (3) {3};
+
+       %% Edges %%
+       \path[-] 
+       (0)
+       edge node {} (1)
+       edge node {} (2)
+       edge node {} (3)
+
+       (1) 
+       edge node {} (2)
+       edge node {} (3)
+
+       (2)
+       edge node {} (3)
+
+       ;
+       
+      \end{tikz_mrfou}
+      }
+     \end{center}
+    \end{block}
+
+    \uncover<2->{
+    \begin{block}{Question\only<3->{/Réponse}}
+     Le graphe est-il 4-coloriable ? \only<3->{\alert<3->{Oui !}}
+    \end{block}
+    }
+   \end{frame}
 
   \subsection{Instance négative}
+  
 
   \subsection{Bonus: les ``cas faciles''}
