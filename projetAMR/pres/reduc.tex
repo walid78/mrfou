@@ -127,4 +127,49 @@
   \end{frame}
 
   \subsection{Bonus: les ``cas faciles''}
-   
+  \begin{frame}
+   \frametitle{Clique - nombre minimum d'arêtes}
+
+   \begin{block}{Données}
+    \begin{center}
+     \begin{figure}[!ht]
+      \begin{tikz_mrfou}
+       %% Nodes %%
+       \node[gnode] (0) {0};
+       \node[gnode, below left of=0] (1) {1};
+       \node[gnode, below of=0] (2) {2};
+       \node[gnode, below right of=0] (3) {3};
+       \node[gnode, below of=1] (4) {4};
+       \node[gnode, below of=3] (5) {5};
+       \node[gnode, below left of=5] (6) {6};
+
+       %% Edges %%
+       \path[-] 
+       (0)
+       edge node {} (1)
+       edge node {} (2)
+       edge node {} (3)
+
+       (1) 
+       edge node {} (2)
+       edge node {} (4)
+
+       (2)
+       edge node {} (3)
+
+       (3)
+       edge node {} (5)
+
+       (4)
+       edge node {} (6)
+       
+       (5)
+       edge node {} (6)
+       ;
+       
+      \end{tikz_mrfou}
+      \caption{Graphe \emph{souris}}
+     \end{figure}
+    \end{center}
+   \end{block}
+  \end{frame}
