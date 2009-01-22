@@ -162,8 +162,6 @@ create table Client(
 	Classe_Sociale varchar2(20),
 	ID_Dest_Preferee number,
 	Investissement_Moyen float CHECK (Investissement_Moyen > 0.0))tablespace ts0 ;
---un seul hotel pour le client
---rajouter le nombre passager enfant et adulte
 
 create table Facturation(ID_Facture number not null,
 			Date_Facture date default trunc(sysdate), 
@@ -232,6 +230,7 @@ INSERT INTO Reservation VALUES(1,1,trunc(sysdate));
 INSERT INTO Reservation VALUES(2,3,trunc(sysdate));
 INSERT INTO Reservation VALUES(2,4,trunc(sysdate));
 INSERT INTO Reservation VALUES(1,5,trunc(sysdate));
+INSERT INTO Reservation VALUES(1,2,trunc(sysdate));
 
 
 
@@ -249,13 +248,6 @@ INSERT INTO Circuit VALUES (1,'Mont_Fuji') ;
 INSERT INTO Circuit VALUES (2,'Catalogne') ;
 INSERT INTO Circuit VALUES (3,'Monaco') ;
 INSERT INTO Circuit VALUES (4,'Hockenheim') ;
-
--- Remplissage de la table Assoc_Hotel_Circuit --
-
---INSERT INTO Assoc_Hotel_Circuit VALUES (1,2);
---INSERT INTO Assoc_Hotel_Circuit VALUES (1,2);
---INSERT INTO Assoc_Hotel_Circuit VALUES (3,3);
---INSERT INTO Assoc_Hotel_Circuit VALUES (4,1);
 
 -- Remplissage de la table Assoc_Dest_Circuit --
 
@@ -275,7 +267,7 @@ INSERT INTO Assoc_Prix_Sejour_Circuit VALUES (1,2,100.00) ;
 INSERT INTO Assoc_Prix_Sejour_Circuit VALUES (2,2,115.00) ;
 INSERT INTO Assoc_Prix_Sejour_Circuit VALUES (2,4,50.00) ;
 INSERT INTO Assoc_Prix_Sejour_Circuit VALUES (4,3,65.00) ;
-
+INSERT INTO Assoc_Prix_Sejour_Circuit VALUES (2,1,51.00) ;
 -- Remplissage de la table Vol --
 
 INSERT INTO Vol VALUES (1,1,10.00,20.00) ;
@@ -298,10 +290,10 @@ INSERT INTO Facturation Values (1, sysdate, 'Rue de la plage', '0556654558', 'Bu
 
 
 
-INSERT INTO Etape Values(1,1,'etape 1 circuit 1');
-INSERT INTO Etape Values(2,1,'etape 2 circuit 1');
-INSERT INTO Etape Values(1,2,'etape 1 circuit 2');
-INSERT INTO Etape Values(1,3,'etape 1 circuit 3');	
+INSERT INTO Etape Values(1,1,1,'etape 1 circuit 1');
+INSERT INTO Etape Values(2,2,1,'etape 2 circuit 1');
+INSERT INTO Etape Values(3,1,2,'etape 1 circuit 2');
+INSERT INTO Etape Values(4,1,3,'etape 1 circuit 3');	
 
 
 
@@ -405,92 +397,136 @@ end;
 
 --Procédure stockée pour ajout de facture --
 -- Avant d'appeler la proc, tester l'emcombrement de l'hotel
-CREATE OR REPLACE PROCEDURE AjoutFacture(client in number,sejour in number,circuit in number,vol in number,nombre_adulte in number, nombre_enfant in number) 
+CREATE OR REPLACE PROCEDURE AjoutFacture(client in number,sejour in number,circuit in number,dest in number, vol in number,nombre_adulte in number, nombre_enfant in number) 
 
 as
 
 Date_Facture date ;
+
+--données client
 c1_Adresse_Client varchar2(50);
 c1_Tel varchar2(10) ;
 c1_Nom varchar2(20) ;
 c1_Prenom varchar2(20) ;
---c2_ID_Dest number;
-c6_Nom_Dest varchar2(20);
-c6_Pays_Dest varchar2(20);
+c1_Age number;
+c1_Classe_sociale varchar2(20);
+
+
+--données sejour
+c2_Duree_Sejour number;
+c2_Coeff_Sejour float;
+c2_Description_Sejour varchar2(50);
+
+--données circuit
+c3_Nom_circuit varchar2(20);
+
+--données destination
+c4_Nom_Dest varchar2(20);
+c4_Pays_Dest varchar2(20);
+
+--données vol
+c5_Prix_Vol_Enfant float;
+c5_Prix_Vol_Adulte float; 
+
+--données prix circuit
+c6_Prix_Circuit float;
+
+--Nombre d'hotels réservées par un client
+c7_Nb_Hotel number;
+
+--données réservations 
+--Type tab_number is table of number;
+c8_Tab_ID_Hotel number;
+c9_Tab_ID_Hotel number;
+c10_Tab_ID_Hotel number;
 --c2_Nom_Hotel varchar2(20);
 --c2_Adresse_Hotel varchar2(50);
 --c2_Classe_Hotel number;
 --c3_Prix_S float;
 --c3_Prix_D float;
-c5_Nom_circuit varchar2(20);
-c4_Duree_sejour number;
-c8_Prix_Circuit float;
-c7_Prix_Vol_Enfant float;
-c7_Prix_Vol_Adulte float; 
-c4_Description_Sejour varchar2(50);
-c4_Coeff_Sejour float;
+
+--variables des totaux
 Total_Vol float;
 Total_Hotel float;
 Total_Circuit float;
 Total_Facture float;
-c1_Age number;
-c1_Classe_sociale varchar2(20);
+
 Dest_Pref varchar2(20);
 Invest_Moyen float;
-dest number;
-cursor c1 is select Adresse,Tel,Nom,Prenom,Age,Classe_Sociale from Client where ID_Client = client;
 
---Decrementer les capacités S et D.
+cursor c1 is select Adresse,Tel,Nom,Prenom,Age,Classe_Sociale from Client where ID_Client = client;
+cursor c2 is select Duree,Description,Coeff from Sejour where ID_Sejour = sejour ;
+cursor c3 is select Nom_Circuit from Circuit where ID_Circuit = circuit ;
+cursor c4 is select Nom_Destination,Pays from Destination where ID_Dest = dest ;
+cursor c5 is select Prix_Enfant,Prix_Adulte from Vol where ID_Vol = vol ;
+cursor c6 is select Prix from  Assoc_Prix_Sejour_Circuit where (ID_Circuit = circuit and ID_Sejour = sejour);
+cursor c7 is select count(ID_Hotel) from  Reservation where ID_Client = client;
+cursor c8 is select ID_Hotel from  Reservation where ID_Client = client;
+
+
+--Pour FBIEN
+--Decrementer les capacités S et D avant l'appel a facturation
 
 
 --lister les hotels réservés, leurs classes, prix, adresses .....
-
 --cursor c2 is select Nom_Hotel,Adresse,ID_Classe,ID_Dest from Hotel where ID_Hotel = hotel;
 --cursor c3 is select Prix_S,Prix_D from Classe_Hotel where ID_Classe =c2_Classe_Hotel ;
+--cursor c4 is select Duree,Description,Coeff from Sejour where ID_Sejour = sejour ;
 
-cursor c4 is select Duree,Description,Coeff from Sejour where ID_Sejour = sejour ;
-cursor c5 is select Nom_Circuit from Circuit where ID_Circuit = circuit ;
-		
-cursor c6 is select Nom_Destination,Pays from Destination where ID_Dest = dest ;
-cursor c7 is select Prix_Enfant,Prix_Adulte from Vol where ID_Vol = vol ;
-cursor c8 is select c8_Prix_Circuit from  Assoc_Prix_Sejour_Circuit where (ID_Circuit=circuit and ID_Sejour=sejour);
 
+
+
+
+--Debut precedure
 begin
 
 open c1;fetch c1 into c1_Adresse_Client,c1_Tel,c1_Nom,c1_Prenom,c1_Age,c1_Classe_sociale;
+open c2;fetch c2 into c2_Duree_Sejour,c2_Description_Sejour,c2_Coeff_Sejour;
+open c3;fetch c3 into c3_Nom_circuit;
+open c4;fetch c4 into c4_Nom_Dest,c4_Pays_Dest;
+open c5;fetch c5 into c5_Prix_Vol_Enfant,c5_Prix_Vol_Adulte;
+open c6;fetch c6 into c6_Prix_Circuit;
+open c7;fetch c7 into c7_Nb_Hotel;
+open c8;fetch c8 into c8_Tab_ID_Hotel;
+fetch c8 into c9_Tab_ID_Hotel;
+fetch c8 into c10_Tab_ID_Hotel;
 --open c2;fetch c2 into c2_Nom_Hotel,c2_Adresse_Hotel,c2_Classe_Hotel,c2_ID_Dest;
 --open c3;fetch c3 into c3_Prix_S,c3_Prix_D;
-open c4;fetch c4 into c4_Duree_sejour,c4_Description_Sejour,c4_Coeff_Sejour;
-open c5;fetch c5 into c5_Nom_circuit;
-select into dest from Assoc_Destination_Circuit where ID_Circuit = circuit;
-open c6;fetch c6 into c6_Nom_Dest,c6_Pays_Dest;
-open c7;fetch c7 into c7_Prix_Vol_Enfant,c7_Prix_Vol_Adulte;
-open c8;fetch c8 into c8_Prix_Circuit;
+
+--select into dest from Assoc_Destination_Circuit where ID_Circuit = circuit;
+
+dbms_output.put_line(c1_Adresse_Client || ' ' || c1_Tel || ' ' || c1_Nom ||' '|| c1_Prenom || ' ' || c1_Age || ' ' || c1_Classe_sociale);
+dbms_output.put_line(c2_Duree_Sejour || ' ' || c2_Description_Sejour || ' ' || c2_Coeff_Sejour);
+dbms_output.put_line(c3_Nom_Circuit);
+dbms_output.put_line(c4_Nom_Dest || ' ' || c4_Pays_Dest);
+dbms_output.put_line(c5_Prix_Vol_Enfant || ' ' || c5_Prix_Vol_Adulte);
+dbms_output.put_line(c6_Prix_Circuit);
+dbms_output.put_line('Nombre hotel= ' || c7_Nb_Hotel);
+dbms_output.put_line(c8_Tab_ID_Hotel);
+dbms_output.put_line(c9_Tab_ID_Hotel);
+dbms_output.put_line(c10_Tab_ID_Hotel);
 
 
-dbms_output.put_line(c1_Adresse_Client || c1_Tel || c1_Nom || c1_Prenom || c1_Age || c1_Classe_sociale);
---dbms_output.put_line(c2_Nom_Hotel || ' ' || ' ' || c2_Adresse_Hotel || ' ' ||c2_Classe_Hotel|| ' '||c2_ID_Dest);
---dbms_output.put_line(c3_Prix_S || ' ' || c3_Prix_D);
-dbms_output.put_line( c4_Duree_sejour|| ' ' ||c4_Description_Sejour  || ' ' ||c4_Coeff_Sejour);
-dbms_output.put_line(c5_Nom_Circuit);
-dbms_output.put_line(c6_Nom_Dest || ' ' || c6_Pays_Dest);
-dbms_output.put_line(c7_Prix_Vol_Enfant || ' ' ||c7_Prix_Vol_Adulte);
---calculs
-Total_Vol:= c7_Prix_Vol_Enfant*nombre_enfant + c7_Prix_Vol_Adulte*nombre_adulte;
-dbms_output.put_line('total vol = ' || Total_Vol);
+--calcul du total_vol
+Total_Vol:= c5_Prix_Vol_Enfant*nombre_enfant + c5_Prix_Vol_Adulte*nombre_adulte;
+dbms_output.put_line('Total vol = ' || Total_Vol);
+
+--calcul du total_circuit
+Total_Circuit:= c6_Prix_Circuit*c2_Coeff_Sejour*(nombre_enfant + nombre_adulte);
+dbms_output.put_line('Total circuit = ' || Total_Circuit);
 
 
---calculer la somme de chaque hotels reservés par le client
 
---Total_Hotel:= c4_Duree_sejour*c4_Coeff_Sejour* ((nombre_adulte+nombre_enfant)/2   * c3_Prix_D +  MOD (nombre_adulte+nombre_enfant,2)   * c3_Prix_S) ;
-dbms_output.put_line('total Hotel = ' || Total_Hotel     );
+--calcul prix_hotel
 
-Total_Circuit:= (nombre_adulte+nombre_enfant)*c8_Prix_Circuit*c4_Coeff_Sejour;
-dbms_output.put_line('total circuit =' || Total_Circuit);
 
-Total_Facture:=Total_Hotel+Total_Vol+Total_Circuit;
-dbms_output.put_line('total Facture ='  || Total_Facture );
+--calcul prix total
 
+
+--Effacer enregistrement réservation_Client
+
+--Remplissage ligne_facture(les lignes des hotels seront faites apres chaque fetch)
+--remplissage facture finale.
 
 end;
 /
