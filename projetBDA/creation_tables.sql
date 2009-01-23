@@ -502,7 +502,7 @@ Loop
 	dbms_output.put_line('Total_Hotel_Courant' || Total_Hotel_Courant);
 	Total_Hotel := Total_Hotel + Total_Hotel_Courant;
 
-	--insertion dans facturation
+	--insertion dans facturation des hotels
 	insert into facturation values(c12_Id_facture,sysdate,c1_adresse_client,c1_tel,c1_nom,c1_prenom,c4_nom_dest,c4_Pays_Dest,
 	       	    c11_nom_hotel,c11_adresse_hotel,c11_classe_hotel,c11_prix_s,c11_prix_d,null,c2_Duree_Sejour,null,null,null,
 		    nombre_adulte,nombre_enfant,c2_description_sejour,null,null,total_hotel_courant,null,null,
@@ -538,8 +538,33 @@ dbms_output.put_line('Total Facture= ' || Total_Facture);
 
 --Effacer enregistrement réservation_Client
 
---Remplissage ligne_facture(les lignes des hotels seront faites apres chaque fetch)
---remplissage facture finale.
+--ajouter un champs 'intitulé' dans facturation avec HOTEL,VOL,CIRCUIT ou TOTAL
+
+
+--remplissage facture circuit.
+
+insert into facturation values(c12_Id_facture,sysdate,c1_adresse_client,c1_tel,c1_nom,c1_prenom,c4_nom_dest,c4_Pays_Dest,
+	       	    null,null,null,null,null,c3_Nom_Circuit,c2_Duree_Sejour,null,null,null,
+		    nombre_adulte,nombre_enfant,c2_description_sejour,c2_coeff_sejour,null,null,Total_Circuit,null,
+		    c1_age,c1_classe_sociale,null,null);
+
+--remplissage facture vol.
+
+insert into facturation values(c12_Id_facture,sysdate,c1_adresse_client,c1_tel,c1_nom,c1_prenom,c4_nom_dest,c4_Pays_Dest,
+	       	    null,null,null,null,null,c3_Nom_Circuit,c2_Duree_Sejour,c6_Prix_Circuit,c5_Prix_Vol_enfant,c5_Prix_Vol_adulte,
+		    nombre_adulte,nombre_enfant,null,null,Total_Vol,null,null,null,
+		    c1_age,c1_classe_sociale,null,null);
+
+
+
+--remplissage facture TOTAL.
+
+insert into facturation values(c12_Id_facture,sysdate,c1_adresse_client,c1_tel,c1_nom,c1_prenom,c4_nom_dest,c4_Pays_Dest,
+	       	    null,null,null,null,null,c3_Nom_Circuit,null,null,null,null,
+		    nombre_adulte,nombre_enfant,null,null,Total_Vol,total_hotel,total_circuit,total_facture,
+		    c1_age,c1_classe_sociale,null,null);
+
+
 
 end;
 /
