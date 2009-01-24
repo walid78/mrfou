@@ -14,7 +14,14 @@ un bouton "nouveau voyage" qui:
 Liste les destinations, sur un clic de destination, afficher les circuits disponibles pour cette destination et les types de s�jour.
 Puis sont affich�s les hotels disponibles pour ce circuit.
 A ce moment : choix des chambres (Simples ou doubles)
-->remplissage de la table r�servation
+
+!!!!!!!!!!!!!
+Vérifier une fois que l'on a ce nombre que la capacité de chaque hotel est satisfaisante 
+
+
+
+
+->remplissage de la table r�servation avec le nombre de ch doubles/simples
 
 Ensuite passer au choix des vols ( pouvoir en ajouter, en enlever, en selectioner 1 pour la commande)
 
@@ -36,16 +43,20 @@ hotels les + demand�s
 
 dessiner au propre le shemas relationnel
 
-Saisir les exemples de remplissage facturation.
 Faire afficher les tableaux LA OU il faut
 
 revoir le probleme d'accentuation
+
+ecrire un rapide manuel du logiciel
+
+Décrire le fonctionnenemt de notre procédure stokée
 
 
 
 *********************Pour la partie Base de donn�e***********
 PROCEDURE STOCKEE A REVOIR
-ajouter en 1� la ligne de facture avec le 1�hotel issue de la table r�servation pour ce client + le s�jour + vol + ...
-ajouter seulement les infos des hotels pour chaque autre ligne de la table r�servation
+
+Ajouter un champs TYPE en 1° position dans facturaétion de type varchar2(20)ou on mettra: HOTEL / VOL/CIRCUIT/TOTAL
+
 
 QUAND VIDER LA TABLE DE RESERVATION ? (pour moi , une fois que la facture est entr�e ds la table)
