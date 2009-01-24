@@ -1,10 +1,13 @@
-\section{Analyse de notre base de donnée}
+\section{Analyse de notre base de donn\'ees}
+%Argumenter choix des tables(ordinaires,index, tables partitionnÃ©es,cluster,tables organisÃ©es en index et les param de stockage)
+%Argumenter les tailles
+%Justifier le dÃ©veloppement des procÃ©dures stockÃ©es.
 
 \begin{table}[h]
 %\begin{center}
 \begin{tabular}{|l|l|l|l|}
 \hline
-\multicolumn{4}{|c|}{Calcul de l'occupation mémoire / physique}\\
+\multicolumn{4}{|c|}{Calcul de l'occupation m\'emoire / physique}\\
 \hline
 Table& Poids des champs &Nombre de lignes&Poids total \\
 \hline
@@ -37,16 +40,17 @@ Facturation&6*number+date+10+3*50+8*20+11*float=701o&400*12*10*5 etapes=240k&168
 %\caption{}
 \end{table}
 
-Découpage des tablespaces :
+D\'ecoupage des tablespaces :
 \begin{itemize}
-\item De T1 Ã  T10:La table de facturation segmentée par année
-\item T11 :La table de LOG qui enregistre tous les évenements sur la base
+\item De T1 Ã  T10:La table de facturation segmente par ann\'ee
+\item T11 :La table de LOG qui enregistre tous les \'ev\`enements sur la base
 \item T0: Toutes les autres tables.
 \end{itemize}
 
 Total Occupation Tablespace T0 : 15,4 Mo\\
 T1 Ã  T10 = 168.24 Mo\\
-Chaque Tablespace devrait donc faire environ 17Mo.(Nous arrondiront Ã  20 Mo par sécurité chacun de nos tablespaces).
+
+Chaque Tablespace devrait donc faire environ 17Mo.(Nous arrondiront Ã  20 Mo par s\'ecurit\'e pour chacun de nos tablespaces).
 
 
 \newpage
