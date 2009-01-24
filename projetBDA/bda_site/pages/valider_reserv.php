@@ -100,6 +100,41 @@ if($id_client != ""){
     </select><br/>";
     
   }
+  
+  if($id_circ != ""){
+//     echo "
+//     <select>
+//       <option value=\"\">S&eacute;lectionner une étape</option>";
+
+    echo "
+    <select>
+      <option value=\"\">A faire : S&eacute;lectionner une étape</option>";
+//     $adress = $adress."&etape=".$id_dest;
+
+//     // Recuperation des circuits
+//     $query = "
+//  SELECT id_circuit, nom_circuit
+//  FROM ASSOC_DEST_CIRCUIT NATURAL JOIN CIRCUIT 
+//  WHERE id_dest='".$id_dest."'";
+//     $stmt = ociparse($link, $query);
+//     ociexecute($stmt,OCI_DEFAULT);
+
+//     while(OCIFetchInto($stmt, $row, OCI_NUM)){
+//       if($row[0] == $id_circ)
+// 	$selected = "SELECTED";
+//       $ad = $adress."&circ=".$row[0];
+//       echo "
+//       <option onClick='parent.location=\"".$ad."\"' 
+//               value=\"".$row[0]."\"".$selected.">
+//         ".$row[0].". ".$row[1]."
+//       </option>";
+//       $selected = "";
+//     }
+  
+    echo "
+    </select><br/>";
+    
+  }
 }
 ?>
   </form>
