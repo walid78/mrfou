@@ -1,6 +1,8 @@
-\section{Les tables de la base de donnée}
-\subsection{Présentation des tables}
-Voici la présentation des différentes tables que nous avons établie. Elles sont présentées sous la forme \textit{Nom\_de\_la\_table(élément1 type, élément2 type, $\dots$}. Peu de description est fournie car, pour la plupart des tables, leur nom est évocateur. A noter que les tables ne sont pas du tout définitive et que ce qui est écrit en \textit{italique} est optionnelle.\bigskip
+\section{Les tables de la base de donn\'ees}
+%Choix et justification des diffÃ©rents modules dÃ©veloppÃ©s
+
+\subsection{Pr\'esentation des tables}
+Voici la pr\'esentation des diff\'erentes tables que nous avons \'etablie. Elles sont pr\'esent\'ees sous la forme \textit{Nom\_de\_la\_table(\'el\'ement1 type, \'el\'ement2 type, $\dots$}. Peu de description est fournie car, pour la plupart des tables, leur nom est vocateur. A noter que les tables ne sont pas du tout d\'efinitive et que ce qui est \'ecrit en \textit{italique} est optionnelle.\bigskip
 
 \begin{itemize}
 \item Destination(ID\_Dest integer,Nom\_Destination varchar2(20),Pays varchar2(20));\\
@@ -58,7 +60,7 @@ ID\_hotel& ID\_Circuit& Nom & Adresse &ID\_classe & Capac\_S & Capac\_D  \\
 \hline
 1 & 1& California&rue de LA& 4 & 20 & 10\\
 \hline
-2 & 4& L'hÃ´te&Rue du serveur& 2 & 10 & 10\\
+2 & 4& L'h\^ote&Rue du serveur& 2 & 10 & 10\\
 \hline
 3 & 3& Herie&Rue de la blague& 5 & 40 & 35\\
 \hline
@@ -66,7 +68,6 @@ ID\_hotel& ID\_Circuit& Nom & Adresse &ID\_classe & Capac\_S & Capac\_D  \\
 \end{center}
 \caption{Table Hotel}
 \end{table}
-\newpage
 
 %%%%%%%%%%% Table Classe Hotel %%%%%%%%%%%
 
@@ -115,7 +116,7 @@ ID\_circuit& nom \\
 \end{center}
 \caption{Table Circuit}
 \end{table}
-
+\newpage
 
 %%%%%%%%%%% Table Assoc_Dest_Circuit %%%%%%%%%%%
 
@@ -138,7 +139,7 @@ ID\_Dest& ID\_Circuit \\
 \caption{Table Assoc\_Dest\_Circuit}
 \end{table}
 
-%%%%%%%%%%% Table Séjour %%%%%%%%%%%
+%%%%%%%%%%% Table Sejour %%%%%%%%%%%
 
 \begin{table}[h]
 \begin{center}
@@ -154,10 +155,10 @@ ID\_Sejour& Duree & Description& Coeff\\
 \hline
 \end{tabular}
 \end{center}
-\caption{Table Séjour}
+\caption{Table S\'ejour}
 \end{table}
 
-%%%%%%%%%%% Table Assoc_Prix_Séjour_Circuit %%%%%%%%%%%
+%%%%%%%%%%% Table Assoc_Prix_Sejour_Circuit %%%%%%%%%%%
 
 \begin{table}[h]
 \begin{center}
@@ -177,7 +178,7 @@ ID\_Circuit& ID\_Sejour & Prix\\
 \hline
 \end{tabular}
 \end{center}
-\caption{Table Assoc\_Prix\_Séjour\_Circuit}
+\caption{Table Assoc\_Prix\_S\'ejour\_Circuit}
 \end{table}
 \newpage
 %%%%%%%%%%% Table Vol %%%%%%%%%%%
@@ -208,8 +209,8 @@ ID\_Vol& ID\_dest & Prix\_Enfant& Prix\_Adulte\\
 \begin{table}[h]
 ID\_C est l'identifiant client,
 C\_S est classe sociale,
-ID\_DP est la destination préférée du client,
-\textbf{Le nom de la destination préférée du client a été enlevée.}
+ID\_DP est la destination pr\'ef\'er\'ee du client,
+\textbf{Le nom de la destination pr\'ef\'er\'ee du client a \'et\'e enlev\'ee.}
 I\_Moyen est l'investissement moyen du client,
 \bigskip
 
@@ -219,19 +220,20 @@ I\_Moyen est l'investissement moyen du client,
 \hline
 ID\_C& Addr& Tel & Nom & Prenom & Age & Email&C\_S & ID\_DP &I\_Moyen\\
 \hline
-1 &Rue de la plage&0746573894&Dupont&Raoul&67 &cal@hotmail.fr&Retraité&2&1859.87\\
+1 &Rue de la plage&0746573894&Dupont&Raoul&67 &cal@hotmail.fr&Retrait\'e&2&1859.87\\
 \hline
 2 &Rue du geek&0556654558&Dupont&Paul&21 &paul@zik.net&Etudiant&1&150.78\\
 \hline
-3 &Rue de la soif&0557348875&Durand&Patrick&30 &dudul@bad.com&Ingénieur&2&179.78\\
+3 &Rue de la soif&0557348875&Durand&Patrick&30 &dudul@bad.com&Ing\'enieur&2&179.78\\
 \hline
 \end{tabular}
 \caption{Table Client}
 \end{table}
 
+%%%%%%%%%%%Table Reservation%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%Table Réservation%%%%%%%%%%%%%%%
 \begin{table}[h]
+La table \textbf{Reservation} est une table temporaire qui nous permet de pouvoir s\'electionner plusieurs h\^otels lors du choix d'un circuit pour un h\^otel par un client. Une fois la commande saisie et la facture entre dans la base, les lignes correspondant au client sont supprim\'ees.
 \begin{center}
 \begin{tabular}{|l|c|c|}
 \hline
@@ -253,20 +255,23 @@ ID\_Client& ID\_Hotel&Date\_Res\\
 \hline
 \end{tabular}
 \end{center}
-\caption{Table Réservation}
+\caption{Table R\'eservation}
 \end{table}
 
-\paragraph{}
-Cette table est une table temporaire qui nous permet de pouvoir sélectionner plusieurs hôtels lors du choix d'un circuit pour un hôtel par un client.Une fois la commande saisie et la facture entrée dans la base, les lignes correspondant au client sont supprimées.
+%\paragraph{}
+%Cette table est une table temporaire qui nous permet de pouvoir s\'electionner plusieurs h\^otels lors du choix d'un circuit pour un h\^otel par un client. Une fois la commande saisie et la facture entre dans la base, les lignes correspondant au client sont supprim\'ees.
 
 %%%%%%%%%%% Table Facturation %%%%%%%%%%%
 
 %%%%%%%%%%%%Table LOG%%%%%%%%%%%%%%%%%%%
-\paragraph{} La table LOG est une fonctionnalité que nous avons intégré dans notre application.Elle a pour but d'enregistrer les actions des opérateurs sur la base de donnée (afin d'effectuer des statistiques bien sur ...)\\
-LOG(madate timestamp,utilisateur varchar2(50),action varchar2(20),cible varchar2(50));\\
-Le type timestamp représentant à  la fois la date et l'heure, ce champs nous servira de clé primaire.
+%\paragraph{} La table LOG est une fonctionnalit\'e que nous avons int\'egr\'e dans notre application. Elle a pour but d'enregistrer les actions des op\'erateurs sur la base de donn\'ee (afin d'effectuer des statistiques bien sur ...)\\
+%LOG(madate timestamp,utilisateur varchar2(50),action varchar2(20),cible varchar2(50));\\
+%Le type timestamp repr\'esentant \'a la fois la date et l'heure, ce champs nous servira de cl\'e primaire.
 
 \begin{table}[h]
+ La table \textbf{LOG} est une fonctionnalit\'e que nous avons int\'egr\'e dans notre application. Elle a pour but d'enregistrer les actions des op\'erateurs sur la base de donn\'ee (afin d'effectuer des statistiques bien sur ...)\\
+LOG(madate timestamp,utilisateur varchar2(50),action varchar2(20),cible varchar2(50));\\
+Le type timestamp repr\'esentant \'a la fois la date et l'heure, ce champs nous servira de cl\'e primaire.
 \begin{center}
 \begin{tabular}{|l|c|c|c|}
 \hline
@@ -276,7 +281,7 @@ madate&utilisateur&action&cible\\
 \hline
 1 &Lagarde C. 1&UPDATE&CLients\\
 \hline
-2 &Petit Nicolas&DELETE&Réservation\\
+2 &Petit Nicolas&DELETE&R\'eservation\\
 \hline
 3 &Laporte Bernard&INSERT&Vol\\
 \hline

@@ -1,3 +1,7 @@
+******************   Pour les trois parties  ********************
+
+Revoir le cahier des chargess car il semblerait que certaines fonctions ont été oubliées :)
+
 ******************pour la partie application ********************
 
 
@@ -19,9 +23,9 @@ A ce moment : choix des chambres (Simples ou doubles)
 Vérifier une fois que l'on a ce nombre que la capacité de chaque hotel est satisfaisante 
 
 
+Résupération de la procédure stockées
 
-
-->remplissage de la table r�servation avec le nombre de ch doubles/simples
+->remplissage de la table réservation avec le nombre de ch doubles/simples
 
 Ensuite passer au choix des vols ( pouvoir en ajouter, en enlever, en selectioner 1 pour la commande)
 
@@ -40,9 +44,6 @@ hotels les + demand�s
 
 ***************pour la partie Rapport**********************
 
-
-dessiner au propre le shemas relationnel
-
 Faire afficher les tableaux LA OU il faut
 
 revoir le probleme d'accentuation
@@ -51,12 +52,14 @@ ecrire un rapide manuel du logiciel
 
 Décrire le fonctionnenemt de notre procédure stokée
 
-
+Des slides de support pour la soutenance
 
 *********************Pour la partie Base de donn�e***********
 PROCEDURE STOCKEE A REVOIR
 
-Ajouter un champs TYPE en 1° position dans facturaétion de type varchar2(20)ou on mettra: HOTEL / VOL/CIRCUIT/TOTAL
+Commenter le code
+
+Ajouter un champs TYPE en 1° position dans facturation de type varchar2(20)ou on mettra: HOTEL / VOL/CIRCUIT/TOTAL
 
 
 QUAND VIDER LA TABLE DE RESERVATION ? (pour moi , une fois que la facture est entr�e ds la table)

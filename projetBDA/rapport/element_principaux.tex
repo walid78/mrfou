@@ -1,5 +1,30 @@
-\section{éléments principaux}
-In on rédigera les éléments principaux du projet
-(les éléments qui doivent être mis en avant : information, produits, services...)
+\section{El\'ements principaux}
+%Les \'el\'ements qui doivent \^etre mis en avant : information, produits, services...)
+Nous pr\'esentons ici les \'el\'ements impos\'es pour la cr\'eation de la base de donn\'ees.
 
+L'agence doit g\`ere 50 destinations, dans 10 pays du monde et offre les prestations suivantes:
+\begin{itemize}
+\item 5 destinations par pays
+\item 4 cat\'egories d'h\^otel
+\item 3 circuits diff\'erents par destination
+\end{itemize}
+
+Les prestations sont calcul\'ees de la fa\c{c}on suivante:
+\begin{itemize}
+\item 1 tarif adulte + 1 tarif enfant par destination pour le vol
+\item 1 tarif par type d'h\^otel pour chambre une personne, et pour chambre double
+\item 1 tarif par circuit en fonction de la longueur du s\'ejour.
+\end{itemize}
+
+Les s\'ejours seront de 10 jours ou 21 jours, des tarifs pr\'ef\'erentiels seront accord\'es sur les p\'eriodes de basse saison, p\'eriode de f\^etes, $\ldots$
+
+Chaque mois, il y a 4 d\'eparts par destination. Pour chaque d\'epart, il y a 100 personnes.
+
+En plus, des tables cr\'eees pour la base de donn\'ees, il faudra g\'erer une table client et une table facturation. Dans la table facturation, il faudra une ligne pour chaque prestation: Avion, H\^otel, tarif enfant, r\'eductions, $\ldots$. Il faudra reconstituer le total de chaque facture par client. La table facturation nous servira donc \'a l'\'edition de la facture.
+
+Une ligne de facturation est li\'ee \'a un client avec une adresse et un montant par prestation. A noter que la	facturation est un mod\`ele \'a part enti\`ere, via ce mod\`ele on doit \^etre capable de conna\^itre nos clients: age, classe sociale, destinations pr\'ef\'er\'ees, investissement moyen. Il est \'egalement demand\'e de conserver un historique en ligne de la partie comptable sur 10 ans.
+
+L'agence veut pouvoir faire des statiqtiques sur les destinations les plus demand\'ees. Il faudra \'egalement g\'erer le chiffre d'affaire global et par destination, par mois et par an.
+
+Enfin l'interface utilisateur devra \^etre capable d'afficher la liste des diff\'erents circuits, avec des options sur le type d'h\^otel et le choix de la chambre(chambre simple ou double).
 \newpage
