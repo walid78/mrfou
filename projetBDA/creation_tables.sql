@@ -167,6 +167,7 @@ create table Client(
 
 create table Facturation(ID_Facture number not null,
 			Date_Facture date default trunc(sysdate), 
+			Categorie varchar2(20),
        	     		Adresse_Client varchar2(50) , 
 			Tel varchar2(10) , 
 			Nom varchar2(20) , 
@@ -288,7 +289,7 @@ INSERT INTO Client VALUES (3,'Rue de la soif', '0557348875', 'Durand', 'Patrick'
 -- Remplissage de la table Facturation --
 
 
-INSERT INTO Facturation Values (1, sysdate, 'Rue de la plage', '0556654558', 'Burneau' ,'Bruno', 'Bruxelles', 
+INSERT INTO Facturation Values (1, sysdate,'TOTAL' 'Rue de la plage', '0556654558', 'Burneau' ,'Bruno', 'Bruxelles', 
        	    'Belgique', 'California', 'Rue de LA', 4, 45.00, 80.00, 'Hockeinem', 21, 50.00, 12.00 , 24.00, 2,1,'Fatiguant',
 	     0.4, 24.00, 90.00, 50.00, 164.00, 26, 'Etudiant', 'Bordeaux', 400.00) ;
 
@@ -503,7 +504,7 @@ Loop
 	Total_Hotel := Total_Hotel + Total_Hotel_Courant;
 
 	--insertion dans facturation des hotels
-	insert into facturation values(c12_Id_facture,sysdate,c1_adresse_client,c1_tel,c1_nom,c1_prenom,c4_nom_dest,c4_Pays_Dest,
+	insert into facturation values(c12_Id_facture,sysdate,'HOTEL',c1_adresse_client,c1_tel,c1_nom,c1_prenom,c4_nom_dest,c4_Pays_Dest,
 	       	    c11_nom_hotel,c11_adresse_hotel,c11_classe_hotel,c11_prix_s,c11_prix_d,null,c2_Duree_Sejour,null,null,null,
 		    nombre_adulte,nombre_enfant,c2_description_sejour,null,null,total_hotel_courant,null,null,
 		    c1_age,c1_classe_sociale,null,null);
@@ -543,14 +544,14 @@ dbms_output.put_line('Total Facture= ' || Total_Facture);
 
 --remplissage facture circuit.
 
-insert into facturation values(c12_Id_facture,sysdate,c1_adresse_client,c1_tel,c1_nom,c1_prenom,c4_nom_dest,c4_Pays_Dest,
+insert into facturation values(c12_Id_facture,'CIRCUIT',sysdate,c1_adresse_client,c1_tel,c1_nom,c1_prenom,c4_nom_dest,c4_Pays_Dest,
 	       	    null,null,null,null,null,c3_Nom_Circuit,c2_Duree_Sejour,null,null,null,
 		    nombre_adulte,nombre_enfant,c2_description_sejour,c2_coeff_sejour,null,null,Total_Circuit,null,
 		    c1_age,c1_classe_sociale,null,null);
 
 --remplissage facture vol.
 
-insert into facturation values(c12_Id_facture,sysdate,c1_adresse_client,c1_tel,c1_nom,c1_prenom,c4_nom_dest,c4_Pays_Dest,
+insert into facturation values(c12_Id_facture,sysdate,'VOL',c1_adresse_client,c1_tel,c1_nom,c1_prenom,c4_nom_dest,c4_Pays_Dest,
 	       	    null,null,null,null,null,c3_Nom_Circuit,c2_Duree_Sejour,c6_Prix_Circuit,c5_Prix_Vol_enfant,c5_Prix_Vol_adulte,
 		    nombre_adulte,nombre_enfant,null,null,Total_Vol,null,null,null,
 		    c1_age,c1_classe_sociale,null,null);
@@ -559,7 +560,7 @@ insert into facturation values(c12_Id_facture,sysdate,c1_adresse_client,c1_tel,c
 
 --remplissage facture TOTAL.
 
-insert into facturation values(c12_Id_facture,sysdate,c1_adresse_client,c1_tel,c1_nom,c1_prenom,c4_nom_dest,c4_Pays_Dest,
+insert into facturation values(c12_Id_facture,sysdate,'TOTAL',c1_adresse_client,c1_tel,c1_nom,c1_prenom,c4_nom_dest,c4_Pays_Dest,
 	       	    null,null,null,null,null,c3_Nom_Circuit,null,null,null,null,
 		    nombre_adulte,nombre_enfant,null,null,Total_Vol,total_hotel,total_circuit,total_facture,
 		    c1_age,c1_classe_sociale,null,null);
