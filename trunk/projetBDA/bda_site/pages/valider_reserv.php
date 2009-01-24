@@ -8,7 +8,9 @@ $link = connect_db();
 if($_GET['client'] != "")
   $id_client = $_GET['client'];
 if($_GET['dest'] != "")
-  $nom_dest = $_GET['dest'];
+  $id_dest = $_GET['dest'];
+if($_GET['circ'] != "")
+  $id_circ = $_GET['circ'];
 
 ?>
 
@@ -53,7 +55,7 @@ if($id_client != ""){
   ociexecute($stmt,OCI_DEFAULT);
 
   while(OCIFetchInto($stmt, $row, OCI_NUM)){
-    if($row[0] == $nom_dest)
+    if($row[0] == $id_dest)
       $selected = "SELECTED";
     $ad = $adress."&dest=".$row[0];
     echo "
@@ -67,15 +69,18 @@ if($id_client != ""){
   echo "
     </select><br/>";
 
-  if($nom_dest != ""){
+  if($id_dest != ""){
     echo "
     <select>
       <option value=\"\">S&eacute;lectionner un circuit</option>";
 
     $adress = $adress."&dest=".$id_dest;
 
-    // Recuperation des destinations
-    $query = "SELECT * FROM CIRCUIT WHERE nom_circuit='".$nom_dest."'";
+    // Recuperation des circuits
+    $query = "
+ SELECT id_circuit, nom_circuit
+ FROM ASSOC_DEST_CIRCUIT NATURAL JOIN CIRCUIT 
+ WHERE id_dest='".$id_dest."'";
     $stmt = ociparse($link, $query);
     ociexecute($stmt,OCI_DEFAULT);
 
@@ -86,7 +91,7 @@ if($id_client != ""){
       echo "
       <option onClick='parent.location=\"".$ad."\"' 
               value=\"".$row[0]."\"".$selected.">
-        ".$row[0].". ".$row[1]."(".$row[2].")
+        ".$row[0].". ".$row[1]."
       </option>";
       $selected = "";
     }
