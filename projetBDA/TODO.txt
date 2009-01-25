@@ -19,6 +19,11 @@ Liste les destinations, sur un clic de destination, afficher les circuits dispon
 Puis sont affich�s les hotels disponibles pour ce circuit.
 A ce moment : choix des chambres (Simples ou doubles)
 
+attention , les ids doivent etre transparents pour l'utilisateur
+ex : pour circuit, il faut pour la consul faire apparaitre la destination et pas l'id
+
+
+
 !!!!!!!!!!!!!
 Vérifier une fois que l'on a ce nombre que la capacité de chaque hotel est satisfaisante 
 
