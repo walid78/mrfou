@@ -11,6 +11,8 @@ if($_GET['dest'] != "")
   $id_dest = $_GET['dest'];
 if($_GET['circ'] != "")
   $id_circ = $_GET['circ'];
+if($_GET['sejour'] != "")
+  $id_sejour = $_GET['sejour'];
 
 ?>
 
@@ -41,6 +43,7 @@ while(OCIFetchInto($stmt, $row, OCI_NUM)){
 
 ?>
     </select><br/> 
+
 <?php
 if($id_client != ""){
   echo "
@@ -102,39 +105,71 @@ if($id_client != ""){
   }
   
   if($id_circ != ""){
-//     echo "
-//     <select>
-//       <option value=\"\">S&eacute;lectionner une étape</option>";
-
     echo "
     <select>
-      <option value=\"\">A faire : S&eacute;lectionner une étape</option>";
-//     $adress = $adress."&etape=".$id_dest;
+      <option value=\"\">S&eacute;lectionner un s&eacute;jour</option>";
 
-//     // Recuperation des circuits
-//     $query = "
-//  SELECT id_circuit, nom_circuit
-//  FROM ASSOC_DEST_CIRCUIT NATURAL JOIN CIRCUIT 
-//  WHERE id_dest='".$id_dest."'";
-//     $stmt = ociparse($link, $query);
-//     ociexecute($stmt,OCI_DEFAULT);
+    $adress = $adress."&circ=".$id_circ;
 
-//     while(OCIFetchInto($stmt, $row, OCI_NUM)){
-//       if($row[0] == $id_circ)
-// 	$selected = "SELECTED";
-//       $ad = $adress."&circ=".$row[0];
-//       echo "
-//       <option onClick='parent.location=\"".$ad."\"' 
-//               value=\"".$row[0]."\"".$selected.">
-//         ".$row[0].". ".$row[1]."
-//       </option>";
-//       $selected = "";
-//     }
+    // Recuperation des sejours
+    $query = "
+ SELECT id_sejour, duree, description
+ FROM ASSOC_PRIX_SEJOUR_CIRCUIT NATURAL JOIN SEJOUR 
+ WHERE id_circuit='".$id_circ."'";
+    $stmt = ociparse($link, $query);
+    ociexecute($stmt,OCI_DEFAULT);
+
+    while(OCIFetchInto($stmt, $row, OCI_NUM)){
+      if($row[0] == $id_sejour)
+	$selected = "SELECTED";
+      $ad = $adress."&sejour=".$row[0];
+      echo "
+      <option onClick='parent.location=\"".$ad."\"' 
+              value=\"".$row[0]."\"".$selected.">
+        ".$row[0].". ".$row[1]." jours(".$row[2].")
+      </option>";
+      $selected = "";
+    }
   
     echo "
     </select><br/>";
     
   }
+
+//   if($id_sejour != ""){
+//     echo "
+//     <select multiple>
+//       <option value=\"\">S&eacute;lectionner une(des) &eacute;tape(s)</option>";
+
+//     $adress = $adress."&sejour=".$id_sejour;
+
+//     // Recuperation des etapes
+//     $query = "
+//  SELECT id_etape, no_etape, descriptif
+//  FROM ETAPE 
+//  WHERE id_circuit='".$id_circ."'";
+//     $stmt = ociparse($link, $query);
+//     ociexecute($stmt,OCI_DEFAULT);
+
+//     $nb_etapes=0;
+
+//     while(OCIFetchInto($stmt, $row, OCI_NUM)){
+//       if($row[0] == $id_etape)
+// 	$selected = "SELECTED";
+//       $ad = $adress."&etape=".$row[0];
+//       echo "
+//       <option onClick='parent.location=\"".$ad."\"'
+//               etape=
+//               value=\"".$row[0]."\"".$selected.">
+//         ".$row[0].". ".$row[1]." (".$row[2].")
+//       </option>";
+//       $selected = "";
+//     }
+  
+//     echo "
+//     </select><br/>";
+    
+//   }
 }
 ?>
   </form>
