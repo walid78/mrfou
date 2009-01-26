@@ -593,10 +593,10 @@ CREATE SEQUENCE seq_sejour START WITH 1;
 ----------------------------------------
 CREATE OR REPLACE PROCEDURE ajout_client(
   adresse varchar,
-  tel number(10),
+  tel number,
   nom varchar,
   prenom varchar,
-  age number(3),
+  age number,
   email varchar,
   classe_sociale varchar,
   id_dest_preferee number,
@@ -625,6 +625,7 @@ begin
 
 end;
 /
+show errors;
 
 ----------------------------------------
 CREATE OR REPLACE PROCEDURE ajout_dest(
@@ -647,6 +648,7 @@ begin
 
 end;
 /
+show errors;
 
 ----------------------------------------
 CREATE OR REPLACE PROCEDURE ajout_hotel(
@@ -677,6 +679,7 @@ begin
 
 end;
 /
+show errors;
 
 ----------------------------------------
 CREATE OR REPLACE PROCEDURE ajout_circuit(
@@ -697,6 +700,7 @@ begin
 
 end;
 /
+show errors;
 
 ----------------------------------------
 CREATE OR REPLACE PROCEDURE ajout_vol(
@@ -715,12 +719,13 @@ begin
   VALUES (
   	 id_vol,
 	 id_dest,
-	 prix_enfant,bordeaux1
+	 prix_enfant,
 	 prix_adulte
 	 );
 
 end;
 /
+show errors;
 
 ----------------------------------------
 CREATE OR REPLACE PROCEDURE ajout_etape(
@@ -745,6 +750,7 @@ begin
 
 end;
 /
+show errors;
 
 ----------------------------------------
 CREATE OR REPLACE PROCEDURE ajout_classe(
@@ -752,13 +758,13 @@ CREATE OR REPLACE PROCEDURE ajout_classe(
   prix_d number)
 as
 -- Variables --
-id_classe classe.id_classe%type;
+id_classe classe_hotel.id_classe%type;
 
 -- Programme --
 begin
   SELECT seq_classe.NEXTVAL INTO id_classe FROM dual;
 
-  INSERT INTO classe
+  INSERT INTO classe_hotel
   VALUES (
   	 id_classe,
 	 prix_s,
@@ -767,6 +773,7 @@ begin
 
 end;
 /
+show errors;
 
 ----------------------------------------
 CREATE OR REPLACE PROCEDURE ajout_sejour(
@@ -791,4 +798,4 @@ begin
 
 end;
 /
-
+show errors;
