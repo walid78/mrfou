@@ -632,13 +632,13 @@ CREATE OR REPLACE PROCEDURE ajout_dest(
   pays varchar)
 as
 -- Variables --
-id_dest dest.id_dest%type;
+id_dest destination.id_dest%type;
 
 -- Programme --
 begin
   SELECT seq_dest.NEXTVAL INTO id_dest FROM dual;
 
-  INSERT INTO dest
+  INSERT INTO destination
   VALUES (
   	 id_dest,
 	 nom_destination,
