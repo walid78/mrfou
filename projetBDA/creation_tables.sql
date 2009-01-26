@@ -289,7 +289,7 @@ INSERT INTO Client VALUES (3,'Rue de la soif', '0557348875', 'Durand', 'Patrick'
 -- Remplissage de la table Facturation --
 
 
-INSERT INTO Facturation Values (1, sysdate,'TOTAL' 'Rue de la plage', '0556654558', 'Burneau' ,'Bruno', 'Bruxelles', 
+INSERT INTO Facturation Values (1, sysdate,'TOTAL', 'Rue de la plage', '0556654558', 'Burneau' ,'Bruno', 'Bruxelles', 
        	    'Belgique', 'California', 'Rue de LA', 4, 45.00, 80.00, 'Hockeinem', 21, 50.00, 12.00 , 24.00, 2,1,'Fatiguant',
 	     0.4, 24.00, 90.00, 50.00, 164.00, 26, 'Etudiant', 'Bordeaux', 400.00) ;
 
@@ -451,6 +451,9 @@ c11_Prix_D float;
 --variable ID de facture
 c12_Id_facture number;
 
+--variables pour la dest preferée
+c13_dest_pref varchar2(20);
+c13_nb_dest_pref number;
 
 --variables des totaux
 Total_Vol float;
@@ -476,6 +479,9 @@ cursor c11 is select Nom_Hotel,	Adresse,Hotel.ID_Classe,Capac_S,Capac_D,Prix_S,P
        		     where (Hotel.ID_Hotel =c8_Tab_ID_Hotel and Hotel.ID_Classe = Classe_Hotel.ID_Classe) ;
 
 cursor c12 is select max(ID_Facture) from facturation;
+cursor c13 is SELECT nom_dest,COUNT(NOM_DEST) AS Total FROM facturation GROUP BY NOM_DEST ORDER BY Total desc;
+
+
 --Pour FABIEN
 --Decrementer les capacités S et D avant l'appel a facturation
 
@@ -539,33 +545,42 @@ dbms_output.put_line('Total Facture= ' || Total_Facture);
 
 --Effacer enregistrement réservation_Client
 
---ajouter un champs 'intitulé' dans facturation avec HOTEL,VOL,CIRCUIT ou TOTAL
+delete from reservation where (ID_Client = client);
+
+
+--estimation de la destination preferée
+
+open c13;fetch c13 into c13_dest_pref,c13_nb_dest_pref;
+
+
+
+--SELECT COUNT(NOM_DEST) AS Total FROM facturation GROUP BY NOM_DEST ORDER BY Total desc
 
 
 --remplissage facture circuit.
 
-insert into facturation values(c12_Id_facture,'CIRCUIT',sysdate,c1_adresse_client,c1_tel,c1_nom,c1_prenom,c4_nom_dest,c4_Pays_Dest,
+insert into facturation values(c12_Id_facture,sysdate,'CIRCUIT',c1_adresse_client,c1_tel,c1_nom,c1_prenom,c4_nom_dest,c4_Pays_Dest,
 	       	    null,null,null,null,null,c3_Nom_Circuit,c2_Duree_Sejour,null,null,null,
 		    nombre_adulte,nombre_enfant,c2_description_sejour,c2_coeff_sejour,null,null,Total_Circuit,null,
-		    c1_age,c1_classe_sociale,null,null);
+		    c1_age,c1_classe_sociale,c13_dest_pref,null);
 
 --remplissage facture vol.
 
 insert into facturation values(c12_Id_facture,sysdate,'VOL',c1_adresse_client,c1_tel,c1_nom,c1_prenom,c4_nom_dest,c4_Pays_Dest,
 	       	    null,null,null,null,null,c3_Nom_Circuit,c2_Duree_Sejour,c6_Prix_Circuit,c5_Prix_Vol_enfant,c5_Prix_Vol_adulte,
-		    nombre_adulte,nombre_enfant,null,null,Total_Vol,null,null,null,
-		    c1_age,c1_classe_sociale,null,null);
+		    nombre_adulte,nombre_enfant,c2_Description_Sejour,c2_coeff_sejour,Total_Vol,null,null,null,
+		    c1_age,c1_classe_sociale,c13_dest_pref,null);
 
 
 
 --remplissage facture TOTAL.
 
 insert into facturation values(c12_Id_facture,sysdate,'TOTAL',c1_adresse_client,c1_tel,c1_nom,c1_prenom,c4_nom_dest,c4_Pays_Dest,
-	       	    null,null,null,null,null,c3_Nom_Circuit,null,null,null,null,
-		    nombre_adulte,nombre_enfant,null,null,Total_Vol,total_hotel,total_circuit,total_facture,
-		    c1_age,c1_classe_sociale,null,null);
+	       	    null,null,null,null,null,c3_Nom_Circuit,c2_Duree_Sejour,null,null,null,
+		    nombre_adulte,nombre_enfant,c2_description_Sejour,c2_coeff_sejour,Total_Vol,total_hotel,total_circuit,total_facture,
+		    c1_age,c1_classe_sociale,c13_dest_pref,null);
 
-
+commit;
 
 end;
 /
