@@ -482,10 +482,8 @@ cursor c12 is select max(ID_Facture) from facturation;
 cursor c13 is SELECT nom_dest,COUNT(NOM_DEST) AS Total FROM facturation GROUP BY NOM_DEST ORDER BY Total desc;
 
 
---Pour FABIEN
---Decrementer les capacités S et D avant l'appel a facturation
-
 --Debut procedure
+
 begin
 
 open c1;fetch c1 into c1_Adresse_Client,c1_Tel,c1_Nom,c1_Prenom,c1_Age,c1_Classe_sociale;
@@ -505,12 +503,14 @@ Loop
 	fetch c8 into c8_Tab_ID_Hotel,c8_NB_S,c8_NB_D;
         Exit When c8%NOTFOUND ;
 	open c11;fetch c11 into c11_Nom_Hotel,c11_Adresse_Hotel,c11_Classe_Hotel,c11_Capac_S,c11_Capac_D,c11_Prix_S,c11_Prix_D;
+
+	--calcul du total local et total
 	Total_Hotel_Courant := c8_NB_S*c11_Prix_S + c8_NB_D*c11_Prix_D;
 	dbms_output.put_line('Total_Hotel_Courant' || Total_Hotel_Courant);
 	Total_Hotel := Total_Hotel + Total_Hotel_Courant;
 
 	--insertion dans facturation des hotels
-	insert into facturation values(c12_Id_facture,sysdate,'HOTEL',c1_adresse_client,c1_tel,c1_nom,c1_prenom,c4_nom_dest,c4_Pays_Dest,
+	insert into facturation values(c12_Id_facture,sysdate,'HOTEL',c1_adresse_client,c1_tel,c1_nom,c1_prenom,null,c4_Pays_Dest,
 	       	    c11_nom_hotel,c11_adresse_hotel,c11_classe_hotel,c11_prix_s,c11_prix_d,null,c2_Duree_Sejour,null,null,null,
 		    nombre_adulte,nombre_enfant,c2_description_sejour,null,null,total_hotel_courant,null,null,
 		    c1_age,c1_classe_sociale,null,null);
@@ -543,30 +543,23 @@ Total_Facture := Total_Vol + Total_Circuit + Total_Hotel;
 dbms_output.put_line('Total Facture= ' || Total_Facture);
 
 
---Effacer enregistrement réservation_Client
-
-delete from reservation where (ID_Client = client);
+--delete from reservation where (ID_Client = client);
 
 
 --estimation de la destination preferée
-
 open c13;fetch c13 into c13_dest_pref,c13_nb_dest_pref;
-
-
-
---SELECT COUNT(NOM_DEST) AS Total FROM facturation GROUP BY NOM_DEST ORDER BY Total desc
 
 
 --remplissage facture circuit.
 
-insert into facturation values(c12_Id_facture,sysdate,'CIRCUIT',c1_adresse_client,c1_tel,c1_nom,c1_prenom,c4_nom_dest,c4_Pays_Dest,
+insert into facturation values(c12_Id_facture,sysdate,'CIRCUIT',c1_adresse_client,c1_tel,c1_nom,c1_prenom,null,c4_Pays_Dest,
 	       	    null,null,null,null,null,c3_Nom_Circuit,c2_Duree_Sejour,null,null,null,
 		    nombre_adulte,nombre_enfant,c2_description_sejour,c2_coeff_sejour,null,null,Total_Circuit,null,
 		    c1_age,c1_classe_sociale,c13_dest_pref,null);
 
 --remplissage facture vol.
 
-insert into facturation values(c12_Id_facture,sysdate,'VOL',c1_adresse_client,c1_tel,c1_nom,c1_prenom,c4_nom_dest,c4_Pays_Dest,
+insert into facturation values(c12_Id_facture,sysdate,'VOL',c1_adresse_client,c1_tel,c1_nom,c1_prenom,null,c4_Pays_Dest,
 	       	    null,null,null,null,null,c3_Nom_Circuit,c2_Duree_Sejour,c6_Prix_Circuit,c5_Prix_Vol_enfant,c5_Prix_Vol_adulte,
 		    nombre_adulte,nombre_enfant,c2_Description_Sejour,c2_coeff_sejour,Total_Vol,null,null,null,
 		    c1_age,c1_classe_sociale,c13_dest_pref,null);
