@@ -1,23 +1,17 @@
-******************   Pour les trois parties  ********************
-
-Revoir le cahier des chargess car il semblerait que certaines fonctions ont été oubliées :)
 
 ******************pour la partie application ********************
 
 
-Pouvoir ajouter les clients, hotels, vols, destinations, circuits, �tapes,classes d'hotel,s�jours ....
-
 Procedures basiques sont faites pour ajouter, il faut les ameliorer en prenant en compte les 
 conditions d'ajout (capacité des hotels etc...) et les vérifier aussi.
 
-
-pouvoir lister les noms/pr�nom des clients.
 en cliquant sur un client, sa fiche complete s'affiche (possibilit� de modifier les infos)
+
 un bouton "nouveau voyage" qui:
 
-Liste les destinations, sur un clic de destination, afficher les circuits disponibles pour cette destination et les types de s�jour.
-Puis sont affich�s les hotels disponibles pour ce circuit.
-A ce moment : choix des chambres (Simples ou doubles)
+Inserer les types de s�jour entre circuit et hotel (ceux disponibles pour les sejours en question)
+Puis sont affich�s les hotels disponibles pour ce circuit et pouvoir en selectionner pour la reservation
+A ce moment : choix des nombres de chambres (Simples ou doubles) pour chaque hotel reservé 
 
 attention , les ids doivent etre transparents pour l'utilisateur
 ex : pour circuit, il faut pour la consul faire apparaitre la destination et pas l'id
@@ -25,17 +19,11 @@ ex : pour circuit, il faut pour la consul faire apparaitre la destination et pas
 
 
 !!!!!!!!!!!!!
-Vérifier une fois que l'on a ce nombre que la capacité de chaque hotel est satisfaisante 
-
-
-Résupération de la procédure stockées
+a la validation de la reservation, compter le nombre de ch occupées, et vérifier que la capacité de chaque hotel est satisfaisante 
 
 ->remplissage de la table réservation avec le nombre de ch doubles/simples
 
-Ensuite passer au choix des vols ( pouvoir en ajouter, en enlever, en selectioner 1 pour la commande)
-
-
-
+Ensuite passer au choix des vols ( en selectioner 1 pour la commande)
 
 
 afficher toutes les factures, celles d'un client particulier, selon une certaine date
@@ -49,22 +37,19 @@ hotels les + demand�s
 
 ***************pour la partie Rapport**********************
 
-Faire afficher les tableaux LA OU il faut
-
-revoir le probleme d'accentuation
+Dans schéma, mettre etape,reservation en encadré Rouge.(car c'est une association).
 
 ecrire un rapide manuel du logiciel
 
-Décrire le fonctionnenemt de notre procédure stokée
+Décrire le fonctionnenemt des procédures stokées
 
 Des slides de support pour la soutenance
 
+Parler des contraintes d'intégrité ainsi que les séquences
+
 *********************Pour la partie Base de donn�e***********
-PROCEDURE STOCKEE A REVOIR
 
-Commenter le code
+Rajouter des valeurs pour avoir plus d'elements dans les jeux de test;
 
-Ajouter un champs TYPE en 1° position dans facturation de type varchar2(20)ou on mettra: HOTEL / VOL/CIRCUIT/TOTAL
-
-
+Revoir fonctionnement de la suppression dans la table réservation (quand, sur trigger ? quoi ?)
 QUAND VIDER LA TABLE DE RESERVATION ? (pour moi , une fois que la facture est entr�e ds la table)

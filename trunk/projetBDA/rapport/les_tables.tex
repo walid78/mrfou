@@ -207,7 +207,7 @@ ID\_Vol& ID\_dest & Prix\_Enfant& Prix\_Adulte\\
 %%%%%%%%%%% Table Client %%%%%%%%%%%
 
 \begin{table}[h]
-ID\_C est l'identifiant client,
+ID est l'identifiant client,
 C\_S est classe sociale,
 ID\_DP est la destination pr\'ef\'er\'ee du client,
 \textbf{Le nom de la destination pr\'ef\'er\'ee du client a \'et\'e enlev\'ee.}
@@ -218,7 +218,7 @@ I\_Moyen est l'investissement moyen du client,
 \hline
 \multicolumn{10}{|c|}{Client}\\
 \hline
-ID\_C& Addr& Tel & Nom & Prenom & Age & Email&C\_S & ID\_DP &I\_Moyen\\
+ID& Addr& Tel & Nom & Prenom & Age & Email&C\_S & ID\_DP &I\_Moyen\\
 \hline
 1 &Rue de la plage&0746573894&Dupont&Raoul&67 &cal@hotmail.fr&Retrait\'e&2&1859.87\\
 \hline
@@ -258,19 +258,8 @@ ID\_Client& ID\_Hotel&Date\_Res\\
 \caption{Table R\'eservation}
 \end{table}
 
-%\paragraph{}
-%Cette table est une table temporaire qui nous permet de pouvoir s\'electionner plusieurs h\^otels lors du choix d'un circuit pour un h\^otel par un client. Une fois la commande saisie et la facture entre dans la base, les lignes correspondant au client sont supprim\'ees.
-
-%%%%%%%%%%% Table Facturation %%%%%%%%%%%
-
-%%%%%%%%%%%%Table LOG%%%%%%%%%%%%%%%%%%%
-%\paragraph{} La table LOG est une fonctionnalit\'e que nous avons int\'egr\'e dans notre application. Elle a pour but d'enregistrer les actions des op\'erateurs sur la base de donn\'ee (afin d'effectuer des statistiques bien sur ...)\\
-%LOG(madate timestamp,utilisateur varchar2(50),action varchar2(20),cible varchar2(50));\\
-%Le type timestamp repr\'esentant \'a la fois la date et l'heure, ce champs nous servira de cl\'e primaire.
-
 \begin{table}[h]
  La table \textbf{LOG} est une fonctionnalit\'e que nous avons int\'egr\'e dans notre application. Elle a pour but d'enregistrer les actions des op\'erateurs sur la base de donn\'ee (afin d'effectuer des statistiques bien sur ...)\\
-LOG(madate timestamp,utilisateur varchar2(50),action varchar2(20),cible varchar2(50));\\
 Le type timestamp repr\'esentant \'a la fois la date et l'heure, ce champs nous servira de cl\'e primaire.
 \begin{center}
 \begin{tabular}{|l|c|c|c|}
