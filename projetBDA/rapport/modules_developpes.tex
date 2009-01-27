@@ -1,0 +1,27 @@
+\section{modules\_d\'evelopp\'es}
+
+\subsection{AjoutFacture}
+
+AjoutFacture(client,sejour,circuit,dest,vol,nombre\_adulte,nombre\_enfant)\\
+Cette proc\'edure a \'et\'e d\'evelopp\'ee afin de faciliter le traitement au niveau de notre application.
+Elle prends en parametre les diff\'erents identifiants nec\'essaire \`a la saisie de la facture, ainsi que le nombre de personnes qui vont participer au voyage.\\
+\small
+%\begin{verbatim}
+
+CREATE OR REPLACE PROCEDURE AjoutFacture(client in number,sejour in number,circuit in number,dest in number, vol in number,nombre\_adulte in number, nombre\_enfant in number) \\
+\begin{enumerate}[1]
+\item R\'ecup\'eration des \'el\'ements dans les tables \'a partir des identifiants
+\item Parcours de la table r\'eservation.Pour chaque ligne, on saisie la facture correspondante
+\item Remplissage des lignes 'Circuit','Vol','Total'
+\item Suppression des \'el\'ements anciens de la table r\'eservation
+
+\end{enumerate}
+
+
+
+%\end{verbatim}
+\normalsize
+
+
+
+\newpage

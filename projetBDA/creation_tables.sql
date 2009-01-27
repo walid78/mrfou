@@ -33,51 +33,55 @@ drop tablespace ts11 including contents and datafiles;
 
 --CREATION TABLESPACES
 
+--tablespace des tables
 create tablespace ts0
 datafile 'ts0.dbf' size 20M
 EXTENT MANAGEMENT LOCAL AUTOALLOCATE ;
 
+
+--de t1 a t10 : TS pour facturation
 create tablespace ts1
-datafile 'ts1.dbf' size 20M
+datafile 'ts1.dbf' size 200M
 EXTENT MANAGEMENT LOCAL AUTOALLOCATE ;
 
 create tablespace ts2
-datafile 'ts2.dbf' size 20M
+datafile 'ts2.dbf' size 200M
 EXTENT MANAGEMENT LOCAL AUTOALLOCATE ;
 
 create tablespace ts3
-datafile 'ts3.dbf' size 20M
+datafile 'ts3.dbf' size 200M
 EXTENT MANAGEMENT LOCAL AUTOALLOCATE ;
 
 create tablespace ts4
-datafile 'ts4.dbf' size 20M
+datafile 'ts4.dbf' size 200M
 EXTENT MANAGEMENT LOCAL AUTOALLOCATE ;
 
 create tablespace ts5
-datafile 'ts5.dbf' size 20M
+datafile 'ts5.dbf' size 200M
 EXTENT MANAGEMENT LOCAL AUTOALLOCATE ;
 
 create tablespace ts6
-datafile' ts6.dbf' size 20M
+datafile' ts6.dbf' size 200M
 EXTENT MANAGEMENT LOCAL AUTOALLOCATE ;
 
 create tablespace ts7
-datafile 'ts7.dbf' size 20M
+datafile 'ts7.dbf' size 200M
 EXTENT MANAGEMENT LOCAL AUTOALLOCATE ;
 
 create tablespace ts8
-datafile 'ts8.dbf' size 20M
+datafile 'ts8.dbf' size 200M
 EXTENT MANAGEMENT LOCAL AUTOALLOCATE ;
 
 create tablespace ts9
-datafile 'ts9.dbf' size 20M
+datafile 'ts9.dbf' size 200M
 EXTENT MANAGEMENT LOCAL AUTOALLOCATE ;
 
 
 create tablespace ts10
-datafile 'ts10.dbf' size 20M
+datafile 'ts10.dbf' size 200M
 EXTENT MANAGEMENT LOCAL AUTOALLOCATE ;
 
+--TS pour la table de LOG
 create tablespace ts11
 datafile 'ts11.dbf' size 20M
 EXTENT MANAGEMENT LOCAL AUTOALLOCATE ;
