@@ -17,7 +17,7 @@ Voici la pr\'esentation des diff\'erentes tables que nous avons \'etablie. Elles
 \item Reservation(ID\_Client integer,ID\_Hotel integer,Date\_Reservation date);\\ 
 \item Client(ID\_Client integer,Addresse varchar2(50),Tel varchar2(10), Nom varchar2(20), Prenom varchar2(20), Age integer, Email varchar2(30), Classe\_sociale varchar2(20), ID\_Dest\_Preferee integer, Investissement\_Moyen float);\\
 
-\item Facturation(ID\_Facture integer, Date\_Facture date, Adresse\_Client varchar2(50), Tel varchar2(10), Nom varchar2(20), Prenom varchar2(20), Nom\_Dest varchar2(20), Pays\_Dest varchar2(20), Nom\_Hotel varchar2(20), Adresse\_Hotel varchar2(50), Classe\_Hotel number, Prix\_S integer, Prix\_D integer, Nom\_circuit varchar2(20), Duree\_sejour integer, Prix\_Circuit float, Prix\_Vol\_Enfant float, prix\_Vol\_Adulte float,Nb\_Adulte number,Nb\_Enfant number, Description\_Sejour varchar2(50), Coeff\_Sejour float, Total\_Vol float, Total\_Hotel float,  Total\_Circuit float, Total\_Facture float, Age integer, Classe\_sociale varchar2(20), Dest\_Pref varchar2(20), Invest\_Moyen float);\\
+\item Facturation(ID\_Facture integer, Date\_Facture date,Categotie varchar2(20), Adresse\_Client varchar2(50), Tel varchar2(10), Nom varchar2(20), Prenom varchar2(20), Nom\_Dest varchar2(20), Pays\_Dest varchar2(20), Nom\_Hotel varchar2(20), Adresse\_Hotel varchar2(50), Classe\_Hotel number, Prix\_S integer, Prix\_D integer, Nom\_circuit varchar2(20), Duree\_sejour integer, Prix\_Circuit float, Prix\_Vol\_Enfant float, prix\_Vol\_Adulte float,Nb\_Adulte number,Nb\_Enfant number, Description\_Sejour varchar2(50), Coeff\_Sejour float, Total\_Vol float, Total\_Hotel float,  Total\_Circuit float, Total\_Facture float, Age integer, Classe\_sociale varchar2(20), Dest\_Pref varchar2(20), Invest\_Moyen float);\\
 \end{itemize}
 \newpage
 
@@ -259,7 +259,8 @@ ID\_Client& ID\_Hotel&Date\_Res\\
 \end{table}
 
 \begin{table}[h]
- La table \textbf{LOG} est une fonctionnalit\'e que nous avons int\'egr\'e dans notre application. Elle a pour but d'enregistrer les actions des op\'erateurs sur la base de donn\'ee (afin d'effectuer des statistiques bien sur ...)\\
+ La table \textbf{LOG} est une fonctionnalit\'e que nous avons int\'egr\'e dans notre application. \\
+ Elle a pour but d'enregistrer les actions des op\'erateurs sur la base de donn\'ee (afin d'effectuer des statistiques)\\
 Le type timestamp repr\'esentant \'a la fois la date et l'heure, ce champs nous servira de cl\'e primaire.
 \begin{center}
 \begin{tabular}{|l|c|c|c|}

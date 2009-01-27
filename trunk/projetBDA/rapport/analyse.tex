@@ -33,7 +33,7 @@ Vol&2*number+2*float=22*4=88o&100 vols * 50 dest = 5k&440ko\\
 \hline
 CLient&3*number+float+varchar2(50)+10+30+3*20=238o&400*12*10=48k&11.424Mo\\
 \hline
-Facturation&6*number+date+10+3*50+8*20+11*float=701o&400*12*10*5 etapes=240k&168.24 Mo\\
+Facturation&6*number+date+10+3*50+9*20+11*float=721o&400*12*10*5 etapes=240k&173.04 Mo\\
 \hline
 \end{tabular}
 \end{table}
@@ -46,12 +46,13 @@ D\'ecoupage des tablespaces :
 \item T0: Toutes les autres tables.
 \end{itemize}
 
+Pour la facturation, nous avons compt\'e une moyenne de 5 hotels par reservation ainsi qu'une ligne de vol, une ligne de circuit, et une ligne de total.Soit 721 octet par ligne , et 240k*(5 hotels + 3) = 1,384,320,000 octets.
 Total Occupation Tablespace T0 : 15,4 Mo\\
-T1 à T10 = 168.24 Mo\\
+T1 à T10 = 1.384 Go\\
 
-Chaque Tablespace devrait donc faire environ 17Mo.(Nous arrondiront à 20 Mo par s\'ecurit\'e pour chacun de nos tablespaces).
-
-Les tableaux ci-dessous nous donnent les détails du calcul de l'espace mémoire nécessaire.
+Chaque Tablespace devrait donc faire environ 138Mo.(Nous arrondiront \`a 200 Mo par s\'ecurit\'e pour chacun de nos tablespaces).
+Il sera toujours possible \'a l'avenir d'adapter la taille des tablespaces en fonction de leur encombrement.
+Les tableaux ci-dessous nous donnent les d\'etails du calcul de l'espace m\'emoire n\'ecessaire.
 
 \newpage
 
