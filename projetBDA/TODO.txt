@@ -51,3 +51,5 @@ Rajouter des valeurs pour avoir plus d'elements dans les jeux de test;
 
 Revoir fonctionnement de la suppression dans la table réservation (quand, sur trigger ? quoi ?)
 QUAND VIDER LA TABLE DE RESERVATION ? (pour moi , une fois que la facture est entr�e ds la table)
+
+Ajout de la date de début de séjour dans la réservation ?
