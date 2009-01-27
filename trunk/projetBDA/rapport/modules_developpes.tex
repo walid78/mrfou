@@ -1,14 +1,21 @@
-\section{modules\_d\'evelopp\'es}
+\section{Modules\_d\'evelopp\'es}
+Nous avions comme première intention de mettre au point un package qui fournirait \`a notre application tous les \'el\'ement n\'ecessaire \`a son developpement comme :
+
+\begin{itemize}
+\item Des proc\'edures et fonctions: pour ajouter des \'el\'ements dans la base,calculer des statistiques
+\item Des variables: connaitre l'emcombrement de chaque hotel par exemple
+\item Des exceptions: Quand une fiche erron\'ee veut être entr\'ee, ou qu'il manque des \'el\'ements pour une facture ...
+\end{itemize}
+
+Nous n'avons pas r\'eussit \`a cr\'eer un tel package pour des raisons que nous n'avons pas eut le temps d'identifer, nous avons donc seulement cr\'e\'e des proc\'edures et fonctions permetant de simplifier le cot\'e applicatif du projet.
 
 \subsection{AjoutFacture}
 
 AjoutFacture(client,sejour,circuit,dest,vol,nombre\_adulte,nombre\_enfant)\\
 Cette proc\'edure a \'et\'e d\'evelopp\'ee afin de faciliter le traitement au niveau de notre application.
 Elle prends en parametre les diff\'erents identifiants nec\'essaire \`a la saisie de la facture, ainsi que le nombre de personnes qui vont participer au voyage.\\
-\small
-%\begin{verbatim}
 
-CREATE OR REPLACE PROCEDURE AjoutFacture(client in number,sejour in number,circuit in number,dest in number, vol in number,nombre\_adulte in number, nombre\_enfant in number) \\
+Séquence de fonctionnement :
 \begin{enumerate}[1]
 \item R\'ecup\'eration des \'el\'ements dans les tables \'a partir des identifiants
 \item Parcours de la table r\'eservation.Pour chaque ligne, on saisie la facture correspondante
@@ -17,9 +24,19 @@ CREATE OR REPLACE PROCEDURE AjoutFacture(client in number,sejour in number,circu
 
 \end{enumerate}
 
+\subsection{Functions.php}
+Nous trouvons dans ce module les fonctions n\'ecessaires \`a la connection et d\'econnection \`a la base de donn\'ee,de listage de table, d'ajout et de suppression d'\'el\'ements.
+
+\begin{enumerate}
+\item Connect\_db() : Connection \`a la base sur le port 1521.
+\item Disconnect\_db() : D\'econnection de la base.
+\item List\_table(table\_name): Afficher une table \`a l' \'ecran.
+\item Traitement\_supp : Fonction permettant d'effacer d'une table les \'el\'ements selectionn\'es a l' \'ecran
+\item Traitement\_ajout : M\^eme principe mais pour l'ajour d'\'el\'ement
+\end{enumerate}
 
 
-%\end{verbatim}
+
 \normalsize
 
 

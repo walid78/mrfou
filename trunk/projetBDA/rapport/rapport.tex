@@ -16,8 +16,8 @@
 \addtolength{\oddsidemargin}{-0.8cm}
 \textheight=21cm % longueur utile de la page
 \topmargin=0cm % marge haute
-\headsep=40pt % séparation 20 points entre entête et texte
-\footskip=20pt % idem séparation pied de page
+\headsep=40pt % séparation 40 points entre entête et texte
+\footskip=15pt % idem séparation pied de page
 
 %%%%% Entetes et Enpieds de pages %%%%%
 \usepackage{fancyhdr}
@@ -34,19 +34,6 @@ Prudence, Christian R\'etor\'e}}}
 %%%%% Types enumerate %%%%%
 \let\enumeratesav\enumerate
 \let\endenumeratesav\endenumerate
-
-% \renewenvironment{enumerate}{
-% \enumeratesav
-%  \setlength{\itemsep}{0.5pt}
-%  \setlength{\parskip}{0pt}
-%  \setlength{\parsep}{0pt}}
-% \endenumeratesav
-
-% \newenvironment{tikz_mrfou}{
-% \begin{tikzpicture}[->,>=stealth,shorten >=1pt,auto,node
-%  distance=2cm,on grid,semithick,inner sep=2pt,bend
-%  angle=30,font=\small, initial text=]
-% }{\end{tikzpicture}}
 
 \renewcommand{\labelenumi}{\indent-}
 \renewcommand{\labelenumii}{\indent$\bullet$}
@@ -81,10 +68,7 @@ backgroundcolor=\color{gray}, xleftmargin=14mm}
 
 \setlength{\unitlength}{1in}
 
-%%%%% Image de fond %%%%%
-%\begin{picture}(0,0)
-% \put(0.2,-7){\includegraphics[width=\textwidth]{images/bx1_trans.eps}}
-%\end{picture}
+
 
 \begin{flushright}
  \noindent {\rule{\larg}{0.5mm}}
@@ -106,8 +90,15 @@ backgroundcolor=\color{gray}, xleftmargin=14mm}
  ~\\
  \large{Master 2 Informatique}\\
  ~\\
- % \today
- \vspace{9cm}
+
+\begin{figure}[ht]
+\begin{center}
+%\includegraphics[height=8cm]{fond.eps}
+\end{center}
+\end{figure}
+
+
+
  \large{Bruno Bassac, Geoffrey Graveaud, Fabien Kuntz}
 {\rule{\larg}{0.5mm}}
 \end{flushright}
@@ -136,92 +127,4 @@ backgroundcolor=\color{gray}, xleftmargin=14mm}
 \input{modules_developpes}
 
 
-
-
-
-%%%%%%               %%%%%%
-%%%%%% /ZONE DE CODE %%%%%%
-%%%%%%               %%%%%%
-
-
-
-
 \end{document}
-
-
-
-%%%%%%           %%%%%%
-%%%%%% /DOCUMENT %%%%%%
-%%%%%%           %%%%%%
-
-
-
-
-%%%%% Texte italique %%%%%
-%  \textit{} 
-
-%%%%% Liste %%%%
-%%% Itemize %%%
-%  \begin{itemize}
-%   \item item1\\
-%   \item item2
-%  \end{itemize}
-
-%%% Enumerate %%%
-%  \begin{enumerate}
-%   \item item1
-%   \item item2
-%  \end{enumerate}
-
-%%%%% Tabulations %%%%%
-%   \begin{tabbing}
-%    XX\=XX\=\kill
-%    \>(OrdresEnonce.v, ligne 244)\\
-%    \>\>test2
-%   \end{tabbing}
- 
-%%%%% Note de pied de page %%%%%
-%  \footnote{test}
-
-%%%%% Rfrence %%%%%
-%   \label{ref}
-%% Plus loin :
-%   \ref{ref}
-%   \pageref{ref}
-
-%%%%% Code %%%%%
-% \begin{lstlisting}
-%      List<Integer> lexBFS2 = new ArrayList<Integer>();
-%      lexBFS2.add(3);
-%      lexBFS2.add(2);
-%      lexBFS2.add(4);
-%      lexBFS2.add(1);
-%      lexBFS2.add(0);    
-%      assertNotNull(lexBFS2);	
-%      assertEquals(lexBFS2,Graphs.lexBFS(nogYComp));
-%   \end{lstlisting}
-
-%%%%% Inclure une figure %%%%%
-%  \begin{figure}[!ht]
-%   \begin{center}
-%	\includegraphics[width=7cm]{figs/cours1/fig2.eps}
-%	\caption{\emph{MT2} : Calcul non dterministe}
-%   \end{center}
-%  \end{figure}
-
-%%%%% Dessiner une figure %%%%% 
-% \begin{tikzpicture}[->,>=stealth,shorten >=1pt,auto,node
-%  distance=2cm,on grid,semithick,inner sep=2pt,bend
-%  angle=45,font=\small]
-%  \node[initial,state] (1) {$q_1$}
-%  edge [loop above] node {b} ();
-%  \node[state] (2) [right=of 1] {$q_2$}
-%  edge [<-]  node {a} (1)
-%  edge [loop above] node {b} ();
-%  \node[state,right=of 2] (3) {$q_3$}
-%  edge [->, bend right] node {b} (2)
-%  edge [<-, bend left] node {a} (2);
-%  \node[state,below=of 2,accepting] (4) {$q_4$}
-%  edge [<-] node {b} (2)
-%  edge [loop right] node {b} ();
-% \end{tikzpicture}
