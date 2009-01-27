@@ -151,12 +151,24 @@ if($id_client != ""){
   }
 
   if($id_sejour != ""){
+    $adress = $adress."&sejour=".$id_sejour;
+//     $adress = $adress."&date_debut=1";
+//************************* Ici : donner le choix entre 4 jours de départ ?
+//     echo "
+//     <input type=\"text\" 
+//            name=\"date_debut\"
+//            onClick='parent.location=\"".$adress."\"'           ";
+
+//   }
+
+
+//   if($date_debut != ""){
     echo "
     <table border=0 align=\"center\" bgcolor=\"white\">
       <tr>
         <td>S&eacute;lectionner une(des) &eacute;tape(s)</td>
       </tr>";
-    $adress = $adress."&sejour=".$id_sejour;
+//     $adress = $adress."&sejour=".$id_sejour;
 
     // Recuperation des etapes
     $query = "
