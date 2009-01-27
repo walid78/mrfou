@@ -41,8 +41,6 @@ Dans schéma, mettre etape,reservation en encadré Rouge.(car c'est une associat
 
 ecrire un rapide manuel du logiciel
 
-Décrire le fonctionnenemt des procédures stokées
-
 Des slides de support pour la soutenance
 
 Parler des contraintes d'intégrité ainsi que les séquences
