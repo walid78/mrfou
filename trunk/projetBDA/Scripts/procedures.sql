@@ -227,11 +227,6 @@ end;
 /
 show errors;
 
-BEGIN
-ajout_client('rue du pin','0606060606','dutronc','michel',19,'dut.michel@pouet.fr','etudiant',null,null);
-commit;
-END;
-
 ----------------------------------------
 CREATE OR REPLACE PROCEDURE ajout_dest(
   nom_destination varchar,
@@ -254,11 +249,6 @@ begin
 end;
 /
 show errors;
-
-BEGIN
-ajout_dest('copacabana','brézil');
-commit;
-END;
 
 ----------------------------------------
 CREATE OR REPLACE PROCEDURE ajout_hotel(
@@ -291,11 +281,6 @@ end;
 /
 show errors;
 
-BEGIN
-ajout_hotel(3,'brazilio','avenue de la salsa',3,10,5);
-commit;
-END;
-
 ----------------------------------------
 CREATE OR REPLACE PROCEDURE ajout_circuit(
   nom_circuit varchar)
@@ -316,11 +301,6 @@ begin
 end;
 /
 show errors;
-
-BEGIN
-ajout_circuit('électronique');
-commit;
-END;
 
 ----------------------------------------
 CREATE OR REPLACE PROCEDURE ajout_vol(
@@ -347,41 +327,6 @@ end;
 /
 show errors;
 
-BEGIN
-ajout_vol(2,12.05,19.05);
-commit;
-END;
-
-----------------------------------------
-CREATE OR REPLACE PROCEDURE ajout_etape(
-  no_etape number,
-  id_circuit number,
-  descriptif varchar)
-as
--- Variables --
-id_etape etape.id_etape%type;
-
--- Programme --
-begin
-  SELECT seq_etape.NEXTVAL INTO id_etape FROM dual;
-
-  INSERT INTO etape
-  VALUES (
-  	 id_etape,
-	 no_etape,
-	 id_circuit,
-	 descriptif
-	 );
-
-end;
-/
-show errors;
-
-BEGIN
-ajout_etape(5,3,'Carnaval');
-commit;
-END;
-
 ----------------------------------------
 CREATE OR REPLACE PROCEDURE ajout_classe(
   prix_s float,
@@ -404,11 +349,6 @@ begin
 end;
 /
 show errors;
-
-BEGIN
-ajout_classe(26.00,50.00);
-commit;
-END;
 
 ----------------------------------------
 CREATE OR REPLACE PROCEDURE ajout_sejour(
@@ -434,11 +374,6 @@ begin
 end;
 /
 show errors;
-
-BEGIN
-ajout_sejour(10,'Chaleur du brézil',2.5);
-commit;
-END;
 
 ----------------------------------------
 CREATE OR REPLACE PROCEDURE ajout_dest_circuit(
@@ -491,8 +426,153 @@ end;
 
 show errors;
 
-BEGIN
-ajout_dest_circuit(2,1);
-commit;
-END;
+----------------------------------------
+CREATE OR REPLACE PROCEDURE ajout_circuit_sejour(
+  id_circuit number,
+  id_sejour number,
+  prix number)
+as
+-- Variables --
+id_j number;
+id_c number;
+plop varchar(10);
+plop2 varchar(10);
 
+cursor j is select id_sejour from sejour;
+cursor c is select id_circuit from circuit;
+
+-- Programme --
+begin
+open  j;
+open  c;
+plop := 'False';
+plop2 := 'False';
+
+loop
+  fetch j into id_j;
+  Exit  When j%NOTFOUND;
+  if id_j = id_sejour then plop :='Ok'; 
+  end if;
+end loop;
+
+loop 
+  fetch c into id_c;
+   Exit  When c%NOTFOUND;
+   if id_c = id_circuit then plop2 := 'Ok'; end if;       
+end loop;
+
+if plop = 'Ok' and  plop2 = 'Ok' then 
+    INSERT INTO Assoc_Prix_Sejour_Circuit
+         VALUES (
+	 id_circuit,
+	 id_sejour,
+	 prix
+	 );     
+     
+end if;
+
+if plop2 = 'False' then dbms_output.put_line('Id_Circuit non existant');end if;
+ if plop = 'False'then dbms_output.put_line('Id_Sejour non existant');end if;         
+
+end;
+/
+
+show errors;
+
+----------------------------------------
+CREATE OR REPLACE PROCEDURE ajout_reservation(
+  id_client number,
+  id_hotel number,
+  date1 date,
+  date2 date,
+  NBS number,
+  NBD number)
+as
+
+-- Variables --
+id_h number;
+id_c number;
+plop varchar(10);
+plop2 varchar(10);
+
+cursor h is select id_hotel from hotel;
+cursor c is select id_client from client
+
+-- Programme --
+begin
+open  h;
+open  c;
+plop := 'False';
+plop2 := 'False';
+
+loop
+  fetch h into id_h;
+  Exit  When h%NOTFOUND;
+  if id_h = id_hotel then plop :='Ok'; 
+  end if;
+end loop;
+
+loop 
+  fetch c into id_c;
+   Exit  When c%NOTFOUND;
+   if id_c = id_client then plop2 := 'Ok'; end if;       
+end loop;
+
+if plop = 'Ok' and  plop2 = 'Ok' then 
+    INSERT INTO reservation
+         VALUES (
+	 id_client,
+	 id_hotel,
+	 date1,
+         date2,
+         NBS,
+         NBD
+	 );     
+     
+end if;
+
+if plop2 = 'False' then dbms_output.put_line('Id_Client non existant');end if;
+ if plop = 'False'then dbms_output.put_line('Id_Hotel non existant');end if;         
+
+end;
+/
+
+show errors;
+
+----------------------------------------
+CREATE OR REPLACE PROCEDURE ajout_etape(
+  no_etape number,
+  id_circuit number,
+  descriptif varchar)
+as
+-- Variables --
+id_etape etape.id_etape%type;
+id_c number;
+plop varchar(10);
+cursor c is select id_circuit from circuit;
+
+-- Programme --
+begin
+open  c;
+plop := 'False';
+  SELECT seq_etape.NEXTVAL INTO id_etape FROM dual;
+
+loop
+  fetch c into id_c;
+  Exit  When c%NOTFOUND;
+  if id_c = id_circuit then INSERT INTO etape
+  VALUES (
+  	 id_etape,
+	 no_etape,
+	 id_circuit,
+	 descriptif
+	 );
+   plop :='Ok'; 
+  end if;
+end loop;
+
+if plop2 = 'False' then dbms_output.put_line('Id_Circuit non existant');end if;
+  
+end;
+/
+show errors;
