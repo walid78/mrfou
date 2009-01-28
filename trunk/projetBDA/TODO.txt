@@ -43,11 +43,5 @@ Des slides de support pour la soutenance
 
 
 *********************Pour la partie Base de donn�e***********
-POURQUOI AJOUTERFACT marche plus ? (peut etre les insert into )
 
-ala fin de la procedure, effacer les reservation de date inferieures a la courante.
-
-Revoir fonctionnement de la suppression dans la table réservation (quand, sur trigger ? quoi ?)
-QUAND VIDER LA TABLE DE RESERVATION ? (pour moi , une fois que la facture est entr�e ds la table)
-"effacement du client"
 
