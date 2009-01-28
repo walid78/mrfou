@@ -45,8 +45,6 @@ hotels les + demand�s
 
 ***************pour la partie Rapport**********************
 
-Dans schéma, mettre etape,reservation en encadré Rouge.(car c'est une association).
-
 ecrire un rapide manuel du logiciel
 
 Des slides de support pour la soutenance
