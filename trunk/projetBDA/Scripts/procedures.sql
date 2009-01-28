@@ -1,3 +1,7 @@
+
+DROP SEQUENCE seq_fact;
+CREATE SEQUENCE seq_fact START WITH 1;
+
 CREATE OR REPLACE PROCEDURE AjoutFacture(client in number,sejour in number,circuit in number,dest in number, vol in number,nombre_adulte in number, nombre_enfant in number) 
 
 as
@@ -38,7 +42,8 @@ c6_Prix_Circuit float;
 c8_Tab_ID_Hotel number;
 c8_NB_S number;
 c8_NB_D number;
-
+c8_Date_Res_Debut date;
+c8_Date_Res_Fin date;
 --variables données hotels réservés
 c11_Nom_Hotel varchar2(20);
 c11_Adresse_Hotel varchar2(50);
@@ -47,11 +52,10 @@ c11_Capac_S number;
 c11_Capac_D number;
 c11_Prix_S float;
 c11_Prix_D float;
-c11_Date_Res_debut date;
-c11_Date_res_fin date;
+
 
 --variable ID de facture
-c12_Id_facture number;
+-- c12_Id_facture number;
 
 --variables pour la dest preferée
 c13_dest_pref varchar2(20);
@@ -74,15 +78,17 @@ cursor c4 is select Nom_Destination,Pays from Destination where ID_Dest = dest ;
 cursor c5 is select Prix_Enfant,Prix_Adulte from Vol where ID_Vol = vol ;
 cursor c6 is select Prix from  Assoc_Prix_Sejour_Circuit where (ID_Circuit = circuit and ID_Sejour = sejour);
 --
-cursor c8 is select ID_Hotel,NB_Chambre_S,NB_Chambre_D from  Reservation where ID_Client = client;
+cursor c8 is select ID_Hotel,NB_Chambre_S,NB_Chambre_D,Date_Reservation_Debut,Date_Reservation_Fin from  Reservation where ID_Client = client;
 --
-cursor c11 is select Nom_Hotel,	Adresse,Hotel.ID_Classe,Capac_S,Capac_D,Prix_S,Prix_D,c11_Date_Res_debut,c11_Date_Res_fin
+cursor c11 is select Nom_Hotel,	Adresse,Hotel.ID_Classe,Capac_S,Capac_D,Prix_S,Prix_D
        	      	     from Hotel,Classe_Hotel 
        		     where (Hotel.ID_Hotel =c8_Tab_ID_Hotel and Hotel.ID_Classe = Classe_Hotel.ID_Classe) ;
 
-cursor c12 is select max(ID_Facture) from facturation;
+-- cursor c12 is select max(ID_Facture) from facturation;
 cursor c13 is SELECT nom_dest,COUNT(NOM_DEST) AS Total FROM facturation GROUP BY NOM_DEST ORDER BY Total desc;
 
+--Sequence
+c12_Id_facture facturation.id_facture%type;
 
 --Debut procedure
 
@@ -95,16 +101,17 @@ open c4;fetch c4 into c4_Nom_Dest,c4_Pays_Dest;
 open c5;fetch c5 into c5_Prix_Vol_Enfant,c5_Prix_Vol_Adulte;
 open c6;fetch c6 into c6_Prix_Circuit;
 open c8;
-open c12;fetch c12 into c12_Id_facture;c12_Id_facture := c12_Id_facture + 1;
+-- open c12;fetch c12 into c12_Id_facture;c12_Id_facture := c12_Id_facture + 1;
+SELECT seq_fact.NEXTVAL INTO c12_Id_facture FROM dual;
 
 --Boucle sur tous les hotel réservés
 
 Total_Hotel_Courant := 0;
 Total_Hotel := 0;
 Loop
-	fetch c8 into c8_Tab_ID_Hotel,c8_NB_S,c8_NB_D;
+	fetch c8 into c8_Tab_ID_Hotel,c8_NB_S,c8_NB_D,c8_date_res_debut,c8_date_res_fin;
         Exit When c8%NOTFOUND ;
-	open c11;fetch c11 into c11_Nom_Hotel,c11_Adresse_Hotel,c11_Classe_Hotel,c11_Capac_S,c11_Capac_D,c11_Prix_S,c11_Prix_D,c11_Date_Res_debut,c11_Date_Res_fin;
+	open c11;fetch c11 into c11_Nom_Hotel,c11_Adresse_Hotel,c11_Classe_Hotel,c11_Capac_S,c11_Capac_D,c11_Prix_S,c11_Prix_D;
 
 	--calcul du total local et total
 	Total_Hotel_Courant := c8_NB_S*c11_Prix_S + c8_NB_D*c11_Prix_D;
@@ -113,7 +120,7 @@ Loop
 
 	--insertion dans facturation des hotels
 	insert into facturation values(c12_Id_facture,sysdate,'HOTEL',c1_adresse_client,c1_tel,c1_nom,c1_prenom,null,c4_Pays_Dest,
-	       	    c11_nom_hotel,c11_adresse_hotel,c11_classe_hotel,c11_prix_s,c11_prix_d,c11_Date_Res_debut,c11_Date_Res_fin,null,c2_Duree_Sejour,null,null,null,
+	       	    c11_nom_hotel,c11_adresse_hotel,c11_classe_hotel,c11_prix_s,c11_prix_d,c8_Date_Res_debut,c8_Date_Res_fin,null,c2_Duree_Sejour,null,null,null,
 		    nombre_adulte,nombre_enfant,c2_description_sejour,null,null,total_hotel_courant,null,null,
 		    c1_age,c1_classe_sociale,null,null);
 
@@ -183,12 +190,12 @@ end;
 
 show errors;
 
-SET SERVEROUTPUT ON
+--SET SERVEROUTPUT ON
 
-BEGIN
-AjoutFacture(1,2,1,1,1,2,2);
-commit;
-END;
+--BEGIN
+--AjoutFacture(1,2,1,1,1,2,2);
+--commit;
+--END;
 
 -- Fonctions stockees pour les ajouts
 ----------------------------------------
