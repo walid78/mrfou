@@ -45,7 +45,6 @@ ecrire un rapide manuel du logiciel
 
 Des slides de support pour la soutenance
 
-Parler des contraintes d'intégrité ainsi que les séquences
 
 *********************Pour la partie Base de donn�e***********
 
