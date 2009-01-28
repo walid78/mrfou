@@ -1,4 +1,4 @@
-\section{Modules\_d\'evelopp\'es}
+\section{Modules d\'evelopp\'es}
 Nous avions comme premi\`ere intention de mettre au point un package qui fournirait \`a notre application tous les \'el\'ement n\'ecessaire \`a son developpement comme :
 
 \begin{itemize}
@@ -15,7 +15,7 @@ AjoutFacture(client,sejour,circuit,dest,vol,nombre\_adulte,nombre\_enfant)\\
 Cette proc\'edure a \'et\'e d\'evelopp\'ee afin de faciliter le traitement au niveau de notre application.
 Elle prends en parametre les diff\'erents identifiants nec\'essaire \`a la saisie de la facture, ainsi que le nombre de personnes qui vont participer au voyage.\\
 
-Séquence de fonctionnement :
+S\'equence de fonctionnement :
 \begin{enumerate}[1]
 \item R\'ecup\'eration des \'el\'ements dans les tables \'a partir des identifiants
 \item Parcours de la table r\'eservation.Pour chaque ligne, on saisie la facture correspondante
@@ -36,11 +36,11 @@ Nous trouvons dans ce module les fonctions n\'ecessaires \`a la connection et d\
 \end{enumerate}
 
 \subsection{Les triggers}
-Quatre triggers ont été mis en place afin d'enregistrer les differentes opérations effectuées par les opérateurs sur les tables de clients, d'hotel, de circuits.
-On peut donc retrouver dans la table LOG l'historiques des différentes opérations avec le login de l'opérateur, l'action qu'il a éffectué (insertion, suppression, modification), la table sur laquelle il a agit ainsi que la date et l'heure.
+Quatre triggers ont \'et\'e mis en place afin d'enregistrer les differentes op\'erations effectu\'ees par les op\'erateurs sur les tables de clients, d'hotel, de circuits.
+On peut donc retrouver dans la table LOG l'historiques des diff\'erentes op\'erations avec le login de l'op\'erateur, l'action qu'il a \'effectu\'e (insertion, suppression, modification), la table sur laquelle il a agit ainsi que la date et l'heure.
 
-\subsection{Les séquences}
-Différentes séquences ont étées mises en place pour effectuer une numérotation automatique des différents identifiants,de façon totallement transparente pour l'utilisateur.
+\subsection{Les s\'equences}
+Diff\'erentes s\'equences ont \'et\'ees mises en place pour effectuer une num\'erotation automatique des diff\'erents identifiants,de façon totallement transparente pour l'utilisateur.
 
 
 
