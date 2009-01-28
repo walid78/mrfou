@@ -145,8 +145,6 @@ Total_Facture := Total_Vol + Total_Circuit + Total_Hotel;
 dbms_output.put_line('Total Facture= ' || Total_Facture);
 
 
---delete from reservation where (ID_Client = client);
-
 
 --estimation de la destination preferée
 open c13;fetch c13 into c13_dest_pref,c13_nb_dest_pref;
@@ -174,6 +172,9 @@ insert into facturation values(c12_Id_facture,sysdate,'TOTAL',c1_adresse_client,
 	       	    null,null,null,null,null,null,null,c3_Nom_Circuit,c2_Duree_Sejour,null,null,null,
 		    nombre_adulte,nombre_enfant,c2_description_Sejour,c2_coeff_sejour,Total_Vol,total_hotel,total_circuit,total_facture,
 		    c1_age,c1_classe_sociale,c13_dest_pref,null);
+
+
+delete from reservation where (ID_Client = client);
 
 commit;
 
