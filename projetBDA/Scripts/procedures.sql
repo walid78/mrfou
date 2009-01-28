@@ -47,6 +47,8 @@ c11_Capac_S number;
 c11_Capac_D number;
 c11_Prix_S float;
 c11_Prix_D float;
+c11_Date_Res_debut date;
+c11_Date_res_fin date;
 
 --variable ID de facture
 c12_Id_facture number;
@@ -74,7 +76,7 @@ cursor c6 is select Prix from  Assoc_Prix_Sejour_Circuit where (ID_Circuit = cir
 --
 cursor c8 is select ID_Hotel,NB_Chambre_S,NB_Chambre_D from  Reservation where ID_Client = client;
 --
-cursor c11 is select Nom_Hotel,	Adresse,Hotel.ID_Classe,Capac_S,Capac_D,Prix_S,Prix_D 
+cursor c11 is select Nom_Hotel,	Adresse,Hotel.ID_Classe,Capac_S,Capac_D,Prix_S,Prix_D,c11_Date_Res_debut,c11_Date_Res_fin
        	      	     from Hotel,Classe_Hotel 
        		     where (Hotel.ID_Hotel =c8_Tab_ID_Hotel and Hotel.ID_Classe = Classe_Hotel.ID_Classe) ;
 
@@ -102,7 +104,7 @@ Total_Hotel := 0;
 Loop
 	fetch c8 into c8_Tab_ID_Hotel,c8_NB_S,c8_NB_D;
         Exit When c8%NOTFOUND ;
-	open c11;fetch c11 into c11_Nom_Hotel,c11_Adresse_Hotel,c11_Classe_Hotel,c11_Capac_S,c11_Capac_D,c11_Prix_S,c11_Prix_D;
+	open c11;fetch c11 into c11_Nom_Hotel,c11_Adresse_Hotel,c11_Classe_Hotel,c11_Capac_S,c11_Capac_D,c11_Prix_S,c11_Prix_D,c11_Date_Res_debut,c11_Date_Res_fin;
 
 	--calcul du total local et total
 	Total_Hotel_Courant := c8_NB_S*c11_Prix_S + c8_NB_D*c11_Prix_D;
@@ -111,7 +113,7 @@ Loop
 
 	--insertion dans facturation des hotels
 	insert into facturation values(c12_Id_facture,sysdate,'HOTEL',c1_adresse_client,c1_tel,c1_nom,c1_prenom,null,c4_Pays_Dest,
-	       	    c11_nom_hotel,c11_adresse_hotel,c11_classe_hotel,c11_prix_s,c11_prix_d,null,c2_Duree_Sejour,null,null,null,
+	       	    c11_nom_hotel,c11_adresse_hotel,c11_classe_hotel,c11_prix_s,c11_prix_d,c11_Date_Res_debut,c11_Date_Res_fin,null,c2_Duree_Sejour,null,null,null,
 		    nombre_adulte,nombre_enfant,c2_description_sejour,null,null,total_hotel_courant,null,null,
 		    c1_age,c1_classe_sociale,null,null);
 
@@ -153,14 +155,14 @@ open c13;fetch c13 into c13_dest_pref,c13_nb_dest_pref;
 --remplissage facture circuit.
 
 insert into facturation values(c12_Id_facture,sysdate,'CIRCUIT',c1_adresse_client,c1_tel,c1_nom,c1_prenom,null,c4_Pays_Dest,
-	       	    null,null,null,null,null,c3_Nom_Circuit,c2_Duree_Sejour,null,null,null,
+	       	    null,null,null,null,null,null,null,c3_Nom_Circuit,c2_Duree_Sejour,null,null,null,
 		    nombre_adulte,nombre_enfant,c2_description_sejour,c2_coeff_sejour,null,null,Total_Circuit,null,
 		    c1_age,c1_classe_sociale,c13_dest_pref,null);
 
 --remplissage facture vol.
 
 insert into facturation values(c12_Id_facture,sysdate,'VOL',c1_adresse_client,c1_tel,c1_nom,c1_prenom,null,c4_Pays_Dest,
-	       	    null,null,null,null,null,c3_Nom_Circuit,c2_Duree_Sejour,c6_Prix_Circuit,c5_Prix_Vol_enfant,c5_Prix_Vol_adulte,
+	       	    null,null,null,null,null,null,null,c3_Nom_Circuit,c2_Duree_Sejour,c6_Prix_Circuit,c5_Prix_Vol_enfant,c5_Prix_Vol_adulte,
 		    nombre_adulte,nombre_enfant,c2_Description_Sejour,c2_coeff_sejour,Total_Vol,null,null,null,
 		    c1_age,c1_classe_sociale,c13_dest_pref,null);
 
@@ -169,7 +171,7 @@ insert into facturation values(c12_Id_facture,sysdate,'VOL',c1_adresse_client,c1
 --remplissage facture TOTAL.
 
 insert into facturation values(c12_Id_facture,sysdate,'TOTAL',c1_adresse_client,c1_tel,c1_nom,c1_prenom,c4_nom_dest,c4_Pays_Dest,
-	       	    null,null,null,null,null,c3_Nom_Circuit,c2_Duree_Sejour,null,null,null,
+	       	    null,null,null,null,null,null,null,c3_Nom_Circuit,c2_Duree_Sejour,null,null,null,
 		    nombre_adulte,nombre_enfant,c2_description_Sejour,c2_coeff_sejour,Total_Vol,total_hotel,total_circuit,total_facture,
 		    c1_age,c1_classe_sociale,c13_dest_pref,null);
 
