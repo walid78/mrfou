@@ -496,7 +496,7 @@ plop varchar(10);
 plop2 varchar(10);
 
 cursor h is select id_hotel from hotel;
-cursor c is select id_client from client
+cursor c is select id_client from client;
 
 -- Programme --
 begin
@@ -571,7 +571,7 @@ loop
   end if;
 end loop;
 
-if plop2 = 'False' then dbms_output.put_line('Id_Circuit non existant');end if;
+if plop = 'False' then dbms_output.put_line('Id_Circuit non existant');end if;
   
 end;
 /
