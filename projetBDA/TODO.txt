@@ -50,12 +50,9 @@ Parler des contraintes d'intégrité ainsi que les séquences
 *********************Pour la partie Base de donn�e***********
 
 
-Rajouter des valeurs pour avoir plus d'elements dans les jeux de test;
-
 ala fin de la procedure, effacer les reservation de date inferieures a la courante.
 
 Revoir fonctionnement de la suppression dans la table réservation (quand, sur trigger ? quoi ?)
 QUAND VIDER LA TABLE DE RESERVATION ? (pour moi , une fois que la facture est entr�e ds la table)
-
-
+"effacement du client"
 
