@@ -1,6 +1,20 @@
---Séquences
+-- Vidage des tables --
+DELETE FROM client;
+DELETE FROM circuit;
+DELETE FROM assoc_dest_circuit;
+DELETE FROM destination;
+DELETE FROM vol;
+DELETE FROM assoc_prix_sejour_circuit;
+DELETE FROM etape;
+DELETE FROM reservation;
+DELETE FROM sejour;
+DELETE FROM hotel;
+DELETE FROM classe_hotel;
+DELETE FROM hotel;
 
---Suppression de séquences--
+-- Séquences --
+
+-- Suppression de séquences --
 DROP SEQUENCE seq_client;
 DROP SEQUENCE seq_dest;
 DROP SEQUENCE seq_hotel;
@@ -11,7 +25,7 @@ DROP SEQUENCE seq_classe;
 DROP SEQUENCE seq_sejour;
 
 
---Création de séquences--
+-- Création de séquences --
 CREATE SEQUENCE seq_client START WITH 1;
 CREATE SEQUENCE seq_dest START WITH 1;
 CREATE SEQUENCE seq_hotel START WITH 1;
@@ -46,11 +60,11 @@ ajout_hotel(2,'Le yéti','place de leverest',2,20,15);
 ajout_hotel(5,'Le Sake','Rue du sushi',4,10,10);
 
 --remplissage reservation:
-INSERT INTO Reservation VALUES(1,1,trunc(sysdate),1,1);
-INSERT INTO Reservation VALUES(2,3,trunc(sysdate),2,1);
-INSERT INTO Reservation VALUES(2,4,trunc(sysdate),0,3);
-INSERT INTO Reservation VALUES(1,5,trunc(sysdate),1,1);
-INSERT INTO Reservation VALUES(1,2,trunc(sysdate),0,2);
+-- INSERT INTO Reservation VALUES(1,1,trunc(sysdate),1,1);
+-- INSERT INTO Reservation VALUES(2,3,trunc(sysdate),2,1);
+-- INSERT INTO Reservation VALUES(2,4,trunc(sysdate),0,3);
+-- INSERT INTO Reservation VALUES(1,5,trunc(sysdate),1,1);
+-- INSERT INTO Reservation VALUES(1,2,trunc(sysdate),0,2);
 
 
 -- Remplissage de la table Classe_Hotel --
@@ -118,9 +132,9 @@ ajout_client('rue orange','0557575757','prudence','michel',38,'prudence.michel@w
 
 -- Remplissage de la table Facturation --
 
-INSERT INTO Facturation Values (1, sysdate,'TOTAL', 'Rue de la plage', '0556654558', 'Burneau' ,'Bruno', 'Bruxelles', 
-       	    'Belgique', 'California', 'Rue de LA', 4, 45.00, 80.00, 'Hockeinem', 21, 50.00, 12.00 , 24.00, 2,1,'Fatiguant',
-	     0.4, 24.00, 90.00, 50.00, 164.00, 26, 'Etudiant', 'Bordeaux', 400.00) ;
+-- INSERT INTO Facturation Values (1, sysdate,'TOTAL', 'Rue de la plage', '0556654558', 'Burneau' ,'Bruno', 'Bruxelles', 
+--        	    'Belgique', 'California', 'Rue de LA', 4, 45.00, 80.00, 'Hockeinem', 21, 50.00, 12.00 , 24.00, 2,1,'Fatiguant',
+-- 	     0.4, 24.00, 90.00, 50.00, 164.00, 26, 'Etudiant', 'Bordeaux', 400.00) ;
 
 
 
