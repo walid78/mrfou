@@ -33,9 +33,7 @@ a la validation de la reservation, compter le nombre de ch occupées, et vérifi
 
 Ensuite passer au choix des vols ( en selectioner 1 pour la commande)
 
-
 afficher toutes les factures, celles d'un client particulier, selon une certaine date
-
 
 Statistiques :
 destinations les plus demand�es
@@ -53,10 +51,20 @@ Parler des contraintes d'intégrité ainsi que les séquences
 
 *********************Pour la partie Base de donn�e***********
 
+
+ajouter un champs date_reservation dans facturation qui sera remplie
+pour chaque hotel
+modifier precedure ajoutfact pour entrer la date reservee.
+
+
 Rajouter des valeurs pour avoir plus d'elements dans les jeux de test;
 
+<<<<<<< .mine
+ala fin de la procedure, effacer les reservation de date inferieures a la courante.
+=======
 Revoir fonctionnement de la suppression dans la table réservation (quand, sur trigger ? quoi ?)
 QUAND VIDER LA TABLE DE RESERVATION ? (pour moi , une fois que la facture est entr�e ds la table)
 
 Ajout de la date de début de séjour dans la réservation ? 
 -> ou plutot donner le choix entre 4 departs dans le mois (cf. sujet du projet) du style, le 1, le 8, le 15, le 23... ?
+>>>>>>> .r317

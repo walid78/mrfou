@@ -35,6 +35,13 @@ Nous trouvons dans ce module les fonctions n\'ecessaires \`a la connection et d\
 \item Traitement\_ajout : M\^eme principe mais pour l'ajour d'\'el\'ement
 \end{enumerate}
 
+\subsection{Les triggers}
+Quatre triggers ont été mis en place afin d'enregistrer les differentes opérations effectuées par les opérateurs sur les tables de clients, d'hotel, de circuits.
+On peut donc retrouver dans la table LOG l'historiques des différentes opérations avec le login de l'opérateur, l'action qu'il a éffectué (insertion, suppression, modification), la table sur laquelle il a agit ainsi que la date et l'heure.
+
+\subsection{Les séquences}
+Différentes séquences ont étées mises en place pour effectuer une numérotation automatique des différents identifiants,de façon totallement transparente pour l'utilisateur.
+
 
 
 \normalsize
