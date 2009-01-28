@@ -1,8 +1,5 @@
 POUR TOUT :
 
-1/ Se concentrer sur la construction des bases et que tout soit cohérent
-dans un premier pour rendre qqch de bien le 30
-
 2/ A ce moment affiner les choses, notamment la partie application 
 (cassedédi à moi-même)
 
@@ -41,13 +38,12 @@ hotels les + demand�s
 
 ***************pour la partie Rapport**********************
 
-ecrire un rapide manuel du logiciel
 
 Des slides de support pour la soutenance
 
 
 *********************Pour la partie Base de donn�e***********
-
+POURQUOI AJOUTERFACT marche plus ? (peut etre les insert into )
 
 ala fin de la procedure, effacer les reservation de date inferieures a la courante.
 
