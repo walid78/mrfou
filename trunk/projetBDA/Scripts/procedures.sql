@@ -190,14 +190,14 @@ END;
 --Séquences
 
 --Suppression de séquences--
-DELETE SEQUENCE seq_client;
-DELETE SEQUENCE seq_dest;
-DELETE SEQUENCE seq_hotel;
-DELETE SEQUENCE seq_circuit;
-DELETE SEQUENCE seq_vol;
-DELETE SEQUENCE seq_etape;
-DELETE SEQUENCE seq_classe;
-DELETE SEQUENCE seq_sejour;
+DROP SEQUENCE seq_client;
+DROP SEQUENCE seq_dest;
+DROP SEQUENCE seq_hotel;
+DROP SEQUENCE seq_circuit;
+DROP SEQUENCE seq_vol;
+DROP SEQUENCE seq_etape;
+DROP SEQUENCE seq_classe;
+DROP SEQUENCE seq_sejour;
 
 
 --Création de séquences--
