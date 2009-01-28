@@ -189,29 +189,6 @@ AjoutFacture(1,2,1,1,1,2,2);
 commit;
 END;
 
---Séquences
-
---Suppression de séquences--
-DROP SEQUENCE seq_client;
-DROP SEQUENCE seq_dest;
-DROP SEQUENCE seq_hotel;
-DROP SEQUENCE seq_circuit;
-DROP SEQUENCE seq_vol;
-DROP SEQUENCE seq_etape;
-DROP SEQUENCE seq_classe;
-DROP SEQUENCE seq_sejour;
-
-
---Création de séquences--
-CREATE SEQUENCE seq_client START WITH 1;
-CREATE SEQUENCE seq_dest START WITH 1;
-CREATE SEQUENCE seq_hotel START WITH 1;
-CREATE SEQUENCE seq_circuit START WITH 1;
-CREATE SEQUENCE seq_vol START WITH 1;
-CREATE SEQUENCE seq_etape START WITH 1;
-CREATE SEQUENCE seq_classe START WITH 1;
-CREATE SEQUENCE seq_sejour START WITH 1;
-
 -- Fonctions stockees pour les ajouts
 ----------------------------------------
 CREATE OR REPLACE PROCEDURE ajout_client(
