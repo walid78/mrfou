@@ -28,7 +28,7 @@ S\'equence de fonctionnement :
 Nous trouvons dans ce module les fonctions n\'ecessaires \`a la connection et d\'econnection \`a la base de donn\'ee,de listage de table, d'ajout et de suppression d'\'el\'ements.
 
 \begin{enumerate}
-\item Connect\_db() : Connection \`a la base sur le port 1521.
+\item Connect\_db() : Connection \`a la base sur le port 1521 avec les logins et mot de passe ad\'equat.
 \item Disconnect\_db() : D\'econnection de la base.
 \item List\_table(table\_name): Afficher une table \`a l' \'ecran.
 \item Traitement\_supp : Fonction permettant d'effacer d'une table les \'el\'ements selectionn\'es a l' \'ecran
@@ -36,16 +36,10 @@ Nous trouvons dans ce module les fonctions n\'ecessaires \`a la connection et d\
 \end{enumerate}
 
 \subsection{Les triggers}
-Quatre triggers ont \'et\'e mis en place afin d'enregistrer les differentes op\'erations effectu\'ees par les op\'erateurs sur les tables de clients, d'hotel, de circuits.
+Quatre triggers ont \'et\'e mis en place afin d'enregistrer les differentes op\'erations \'effectu\'ees par les op\'erateurs sur les tables de clients, d'h\^otel, de circuits.
 On peut donc retrouver dans la table LOG l'historiques des diff\'erentes op\'erations avec le login de l'op\'erateur, l'action qu'il a \'effectu\'e (insertion, suppression, modification), la table sur laquelle il a agit ainsi que la date et l'heure.
 
 \subsection{Les s\'equences}
 Diff\'erentes s\'equences ont \'et\'ees mises en place pour effectuer une num\'erotation automatique des diff\'erents identifiants,de façon totallement transparente pour l'utilisateur.
-
-
-
-\normalsize
-
-
 
 \newpage
