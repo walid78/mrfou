@@ -56,10 +56,10 @@ if($id_client != ""){
  ociexecute($stmt,OCI_DEFAULT);
 
  while(OCIFetchInto($stmt, $row, OCI_NUM)){
-   $ad = row[0];
-   $tel = row[1];
-   $nom = row[2];
-   $prenom = row[3];
+   $ad = $row[0];
+   $tel = $row[1];
+   $nom = $row[2];
+   $prenom = $row[3];
  }
 
 
@@ -74,6 +74,6 @@ if($id_client != ""){
  ociexecute($stmt,OCI_DEFAULT);
 
  while(OCIFetchInto($stmt, $row, OCI_NUM)){
-   echo row[0]."+ ".$row[1]."+".$row[2]." = ".$row[3]."<br/>";    
+   echo $row[0]." + ".$row[1]." + ".$row[2]." = ".$row[3]."<br/>";    
  }
 ?>  
