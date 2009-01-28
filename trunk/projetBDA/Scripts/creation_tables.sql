@@ -113,7 +113,8 @@ create table Etape(
 create table Reservation ( 
 	ID_Client number not null, 
 	ID_Hotel number not null,
-	Date_reservation date,
+	Date_reservation_debut date,
+	date_reservation_fin date,
         NB_Chambre_S number default(0) CHECK (NB_Chambre_S >=0) ,
         NB_Chambre_D number default(0) CHECK (NB_Chambre_D >=0)   ) tablespace ts0;
 
@@ -173,6 +174,8 @@ create table Facturation(ID_Facture number not null,
 			Classe_Hotel number,
 			Prix_S float , 
 			Prix_D float ,
+			Date_reservation_debut date,
+			Date_reservation_fin date,
 			Nom_circuit varchar2(20),
 			Duree_sejour number , 
 			Prix_Circuit float , 
