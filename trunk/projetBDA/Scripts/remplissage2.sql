@@ -60,12 +60,11 @@ ajout_hotel(2,'Le yéti','place de leverest',2,20,15);
 ajout_hotel(5,'Le Sake','Rue du sushi',4,10,10);
 
 --remplissage reservation:
--- INSERT INTO Reservation VALUES(1,1,trunc(sysdate),1,1);
--- INSERT INTO Reservation VALUES(2,3,trunc(sysdate),2,1);
--- INSERT INTO Reservation VALUES(2,4,trunc(sysdate),0,3);
--- INSERT INTO Reservation VALUES(1,5,trunc(sysdate),1,1);
--- INSERT INTO Reservation VALUES(1,2,trunc(sysdate),0,2);
-
+--ajout_reservation(1,1,trunc(sysdate),trunc(sysdate),1,1);
+--ajout_reservation(2,3,trunc(sysdate),trunc(sysdate),2,1);
+--ajout_reservation(2,4,trunc(sysdate),trunc(sysdate),0,3);
+--ajout_reservation(1,5,trunc(sysdate),trunc(sysdate),1,1);
+--ajout_reservation(1,2,trunc(sysdate),trunc(sysdate),0,2);
 
 -- Remplissage de la table Classe_Hotel --
 ajout_classe(10.01, 20.01) ;
@@ -95,7 +94,7 @@ ajout_dest_circuit(4,7);
 ajout_dest_circuit(6,3);
 
 -- Remplissage de la table Séjour --
-
+ 
 ajout_sejour(10,'Haute Saison',1.5) ;
 ajout_sejour(21,'Basse Saison',1.0) ;
 ajout_sejour(10,'Chaleur du brézil',2.5);
@@ -106,12 +105,15 @@ ajout_sejour(21,'Eclate garantie',1.0);
 
 
 -- Remplissage de la table Assoc_Prix_Séjour_Circuit --
+  
+ajout_circuit_sejour(1,2,100.00) ;
+ajout_circuit_sejour(2,2,115.00) ;
+ajout_circuit_sejour(2,4,50.00) ;
+ajout_circuit_sejour(4,3,65.00) ;
+ajout_circuit_sejour(2,1,51.00) ;
+ajout_circuit_sejour(6,5,25.99);
+ 
 
-INSERT INTO Assoc_Prix_Sejour_Circuit VALUES (1,2,100.00) ;
-INSERT INTO Assoc_Prix_Sejour_Circuit VALUES (2,2,115.00) ;
-INSERT INTO Assoc_Prix_Sejour_Circuit VALUES (2,4,50.00) ;
-INSERT INTO Assoc_Prix_Sejour_Circuit VALUES (4,3,65.00) ;
-INSERT INTO Assoc_Prix_Sejour_Circuit VALUES (2,1,51.00) ;
 -- Remplissage de la table Vol --
 
 ajout_vol(1,10.00,20.00) ;

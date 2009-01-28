@@ -114,7 +114,7 @@ create table Reservation (
 	ID_Client number not null, 
 	ID_Hotel number not null,
 	Date_reservation_debut date,
-	date_reservation_fin date,
+	Date_reservation_fin date,
         NB_Chambre_S number default(0) CHECK (NB_Chambre_S >=0) ,
         NB_Chambre_D number default(0) CHECK (NB_Chambre_D >=0)   ) tablespace ts0;
 
