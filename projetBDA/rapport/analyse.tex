@@ -25,7 +25,7 @@ Sejour&2*number+varchar2(50)+float= 44+50+22=116o&2&232o\\
 \hline
 Etape&2*number+varchar2(50)=44+50=94o&5*3*50=750&70.5\\
 \hline
-Reservation&2*number+date=44+7=51o&400p*3*50= 60k&3.06Mo\\
+Reservation&2*number+2*date=44+14=58o&400p*3*50= 60k&3.48Mo\\
 \hline
 Assoc\_P\_S\_C&2*number+float=44+22=66o&2*150=300&19.8 Ko\\
 \hline
@@ -33,7 +33,7 @@ Vol&2*number+2*float=22*4=88o&100 vols * 50 dest = 5k&440ko\\
 \hline
 CLient&3*number+float+varchar2(50)+10+30+3*20=238o&400*12*10=48k&11.424Mo\\
 \hline
-Facturation&6*number+date+10+3*50+9*20+11*float=721o&400*12*10*5 etapes=240k&173.04 Mo\\
+Facturation&6*number+3*date+10+3*50+9*20+11*float=735o&400*12*10*5 etapes=240k&176,4 Mo\\
 \hline
 \end{tabular}
 \end{table}
@@ -46,11 +46,11 @@ D\'ecoupage des tablespaces :
 \item T0: Toutes les autres tables.
 \end{itemize}
 
-Pour la facturation, nous avons compt\'e une moyenne de 5 hotels par reservation ainsi qu'une ligne de vol, une ligne de circuit, et une ligne de total.Soit 721 octet par ligne , et 240k*(5 hotels + 3) = 1,384,320,000 octets.
+Pour la facturation, nous avons compt\'e une moyenne de 5 hotels par reservation ainsi qu'une ligne de vol, une ligne de circuit, et une ligne de total.Soit 735 octet par ligne , et 240k*(5 hotels + 3) lignes = 1,411,320,000 octets.
 Total Occupation Tablespace T0 : 15,4 Mo\\
-T1 à T10 = 1.384 Go\\
+T1 à T10 = 1.411 Go\\
 
-Chaque Tablespace devrait donc faire environ 138Mo.(Nous arrondiront \`a 200 Mo par s\'ecurit\'e pour chacun de nos tablespaces).
+Chaque tablespace devrait donc faire environ 141Mo.(Nous arrondiront \`a 200 Mo par s\'ecurit\'e pour chacun de nos tablespaces).
 Il sera toujours possible \'a l'avenir d'adapter la taille des tablespaces en fonction de leur encombrement.
 Les tableaux ci-dessous nous donnent les d\'etails du calcul de l'espace m\'emoire n\'ecessaire.
 
