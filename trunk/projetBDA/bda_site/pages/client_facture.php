@@ -1,4 +1,4 @@
- <h1>Afficher les factures d un client </h1>
+ <h1>Consulter les factures d un client </h1>
  
 <?php
 
@@ -26,7 +26,7 @@ $adress = "?page=client_facture";
 $selected = "";
 
   echo "
-      <option value=\"\">S&eacute;lectionner un client</option>";
+      <option value=\"\">S&eacute;lectionnez un client</option>";
 
 while(OCIFetchInto($stmt, $row, OCI_NUM)){
   if($row[0] == $id_client)
@@ -35,7 +35,7 @@ while(OCIFetchInto($stmt, $row, OCI_NUM)){
   echo "
       <option onClick='parent.location=\"".$ad."\"'
               value=\"".$row[0]."\"".$selected.">
-        ".$row[0].". ".$row[3]."".$row[4]."(".$row[6].")
+        ".$row[0].". ".$row[3]." ".$row[4]." (".$row[6].")
       </option>";
    $selected = "";
 }
@@ -47,7 +47,7 @@ while(OCIFetchInto($stmt, $row, OCI_NUM)){
   if($id_client != ""){
     echo "
     <select>
-      <option value=\"\">S&eacute;lectionner un id_facture </option>";
+      <option value=\"\">S&eacute;lectionnez une date de facture </option>";
 
     $adress = $adress."&id_client=".$id_client;
     
