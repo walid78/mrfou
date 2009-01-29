@@ -33,7 +33,7 @@ Vol&2*number+2*float=22*4=88o&100 vols * 50 dest = 5k&440ko\\
 \hline
 CLient&3*number+float+varchar2(50)+10+30+3*20=238o&400*12*10=48k&11.424Mo\\
 \hline
-Facturation&6*number+3*date+10+3*50+9*20+11*float=735o&400*12*10*5 etapes=240k&176,4 Mo\\
+Facturation&8*number+3*date+10+3*50+9*20+11*float=779o&400*12*10*5 etapes=240k&186.960.000 o\\
 \hline
 \end{tabular}
 \end{table}
@@ -41,16 +41,16 @@ Facturation&6*number+3*date+10+3*50+9*20+11*float=735o&400*12*10*5 etapes=240k&1
 
 D\'ecoupage des tablespaces :
 \begin{itemize}
-\item De T1 \'a T10:La table de facturation segmente par ann\'ee
+\item De T1 \'a T10:La table de facturation segment\`e par ann\'ee
 \item T11 : La table de LOG qui enregistre tous les \'ev\`enements sur la base
 \item T0: Toutes les autres tables.
 \end{itemize}
 
-Pour la facturation, nous avons compt\'e une moyenne de 5 hotels par reservation ainsi qu'une ligne de vol, une ligne de circuit, et une ligne de total.Soit 735 octet par ligne , et 240k*(5 hotels + 3) lignes = 1,411,320,000 octets.
+Pour la facturation, nous avons compt\'e une moyenne de 5 h\^otels par reservation ainsi qu'une ligne de vol, une ligne de circuit, et une ligne de total.Soit 779 octet par ligne , et 240k*(5 h\^otels + 3) lignes = 1.495.680.000 octets.
 Total Occupation Tablespace T0 : 15,4 Mo\\
-T1 à T10 = 1.411 Go\\
+T1 à T10 = 1.495 Go\\
 
-Chaque tablespace devrait donc faire environ 141Mo.(Nous arrondiront \`a 200 Mo par s\'ecurit\'e pour chacun de nos tablespaces).
+Chaque tablespace devrait donc faire environ 149,5Mo.(Nous arrondirons \`a 200 Mo par s\'ecurit\'e pour chacun de nos tablespaces).
 Il sera toujours possible \'a l'avenir d'adapter la taille des tablespaces en fonction de leur encombrement.
 Les tableaux ci-dessous nous donnent les d\'etails du calcul de l'espace m\'emoire n\'ecessaire.
 
