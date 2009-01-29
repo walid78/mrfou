@@ -9,14 +9,11 @@ $id_client = $_GET['id_client'];
 
 ?>
 
-//formulaire
+<!-- formulaire -->
 
 <center>
   <form>
     <select>
-      <option value="">S&eacute;lectionner une facture pour un
-      client</option>
-
 
 <?php
       
@@ -26,13 +23,12 @@ $stmt = ociparse($link, $query);
 ociexecute($stmt,OCI_DEFAULT);
 
   echo "
-    <select>
       <option value=\"\">S&eacute;lectionner un client</option>";
 
 while(OCIFetchInto($stmt, $row, OCI_NUM)){
   echo "
-      <option onClick='parent.location=\"pages/client_facture.php?id_client=\"".$row[0]."'
-              value=\"".$row[0]."\>
+      <option onClick='parent.location=\"?page=client_facture&id_client=".$row[0]."\"'
+              value=\"".$row[0]."\"\>
         ".$row[0].". ".$row[3]."".$row[4]."(".$row[6].")
       </option>";
 }
@@ -44,36 +40,42 @@ while(OCIFetchInto($stmt, $row, OCI_NUM)){
 ?>
 
   </form>
-</center>
+
 
 <?php
 
-if($id_client != ""){
-
-  // Recuperation des destinations
- $query = "SELECT Adresse,Tel,Nom,Prenom FROM CLIENT WHERE ID_CLient = ".$id_client;
- $stmt = ociparse($link, $query);
- ociexecute($stmt,OCI_DEFAULT);
-
- while(OCIFetchInto($stmt, $row, OCI_NUM)){
-   $ad = $row[0];
-   $tel = $row[1];
-   $nom = $row[2];
-   $prenom = $row[3];
- }
-
-
-  // Recuperation des destinations
- $query = "SELECT total_vol, total_hotel, total_circuit, total_facture
+  if($id_client != ""){
+    
+    // Recuperation des destinations
+    $query = "SELECT Adresse,Tel,Nom,Prenom FROM CLIENT WHERE (ID_CLient = ".$id_client.")";
+    $stmt = ociparse($link, $query);
+    ociexecute($stmt,OCI_DEFAULT);
+    
+    while(OCIFetchInto($stmt, $row, OCI_NUM)){
+      $ad = $row[0];
+      $tel = $row[1];
+      $nom = $row[2];
+      $prenom = $row[3];
+    }
+    
+    // Recuperation des destinations
+    $query = "SELECT total_vol, total_hotel, total_circuit, total_facture
            FROM FACTURATION 
-           WHERE (adresse_client = ".$ad.") AND
-                 (tel = ".$tel.") AND
-                 (nom = ".$nom.") AND
-                 (prenom = ".$prenom.")";
- $stmt = ociparse($link, $query);
- ociexecute($stmt,OCI_DEFAULT);
-
- while(OCIFetchInto($stmt, $row, OCI_NUM)){
-   echo $row[0]." + ".$row[1]." + ".$row[2]." = ".$row[3]."<br/>";    
- }
+           WHERE ((categorie = 'TOTAL') AND
+                 (nom = '".$nom."') AND
+                 (prenom = '".$prenom."'))";
+    $stmt = ociparse($link, $query);
+    ociexecute($stmt,OCI_DEFAULT);
+    
+    while(OCIFetchInto($stmt, $row, OCI_NUM)){
+      echo "Circuit  Hotel  Vol   Total<br/>";    
+      echo $row[0]." + ".$row[1]." + ".$row[2]." = ".$row[3]." euros <br/>";    
+    }
+    
+    disconnect_db($link);
+  }
 ?>  
+</center>
+
+<!--A rajouter a la derniere requete pour l affichage des totaux de facture-->
+<!--(adresse_client = ".$ad.") AND                (tel = ".$tel.") AND-->
