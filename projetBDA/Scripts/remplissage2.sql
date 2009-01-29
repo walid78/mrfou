@@ -138,6 +138,12 @@ ajout_client('rue orange','0557575757','prudence','michel',38,
 		'prudence.michel@wanadoo.fr','salarié',null,null);
 
 
+AjoutFacture(1,2,1,1,1,2,2);
+AjoutFacture(2,2,1,1,1,2,2);
+AjoutFacture(3,2,1,1,1,2,2);
+
+
+
 
 -- Remplissage de la table Etape --
 
