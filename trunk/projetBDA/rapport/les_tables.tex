@@ -23,6 +23,7 @@ Voici la pr\'esentation des diff\'erentes tables que nous avons \'etablie. Elles
 	 Tel varchar2(10), Nom varchar2(20), Prenom varchar2(20), Nom\_Dest varchar2(20), \\
 	 Pays\_Dest varchar2(20),Nom\_Hotel varchar2(20), Adresse\_Hotel varchar2(50),\\
 	 Classe\_Hotel number,Prix\_S integer, Prix\_D integer,\\
+	 Nb\_S number, Nb\_D number,\\ 
 	 Date\_Reservation\_debut date,Date\_Reservation\_fin date, \\
 	 Nom\_circuit varchar2(20), Duree\_sejour integer, Prix\_Circuit float, \\
 	 Prix\_Vol\_Enfant float, prix\_Vol\_Adulte float,\\
@@ -262,7 +263,7 @@ ID\_Client& ID\_Hotel&Date\_Res\_Deb&Date\_Res\_Fin\\
 \hline
 2&4&2/7/2008&9/8/2008\\
 \hline
-2 & 2&1/5/2008\\
+2 & 2&1/5/2008&5/4/2008\\
 \hline
 \end{tabular}
 \end{center}
@@ -278,7 +279,7 @@ Le type timestamp repr\'esentant \'a la fois la date et l'heure, ce champs nous 
 \hline
 \multicolumn{4}{|c|}{LOG}\\
 \hline
-madate&utilisateur&action&cible\\
+date&utilisateur&action&cible\\
 \hline
 13/1/2008 &Lagarde C. 1&UPDATE&CLients\\
 \hline
