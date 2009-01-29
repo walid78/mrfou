@@ -80,7 +80,7 @@ while(OCIFetchInto($stmt, $row, OCI_NUM)){
               value=\"".$row[0]."\"".$selected.">
         ".$row[0].". ".$row[1]."
       </option>";
-   $selected = "";
+      $selected = "";
     }
   }
 
@@ -92,7 +92,7 @@ echo "
     // Recuperation des dépenses dans factures
     $query = "SELECT nom_dest, pays_dest, nom_circuit, total_circuit, total_hotel, Nb_enfant, Nb_adulte,total_vol,  total_facture
            FROM FACTURATION 
-           WHERE ((categorie = 'TOTAL') AND
+           WHERE ((categorie = 'TOTAL') AND (id_facture = ".$id_facture.") AND
                  (nom = '".$nom."') AND
                  (prenom = '".$prenom."'))";
     $stmt = ociparse($link, $query);
@@ -116,12 +116,15 @@ echo "
       </tr>";
 
     while(OCIFetchInto ($stmt, $row, OCI_NUM)){
-      $selected = "SELECTED";  
+      $selected = "SELECTED"; 
+       echo "
+      <tr>";  
        foreach($row as $tmp){
       echo "
 	<td>".$tmp."</td>"; 
        }
-      
+       echo "
+       </tr>";
     }
 
     echo "
