@@ -1,45 +1,55 @@
 \section{Modules d\'evelopp\'es}
-Nous avions comme premi\`ere intention de mettre au point un package qui fournirait \`a notre application tous les \'el\'ement n\'ecessaire \`a son developpement comme :
+Nous avions comme premi\`ere intention de mettre au point un \textit{package} qui fournirait \`a notre application tous les \'el\'ements n\'ecessaires \`a son d\'eveloppement comme : \\
 
 \begin{itemize}
-\item Des proc\'edures et fonctions: pour ajouter des \'el\'ements dans la base,calculer des statistiques
-\item Des variables: connaitre l'emcombrement de chaque hotel par exemple
-\item Des exceptions: Quand une fiche erron\'ee veut \^etre entr\'ee, ou qu'il manque des \'el\'ements pour une facture ...
+\item Des proc\'edures et fonctions pour ajouter des \'el\'ements dans la base et calculer des statistiques.
+\item Des variables: pour conna\^itre l'encombrement de chaque h\^otel par exemple.
+\item Des exceptions: Entr\'ee d'une fiche erron\'ee, manque d'\'el\'ements pour une facture, ... \\
 \end{itemize}
 
-Nous n'avons pas r\'eussit \`a cr\'eer un tel package pour des raisons que nous n'avons pas eut le temps d'identifer, nous avons donc seulement cr\'e\'e des proc\'edures et fonctions permetant de simplifier le cot\'e applicatif du projet.
+Nous n'avons pas r\'eussi \`a cr\'eer un tel \textit{package} pour des raisons que nous n'avons pas eu le temps d'identifier, nous avons donc seulement cr\'ee des proc\'edures et fonctions permettant de simplifier le c\^ot\'e applicatif du projet.
 
-\subsection{AjoutFacture}
+\subsection{Proc\'edure principale : \textit{AjoutFacture}}
 
-AjoutFacture(client,sejour,circuit,dest,vol,nombre\_adulte,nombre\_enfant)\\
+\textit{AjoutFacture(client, s\'ejour, circuit, dest, vol, nombre\_adulte, nombre\_enfant)}\\ \\
 Cette proc\'edure a \'et\'e d\'evelopp\'ee afin de faciliter le traitement au niveau de notre application.
-Elle prends en parametre les diff\'erents identifiants nec\'essaire \`a la saisie de la facture, ainsi que le nombre de personnes qui vont participer au voyage.\\
+Elle prend en param\`etre les diff\'erents identifiants n\'ec\'essaire \`a la saisie de la facture, ainsi que le nombre de personnes qui vont participer au voyage.\\
 
 S\'equence de fonctionnement :
 \begin{enumerate}[1]
-\item R\'ecup\'eration des \'el\'ements dans les tables \'a partir des identifiants
-\item Parcours de la table r\'eservation.Pour chaque ligne, on saisie la facture correspondante
-\item Remplissage des lignes 'Circuit','Vol','Total'
-\item Suppression des \'el\'ements anciens de la table r\'eservation
+\item R\'ecup\'eration des \'el\'ements dans les tables \`a partir des identifiants.
+\item Parcours de la table \textit{r\'eservation}. Pour chaque ligne, on saisie la facture de l'h\^otel correspondant.
+\item Remplissage des lignes 'Circuit', 'Vol', 'Total'.
+\item Suppression des anciens \'el\'ements de la table r\'eservation.
 
 \end{enumerate}
 
-\subsection{Functions.php}
-Nous trouvons dans ce module les fonctions n\'ecessaires \`a la connection et d\'econnection \`a la base de donn\'ee,de listage de table, d'ajout et de suppression d'\'el\'ements.
+\subsection{Les fonctions PHP}
+Nous présentons dans ce module les fonctions n\'ec\'essaires \`a la connection et d\'econnection \`a la base de donn\'ee, au listage de table et \`a l'ajout ou la suppression d'\'el\'ements.
 
 \begin{enumerate}
-\item Connect\_db() : Connection \`a la base sur le port 1521 avec les logins et mot de passe ad\'equat.
+\item Connect\_db() : Connection \`a la base sur le port 1521 avec les \textit{logins} et mot de passe ad\'equat.
 \item Disconnect\_db() : D\'econnection de la base.
-\item List\_table(table\_name): Afficher une table \`a l' \'ecran.
-\item Traitement\_supp : Fonction permettant d'effacer d'une table les \'el\'ements selectionn\'es a l' \'ecran
-\item Traitement\_ajout : M\^eme principe mais pour l'ajour d'\'el\'ement
+\item List\_table(table\_name): Afficher une table \`a l'\'ecran.
+\item Traitement\_supp : Fonction permettant d'effacer d'une table les \'el\'ements selectionn\'es \`a l' \'ecran.
+\item Traitement\_ajout : M\^eme principe mais pour l'ajout d'\'el\'ement.
 \end{enumerate}
 
 \subsection{Les triggers}
-Quatre triggers ont \'et\'e mis en place afin d'enregistrer les differentes op\'erations \'effectu\'ees par les op\'erateurs sur les tables de clients, d'h\^otel, de circuits.
-On peut donc retrouver dans la table LOG l'historiques des diff\'erentes op\'erations avec le login de l'op\'erateur, l'action qu'il a \'effectu\'e (insertion, suppression, modification), la table sur laquelle il a agit ainsi que la date et l'heure.
+Quatre \textit{triggers} ont \'et\'e mis en place afin d'enregistrer les diff\'erentes op\'erations effectu\'ees par les op\'erateurs sur les tables des clients, des h\^otels et des circuits.
+On peut donc retrouver dans la table LOG l'historique des diff\'erentes op\'erations avec le \textit{login} de l'op\'erateur, l'action qu'il a effectu\'ee (insertion, suppression, modification) et consulter la table sur laquelle il a agit ainsi que la date et l'heure de l'op\'eration.
 
 \subsection{Les s\'equences}
-Diff\'erentes s\'equences ont \'et\'ees mises en place pour effectuer une num\'erotation automatique des diff\'erents identifiants,de façon totallement transparente pour l'utilisateur.
+Diff\'erentes s\'equences ont \'et\'e mises en place pour effectuer une num\'erotation automatique des diff\'erents identifiants, de fa\ con totalement transparente pour l'utilisateur.
 
+\subsection{Les scripts \textbf{SQL}}
+Dans cette section, nous décrivons les diff\'erents scripts qui sont contenus dans l'archive jointe : 
+\begin{itemize}
+\item \textit{creation\_table.sql} : Destruction et cr\'eation des \textit{Tablespaces} ainsi que des tables de notre base. 
+\item \textit{procedures.sql} : Proc\'dures de remplissage simplifi\'e des tables ainsi que la proc\'edure \textit{AjoutFacture} vu pr\'ec\'edemment.
+\item \textit{remplissage2.sql} : Destruction et cr\'eation des s\'equences, effacement des donn\'ees pr\'esentes dans les tables et utilisation des proc\'edues vues pr\'ec\'edemment pour remplir les tables.
+\item \textit{trigger.sql} : Destruction et cr\'eation des \textit{triggers}.
+\end{itemize}
+
+A noter qu'il faut lancer les scripts dans l'ordre o\`u ils ont \'et\'e pr\'esent\'es.
 \newpage

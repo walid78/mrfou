@@ -2,34 +2,39 @@
 %Choix et justification des différents modules développés
 
 \subsection{Pr\'esentation des tables}
-Voici la pr\'esentation des diff\'erentes tables que nous avons \'etablie. Elles sont pr\'esent\'ees sous la forme \textit{Nom\_de\_la\_table(\'el\'ement1 type, \'el\'ement2 type, $\dots$}. Peu de description est fournie car, pour la plupart des tables, leur nom est vocateur. A noter que les tables ne sont pas du tout d\'efinitive et que ce qui est \'ecrit en \textit{italique} est optionnelle.\bigskip
+Voici la pr\'esentation des diff\'erentes tables que nous avons \'etablies. Elles sont pr\'esent\'ees sous la forme \textit{Nom\_de\_la\_table(\'el\'ement1 type, \'el\'ement2 type, $\dots$}). Peu de description est fournie car, pour la plupart des tables, leur nom est \'evocateur.
+\\
 
 \begin{itemize}
-\item Destination(ID\_Dest integer,Nom\_Destination varchar2(20),Pays varchar2(20));\\
-\item Hotel(ID\_Hotel integer, ID\_Etape integer,Nom\_Hotel varchar2(20),Addresse varchar2(20), ID\_Classe integer, capac\_S integer, capac\_D integer);\\
-\item Classe\_Hotel(ID\_Classe integer, Prix\_S float, Prix\_D float);\\
-\item Circuit(ID\_Circuit integer,Nom\_Circuit varchar2(20));\\
-\item Assoc\_Dest\_Circuit(ID\_Dest integer, ID\_Circuit integer);\\
-\item Etape(ID\_Etape integer,ID\_Circuit integer,Descriptif varchar2(50));\\
-\item Sejour(ID\_Sejour integer, Duree integer, Description varchar2(50), Coeff float);\\
-\item Assoc\_Prix\_Sejour\_Circuit(ID\_Circuit integer, ID\_Sejour integer, Prix float);\\
-\item Vol(ID\_Vol integer, ID\_Dest integer, Prix\_Enfant float, Prix\_Adulte float);\\
-\item Reservation(ID\_Client integer,ID\_Hotel integer,Date\_Reservation\_debut date,Date\_Reservation\_fin date);\\ 
-\item Client(ID\_Client integer,Addresse varchar2(50),Tel varchar2(10), \\
-		Nom varchar2(20), Prenom varchar2(20), Age integer, Email varchar2(30),\\
-		Classe\_sociale varchar2(20), ID\_Dest\_Preferee integer, Investissement\_Moyen float);\\
+\item Destination(ID\_Dest number,Nom\_Destination varchar2(20),Pays varchar2(20));\\
+\item Hotel(ID\_Hotel number, ID\_Etape number,Nom\_Hotel varchar2(20),Adresse varchar2(20), ID\_Classe number, capac\_S number, capac\_D number);\\
+\item Classe\_Hotel(ID\_Classe number, Prix\_S float, Prix\_D float);\\
+\item Circuit(ID\_Circuit number,Nom\_Circuit varchar2(20));\\
+\item Assoc\_Dest\_Circuit(ID\_Dest number, ID\_Circuit number);\\
+\item Etape(ID\_Etape number,No\_Etape number,ID\_Circuit number,Descriptif varchar2(50));\\
+\item Sejour(ID\_Sejour number, Duree number, Description varchar2(50), Coeff float);\\
+\item Assoc\_Prix\_Sejour\_Circuit(ID\_Circuit number, ID\_Sejour number, Prix float);\\
+\item Vol(ID\_Vol number, ID\_Dest number, Prix\_Enfant float, Prix\_Adulte float);\\
+\item Reservation(ID\_Client number,ID\_Hotel number,Date\_Reservation\_debut date,Date\_Reservation\_fin date,
+NB\_chambre\_S number, NB\_chambre\_D number);\\ 
+\item Client(ID\_Client number,Adresse varchar2(50),Tel varchar2(10), \\
+		Nom varchar2(20), Prenom varchar2(20), Age number, Email varchar2(30),\\
+		Classe\_sociale varchar2(20), ID\_Dest\_Preferee number, Investissement\_Moyen float);\\
 
-\item Facturation(ID\_Facture integer, Date\_Facture date,Categorie varchar2(20), Adresse\_Client varchar2(50),\\
+\item Facturation(ID\_Facture number, Date\_Facture date,Categorie varchar2(20), Adresse\_Client varchar2(50),\\
 	 Tel varchar2(10), Nom varchar2(20), Prenom varchar2(20), Nom\_Dest varchar2(20), \\
 	 Pays\_Dest varchar2(20),Nom\_Hotel varchar2(20), Adresse\_Hotel varchar2(50),\\
-	 Classe\_Hotel number,Prix\_S integer, Prix\_D integer,\\
+	 Classe\_Hotel number,Prix\_S number, Prix\_D number,\\
 	 Nb\_S number, Nb\_D number,\\ 
 	 Date\_Reservation\_debut date,Date\_Reservation\_fin date, \\
-	 Nom\_circuit varchar2(20), Duree\_sejour integer, Prix\_Circuit float, \\
-	 Prix\_Vol\_Enfant float, prix\_Vol\_Adulte float,\\
+	 Nom\_circuit varchar2(20), Duree\_sejour number, Prix\_Circuit float, \\
+	 Prix\_Vol\_Enfant float, Prix\_Vol\_Adulte float,\\
 	 Nb\_Adulte number,Nb\_Enfant number, Description\_Sejour varchar2(50), Coeff\_Sejour float, \\
 	 Total\_Vol float, Total\_Hotel float,Total\_Circuit float, Total\_Facture float, \\
-	 Age integer, Classe\_sociale varchar2(20), Dest\_Pref varchar2(20), Invest\_Moyen float);\\
+	 Age number, Classe\_sociale varchar2(20), Dest\_Pref varchar2(20), Invest\_Moyen float);\\
+	 
+\item LOG(madate timestamp, utilisateur varchar2, action varchar2, cible varchar2);\\
+	 
 \end{itemize}
 \newpage
 
@@ -64,17 +69,17 @@ ID\_dest& Nom & Pays \\
 
 \begin{table}[h]
 \begin{center}
-\begin{tabular}{|l|c|c|c|c|c|c|}
+\begin{tabular}{|l|c|c|c|c|c|c|c|}
 \hline
-\multicolumn{7}{|c|}{Hotel}\\
+\multicolumn{8}{|c|}{Hotel}\\
 \hline
-ID\_hotel& ID\_Circuit& Nom & Adresse &ID\_classe & Capac\_S & Capac\_D  \\
+ID\_Hotel& ID\_Circuit& ID\_Etape &Nom & Adresse &ID\_classe & Capac\_S & Capac\_D \\
 \hline
-1 & 1& California&rue de LA& 4 & 20 & 10\\
+1 & 1& 2& California&rue de LA& 4 & 20 & 10\\
 \hline
-2 & 4& L'h\^ote&Rue du serveur& 2 & 10 & 10\\
+2 & 4& 1&L'h\^ote&Rue du serveur& 2 & 10 & 10\\
 \hline
-3 & 3& Herie&Rue de la blague& 5 & 40 & 35\\
+3 & 3& 3& Herie&Rue de la blague& 5 & 40 & 35\\
 \hline
 \end{tabular}
 \end{center}
@@ -114,7 +119,7 @@ ID\_classe& Prix\_S & Prix\_D \\
 \hline
 \multicolumn{2}{|c|}{Circuit}\\
 \hline
-ID\_circuit& nom \\
+ID\_circuit& Nom\_Circuit \\
 \hline
 1 & Mont\_Fuji\\
 \hline
@@ -226,7 +231,7 @@ ID\_DP est la destination pr\'ef\'er\'ee du client,
 I\_Moyen est l'investissement moyen du client,
 \bigskip
 
-\begin{tabular}{|l|c|c|c|c|c|c|c|c|c|}
+\small \begin{tabular}{|l|c|c|c|c|c|c|c|c|c|}
 \hline
 \multicolumn{10}{|c|}{Client}\\
 \hline
@@ -245,25 +250,25 @@ ID& Addr& Tel & Nom & Prenom & Age & Email&C\_S & ID\_DP &I\_Moyen\\
 %%%%%%%%%%%Table Reservation%%%%%%%%%%%%%%%
 
 \begin{table}[h]
-La table \textbf{Reservation} est une table temporaire qui nous permet de pouvoir s\'electionner plusieurs h\^otels lors du choix d'un circuit pour un h\^otel par un client. Une fois la commande saisie et la facture entre dans la base, les lignes correspondant au client sont supprim\'ees.
+La table \textbf{Reservation} est une table temporaire qui nous permet de pouvoir s\'electionner plusieurs h\^otels lors du choix d'un circuit pour un h\^otel par un client. Une fois la commande saisie et la facture entr\'ees dans la base, les lignes correspondant au client sont supprim\'ees.
 \begin{center}
-\begin{tabular}{|l|c|c|c|}
+\begin{tabular}{|l|c|c|c|c|c|}
 \hline
-\multicolumn{3}{|c|}{Reservation}\\
+\multicolumn{6}{|c|}{Reservation}\\
 \hline
-ID\_Client& ID\_Hotel&Date\_Res\_Deb&Date\_Res\_Fin\\
+ID\_Client& ID\_Hotel & Date\_Res\_Deb & Date\_Res\_Fin & NB\_ch\_S & NB\_ch\_D\\
 \hline
-1 & 4&3/3/2008&4/3/2008\\
+1 & 4&3/3/2008&4/3/2008 & 10 &  5\\
 \hline
-1 & 3&9/8/2008&9/8/2008\\
+1 & 3&9/8/2008&9/8/2008 & 30 & 15\\
 \hline
-1 & 5&7/2/2008&9/8/2008\\
+1 & 5&7/2/2008&9/8/2008 & 20 & 10\\
 \hline
-2 & 1&5/3/2008&9/8/2008\\
+2 & 1&5/3/2008&9/8/2008 & 12 & 6\\
 \hline
-2&4&2/7/2008&9/8/2008\\
+2&4&2/7/2008&9/8/2008 & 16 & 8\\
 \hline
-2 & 2&1/5/2008&5/4/2008\\
+2 & 2&1/5/2008&5/4/2008 & 16 & 8\\
 \hline
 \end{tabular}
 \end{center}
@@ -271,9 +276,9 @@ ID\_Client& ID\_Hotel&Date\_Res\_Deb&Date\_Res\_Fin\\
 \end{table}
 
 \begin{table}[h]
- La table \textbf{LOG} est une fonctionnalit\'e que nous avons int\'egr\'e dans notre application. \\
+ La table \textbf{LOG} est une fonctionnalit\'e que nous avons int\'egr\'ee dans notre application. \\
  Elle a pour but d'enregistrer les actions des op\'erateurs sur la base de donn\'ee (afin d'effectuer des statistiques)\\
-Le type timestamp repr\'esentant \'a la fois la date et l'heure, ce champs nous servira de cl\'e primaire.
+Le type \textit{timestamp} repr\'esentant \`a la fois la date et l'heure nous servira de cl\'e primaire.
 \begin{center}
 \begin{tabular}{|l|c|c|c|}
 \hline
@@ -281,7 +286,7 @@ Le type timestamp repr\'esentant \'a la fois la date et l'heure, ce champs nous 
 \hline
 date&utilisateur&action&cible\\
 \hline
-13/1/2008 &Lagarde C. 1&UPDATE&CLients\\
+13/1/2008 &Lagarde C. 1&UPDATE&Clients\\
 \hline
 12/1/2009 &Petit Nicolas&DELETE&R\'eservation\\
 \hline
