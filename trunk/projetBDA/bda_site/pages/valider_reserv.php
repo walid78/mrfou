@@ -24,6 +24,8 @@ if($id_circ != ""){
   for($i=0 ; $i<$nb_total_etapes ; ++$i){
     $id_etapes[$i] = $_GET['etape'.$i];
     $id_hotels[$i] = $_GET['hotel'.$i];
+    $dates_entree[$i] = $_GET['date_entree'.$i];
+    $dates_sortie[$i] = $_GET['date_sortie'.$i];
   }
     
 }
@@ -48,9 +50,9 @@ while(OCIFetchInto($stmt, $row, OCI_NUM)){
     $selected = "SELECTED";
   $ad = $adress."&client=".$row[0];
   echo "
-      <option onClick='parent.location=\"".$ad."\"' 
+      <option onclick='parent.location=\"".$ad."\"' 
               value=\"".$row[0]."\"".$selected.">
-        ".$row[0].". ".$row[3]."".$row[4]."(".$row[6].")
+        ".$row[0].". ".$row[3]." ".$row[4]."(".$row[6].")
       </option>";
   $selected = "";
 }
@@ -76,7 +78,7 @@ if($id_client != ""){
       $selected = "SELECTED";
     $ad = $adress."&dest=".$row[0];
     echo "
-      <option onClick='parent.location=\"".$ad."\"' 
+      <option onclick='parent.location=\"".$ad."\"' 
               value=\"".$row[0]."\"".$selected.">
         ".$row[0].". ".$row[1]."(".$row[2].")
       </option>";
@@ -106,7 +108,7 @@ if($id_client != ""){
 	$selected = "SELECTED";
       $ad = $adress."&circ=".$row[0];
       echo "
-      <option onClick='parent.location=\"".$ad."\"' 
+      <option onclick='parent.location=\"".$ad."\"' 
               value=\"".$row[0]."\"".$selected.">
         ".$row[0].". ".$row[1]."
       </option>";
@@ -138,7 +140,7 @@ if($id_client != ""){
 	$selected = "SELECTED";
       $ad = $adress."&sejour=".$row[0];
       echo "
-      <option onClick='parent.location=\"".$ad."\"' 
+      <option onclick='parent.location=\"".$ad."\"' 
               value=\"".$row[0]."\"".$selected.">
         ".$row[0].". ".$row[1]." jours(".$row[2].")
       </option>";
@@ -151,24 +153,12 @@ if($id_client != ""){
   }
 
   if($id_sejour != ""){
-    $adress = $adress."&sejour=".$id_sejour;
-//     $adress = $adress."&date_debut=1";
-//************************* Ici : donner le choix entre 4 jours de départ ?
-//     echo "
-//     <input type=\"text\" 
-//            name=\"date_debut\"
-//            onClick='parent.location=\"".$adress."\"'           ";
-
-//   }
-
-
-//   if($date_debut != ""){
     echo "
     <table border=0 align=\"center\" bgcolor=\"white\">
       <tr>
         <td>S&eacute;lectionner une(des) &eacute;tape(s)</td>
       </tr>";
-//     $adress = $adress."&sejour=".$id_sejour;
+    $adress = $adress."&sejour=".$id_sejour;
 
     // Recuperation des etapes
     $query = "
@@ -199,18 +189,42 @@ if($id_client != ""){
 	}
       }
 
+      $ad3 = $ad2;
+
+      /* Ajout des variables hotel */
       for($i=0 ; $i<$nb_total_etapes ; ++$i){
 	if($num_etapes != $i)
 	  $ad2 = $ad2."&hotel".$i."=".$id_hotels[$i];
 	$ad = $ad."&hotel".$i."=".$id_hotels[$i];
-      }      
+	$ad3 = $ad3."&hotel".$i."=".$id_hotels[$i];
+      }
       
+      $ad4 = $ad3;
+
+      /* Ajout des variables date_entree */
+      for($i=0 ; $i<$nb_total_etapes ; ++$i){
+	if($num_etapes != $i)
+	  $ad3 = $ad3."&date_entree".$i."=".$dates_entree[$i];
+	$ad = $ad."&date_entree".$i."=".$dates_entree[$i];
+	$ad2 = $ad2."&date_entree".$i."=".$dates_entree[$i];
+	$ad4 = $ad4."&date_entree".$i."=".$dates_entree[$i];
+      }
+
+      /* Ajout des variables date_sortie */
+      for($i=0 ; $i<$nb_total_etapes ; ++$i){
+	if($num_etapes != $i)
+	  $ad4 = $ad4."&date_sortie".$i."=".$dates_sortie[$i];
+	$ad = $ad."&date_sortie".$i."=".$dates_sortie[$i];
+	$ad2 = $ad2."&date_sortie".$i."=".$dates_sortie[$i];
+	$ad3 = $ad3."&date_sortie".$i."=".$dates_sortie[$i];
+      }
+
       echo "
       <tr>
         <td>
           <input type=\"checkbox\"
                  name=\"etape".$num_etapes."\"
-                 onClick='parent.location=\"".$ad."\"'
+                 onclick='parent.location=\"".$ad."\"'
                  value=\"".$row[0]."\"".$selected."/>
           ".$row[0].". ".$row[1]." (".$row[2].")
         </td>";
@@ -237,25 +251,45 @@ if($id_client != ""){
 	  if($id_hotels[$num_etapes] == $row[0])
 	    $selected = " SELECTED";
 	  echo "
-            <option onClick='parent.location=\"".$ad2."\"'
+            <option onclick='parent.location=\"".$ad2."\"'
                     value=\"".$row[0]."\"".$selected."/>
             ".$row[0].". H&ocirc;tel ".$row[1]."
             </option>";
 	}
+                  
 	echo "
           </select>
         </td>
         <td>
-          <select>
-            <option value=\"\">Nombre de chambre simple</option>
-          </select>
+          <input type=\"text\"
+                 name=\"date_entree".$num_etapes."\"";
+	if($dates_entree[$num_etapes] == '')
+	  echo "
+                 value=\"date d'entr&eacute;e JJ/MM/AA\"";
+	else
+	  echo "
+                 value=\"".$dates_entree[$num_etapes]."\"";
+	echo "
+                 onchange=\"location.replace('".$ad3."&date_entree".$num_etapes."='+this.value);\"
+                 onfocus=\"if (this.value=='date d\'entr&eacute;e JJ/MM/AA') {this.value=''}\"
+                 onblur=\"if (this.value=='') {this.value='date d\'entr&eacute;e JJ/MM/AA'}\"
+          />
         </td>
         <td>
-          <select>
-            <option value=\"\">Nombre de chambre double</option>
-          </select>
+          <input type=\"text\"
+                 name=\"date_sortie".$num_etapes."\"";
+	if($dates_sortie[$num_etapes] == '')
+	  echo "
+                 value=\"date de sortie JJ/MM/AA\"";
+	else
+	  echo "
+                 value=\"".$dates_sortie[$num_etapes]."\"";
+	echo "
+                 onchange=\"location.replace('".$ad4."&date_sortie".$num_etapes."='+this.value);\"
+                 onfocus=\"if (this.value=='date de sortie JJ/MM/AA') {this.value=''}\"
+                 onblur=\"if (this.value=='') {this.value='date de sortie JJ/MM/AA'}\"
+          />
         </td>";
-	
 
       }
       echo "
