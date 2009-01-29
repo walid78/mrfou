@@ -1,9 +1,9 @@
 --Triggers
 
-drop trigger trigger_log_client;
-drop trigger trigger_log_circuit;
-drop trigger trigger_log_hotel;
-drop trigger trigger_log_destination;
+drop trigger  trigger_log_client;
+drop trigger  trigger_log_circuit;
+drop trigger  trigger_log_hotel;
+drop trigger  trigger_log_destination;
 				
 
 create or replace trigger trigger_log_client
