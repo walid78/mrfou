@@ -15,14 +15,14 @@ DELETE FROM hotel;
 -- Séquences --
 
 -- Suppression de séquences --
-DROP SEQUENCE seq_client;
-DROP SEQUENCE seq_dest;
-DROP SEQUENCE seq_hotel;
-DROP SEQUENCE seq_circuit;
-DROP SEQUENCE seq_vol;
-DROP SEQUENCE seq_etape;
-DROP SEQUENCE seq_classe;
-DROP SEQUENCE seq_sejour;
+DROP SEQUENCE  seq_client;
+DROP SEQUENCE  seq_dest;
+DROP SEQUENCE  seq_hotel;
+DROP SEQUENCE  seq_circuit;
+DROP SEQUENCE  seq_vol;
+DROP SEQUENCE  seq_etape;
+DROP SEQUENCE  seq_classe;
+DROP SEQUENCE  seq_sejour;
 
 
 -- Création de séquences --
@@ -126,17 +126,16 @@ ajout_vol(6,35.00,70.00);
 
 -- Remplissage de la table Client --
 
-ajout_client('Rue de la plage', '0556654558', 'Burneau', 'Bruno', 26, 'Burneau@laposte.net', 'Etudiant', 1, 400.00);
-ajout_client('Rue du geek', '0679473302', 'Fou', 'Fabien', 23, 'Mrfou@hotmail.fr', 'Salarié', 2, 215.00);
-ajout_client('Rue de la soif', '0557348875', 'Durand', 'Patrick', 52, 'Aucun', 'Salarié', 3, 1000.00);
-ajout_client('rue du pin','0606060606','dutronc','michel',19,'dut.michel@pouet.fr','etudiant',null,null);
-ajout_client('rue orange','0557575757','prudence','michel',38,'prudence.michel@wanadoo.fr','salarié',null,null);
-
--- Remplissage de la table Facturation --
-
--- INSERT INTO Facturation Values (1, sysdate,'TOTAL', 'Rue de la plage', '0556654558', 'Burneau' ,'Bruno', 'Bruxelles', 
---        	    'Belgique', 'California', 'Rue de LA', 4, 45.00, 80.00, 'Hockeinem', 21, 50.00, 12.00 , 24.00, 2,1,'Fatiguant',
--- 	     0.4, 24.00, 90.00, 50.00, 164.00, 26, 'Etudiant', 'Bordeaux', 400.00) ;
+ajout_client('Rue de la plage', '0556654558', 'Burneau', 'Bruno',
+		26, 'Burneau@laposte.net', 'Etudiant', 1, 400.00);
+ajout_client('Rue du geek', '0679473302', 'Fou', 'Fabien', 23, 
+		'Mrfou@hotmail.fr', 'Salarié', 2, 215.00);
+ajout_client('Rue de la soif', '0557348875', 'Durand', 
+		'Patrick', 52, 'Aucun', 'Salarié', 3, 1000.00);
+ajout_client('rue du pin','0606060606','dutronc','michel',19,
+		'dut.michel@pouet.fr','etudiant',null,null);
+ajout_client('rue orange','0557575757','prudence','michel',38,
+		'prudence.michel@wanadoo.fr','salarié',null,null);
 
 
 

@@ -41,7 +41,8 @@ hotels les + demand�s
 
 Des slides de support pour la soutenance
 
+Verifier cohérence des tables avec le rapport
+parler de l'ordre de declenchement des fichiers .sql
 
-*********************Pour la partie Base de donn�e***********
 
 

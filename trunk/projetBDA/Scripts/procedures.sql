@@ -1,13 +1,14 @@
 
-DROP SEQUENCE seq_fact;
+DROP SEQUENCE  seq_fact;
 CREATE SEQUENCE seq_fact START WITH 1;
 
-CREATE OR REPLACE PROCEDURE AjoutFacture(client in number,sejour in number,circuit in number,dest in number, vol in number,nombre_adulte in number, nombre_enfant in number) 
+CREATE OR REPLACE PROCEDURE AjoutFacture(client in number,sejour in number,
+circuit in number,dest in number, vol in number,
+nombre_adulte in number, nombre_enfant in number) 
 
 as
 
 Date_Facture date ;
-
 
 --données client
 c1_Adresse_Client varchar2(50);
@@ -71,37 +72,63 @@ Total_Facture float;
 Dest_Pref varchar2(20);
 Invest_Moyen float;
 
-cursor c1 is select Adresse,Tel,Nom,Prenom,Age,Classe_Sociale from Client where ID_Client = client;
-cursor c2 is select Duree,Description,Coeff from Sejour where ID_Sejour = sejour ;
-cursor c3 is select Nom_Circuit from Circuit where ID_Circuit = circuit ;
-cursor c4 is select Nom_Destination,Pays from Destination where ID_Dest = dest ;
-cursor c5 is select Prix_Enfant,Prix_Adulte from Vol where ID_Vol = vol ;
-cursor c6 is select Prix from  Assoc_Prix_Sejour_Circuit where (ID_Circuit = circuit and ID_Sejour = sejour);
---
-cursor c8 is select ID_Hotel,NB_Chambre_S,NB_Chambre_D,Date_Reservation_Debut,Date_Reservation_Fin from  Reservation where ID_Client = client;
---
-cursor c11 is select Nom_Hotel,	Adresse,Hotel.ID_Classe,Capac_S,Capac_D,Prix_S,Prix_D
-       	      	     from Hotel,Classe_Hotel 
-       		     where (Hotel.ID_Hotel =c8_Tab_ID_Hotel and Hotel.ID_Classe = Classe_Hotel.ID_Classe) ;
+cursor c1 is 	select Adresse,Tel,Nom,Prenom,Age,Classe_Sociale 
+		from Client 
+		where ID_Client = client;
 
--- cursor c12 is select max(ID_Facture) from facturation;
-cursor c13 is SELECT nom_dest,COUNT(NOM_DEST) AS Total FROM facturation GROUP BY NOM_DEST ORDER BY Total desc;
+cursor c2 is 	select Duree,Description,Coeff 
+		from Sejour 
+		where ID_Sejour = sejour ;
 
---Sequence
+cursor c3 is 	select Nom_Circuit 
+		from Circuit 
+		where ID_Circuit = circuit ;
+
+cursor c4 is 	select Nom_Destination,Pays 
+		from Destination 
+		where ID_Dest = dest ;
+
+cursor c5 is 	select Prix_Enfant,Prix_Adulte
+		from Vol
+		where ID_Vol = vol ;
+
+cursor c6 is 	select Prix 
+		from  Assoc_Prix_Sejour_Circuit
+		where (ID_Circuit = circuit and ID_Sejour = sejour);
+--
+cursor c8 is 	select ID_Hotel,NB_Chambre_S,NB_Chambre_D,
+			Date_Reservation_Debut,Date_Reservation_Fin 
+		from  Reservation 
+		where ID_Client = client;
+--
+cursor c11 is 	select Nom_Hotel,Adresse,Hotel.ID_Classe,Capac_S,
+			Capac_D,Prix_S,Prix_D
+       	      	from Hotel,Classe_Hotel 
+       		where (	Hotel.ID_Hotel =c8_Tab_ID_Hotel and 
+			Hotel.ID_Classe = Classe_Hotel.ID_Classe) ;
+
+cursor c13 is 	SELECT nom_dest,COUNT(NOM_DEST) AS Total 
+		FROM facturation 
+		GROUP BY NOM_DEST 
+		ORDER BY Total desc;
+
+--Sequence sur le numero de facture
 c12_Id_facture facturation.id_facture%type;
 
 --Debut procedure
 
 begin
 
-open c1;fetch c1 into c1_Adresse_Client,c1_Tel,c1_Nom,c1_Prenom,c1_Age,c1_Classe_sociale;
-open c2;fetch c2 into c2_Duree_Sejour,c2_Description_Sejour,c2_Coeff_Sejour;
+open c1;fetch c1 into 	c1_Adresse_Client,c1_Tel,c1_Nom,
+			c1_Prenom,c1_Age,c1_Classe_sociale;
+open c2;fetch c2 into 	c2_Duree_Sejour,c2_Description_Sejour,
+			c2_Coeff_Sejour;
 open c3;fetch c3 into c3_Nom_circuit;
 open c4;fetch c4 into c4_Nom_Dest,c4_Pays_Dest;
 open c5;fetch c5 into c5_Prix_Vol_Enfant,c5_Prix_Vol_Adulte;
 open c6;fetch c6 into c6_Prix_Circuit;
 open c8;
--- open c12;fetch c12 into c12_Id_facture;c12_Id_facture := c12_Id_facture + 1;
+
 SELECT seq_fact.NEXTVAL INTO c12_Id_facture FROM dual;
 
 --Boucle sur tous les hotel réservés
@@ -109,9 +136,13 @@ SELECT seq_fact.NEXTVAL INTO c12_Id_facture FROM dual;
 Total_Hotel_Courant := 0;
 Total_Hotel := 0;
 Loop
-	fetch c8 into c8_Tab_ID_Hotel,c8_NB_S,c8_NB_D,c8_date_res_debut,c8_date_res_fin;
+	fetch c8 into 	c8_Tab_ID_Hotel,c8_NB_S,c8_NB_D,
+			c8_date_res_debut,c8_date_res_fin;
         Exit When c8%NOTFOUND ;
-	open c11;fetch c11 into c11_Nom_Hotel,c11_Adresse_Hotel,c11_Classe_Hotel,c11_Capac_S,c11_Capac_D,c11_Prix_S,c11_Prix_D;
+
+	open c11;fetch c11 into c11_Nom_Hotel,c11_Adresse_Hotel,
+				c11_Classe_Hotel,c11_Capac_S,
+				c11_Capac_D,c11_Prix_S,c11_Prix_D;
 
 	--calcul du total local et total
 	Total_Hotel_Courant := c8_NB_S*c11_Prix_S + c8_NB_D*c11_Prix_D;
@@ -119,36 +150,54 @@ Loop
 	Total_Hotel := Total_Hotel + Total_Hotel_Courant;
 
 	--insertion dans facturation des hotels
-	insert into facturation values(c12_Id_facture,sysdate,'HOTEL',c1_adresse_client,c1_tel,c1_nom,c1_prenom,null,c4_Pays_Dest,
-	       	    c11_nom_hotel,c11_adresse_hotel,c11_classe_hotel,c11_prix_s,c11_prix_d,c8_Date_Res_debut,c8_Date_Res_fin,null,c2_Duree_Sejour,null,null,null,
-		    nombre_adulte,nombre_enfant,c2_description_sejour,null,null,total_hotel_courant,null,null,
-		    c1_age,c1_classe_sociale,null,null);
+	insert into facturation values(c12_Id_facture,sysdate,'HOTEL',
+		c1_adresse_client,c1_tel,c1_nom,c1_prenom,null,
+		c4_Pays_Dest,c11_nom_hotel,c11_adresse_hotel,
+		c11_classe_hotel,c11_prix_s,c11_prix_d,
+		c8_Date_Res_debut,c8_Date_Res_fin,null,
+		c2_Duree_Sejour,null,null,null,
+		nombre_adulte,nombre_enfant,c2_description_sejour,
+		null,null,total_hotel_courant,null,null,
+		c1_age,c1_classe_sociale,null,null);
 
 
 	close c11;
 End loop ;
 
 --Affichage des données
-dbms_output.put_line(c1_Adresse_Client || ' ' || c1_Tel || ' ' || c1_Nom ||' '|| c1_Prenom || ' ' || c1_Age || ' ' || c1_Classe_sociale);
-dbms_output.put_line(c2_Duree_Sejour || ' ' || c2_Description_Sejour || ' ' || c2_Coeff_Sejour);
+dbms_output.put_line(c1_Adresse_Client || ' ' || 
+		c1_Tel || ' ' || c1_Nom ||' '|| 
+		c1_Prenom || ' ' || c1_Age || ' ' ||
+		c1_Classe_sociale);
+
+dbms_output.put_line(c2_Duree_Sejour || ' ' || 
+		c2_Description_Sejour || ' ' || 
+		c2_Coeff_Sejour);
+
 dbms_output.put_line(c3_Nom_Circuit);
+
 dbms_output.put_line(c4_Nom_Dest || ' ' || c4_Pays_Dest);
-dbms_output.put_line(c5_Prix_Vol_Enfant || ' ' || c5_Prix_Vol_Adulte);
+
+dbms_output.put_line(c5_Prix_Vol_Enfant || ' ' ||
+		c5_Prix_Vol_Adulte);
+
 dbms_output.put_line(c6_Prix_Circuit);
 
 --calcul du total_vol
-Total_Vol:= c5_Prix_Vol_Enfant*nombre_enfant + c5_Prix_Vol_Adulte*nombre_adulte;
+Total_Vol:= c5_Prix_Vol_Enfant*nombre_enfant +
+	 c5_Prix_Vol_Adulte*nombre_adulte;
+
 dbms_output.put_line('Total vol = ' || Total_Vol);
 
 --calcul du total_circuit
-Total_Circuit:= c6_Prix_Circuit*c2_Coeff_Sejour*(nombre_enfant + nombre_adulte);
-dbms_output.put_line('Total circuit = ' || Total_Circuit);
+Total_Circuit:= c6_Prix_Circuit*c2_Coeff_Sejour*
+		(nombre_enfant + nombre_adulte);
 
---calcul prix_hotel
+dbms_output.put_line('Total circuit = ' || Total_Circuit);
 dbms_output.put_line('Total hotel = ' || Total_Hotel);
 
-Total_Facture := Total_Vol + Total_Circuit + Total_Hotel;
 --calcul prix total
+Total_Facture := Total_Vol + Total_Circuit + Total_Hotel;
 dbms_output.put_line('Total Facture= ' || Total_Facture);
 
 
@@ -159,26 +208,37 @@ open c13;fetch c13 into c13_dest_pref,c13_nb_dest_pref;
 
 --remplissage facture circuit.
 
-insert into facturation values(c12_Id_facture,sysdate,'CIRCUIT',c1_adresse_client,c1_tel,c1_nom,c1_prenom,null,c4_Pays_Dest,
-	       	    null,null,null,null,null,null,null,c3_Nom_Circuit,c2_Duree_Sejour,null,null,null,
-		    nombre_adulte,nombre_enfant,c2_description_sejour,c2_coeff_sejour,null,null,Total_Circuit,null,
-		    c1_age,c1_classe_sociale,c13_dest_pref,null);
+insert into facturation values(	c12_Id_facture,sysdate,'CIRCUIT',
+		c1_adresse_client,c1_tel,c1_nom,c1_prenom,null,
+		c4_Pays_Dest,null,null,null,null,null,null,null,
+		c3_Nom_Circuit,c2_Duree_Sejour,null,null,null,
+		nombre_adulte,nombre_enfant,c2_description_sejour,
+		c2_coeff_sejour,null,null,Total_Circuit,null,c1_age,
+		c1_classe_sociale,c13_dest_pref,null);
 
 --remplissage facture vol.
 
-insert into facturation values(c12_Id_facture,sysdate,'VOL',c1_adresse_client,c1_tel,c1_nom,c1_prenom,null,c4_Pays_Dest,
-	       	    null,null,null,null,null,null,null,c3_Nom_Circuit,c2_Duree_Sejour,c6_Prix_Circuit,c5_Prix_Vol_enfant,c5_Prix_Vol_adulte,
-		    nombre_adulte,nombre_enfant,c2_Description_Sejour,c2_coeff_sejour,Total_Vol,null,null,null,
-		    c1_age,c1_classe_sociale,c13_dest_pref,null);
+insert into facturation values(c12_Id_facture,sysdate,'VOL',
+		c1_adresse_client,c1_tel,c1_nom,c1_prenom,
+		null,c4_Pays_Dest,null,null,null,null,null,
+		null,null,c3_Nom_Circuit,c2_Duree_Sejour,
+		c6_Prix_Circuit,c5_Prix_Vol_enfant,c5_Prix_Vol_adulte,
+		nombre_adulte,nombre_enfant,c2_Description_Sejour,
+		c2_coeff_sejour,Total_Vol,null,null,null,
+		c1_age,c1_classe_sociale,c13_dest_pref,null);
 
 
 
 --remplissage facture TOTAL.
 
-insert into facturation values(c12_Id_facture,sysdate,'TOTAL',c1_adresse_client,c1_tel,c1_nom,c1_prenom,c4_nom_dest,c4_Pays_Dest,
-	       	    null,null,null,null,null,null,null,c3_Nom_Circuit,c2_Duree_Sejour,null,null,null,
-		    nombre_adulte,nombre_enfant,c2_description_Sejour,c2_coeff_sejour,Total_Vol,total_hotel,total_circuit,total_facture,
-		    c1_age,c1_classe_sociale,c13_dest_pref,null);
+insert into facturation values(c12_Id_facture,sysdate,'TOTAL',
+		c1_adresse_client,c1_tel,c1_nom,c1_prenom,
+		c4_nom_dest,c4_Pays_Dest,null,null,null,null,
+		null,null,null,c3_Nom_Circuit,
+		c2_Duree_Sejour,null,null,null,nombre_adulte,
+		nombre_enfant,c2_description_Sejour,c2_coeff_sejour,
+		Total_Vol,total_hotel,total_circuit,total_facture,
+		c1_age,c1_classe_sociale,c13_dest_pref,null);
 
 
 delete from reservation where (ID_Client = client);
@@ -190,8 +250,9 @@ end;
 
 show errors;
 
---SET SERVEROUTPUT ON
+--test de la procedure
 
+--SET SERVEROUTPUT ON
 --BEGIN
 --AjoutFacture(1,2,1,1,1,2,2);
 --commit;
@@ -200,36 +261,34 @@ show errors;
 -- Fonctions stockees pour les ajouts
 ----------------------------------------
 CREATE OR REPLACE PROCEDURE ajout_client(
-  adresse varchar,
-  tel varchar,
-  nom varchar,
-  prenom varchar,
-  age number,
-  email varchar,
-  classe_sociale varchar,
-  id_dest_preferee number,
-  investissement_moyen number)
+	adresse varchar,
+  	tel varchar,
+  	nom varchar,
+  	prenom varchar,
+  	age number,
+  	email varchar,
+  	classe_sociale varchar,
+  	id_dest_preferee number,
+  	investissement_moyen number)
 as
 -- Variables --
-id_client client.id_client%type;
+	id_client client.id_client%type;
 
 -- Programme --
 begin
-  SELECT seq_client.NEXTVAL INTO id_client FROM dual;
-
-  INSERT INTO client
-  VALUES (
-  	 id_client,
-	 adresse,
-	 tel,
-	 nom,
-	 prenom,
-	 age,
-	 email,
-	 classe_sociale,
-	 id_dest_preferee,
-	 investissement_moyen
-	 );
+  	SELECT seq_client.NEXTVAL INTO id_client FROM dual;
+	INSERT INTO client 
+	VALUES (
+		id_client,
+	 	adresse,
+	 	tel,
+	 	nom,
+	 	prenom,
+	 	age,
+	 	email,
+	 	classe_sociale,
+	 	id_dest_preferee,
+	 	investissement_moyen);
 
 end;
 /
@@ -237,22 +296,19 @@ show errors;
 
 ----------------------------------------
 CREATE OR REPLACE PROCEDURE ajout_dest(
-  nom_destination varchar,
-  pays varchar)
+  nom_destination varchar,pays varchar)
 as
 -- Variables --
-id_dest destination.id_dest%type;
+	id_dest destination.id_dest%type;
 
 -- Programme --
 begin
-  SELECT seq_dest.NEXTVAL INTO id_dest FROM dual;
-
-  INSERT INTO destination
-  VALUES (
-  	 id_dest,
-	 nom_destination,
-	 pays
-	 );
+  	SELECT seq_dest.NEXTVAL INTO id_dest FROM dual;
+	INSERT INTO destination
+  	VALUES (
+  	 	id_dest,
+	 	nom_destination,
+	 	pays );
 
 end;
 /
@@ -268,7 +324,7 @@ CREATE OR REPLACE PROCEDURE ajout_hotel(
   capa_d number)
 as
 -- Variables --
-id_hotel hotel.id_hotel%type;
+	id_hotel hotel.id_hotel%type;
 
 -- Programme --
 begin
@@ -401,6 +457,7 @@ cursor c is select id_circuit from circuit;
 begin
 open  d;
 open  c;
+--drapeaux
 plop := 'False';
 plop2 := 'False';
 
@@ -426,8 +483,12 @@ if plop = 'Ok' and  plop2 = 'Ok' then
      
 end if;
 
-if plop2 = 'False' then dbms_output.put_line('Id_Circuit non existant');end if;
- if plop = 'False'then dbms_output.put_line('Id_Dest non existant');end if;         
+if plop2 = 'False' 
+	then dbms_output.put_line('Id_Circuit non existant');
+end if;
+if plop = 'False' 
+	then dbms_output.put_line('Id_Dest non existant');
+end if;         
 
 end;
 /
@@ -453,6 +514,7 @@ cursor c is select id_circuit from circuit;
 begin
 open  j;
 open  c;
+--drapeaux
 plop := 'False';
 plop2 := 'False';
 
@@ -479,8 +541,12 @@ if plop = 'Ok' and  plop2 = 'Ok' then
      
 end if;
 
-if plop2 = 'False' then dbms_output.put_line('Id_Circuit non existant');end if;
- if plop = 'False'then dbms_output.put_line('Id_Sejour non existant');end if;         
+if plop2 = 'False' 
+	then dbms_output.put_line('Id_Circuit non existant');
+end if;
+ if plop = 'False'
+	then dbms_output.put_line('Id_Sejour non existant');
+end if;         
 
 end;
 /
@@ -510,6 +576,7 @@ cursor c is select id_client from client;
 begin
 open  h;
 open  c;
+--drapeaux
 plop := 'False';
 plop2 := 'False';
 
@@ -539,8 +606,12 @@ if plop = 'Ok' and  plop2 = 'Ok' then
      
 end if;
 
-if plop2 = 'False' then dbms_output.put_line('Id_Client non existant');end if;
- if plop = 'False'then dbms_output.put_line('Id_Hotel non existant');end if;         
+if plop2 = 'False' 
+	then dbms_output.put_line('Id_Client non existant');
+end if;
+if plop = 'False' 
+	then dbms_output.put_line('Id_Hotel non existant');
+end if;         
 
 end;
 /
@@ -562,6 +633,7 @@ cursor c is select id_circuit from circuit;
 -- Programme --
 begin
 open  c;
+--drapeaux
 plop := 'False';
   SELECT seq_etape.NEXTVAL INTO id_etape FROM dual;
 
@@ -579,7 +651,9 @@ loop
   end if;
 end loop;
 
-if plop = 'False' then dbms_output.put_line('Id_Circuit non existant');end if;
+if plop = 'False' 
+	then dbms_output.put_line('Id_Circuit non existant');
+end if;
   
 end;
 /
