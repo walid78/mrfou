@@ -1,7 +1,4 @@
 \section{Analyse de notre base de donn\'ees}
-%Argumenter choix des tables(ordinaires,index, tables partitionnées,cluster,tables organisées en index et les param de stockage)
-%Argumenter les tailles
-%Justifier le développement des procédures stockées.
 
 \begin{table}[h]
 %\begin{center}
@@ -17,21 +14,21 @@ Circuit&number+varchar2(20)=22+20 = 42octets&3*50= 150 &6.3ko\\
 \hline
 Assoc\_D\_C&5*number+varchar2(20)+varchar2(50)=180o&3*50&6.6ko\\
 \hline
-Hotel&5*number+varchar2(20)+varchar2(50)=180o&10 par circuit:10*3*50&270 ko\\
+H\^otel&5*number+varchar2(20)+varchar2(50)=180o&10 par circuit:10*3*50&270 ko\\
 \hline
-Classe\_Hotel&number+2*float=22+44=66o&5&330o\\
+Classe\_H\^otel&number+2*float=22+44=66o&5&330o\\
 \hline
-Sejour&2*number+varchar2(50)+float= 44+50+22=116o&2&232o\\ 
+S\'ejour&2*number+varchar2(50)+float= 44+50+22=116o&2&232o\\ 
 \hline
 Etape&2*number+varchar2(50)=44+50=94o&5*3*50=750&70.5\\
 \hline
-Reservation&2*number+2*date=44+14=58o&400p*3*50= 60k&3.48Mo\\
+R\'eservation&2*number+2*date=44+14=58o&400p*3*50= 60k&3.48Mo\\
 \hline
 Assoc\_P\_S\_C&2*number+float=44+22=66o&2*150=300&19.8 Ko\\
 \hline
 Vol&2*number+2*float=22*4=88o&100 vols * 50 dest = 5k&440ko\\
 \hline
-CLient&3*number+float+varchar2(50)+10+30+3*20=238o&400*12*10=48k&11.424Mo\\
+Client&3*number+float+varchar2(50)+10+30+3*20=238o&400*12*10=48k&11.424Mo\\
 \hline
 Facturation&8*number+3*date+10+3*50+9*20+11*float=779o&400*12*10*5 etapes=240k&186.960.000 o\\
 \hline
@@ -41,16 +38,17 @@ Facturation&8*number+3*date+10+3*50+9*20+11*float=779o&400*12*10*5 etapes=240k&1
 
 D\'ecoupage des tablespaces :
 \begin{itemize}
-\item De T1 \'a T10:La table de facturation segment\`e par ann\'ee
-\item T11 : La table de LOG qui enregistre tous les \'ev\`enements sur la base
-\item T0: Toutes les autres tables.
+\item De T1 \`a T10: La table de facturation segment\'ee par ann\'ee.
+\item T11 : La table de LOG qui enregistre tous les \'ev\`enements sur la base.
+\item T0: Toutes les autres tables.\\
 \end{itemize}
 
-Pour la facturation, nous avons compt\'e une moyenne de 5 h\^otels par reservation ainsi qu'une ligne de vol, une ligne de circuit, et une ligne de total.Soit 779 octet par ligne , et 240k*(5 h\^otels + 3) lignes = 1.495.680.000 octets.
-Total Occupation Tablespace T0 : 15,4 Mo\\
-T1 à T10 = 1.495 Go\\
+Pour la facturation, nous avons compt\'e une moyenne de 5 h\^otels par r\'eservation ainsi qu'une ligne de vol, une ligne de circuit, et une ligne pour le total des prestations. Nous avons donc 779 octets par ligne , et 240k*(5 h\^otels + 3) lignes = 1.495.680.000 octets.\\
+T1 \`a T10 = 1.495 Go\\
+Total Occupation Tablespace T0 : 15,4 Mo (Arrondit à 20 Mo par mesure de pr\'ecaution)\\
+Total Occupation Tablespace T11 estim\'e \`a 20 Mo (Stockage des \textit{logs}).
 
-Chaque tablespace devrait donc faire environ 149,5Mo.(Nous arrondirons \`a 200 Mo par s\'ecurit\'e pour chacun de nos tablespaces).
+Chaque tablespace de T1 \`a T10 occuperont environ 149,5Mo.(Nous arrondirons \`a 200 Mo par s\'ecurit\'e pour chacun de nos tablespaces).
 Il sera toujours possible \'a l'avenir d'adapter la taille des tablespaces en fonction de leur encombrement.
 Les tableaux ci-dessous nous donnent les d\'etails du calcul de l'espace m\'emoire n\'ecessaire.
 

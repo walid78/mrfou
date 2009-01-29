@@ -28,7 +28,9 @@ a la validation de la reservation, compter le nombre de ch occupées, et vérifi
 
 Ensuite passer au choix des vols ( en selectioner 1 pour la commande)
 
-afficher toutes les factures, celles d'un client particulier, selon une certaine date
+client_facture.php :  si null alors afficher "_".
+mettre duree_sejour en plus, + possibilité d'afficher toute les factures du client sur la meme page.
+eventuellement filtre sur total circuit, total hotel, total vol.
 
 Statistiques :
 destinations les plus demand�es
@@ -38,11 +40,8 @@ hotels les + demand�s
 
 ***************pour la partie Rapport**********************
 
-
 Des slides de support pour la soutenance
 
-Verifier cohérence des tables avec le rapport
-parler de l'ordre de declenchement des fichiers .sql
 
 
 
