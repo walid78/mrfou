@@ -7,30 +7,18 @@ POUR TOUT :
 ******************pour la partie application ********************
 
 
-Procedures basiques sont faites pour ajouter, il faut les ameliorer en prenant en compte les 
-conditions d'ajout (capacité des hotels etc...) et les vérifier aussi.
-
 en cliquant sur un client, sa fiche complete s'affiche (possibilit� de modifier les infos)
 
 un bouton "nouveau voyage" qui:
 
-Inserer les types de s�jour entre circuit et hotel (ceux disponibles pour les sejours en question)
-Puis sont affich�s les hotels disponibles pour ce circuit et pouvoir en selectionner pour la reservation
-A ce moment : choix des nombres de chambres (Simples ou doubles) pour chaque hotel reservé 
-
-attention , les ids doivent etre transparents pour l'utilisateur
-ex : pour circuit, il faut pour la consul faire apparaitre la destination et pas l'id
-
-!!!!!!!!!!!!!
-a la validation de la reservation, compter le nombre de ch occupées, et vérifier que la capacité de chaque hotel est satisfaisante 
 
 ->remplissage de la table réservation avec le nombre de ch doubles/simples
 
-Ensuite passer au choix des vols ( en selectioner 1 pour la commande)
 
 client_facture.php :  si null alors afficher "_".
 mettre duree_sejour en plus, + possibilité d'afficher toute les factures du client sur la meme page.
 eventuellement filtre sur total circuit, total hotel, total vol.
+
 
 Statistiques :
 destinations les plus demand�es
