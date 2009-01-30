@@ -29,7 +29,11 @@ if($id_circ != ""){
     $nb_simples[$i] = $_GET['nb_s'.$i];
     $nb_doubles[$i] = $_GET['nb_d'.$i];
   }
-    
+
+  $nb_enfants = $_GET['nb_enfants'];
+  $nb_adultes = $_GET['nb_adultes'];
+  $id_vol = $_GET['id_vol'];
+  $valid = $_GET['valid'];
 }
 
 $adress = "?page=valider_reserv";
@@ -364,8 +368,8 @@ if($id_client != ""){
 	  $nb_jours=0;
 
 	  for( $i=mktime(explode("/",$dates_entree[$num_etapes])) ; 
-               $i<=mktime(explode("/",$dates_fin[$num_etapes])) ; 
-               $i+=86400, ++$nb_jours)
+               $i<=mktime(explode("/",$dates_sortie[$num_etapes])) ; 
+               $i+=86400, $nb_jours++)
 	    {
 	      if(($i >= mktime(explode("/",$row[2]))) && ($i <= mktime(explode("/",$row[3])))){	
 		if($nb_s_occup[$nb_jours] == '')
@@ -376,6 +380,7 @@ if($id_client != ""){
 		$nb_s_occup[$nb_jours] += $row[0];
 		$nb_d_occup[$nb_jours] += $row[1];
 	      }
+	      $nombre_jours[$num_etapes] = $nb_jours;
 	    }
 	}
 
@@ -392,7 +397,6 @@ if($id_client != ""){
 	    $max_d_occup = $nb_d_occup[$i];
 	  }
 	}
-
 
 	// Récupération des capacites de l'hotel
 	$query2 = "
@@ -470,25 +474,203 @@ if($id_client != ""){
     for($i=0 ; $i<=$num_etapes ; ++$i){
       if(($nb_simples[$i] != '') &&
 	 ($nb_doubles[$i] != '')){
-	echo "
-      <select>
-        <option value=\"\"
-                onclick='parent.location=\"".$adress."\"'>
-                Nombre d'adultes
-        </option>
-      </select>";
+
+	$ad = $adress."&nb_adultes=".$nb_adultes;
+	$ad1 = $adress."&nb_enfants=".$nb_enfants;
 
 	echo "
-      <select>
-        <option value=\"\"
-                onclick='parent.location=\"".$adress."\"'>
-                Nombre d'enfants
-        </option>
-      </select>";
+    <input type=\"text\"
+           name=\"nb_enfants\"";
+	if($nb_enfants == '')
+	  echo "
+           value=\"Nombre d'enfants\"";
+	else
+	  echo "
+           value=\"".$nb_enfants."\"";
+	echo "
+           onchange=\"location.replace('".$ad."&nb_enfants='+this.value);\"
+           onfocus=\"if (this.value=='Nombre d\'enfants') {this.value=''}\"
+           onblur=\"if (this.value=='') {this.value='Nombre d\'enfants'}\"
+    />";
+
+	echo "
+    <input type=\"text\"
+           name=\"nb_adultes\"";
+	if($nb_adultes == '')
+	  echo "
+           value=\"Nombre d'adultes\"";
+	else
+	  echo "
+           value=\"".$nb_adultes."\"";
+	echo "
+           onchange=\"location.replace('".$ad1."&nb_adultes='+this.value);\"
+           onfocus=\"if (this.value=='Nombre d\'adultes') {this.value=''}\"
+           onblur=\"if (this.value=='') {this.value='Nombre d\'adultes'}\"
+    /><br/><br/>";
+
 	break;
       }
     }
 
+    if(($nb_enfants != '') && ($nb_adultes != '')){
+      $adress = $ad."&nb_enfants=".$nb_enfants;
+
+      // Récupération des vols vers la destination
+      $query = "
+         SELECT id_vol, nom_destination, prix_enfant, prix_adulte
+         FROM vol NATURAL JOIN destination
+         WHERE (id_dest =".$id_dest.")";
+
+      $stmt = ociparse($link, $query);
+      ociexecute($stmt,OCI_DEFAULT);
+
+      echo "
+    <select>
+      <option value=\"\">
+        Choisir un vol
+      </option>";
+
+      while(OCIFetchInto($stmt, $row, OCI_NUM)){
+	if($id_vol == $row[0]){
+	  $selected = " SELECTED";
+	}
+	$prix_vol = $row[2] * $nb_enfants + $row[3] * $nb_adultes;
+	echo "
+      <option value=\"".$id_vol."\"
+              name=\"id_vol\"
+              onclick='parent.location=\"".$adress."&id_vol=".$row[0]."\"'
+              ".$selected.">
+        ".$row[0].". ".$row[1]." : Prix enfant=".$row[2]." Prix adulte=".$row[3]." Votre prix="
+	  .$prix_vol."
+      </option>";
+	$selected = "";
+	$destination_vol = $row[1];
+	
+      }
+      
+      $adress = $adress."&id_vol=".$id_vol;
+
+      echo "
+    </select><br/><br/>";
+    }
+
+    if($id_vol != ''){
+      // Récapitulatif de la commande
+      echo "
+    <h2>R&eacute;capitulatif</h2>
+    <table border=1 align=\"center\" bgcolor=\"white\">
+      <tr>
+        <td>Prestation</td>
+        <td>Description</td>
+        <td>Montant</td>
+      </tr>
+      <tr>
+        <td>Circuit</td>";
+
+      // Récupération des informations sur le prix du circuit
+      $query = "
+         SELECT prix, coeff, nom_circuit
+         FROM circuit NATURAL JOIN assoc_prix_sejour_circuit NATURAL JOIN sejour
+         WHERE (id_circuit =".$id_circ.") AND (id_sejour=".$id_sejour.")";
+
+      $stmt = ociparse($link, $query);
+      ociexecute($stmt,OCI_DEFAULT);
+
+      while(OCIFetchInto($stmt, $row, OCI_NUM)){
+	$prix_circuit = $row[0] * $row[1] * ($nb_enfants+$nb_adultes);
+	echo "
+        <td>".$row[2]."</td>
+        <td>".$prix_circuit."</td>
+      </tr>";
+      }
+      
+      $prix_hotel_total = 0;
+
+      for($i=0 ; $i<$num_etapes ; ++$i){
+	if($id_etapes[$i] != ''){
+	  // Récupération des informations sur les hotels
+	  $query = "
+         SELECT nom_hotel, prix_s, prix_d
+         FROM hotel NATURAL JOIN classe_hotel
+         WHERE (id_hotel =".$id_hotels[$i].")";
+
+	  $stmt = ociparse($link, $query);
+	  ociexecute($stmt,OCI_DEFAULT);
+	
+	  for( $j=mktime(explode("/",$dates_entree[$j])) ; 
+               $j<=mktime(explode("/",$dates_sortie[$j])) ; 
+               $j+=86400)
+	    {
+	      $nb_jours++;
+	    }
+
+	  while(OCIFetchInto($stmt, $row, OCI_NUM)){
+	    $prix_hotel = $nb_jours * (
+				       ($row[1] * $nb_simples[$i]) + 
+				       ($row[2] * $nb_doubles[$i]));
+	    echo "
+        <td>H&ocirc;tel etape ".($i+1)."</td>
+        <td>".$row[0]."</td>
+        <td>".$prix_hotel."</td>
+      </tr>";
+	    $prix_hotel_total += $prix_hotel;
+	  }
+	}
+      }
+
+      echo "
+      <tr>
+        <td>Vol</td>
+        <td>Destination : ".$destination_vol."</td>
+        <td>".$prix_vol."</td>
+      </tr>
+      <tr>
+        <td>Montant total</td>
+        <td></td>
+        <td>".($prix_circuit+$prix_hotel_total+$prix_vol)."</td>
+    </table><br/><br/>
+
+    <a href=\"".$adress."&valid=ok\">Valider la r&eacute;servation</a>";
+
+      
+      if($valid == 'ok'){
+	for($i=0 ; $i<$num_etapes ; ++$i){
+	  if(($dates_entree[$i] != '') &&
+	     ($dates_sortie[$i] != '') &&
+	     ($id_hotels[$i] != '') &&
+	     ($id_etapes[$i] != '')){
+	    
+	    $query = "
+         INSERT INTO reservation
+                VALUES (".$id_client.",
+                        ".$id_hotels[$i].",
+                        to_date('".$dates_entree[$i]."','DD/MM/YY'),
+                        to_date('".$dates_sortie[$i]."','DD/MM/YY'),
+                        ".$nb_simples[$i].",
+                        ".$nb_doubles[$i].")";
+	
+	    $stmt = ociparse($link, $query);
+	    ociexecute($stmt,OCI_DEFAULT);
+	    ocicommit($link);
+	  }
+	}
+	$query = "
+begin
+AjoutFacture(".$id_client.",
+             ".$id_sejour.",
+             ".$id_circ.",
+             ".$id_dest.",
+             ".$id_vol.",
+             ".$nb_adultes.",
+             ".$nb_enfants.");
+end;";
+
+	$stmt = ociparse($link, $query);
+	ociexecute($stmt,OCI_DEFAULT);
+	ocicommit($link);
+// 	echo $query;
+      }
+    }
   }
 }
 ?>

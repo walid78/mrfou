@@ -85,17 +85,17 @@ function list_table($table_name, $link){
 	<td>".$tmp."</td>"; 
     }
 	
-    if($table_name != "ETAPE"){
+//     if($table_name != "ETAPE"){
       echo "
 	<td><input type=\"checkbox\" 
                    name=\"row".$i++."\" 
                    value=\"".$keys[0]."=".$row[0]."\"/></td>";
-    }else{
-      echo "
-	<td><input type=\"checkbox\"
-                   name=\"row".$i++."\" 
-                   value=\"".$keys[0]."=".$row[0]."&".$keys[1]."=".$row[1]."\"/></td>";
-    }
+//     }else{
+//       echo "
+// 	<td><input type=\"checkbox\"
+//                    name=\"row".$i++."\" 
+//                    value=\"".$keys[0]."=".$row[0]."&".$keys[1]."=".$row[1]."\"/></td>";
+//     }
 
     echo "
       </tr>";
@@ -226,7 +226,7 @@ function traitement_ajout($link){
 
   while(OCIFetchInto ($stmt, $row, OCI_NUM))
     $nb_rows = $row[0];
-  echo $nb_rows."<br/>";
+//   echo $nb_rows."<br/>";
 
   // Recuperation des colonnes à ajouter
   for($i=0 ; $i < $nb_rows-1 ; $i++){
@@ -237,18 +237,24 @@ function traitement_ajout($link){
   $i=0;
   foreach($col_to_add as $col){
     if($i++ == 0)
-      $query = $query."".$col;
+      $query = $query."'".$col."'";
     else
       $query = $query.", ".$col;
   }
   $query = $query.");";
   
+
+  $query = "
+begin
+  ".$query."
+end;";
+
   echo $query."<br/>";
 
   /* A décommenter pour mettre en place la suppression */
-  //   $stmt = ociparse($link, $query);
-  //   ociexecute($stmt,OCI_DEFAULT);
-  
+    $stmt = ociparse($link, $query);
+    ociexecute($stmt,OCI_DEFAULT);
+    ocicommit($link);
 }
 
 //============================================================================
