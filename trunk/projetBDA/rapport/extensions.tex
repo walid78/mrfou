@@ -3,11 +3,12 @@
 Le fait d'avoir bien analys\'e le cahier des charges nous a permis de mettre en place une structure coh\'erente et ainsi d'optimiser notre occupation physique sur le serveur de base de donn\'ees.
 Ainsi, l'espace allou\'e \`a nos tablespaces contenants nos table peut \^etre adapt\'e en fonction de l'\'evolution de l'activit\'e de l'agence.\\
 
-Notre conception nous permet de g\'erer plus de s\'ejours que nous \'et\'e demand\'e le cahier des charges, tout comme les destinations, les circuits
+Notre conception nous permet de g\'erer plus de s\'ejours que nous \'et\'e demand\'e le cahier des charges, tout comme les destinations, les circuits.
 Nous avons d\'ecid\'e de ne pas borner le nombre de participants comme pr\'econis\'e dans les sp\'ecifications originales afin de pouvoir laisser une marge de manoeuvre \`a l'agence.
 
-Nous avons mis en place une gestion simplifi\'ee des vols mais  il est tout \`a fait possible d'\'etendre notre table de vols afin de pouvoir selectioner des vols en plusieurs \'etapes avec des villes de d\'epart et d'arriv\'ee (en ajoutant des champs de ville de d\'epart, d'heures de d\'epart et d'arriv\'ee).
-De m\^eme, des d\'eparts en bateaux, trains peuvent \^etre implant\'ees tr\`es facilement.
+Nous avons mis en place une gestion simplifi\'ee des vols mais  il est tout \`a fait possible d'\'etendre notre table de vols afin de g\'erer les diff\'erentes compagnies a\'eriennes et de pouvoir selectioner des vols en plusieurs \'etapes avec des villes de d\'epart et d'arriv\'ee (en ajoutant des champs de ville de d\'epart, d'heures de d\'epart et d'arriv\'ee).
+
+De m\^eme, des d\'eparts en bateaux, trains peuvent \^etre implant\'ees tr\`es facilement en ajoutant des tables bas\'ees sur le m\^eme mod\`ele que la table Vol.
 
 Au niveau application, une v\'erification de la validit\'e des donn\'ees entr\'ees (saisie de dates au bon format, de lettres \`a la place de chiffres) pourra \^etre mise en place.
 
