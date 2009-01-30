@@ -5,19 +5,21 @@ POUR TOUT :
 
 
 ******************pour la partie application ********************
+NE PAS AFFICHER LES IDs
 
+pour le listage des hotels : pouvoir choisir une destination ou un circuit pour en afficher les hotels car telquel, ca n'a pas trop de sens
+listage des vols : ne pas afficher les id_dest mais les veritables destinations
 
 en cliquant sur un client, sa fiche complete s'affiche (possibilit� de modifier les infos)
 
 un bouton "nouveau voyage" qui:
 
-
 ->remplissage de la table réservation avec le nombre de ch doubles/simples
 
-
 client_facture.php :  si null alors afficher "_".
-mettre duree_sejour en plus, + possibilité d'afficher toute les factures du client sur la meme page.
+possibilité d'afficher toute les factures du client sur la meme page.
 eventuellement filtre sur total circuit, total hotel, total vol.
+listage des etapes : au lieu du id_circuit, mettre le nom
 
 
 Statistiques :
