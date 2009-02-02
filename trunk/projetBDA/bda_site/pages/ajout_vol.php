@@ -1,7 +1,7 @@
 <h1>Ajouter un vol</h1>
 
 <center>
-  <form action="pages/traitement_ajout.php?table_name=VOL" method="post">
+  <form action="pages/traitement_ajout.php?page=liste_vol&table_name=VOL" method="post">
     <select title="ID_DEST" name="col0">
       <option value="">Choisir une destination</option>
 <?php

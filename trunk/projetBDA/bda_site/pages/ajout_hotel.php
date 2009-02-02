@@ -1,7 +1,7 @@
 <h1>Ajouter un h&ocirc;tel</h1>
 
 <center>
-  <form action="pages/traitement_ajout.php?table_name=HOTEL" method="post">
+  <form action="pages/traitement_ajout.php?page=liste_hotel&table_name=HOTEL" method="post">
     <select title="ID_ETAPE" name="col0">
       <option value="">Choisir une etape</option>
 <?php

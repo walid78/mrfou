@@ -1,7 +1,7 @@
 <h1>Ajouter une &eacute;tape</h1>
 
 <center>
-  <form action="pages/traitement_ajout.php?table_name=ETAPE" method="post">
+  <form action="pages/traitement_ajout.php?page=liste_etape&table_name=ETAPE" method="post">
     <input type="text" title="NO_ETAPE" name="col0" value="NO_ETAPE"/><br/>
     <select title="ID_CIRCUIT" name="col1">
       <option value="">Choisir un circuit</option>

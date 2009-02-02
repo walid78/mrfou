@@ -1,7 +1,7 @@
 <h1>Ajouter un client</h1>
 
 <center>
-  <form action="pages/traitement_ajout.php?table_name=CLIENT" method="post">
+  <form action="pages/traitement_ajout.php?page=liste_client&table_name=CLIENT" method="post">
     <input type="text" title="ADRESSE" name="col0" value="ADRESSE"/><br/>
     <input type="text" title="TEL" name="col1" value="TEL"/><br/>
     <input type="text" title="NOM" name="col2" value="NOM"/><br/>
