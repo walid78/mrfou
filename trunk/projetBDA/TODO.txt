@@ -2,8 +2,6 @@
 ******************pour la partie application ********************
 pour le listage des hotels : pouvoir choisir une destination ou un circuit pour en afficher les hotels car telquel, ca n'a pas trop de sens
 
-en cliquant sur un client, sa fiche complete s'affiche (possibilit� de modifier les infos)
-
 client_facture.php :  si null alors afficher "_".
 possibilité d'afficher toute les factures du client sur la meme page.
 eventuellement filtre sur total circuit, total hotel, total vol.
