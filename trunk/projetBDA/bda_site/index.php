@@ -24,7 +24,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
           <center><h2>Consultation</h2></center>
           <a href="?page=liste_client">Liste des clients</a><br/>
           <a href="?page=liste_dest">Liste des destinations</a><br/>
-          <a href="?page=liste_hotel">Liste des hôtels</a><br/>
+          <a href="?page=liste_hotel">Liste des h&ocirc;tels</a><br/>
           <a href="?page=liste_circuit">Liste des circuits</a><br/>
           <a href="?page=liste_vol">Liste des vols</a><br/>
           <a href="?page=liste_etape">Liste des &eacute;tapes</a><br/>
@@ -32,6 +32,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
           <a href="?page=liste_sejour">Liste des s&eacute;jours</a><br/>
 	  
           <center><h2>Saisie</h2></center>
+          <a href="?page=modif_client">Modifier un client</a><br/>
           <a href="?page=ajout_client">Ajouter un client</a><br/>
           <a href="?page=ajout_dest">Ajouter une destination</a><br/>
           <a href="?page=ajout_hotel">Ajouter un hôtel</a><br/>
@@ -48,7 +49,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 $page = $_GET['page'];
 
 if($page == "")
-  $page=liste_client;
+  $page="liste_client";
 
 $pages = array(
 	       "liste_client" => "pages/liste_client.php",
@@ -59,6 +60,7 @@ $pages = array(
 	       "liste_classe" => "pages/liste_classe.php",
 	       "liste_sejour" => "pages/liste_sejour.php",
 	       "liste_dest" => "pages/liste_dest.php",
+	       "modif_client" => "pages/modif_client.php",
 	       "ajout_client" => "pages/ajout_client.php",
 	       "ajout_hotel" => "pages/ajout_hotel.php",
 	       "ajout_vol" => "pages/ajout_vol.php",
