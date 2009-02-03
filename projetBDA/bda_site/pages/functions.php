@@ -150,17 +150,17 @@ function list_table($table_name, $link){
 	    break;
 	  }
 
-	  if(($i == 4) AND ($row[$i] != '')){
-	    $query2 = "SELECT prix_s, prix_d 
-                     FROM classe_hotel
-                     WHERE id_classe='".$row[$i]."'";
-	    $stmt2 = ociparse($link, $query2);
-	    ociexecute($stmt2,OCI_DEFAULT);
+// 	  if(($i == 4) AND ($row[$i] != '')){
+// 	    $query2 = "SELECT prix_s, prix_d 
+//                      FROM classe_hotel
+//                      WHERE id_classe='".$row[$i]."'";
+// 	    $stmt2 = ociparse($link, $query2);
+// 	    ociexecute($stmt2,OCI_DEFAULT);
 	  
-	    while(OCIFetchInto ($stmt2, $row2, OCI_NUM))
-	      echo "<td>"."Ch. simple : ".$row2[0]."&euro; | Ch. double : ".$row2[1]."&euro;</td>";
-	    break;
-	  }
+// 	    while(OCIFetchInto ($stmt2, $row2, OCI_NUM))
+// 	      echo "<td>"."Ch. simple : ".$row2[0]."&euro; | Ch. double : ".$row2[1]."&euro;</td>";
+// 	    break;
+// 	  }
 	}
 
       case "VOL":
