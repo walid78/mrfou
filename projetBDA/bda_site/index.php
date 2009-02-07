@@ -30,6 +30,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
           <a href="?page=liste_etape">Liste des &eacute;tapes</a><br/>
           <a href="?page=liste_classe">Liste des classes d'h&ocirc;tel</a><br/>
           <a href="?page=liste_sejour">Liste des s&eacute;jours</a><br/>
+          <a href="?page=client_facture">Facture d'un client</a><br/>
 	  
           <center><h2>Saisie</h2></center>
           <a href="?page=modif_client">Modifier un client</a><br/>
@@ -60,6 +61,7 @@ $pages = array(
 	       "liste_classe" => "pages/liste_classe.php",
 	       "liste_sejour" => "pages/liste_sejour.php",
 	       "liste_dest" => "pages/liste_dest.php",
+	       "client_facture" => "pages/client_facture.php",
 	       "modif_client" => "pages/modif_client.php",
 	       "ajout_client" => "pages/ajout_client.php",
 	       "ajout_hotel" => "pages/ajout_hotel.php",
