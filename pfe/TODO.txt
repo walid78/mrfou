@@ -1,0 +1,16 @@
+-- FICHIER DYNAMIQUE --
+- N'hésitez pas à le modifier -
+
+--------------------------------------------------------------------------------
+Dorian/JS : 
+
+- Formaliser la mission
+- Restreindre l'API
+- Codage/Utilisation du bluetooth
+
+--------------------------------------------------------------------------------
+Fabien/Jérémy :
+
+- Modélisation AltaRica des différents composants de base (capteurs, moteurs, 
+bluetooth)
+- Architecture AltaRica ?
