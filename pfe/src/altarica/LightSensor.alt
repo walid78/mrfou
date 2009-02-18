@@ -1,0 +1,13 @@
+node LightSensor
+  state
+    value : [0,3] : public;
+  event
+    readValue;
+  trans
+    true |- readValue -> value := 0;
+    true |- readValue -> value := 1;
+    true |- readValue -> value := 2;
+    true |- readValue -> value := 3;
+  init
+    value := 0;
+edon
