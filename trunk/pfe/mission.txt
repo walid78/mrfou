@@ -1,0 +1,36 @@
+\section{Résumé}
+
+intro...
+
+
+\section{Mission}
+
+\subsection{Environnement}
+
+	L'environnement est constitué d'un marquage au sol. Ce marquage correspond à un chemin délimité par des feuilles de couleur différente de celle du sol. Un point d'arrivée est défini à l'avance. On peut représenter l'environnement par une grille sur laquelle les déplacements possibles sont verticaux ou horizontaux. Les éléments de marquage sont donc de forme carrée et on définit un chemin unique représentant la combinaison de déplacements que les robots doivent être capables de réaliser. Les couleurs des cases de la grille sont alternées de manière à obtenir un damier. Ce détail permet au robot de différencier une impasse d'un chemin possible lorsqu'il évalue les possibilités autour de sa position courante.
+
+
+\subsection{Entités}
+
+\subsubsection{Robot Maître}
+
+	Le robot maître est le robot qui possède les capteurs. C'est également lui qui décide des actions que les deux robots doivent effectuer. Il est capable de donner des ordres au robot esclave grâce à des composants BlueTooth. Deux capteurs sont montés sur ce robot : un capteur de lumière à l'avant, et un capteur ultrasonique à l'arrière. Les déplacements possibles du robot sont les suivants : avancer jusquà la détection d'un changement d'environnement, tourner à gauche ou à droite sur place à 90°. Le capteur de lumière permet de détecter les bordures du marquage. Le capteur ultrasonique detecte la présence du robot esclave à l'arrière. Il est particulièrement utile après un changement de direction pour arrêter le robot esclave à hauteur du virage.
+
+\subsubsection{Robot Esclave}
+
+	Ce robot ne comporte aucun capteur, et est complètement dépendant du robot maître, à savoir qu'il n'effectue une action que lorsqu'il reçoit un message par la communication BlueTooth. Les possibilités de déplacement de ce robot sont les mêmes.
+
+\subsubsection{Intéractions}
+
+	Lors du déplacement dans l'environnement et de la découverte d'obstacles, le robot maître fait des choix de déplacement et communique au robot esclave des ordres lui permettant de passer également ces obstacles:
+
+- le robot maître avance jusqu'à la détection d'une bordure
+- si une bordure est détectée, les décisions suivantes sont prises:
+	- le robot tourne à gauche à 90°.
+	- si une bordure est présente, 
+
+
+
+\subsection{Objectif}
+
+	Les robots sont sensés se déplacer à l'intérieur du marquage et atteindre le point d'arrivée. Le robot maître doit explorer le terrain et permettre au robot esclave de le suivre.
