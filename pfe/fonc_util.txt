@@ -1,0 +1,39 @@
+4 catégories de fonction : les moteurs, les capteurs , la connexion Bluetooth et éventuellement des fonctions diverses.
+
+Les moteurs : 
+	OnFwd("port","power"); //permet de mettre en marche "avant" un moteur du robot 
+	OnRev("port","power"); //sens inverse
+	RotateMotor("port","speed","degrees"); //
+	RotateMotorEx("port","speed","degrees","turnpct","sync","stop"); 
+
+Les capteurs :
+
+--Type et mode des capteurs 
+	SetSensorLight("port"); //Lie le capteur de lumière à un "port"
+	SetSensorSound("port"); //Lie le capteur ultrason à un "port"
+	SetSensorMode("port","const mode"); //Configure le mode du capteur associé au "port"
+	SetInput("port","const field","value"); //Configure le type du capteur associé au "port"
+	SetSensorLowspeed("port"); //Configure le capteur en mode I2C
+	ClearSensor("port"); //Efface la valeur d'un capteur associé à un "port"
+
+--Information des capteurs 
+	Sensor("n"); //retourne la valeur d'un capteur
+	SensorUS("n"); //retourne la valeur du capteur ultrason
+
+La connexion Bluetooth :
+	BluetoothStatues("NUMBER"); //Vérifie la connexion
+	RemoteStartProgram("connection", "filename");
+	RemoteStopProgram("connection");
+
+Autres fonctions :
+	Wait("time"); //Temps donné à l'exécution d'une action
+	off("port"); //Stop le moteur associé au "port"
+	Acquire("mutex"); 
+	Release("mutex"); 
+	Precedes("task1","task2","taskn"); //Permet l'exécution de taches simultané
+
+Les variables :
+	OUT_A; //port A
+	OUT_AC; //port AC
+	IN_1; //Input 1
+	IN_2; //Input 2
