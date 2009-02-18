@@ -1,0 +1,10 @@
+node TouchSensor
+  state
+    signal : bool : public;
+  event
+    trigger;
+  trans
+    true |- trigger -> signal := ~signal;
+  init
+    signal := false;
+edon

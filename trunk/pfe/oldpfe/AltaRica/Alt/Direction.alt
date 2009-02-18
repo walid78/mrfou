@@ -1,0 +1,29 @@
+/* Direction -1 -> recule */
+/* Direction 0  -> arret  */
+/* Direction 1  -> gauche */
+/* Direction 2  -> droite */
+/* Direction 3  -> avance */
+
+node Direction
+  sub	
+    A : ServoMotor;
+    B : ServoMotor;
+  state	
+    direction : [-1,3] : public;
+  event	
+    backward, forward, stop, left, right;
+  trans	
+    true |- backward -> direction := -1;
+    true |- stop -> direction := 0;
+    true |- left -> direction := 1;
+    true |- right -> direction := 2; 
+    true |- forward -> direction := 3;
+  sync	
+    <backward, A.setVarR, B.setVarR>;
+    <stop, A.setVar0, B.setVar0>;
+    <left, A.setVar0, B.setVar1>;
+    <right, A.setVar1, B.setVar0>;
+    <forward, A.setVar1, B.setVar1>;
+  init
+    direction := 0, A.speed := 0, B.speed := 0;
+edon

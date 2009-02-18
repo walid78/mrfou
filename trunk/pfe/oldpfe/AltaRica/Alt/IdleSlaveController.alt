@@ -1,0 +1,22 @@
+node IdleSlaveController
+
+  flow
+    direction : [-1, 3];
+    cSpeed    : [-1, 1];
+
+  event
+    noop,
+    BackwardSetVarCR, BackwardSetVarC0, BackwardSetVarC1,
+    StopSetVarCR, StopSetVarC0, StopSetVarC1,
+    ForwardSetVarCR, ForwardSetVarC0, ForwardSetVarC1,
+    LeftSetVarCR, LeftSetVarC0, LeftSetVarC1,
+    RightSetVarCR, RightSetVarC0, RightSetVarC1;
+
+  trans
+    true |- noop,
+            BackwardSetVarCR, BackwardSetVarC0, BackwardSetVarC1,
+            StopSetVarCR, StopSetVarC0, StopSetVarC1,
+            ForwardSetVarCR, ForwardSetVarC0, ForwardSetVarC1,
+            LeftSetVarCR, LeftSetVarC0, LeftSetVarC1,
+            RightSetVarCR, RightSetVarC0, RightSetVarC1	-> ;
+edon

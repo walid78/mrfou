@@ -1,0 +1,12 @@
+node SoundLightSensor	
+  state
+    signal : [0,2] : public;
+  event
+    trigger;
+  trans
+    true |- trigger -> signal := 0;
+    true |- trigger -> signal := 1;
+    true |- trigger -> signal := 2;
+  init
+    signal := 0;
+edon

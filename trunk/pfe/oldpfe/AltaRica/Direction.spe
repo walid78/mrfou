@@ -1,0 +1,18 @@
+with Direction do
+ quot()                >  '$NODENAME.dot';
+ dead                  := any_s - src(any_t - self_epsilon);
+ notCFC                := any_t - loop(any_t,any_t);
+ directionR            := [direction = -1];
+ direction0            := [direction = 0];
+ direction1            := [direction = 1];
+ direction2            := [direction = 2];
+ direction3            := [direction = 3];
+ backward              := label backward;
+ forward               := label forward;
+ stop                  := label stop;
+ left                  := label left;
+ right                 := label right;
+ show(all)             >  '$NODENAME.prop';
+ test(dead,0)          >  '$NODENAME.res';
+ test(notCFC,0)        >> '$NODENAME.res';
+done

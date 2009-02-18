@@ -1,0 +1,16 @@
+/* Speed -1 -> marche arriere */
+/* Speed 0  -> arret          */
+/* Speed 1  -> marche avant   */
+
+node ServoMotor
+  state
+    speed : [-1,1] : public;
+  event
+    setVarR, setVar0, setVar1;
+  trans
+    true |- setVarR -> speed := -1;
+    true |- setVar0 -> speed := 0;
+    true |- setVar1 -> speed := 1;
+  init
+    speed := 0;
+edon
