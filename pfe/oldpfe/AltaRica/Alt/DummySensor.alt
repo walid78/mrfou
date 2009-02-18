@@ -1,0 +1,10 @@
+node DummySensor
+  state
+    signal : bool : public;
+  event
+    trigger;
+  trans
+    false |- trigger -> signal := ~signal;
+  init
+    signal := false;
+edon

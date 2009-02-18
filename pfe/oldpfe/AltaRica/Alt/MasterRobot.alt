@@ -1,0 +1,97 @@
+node MasterRobot
+
+	sub
+		S1 : SoundLightSensor;
+		S2 : SoundLightSensor;
+		S3 : DummySensor;
+		S4 : DummySensor;
+
+		Dir : Direction;
+		C : ServoMotor;
+
+		Co : MissionController;
+				
+	event	
+		noop,
+		BackwardSetVarCR, BackwardSetVarC0, BackwardSetVarC1,
+		StopSetVarCR, StopSetVarC0, StopSetVarC1,
+		ForwardSetVarCR, ForwardSetVarC0, ForwardSetVarC1,
+		LeftSetVarCR, LeftSetVarC0, LeftSetVarC1,
+		RightSetVarCR, RightSetVarC0, RightSetVarC1,
+
+		sendNoop,
+		sendBackwardSetVarCR, sendBackwardSetVarC0, sendBackwardSetVarC1,
+		sendStopSetVarCR, sendStopSetVarC0, sendStopSetVarC1,
+		sendForwardSetVarCR, sendForwardSetVarC0, sendForwardSetVarC1,
+		sendLeftSetVarCR, sendLeftSetVarC0, sendLeftSetVarC1,
+		sendRightSetVarCR, sendRightSetVarC0, sendRightSetVarC1;
+
+	trans	
+		// On continue l'action en cours
+		true |- noop -> ;
+
+		// On modifie l'action en cours (direction + troisieme moteur)
+		true |- BackwardSetVarCR, BackwardSetVarC0, BackwardSetVarC1,
+				StopSetVarCR, StopSetVarC0, StopSetVarC1,
+				ForwardSetVarCR, ForwardSetVarC0, ForwardSetVarC1,
+				LeftSetVarCR, LeftSetVarC0, LeftSetVarC1,
+				RightSetVarCR, RightSetVarC0, RightSetVarC1 -> ;
+
+		// On envoie un ordre			
+		true |- sendNoop,
+	                sendBackwardSetVarCR, sendBackwardSetVarC0, sendBackwardSetVarC1,
+			sendStopSetVarCR, sendStopSetVarC0, sendStopSetVarC1,
+			sendForwardSetVarCR, sendForwardSetVarC0, sendForwardSetVarC1,
+			sendLeftSetVarCR, sendLeftSetVarC0, sendLeftSetVarC1,
+			sendRightSetVarCR, sendRightSetVarC0, sendRightSetVarC1 -> ;
+
+	sync	
+		<noop, Co.noop>;
+		
+		<BackwardSetVarCR, Co.BackwardSetVarCR, Dir.backward, C.setVarR>;
+		<BackwardSetVarC0, Co.BackwardSetVarC0, Dir.backward, C.setVar0>;
+		<BackwardSetVarC1, Co.BackwardSetVarC1, Dir.backward, C.setVar1>;
+		<StopSetVarCR, Co.StopSetVarCR, Dir.stop, C.setVarR>;
+		<StopSetVarC0, Co.StopSetVarC0, Dir.stop, C.setVar0>;
+		<StopSetVarC1, Co.StopSetVarC1, Dir.stop, C.setVar1>;
+		<ForwardSetVarCR, Co.ForwardSetVarCR, Dir.forward, C.setVarR>;
+		<ForwardSetVarC0, Co.ForwardSetVarC0, Dir.forward, C.setVar0>;
+		<ForwardSetVarC1, Co.ForwardSetVarC1, Dir.forward, C.setVar1>;
+		<LeftSetVarCR, Co.LeftSetVarCR, Dir.left, C.setVarR>;
+		<LeftSetVarC0, Co.LeftSetVarC0, Dir.left, C.setVar0>;
+		<LeftSetVarC1, Co.LeftSetVarC1, Dir.left, C.setVar1>;
+		<RightSetVarCR, Co.RightSetVarCR, Dir.right, C.setVarR>;
+		<RightSetVarC0, Co.RightSetVarC0, Dir.right, C.setVar0>;
+		<RightSetVarC1, Co.RightSetVarC1, Dir.right, C.setVar1>;
+		
+		<sendNoop, Co.sendNoop>;
+		<sendBackwardSetVarCR, Co.sendBackwardSetVarCR>;
+		<sendBackwardSetVarC0, Co.sendBackwardSetVarC0>;
+		<sendBackwardSetVarC1, Co.sendBackwardSetVarC1>;
+		<sendStopSetVarCR, Co.sendStopSetVarCR>;
+		<sendStopSetVarC0, Co.sendStopSetVarC0>;
+		<sendStopSetVarC1, Co.sendStopSetVarC1>;
+		<sendForwardSetVarCR, Co.sendForwardSetVarCR>;
+		<sendForwardSetVarC0, Co.sendForwardSetVarC0>;
+		<sendForwardSetVarC1, Co.sendForwardSetVarC1>;
+		<sendLeftSetVarCR, Co.sendLeftSetVarCR>;
+		<sendLeftSetVarC0, Co.sendLeftSetVarC0>;
+		<sendLeftSetVarC1, Co.sendLeftSetVarC1>;                        
+                <sendRightSetVarCR, Co.sendRightSetVarCR>; 
+		<sendRightSetVarC0, Co.sendRightSetVarC0>;
+		<sendRightSetVarC1, Co.sendRightSetVarC1>;
+
+	assert	
+		// les informations des capteurs
+		Co.s1state = S1.signal;
+		Co.s2state = S2.signal;
+		Co.s3state = S3.signal;
+		Co.s4state = S4.signal;
+
+		// les informations des moteurs
+		Co.direction = Dir.direction;
+		Co.cSpeed = C.speed;
+		
+	init	
+		Dir.direction := 0, C.speed := 0;
+edon

@@ -1,0 +1,42 @@
+node IdleMasterController
+
+  state
+    mode : [0,1];
+
+  init
+    mode := 0;
+
+  flow
+    s1state, s2state : [0,2];
+    s3state, s4state : bool;
+    direction : [-1, 3];
+    cSpeed : [-1, 1];
+
+  event
+    noop,
+    BackwardSetVarCR, BackwardSetVarC0, BackwardSetVarC1,
+    StopSetVarCR, StopSetVarC0, StopSetVarC1,
+    ForwardSetVarCR, ForwardSetVarC0, ForwardSetVarC1,
+    LeftSetVarCR, LeftSetVarC0, LeftSetVarC1,
+    RightSetVarCR, RightSetVarC0, RightSetVarC1,
+    sendNoop,
+    sendBackwardSetVarCR, sendBackwardSetVarC0, sendBackwardSetVarC1,
+    sendStopSetVarCR, sendStopSetVarC0, sendStopSetVarC1,
+    sendForwardSetVarCR, sendForwardSetVarC0, sendForwardSetVarC1,
+    sendLeftSetVarCR, sendLeftSetVarC0, sendLeftSetVarC1,
+    sendRightSetVarCR, sendRightSetVarC0, sendRightSetVarC1;
+
+  trans
+    mode = 0 |- noop,
+                BackwardSetVarCR, BackwardSetVarC0, BackwardSetVarC1,
+                StopSetVarCR, StopSetVarC0, StopSetVarC1,
+                ForwardSetVarCR, ForwardSetVarC0, ForwardSetVarC1,
+                LeftSetVarCR, LeftSetVarC0, LeftSetVarC1,
+                RightSetVarCR, RightSetVarC0, RightSetVarC1 -> mode := 1;
+    mode = 1 |-	sendNoop,
+                sendBackwardSetVarCR, sendBackwardSetVarC0, sendBackwardSetVarC1,
+                sendStopSetVarCR, sendStopSetVarC0, sendStopSetVarC1,
+                sendForwardSetVarCR, sendForwardSetVarC0, sendForwardSetVarC1,
+                sendLeftSetVarCR, sendLeftSetVarC0, sendLeftSetVarC1,
+                sendRightSetVarCR, sendRightSetVarC0, sendRightSetVarC1 -> mode := 0;
+edon

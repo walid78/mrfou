@@ -1,0 +1,40 @@
+node System
+
+  sub
+    RM : MasterRobot;
+    RE : SlaveRobot;
+
+  event
+    comNoop,
+    comBackwardSetVarCR, comBackwardSetVarC0, comBackwardSetVarC1,
+    comStopSetVarCR, comStopSetVarC0, comStopSetVarC1,
+    comForwardSetVarCR, comForwardSetVarC0, comForwardSetVarC1,
+    comLeftSetVarCR, comLeftSetVarC0, comLeftSetVarC1,
+    comRightSetVarCR, comRightSetVarC0, comRightSetVarC1;
+
+  sync	
+    <comNoop, RM.sendNoop, RE.recvNoop>;
+    <comBackwardSetVarCR, RM.sendBackwardSetVarCR, RE.recvBackwardSetVarCR>;
+    <comBackwardSetVarC0, RM.sendBackwardSetVarC0, RE.recvBackwardSetVarC0>;
+    <comBackwardSetVarC1, RM.sendBackwardSetVarC1, RE.recvBackwardSetVarC1>;
+    <comStopSetVarCR, RM.sendStopSetVarCR, RE.recvStopSetVarCR>;
+    <comStopSetVarC0, RM.sendStopSetVarC0, RE.recvStopSetVarC0>;
+    <comStopSetVarC1, RM.sendStopSetVarC1, RE.recvStopSetVarC1>;
+    <comForwardSetVarCR, RM.sendForwardSetVarCR, RE.recvForwardSetVarCR>;
+    <comForwardSetVarC0, RM.sendForwardSetVarC0, RE.recvForwardSetVarC0>;
+    <comForwardSetVarC1, RM.sendForwardSetVarC1, RE.recvForwardSetVarC1>;
+    <comLeftSetVarCR, RM.sendLeftSetVarCR, RE.recvLeftSetVarCR>;
+    <comLeftSetVarC0, RM.sendLeftSetVarC0, RE.recvLeftSetVarC0>;
+    <comLeftSetVarC1, RM.sendLeftSetVarC1, RE.recvLeftSetVarC1>;
+    <comRightSetVarCR, RM.sendRightSetVarCR, RE.recvRightSetVarCR>;
+    <comRightSetVarC0, RM.sendRightSetVarC0, RE.recvRightSetVarC0>;
+    <comRightSetVarC1, RM.sendRightSetVarC1, RE.recvRightSetVarC1>;
+
+  trans
+    true |- comNoop,
+            comBackwardSetVarCR, comBackwardSetVarC0, comBackwardSetVarC1,
+            comStopSetVarCR, comStopSetVarC0, comStopSetVarC1,
+            comForwardSetVarCR, comForwardSetVarC0, comForwardSetVarC1,
+            comLeftSetVarCR, comLeftSetVarC0, comLeftSetVarC1,
+            comRightSetVarCR, comRightSetVarC0, comRightSetVarC1 ->;	
+edon

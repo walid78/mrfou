@@ -1,0 +1,55 @@
+/* Version simple : pas de capteurs. */
+
+node SlaveRobot
+
+	sub
+
+		Dir : Direction;
+		C : ServoMotor;
+
+		Co : IdleSlaveController;
+		
+	event	
+		recvNoop,
+		recvBackwardSetVarCR, recvBackwardSetVarC0, recvBackwardSetVarC1,
+		recvStopSetVarCR, recvStopSetVarC0, recvStopSetVarC1,
+		recvForwardSetVarCR, recvForwardSetVarC0, recvForwardSetVarC1,
+		recvLeftSetVarCR, recvLeftSetVarC0, recvLeftSetVarC1,
+		recvRightSetVarCR, recvRightSetVarC0, recvRightSetVarC1;
+
+	trans	
+		// On recois un ordre			
+		true |- recvNoop,
+	                recvBackwardSetVarCR, recvBackwardSetVarC0, recvBackwardSetVarC1,
+			recvStopSetVarCR, recvStopSetVarC0, recvStopSetVarC1,
+			recvForwardSetVarCR, recvForwardSetVarC0, recvForwardSetVarC1,
+			recvLeftSetVarCR, recvLeftSetVarC0, recvLeftSetVarC1,
+			recvRightSetVarCR, recvRightSetVarC0, recvRightSetVarC1 -> ;
+
+	sync	
+		<recvNoop, Co.noop>;
+		<recvBackwardSetVarCR, Co.BackwardSetVarCR, Dir.backward, C.setVarR>;
+		<recvBackwardSetVarC0, Co.BackwardSetVarC0, Dir.backward, C.setVar0>;
+		<recvBackwardSetVarC1, Co.BackwardSetVarC1, Dir.backward, C.setVar1>;
+		<recvStopSetVarCR, Co.StopSetVarCR, Dir.stop, C.setVarR>;
+		<recvStopSetVarC0, Co.StopSetVarC0, Dir.stop, C.setVar0>;
+		<recvStopSetVarC1, Co.StopSetVarC1, Dir.stop, C.setVar1>;                
+                <recvForwardSetVarCR, Co.ForwardSetVarCR, Dir.forward, C.setVarR>;
+		<recvForwardSetVarC0, Co.ForwardSetVarC0, Dir.forward, C.setVar0>;
+		<recvForwardSetVarC1, Co.ForwardSetVarC1, Dir.forward, C.setVar1>;
+		<recvLeftSetVarCR, Co.LeftSetVarCR, Dir.left, C.setVarR>;
+		<recvLeftSetVarC0, Co.LeftSetVarC0, Dir.left, C.setVar0>;
+		<recvLeftSetVarC1, Co.LeftSetVarC1, Dir.left, C.setVar1>;          
+                <recvRightSetVarCR, Co.RightSetVarCR, Dir.right, C.setVarR>; 
+		<recvRightSetVarC0, Co.RightSetVarC0, Dir.right, C.setVar0>;
+		<recvRightSetVarC1, Co.RightSetVarC1, Dir.right, C.setVar1>;
+
+	assert	
+		// les observations du controleur
+		Co.direction = Dir.direction;
+		Co.cSpeed = C.speed;
+		
+	init	
+		Dir.direction := 0, C.speed := 0;
+
+edon

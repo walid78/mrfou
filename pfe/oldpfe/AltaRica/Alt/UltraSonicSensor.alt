@@ -1,0 +1,11 @@
+node UltraSonicSensor
+  state
+    signal : [0,2] : public;
+  event
+    trigger;
+  trans
+    signal < 2 |- trigger -> signal := signal + 1;
+    signal > 0 |- trigger -> signal := signal - 1;
+  init
+    signal := 0;
+edon

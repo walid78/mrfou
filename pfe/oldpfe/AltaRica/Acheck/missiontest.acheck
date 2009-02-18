@@ -1,0 +1,59 @@
+/*with Brick do
+ dead                     := any_s - src(any_t - self_epsilon);
+ notCFC                   := any_t - loop(any_t,any_t);
+ show(all);
+ test(dead,0)             >  '$NODENAME.prop';
+ test(notCFC,0)           >> '$NODENAME.prop';
+done
+*/
+/* Pas de contact avec un obstacle */
+
+with Brick do
+ signal1	:= [S1.signal];
+ signal2	:= [S2.signal];
+ signal3	:= [S3.signal];
+ signal4	:= [S4.signal];
+ 
+ controle	:= (((((any_t - self_epsilon) - label S1.trigger) - label S2.trigger) - label S3.trigger) - label S4.trigger);
+
+ nonControle	:= /*(label S1.trigger) |*/ (label S2.trigger) | (label S3.trigger) | (label S4.trigger); 
+
+ arret		:= [A.speed = 0] & [B.speed = 0];
+
+ avance		:= [A.speed = 1] & [B.speed = 1];
+
+/* La propriete a eviter : on a le capteur distance qui se declenche, et on ne change pas de direction. */
+/*
+ ER	:= reach((signal1 & [A.speed = 1]), ((((any_t - self_epsilon) - (label setVarA00)) - (label setVarA01)) - (label S1.trigger))) |
+		([A.speed = 0] & [B.speed = 0]) |
+		([A.speed = -1]) |
+		([B.speed = -1]) |
+		([A.speed = 1] & [B.speed = 0]) |
+		([B.speed = 0]);
+*/
+
+/* On veut s'arreter des qu'on a un signal. */
+ 
+ ER	:= (signal1 & avance) & tgt(rsrc(signal1 & avance)) ; 
+
+ Gagne	:= any_s - ER;
+
+ Perdu	:= any_s - ER;	
+ 
+ Ctrl   -= 
+   controle & rtgt(Perdu & 
+                   (src(nonControle & rtgt(Gagne & src(Ctrl))) - 
+                    src(nonControle - rtgt(Gagne & src(Ctrl)))));
+
+
+ Controlable := initial & src(Ctrl);
+
+// Génération des controleurs 
+ project(any_s, Ctrl, '$NODENAME_Controleur', true, Co)
+	> 'Alt/$NODENAME_Controleur.alt';
+
+// sortie des resultats
+ show(all)                       >  '$NODENAME_P0.res';
+// test(ER,0)                      >  '$NODENAME_P0.prop';
+done
+

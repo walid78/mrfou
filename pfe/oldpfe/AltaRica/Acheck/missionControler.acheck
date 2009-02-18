@@ -1,0 +1,184 @@
+with MasterRobot do
+
+ dead                     := any_s - src(any_t - self_epsilon);
+ notCFC                   := any_t - loop(any_t,any_t);
+
+ show(any_s, any_t);
+
+ test(initial, 1);
+ 
+ test(dead,0)		>  '$NODENAME.prop';
+ test(notCFC,0)		>> '$NODENAME.prop';
+
+/* 
+   S1 light sensor
+   S2 sound sensor
+   S3 & S4: no sensor
+*/
+
+ S1_Black	:= [S1.signal = 0];
+ S1_Grey	:= [S1.signal = 1];
+ S1_White	:= [S1.signal = 2];
+
+ S2_NoSnd	:= [S2.signal = 0];
+ S2_Snd		:= [S2.signal = 1] | [S2.signal = 2];
+
+ S3		:= [S3.signal];
+ S4		:= [S4.signal];
+
+ 
+ Move_Rev	:= [Dir.direction = -1];
+ Move_Stop	:= [Dir.direction = 0];
+ Move_Left	:= [Dir.direction = 1];
+ Move_Right	:= [Dir.direction = 2];
+ Move_Fwd	:= [Dir.direction = 3];
+
+ Servo_Rev	:= [C.speed = -1];
+ Servo_Stop	:= [C.speed = 0];
+ Servo_Fwd	:= [C.speed = 1];
+
+
+ Act		:= [Co.mode = 0];
+ Send		:= [Co.mode = 1];
+
+
+ S1_trigger_B	:= rsrc(S1_Grey | S1_White) & rtgt(S1_Black);
+ S1_trigger_G	:= rsrc(S1_Black | S1_White) & rtgt(S1_Grey);
+ S1_trigger_W	:= rsrc(S1_Black | S1_Grey) & rtgt(S1_White);
+ S1_trigger	:= S1_trigger_B | S1_trigger_G | S1_trigger_W;
+
+ S2_trigger_ON	:= (rsrc(S2_NoSnd) & rtgt(S2_Snd));
+ S2_trigger_OFF	:= (rsrc(S2_Snd) & rtgt(S2_NoSnd));
+ S2_trigger	:= S2_trigger_ON | S2_trigger_OFF;
+
+ S3_trigger	:= (rsrc(S3) & rtgt(not S3))
+		| (rsrc(not S3) & rtgt(S3));
+
+ S4_trigger	:= (rsrc(S4) & rtgt(not S4))
+		| (rsrc(not S4) & rtgt(S4));
+
+
+/* mouvements */
+noop		:= label noop;
+
+backward_R	:= label BackwardSetVarCR;
+backward_0	:= label BackwardSetVarC0;
+backward_1	:= label BackwardSetVarC1;
+
+stop_R		:= label StopSetVarCR;
+stop_0		:= label StopSetVarC0;
+stop_1		:= label StopSetVarC1;
+
+forward_R	:= label ForwardSetVarCR;
+forward_0	:= label ForwardSetVarC0;
+forward_1	:= label ForwardSetVarC1;
+
+left_R		:= label LeftSetVarCR;
+left_0		:= label LeftSetVarC0;
+left_1		:= label LeftSetVarC1;
+
+right_R		:= label RightSetVarCR;
+right_0		:= label RightSetVarC0;
+right_1		:= label RightSetVarC1;
+
+
+
+/* communication */
+s_noop		:= label sendNoop;
+
+s_backward_R	:= label sendBackwardSetVarCR;
+s_backward_0	:= label sendBackwardSetVarC0;
+s_backward_1	:= label sendBackwardSetVarC1;
+
+s_stop_R	:= label sendStopSetVarCR;
+s_stop_0	:= label sendStopSetVarC0;
+s_stop_1	:= label sendStopSetVarC1;
+
+s_forward_R	:= label sendForwardSetVarCR;
+s_forward_0	:= label sendForwardSetVarC0;
+s_forward_1	:= label sendForwardSetVarC1;
+
+s_left_R	:= label sendLeftSetVarCR;
+s_left_0	:= label sendLeftSetVarC0;
+s_left_1	:= label sendLeftSetVarC1;
+
+s_right_R	:= label sendRightSetVarCR;
+s_right_0	:= label sendRightSetVarC0;
+s_right_1	:= label sendRightSetVarC1;
+
+
+
+nonControle	:= S1_trigger | S2_trigger | S3_trigger 
+			| S4_trigger; 
+controle := any_t - nonControle;
+
+show(nonControle, controle)	>> '$NODENAME.prop';
+
+/* Conditions pour tourner a gauche */
+s_left_0_OK	:= S2_NoSnd & Send & tgt(S1_trigger_G) 
+		& src(s_left_0);
+left_0_OK	:= S2_NoSnd & Act & tgt(rsrc(s_left_0_OK)) 
+		& src(left_0) & S1_Grey;
+
+show(s_left_0_OK, left_0_OK)	>> '$NODENAME.prop';
+
+/* Conditions pour tourner a droite */
+s_right_0_OK	:= S2_NoSnd & Send & tgt(S1_trigger_B) 
+		& src(s_right_0);
+right_0_OK	:= S2_NoSnd & Act & tgt(rsrc(s_right_0_OK)) 
+		& src(right_0) & S1_Black;
+
+show(s_right_0_OK, right_0_OK)	>> '$NODENAME.prop';
+
+/* Conditions pour aller tout droit */
+s_forward_0_OK	:= S2_NoSnd & Send & tgt(S1_trigger_W) 
+		& src(s_forward_0);
+forward_0_OK	:= S2_NoSnd & Act & tgt(rsrc(s_forward_0_OK)) 
+		& src(forward_0) & S1_White;
+
+show(s_forward_0_OK, forward_0_OK)	>> '$NODENAME.prop';
+
+/* Conditions pour stopper le moteur */
+s_stop_0_OK	:= Send & tgt(S2_trigger_ON) & src(s_stop_0);
+stop_0_OK	:= S2_Snd & Act & tgt(rsrc(s_stop_0_OK)) 
+		& src(stop_0);
+
+show(s_stop_0_OK, stop_0_OK)	>> '$NODENAME.prop';
+
+
+go_fwd		:= reach(reach(s_forward_0_OK, s_forward_0), forward_0);
+go_left		:= reach(reach(s_left_0_OK, s_left_0), left_0);
+go_right	:= reach(reach(s_right_0_OK, s_right_0), right_0);
+go_stop		:= reach(reach(s_stop_0_OK, s_stop_0), stop_0);
+
+
+ER		:= any_s
+		- (s_left_0_OK | left_0_OK
+		   | s_right_0_OK | right_0_OK
+		   | s_forward_0_OK | forward_0_OK);
+
+show(ER)	>> '$NODENAME.prop';
+
+
+/* Gagne pour le controleur */
+Gagne		:= any_s - ER;
+
+/* Perdu pour l'environnement */
+Perdu		:= any_s - ER;
+
+show(Gagne, Perdu)	>> '$NODENAME.prop';
+
+
+Ctrl		-= controle & rtgt(Perdu & 
+                   (src(nonControle & rtgt(Gagne & src(Ctrl))) - 
+                    src(nonControle - rtgt(Gagne & src(Ctrl)))));
+
+
+Controlable := initial & src(Ctrl);
+
+// Generation des controleurs 
+project(any_s, Ctrl, '$NODENAMEControler', true, Co) > '$NODENAMEControler.alt';
+
+show(Ctrl, Controlable)	>> '$NODENAME.prop';
+
+done
