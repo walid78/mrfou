@@ -1,5 +1,5 @@
-\section{Réduction API NXC}
-Pour la réalisation du  projet nous utiliserons 4 catégories de fonction : celles relatives aux moteurs, aux capteurs , à la connexion Bluetooth et éventuellement d'autres fonctions permettant la cohésion de l'ensemble.
+\section{R\'{e}duction API NXC}
+Pour la r\'{e}alisation du  projet nous utiliserons 4 cat\'{e}gories de fonction : celles relatives aux moteurs, aux capteurs , Ã  la connexion Bluetooth et \'{e}ventuellement d'autres fonctions permettant la coh\'{e}sion de l'ensemble.
 
 \subsection{Les moteurs : }
 \begin{verbatim}
@@ -13,12 +13,12 @@ Pour la réalisation du  projet nous utiliserons 4 catégories de fonction : celle
 
 \subsubsection{Type et mode des capteurs :}
 \begin{verbatim}
-	SetSensorLight("port"); //Lie le capteur de lumière à un "port"
-	SetSensorSound("port"); //Lie le capteur ultrason à un "port"
-	SetSensorMode("port","const mode"); //Configure le mode du capteur associé au "port"
-	SetInput("port","const field","value"); //Configure le type du capteur associé au "port"
+	SetSensorLight("port"); //Lie le capteur de lumiÃ¨re Ã  un "port"
+	SetSensorSound("port"); //Lie le capteur ultrason Ã  un "port"
+	SetSensorMode("port","const mode"); //Configure le mode du capteur associÃ© au "port"
+	SetInput("port","const field","value"); //Configure le type du capteur associÃ© au "port"
 	SetSensorLowspeed("port"); //Configure le capteur en mode I2C
-	ClearSensor("port"); //Efface la valeur d'un capteur associé à un "port"
+	ClearSensor("port"); //Efface la valeur d'un capteur associÃ© Ã  un "port"
 
 \end{verbatim}
 
@@ -31,7 +31,7 @@ Pour la réalisation du  projet nous utiliserons 4 catégories de fonction : celle
 
 \subsection{La connexion Bluetooth : }
 \begin{verbatim}
-	BluetoothStatues("NUMBER"); //Vérifie la connexion
+	BluetoothStatues("NUMBER"); //VÃ©rifie la connexion
 	RemoteStartProgram("connection", "filename");
 	RemoteStopProgram("connection");
 
@@ -39,11 +39,11 @@ Pour la réalisation du  projet nous utiliserons 4 catégories de fonction : celle
 
 \subsection{Autres fonctions : }
 \begin{verbatim}
-	Wait("time"); //Temps donné à l'exécution d'une action
-	off("port"); //Stop le moteur associé au "port"
+	Wait("time"); //Temps donnÃ© Ã  l'exÃ©cution d'une action
+	off("port"); //Stop le moteur associÃ© au "port"
 	Acquire("mutex"); 
 	Release("mutex"); 
-	Precedes("task1","task2","taskn"); //Permet l'exécution de taches simultanée
+	Precedes("task1","task2","taskn"); //Permet l'exÃ©cution de taches simultanÃ©
 
 \end{verbatim}
 

@@ -4,7 +4,7 @@
 
 
 
-\usepackage[latin1]{inputenc} % pour les accents
+\usepackage[utf8]{inputenc} % pour les accents
 \usepackage[T1]{fontenc}
 \usepackage[francais]{babel}
 \usepackage{fullpage}
@@ -25,7 +25,7 @@
 \definecolor{gray}{gray}{0.85}
 
 \title{
-  \normalsize{\begin{flushright} MASTER 2 - Semestre 2 - 2008 \end{flushright}}
+  \normalsize{\begin{flushright} MASTER 2 - Semestre 2 - 2009 \end{flushright}}
   \vspace{15mm}
   \hrule height 1mm
   \vspace{5mm}
@@ -35,10 +35,10 @@
 }
 
 \author{
-  KUNTZ Fabien\\
-  CRANSAC Dorian\\
-  BOYER JEREMY\\
-  DUBERNET Jean Sébastien\\
+  Fabien KUNTZ\\
+  Dorian CRANSAC\\
+  J\'{e}r\'{e}my BOYER\\
+  Jean S\'{e}bastien DUBERNET\\
   \vspace{2cm}
 }
 
@@ -48,7 +48,7 @@
 \begin{titlepage}
   \begin{figure}
     \vspace{1cm}
-    \psset{unit=1in,linewidth=4pt} %paraètrage des unités pour pstricks
+    \psset{unit=1in,linewidth=4pt} %paramètrage des unités pour pstricks
     \rput(1,0){\includegraphics[width=4cm]{Bordeaux1}}
     \vspace{15mm}
   \end{figure}
@@ -58,17 +58,13 @@
 
 \vspace{4cm}
 \begin{center}
-Enseignant : M GRIFFAULT
+Enseignant : Alain GRIFFAULT
 \end{center}
 
 \tableofcontents
 
-\newpage
-\input{mission}
-
-\newpage
-\input{FoncUtil}
-
-\newpage
-\input{conclusion}
+\include{mission}
+\include{FoncUtil}
+\include{altarica}
+\include{conclusion}
 \end{document}
