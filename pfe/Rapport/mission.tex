@@ -1,36 +1,62 @@
-\section{Résumé}
+ \section{R\'{e}sum\'{e}}
 
-intro...
+ intro...
 
+ \section{Mission}
 
-\section{Mission}
+  \subsection{Environnement}
+  L'environnement est constitu\'{e} d'un marquage au sol. Ce marquage
+  correspond \`{a} un chemin d\'{e}limit\'{e} par des feuilles de couleurs
+  diff\'{e}rentes de celle du sol. Un point d'arriv\'{e}e est pr\'{e}d\'{e}fini. On peut
+  repr\'{e}senter l'environnement par une grille sur laquelle les
+  d\'{e}placements possibles sont verticaux ou horizontaux. Les \'{e}l\'{e}ments de
+  marquage sont donc de forme carr\'{e}e et on d\'{e}finit un chemin unique
+  repr\'{e}sentant la combinaison de d\'{e}placements que les robots doivent
+  \^{e}tre capables de r\'{e}aliser. Les couleurs des cases de la grille sont
+  altern\'{e}es de mani\`{e}re \`{a} obtenir un damier. Ce d\'{e}tail permet au robot de
+  diff\'{e}rencier une impasse d'un chemin possible lorsqu'il \'{e}value les
+  possibilit\'{e}s autour de sa position courante.
 
-\subsection{Environnement}
+  \subsection{Entit\'{e}s}
 
-	L'environnement est constitué d'un marquage au sol. Ce marquage correspond à un chemin délimité par des feuilles de couleur différente de celle du sol. Un point d'arrivée est défini à l'avance. On peut représenter l'environnement par une grille sur laquelle les déplacements possibles sont verticaux ou horizontaux. Les éléments de marquage sont donc de forme carrée et on définit un chemin unique représentant la combinaison de déplacements que les robots doivent être capables de réaliser. Les couleurs des cases de la grille sont alternées de manière à obtenir un damier. Ce détail permet au robot de différencier une impasse d'un chemin possible lorsqu'il évalue les possibilités autour de sa position courante.
+   \subsubsection{Robot Ma\^{i}tre}
+   Le robot ma\^{i}tre est le robot qui poss\`{e}de les capteurs. C'est
+   \'{e}galement lui qui d\'{e}cide des actions que les deux robots doivent
+   effectuer. Il est capable de donner des ordres au robot esclave
+   gr\^{a}ce \`{a} des composants Bluetooth. Deux capteurs sont mont\'{e}s sur
+   ce robot : un capteur de lumi\`{e}re \`{a} l'avant, et un capteur
+   ultrasonique \`{a} l'arri\`{e}re. Les d\'{e}placements possibles du robot sont
+   les suivants : avancer jusqu'\`{a} la d\'{e}tection d'un changement
+   d'environnement, tourner \`{a} gauche ou \`{a} droite sur place \`{a}
+   90 deg. Le
+   capteur de lumi\`{e}re permet de d\'{e}tecter les bordures du marquage. Le
+   capteur ultrasonique detecte la pr\'{e}sence du robot esclave \`{a}
+   l'arri\`{e}re. Il est particuli\`{e}rement utile apr\`{e}s un changement de
+   direction pour arr\^{e}ter le robot esclave \`{a} hauteur du virage. 
 
+   \subsubsection{Robot Esclave}
+   Ce robot ne comporte aucun capteur, et est compl\`{e}tement d\'{e}pendant du
+   robot ma\^{i}tre, \`{a} savoir qu'il n'effectue une action que lorsqu'il
+   re\c coit un message par la communication Bluetooth. Les possibilit\'{e}s de
+   d\'{e}placement de ce robot sont les m\^{e}mes.
 
-\subsection{Entités}
+   \subsubsection{Int\'{e}ractions}
+   Lors du d\'{e}placement dans l'environnement et de la d\'{e}couverte
+   d'obstacles, le robot ma\^{i}tre fait des choix de d\'{e}placement et
+   communique au robot esclave des ordres lui permettant de passer
+   \'{e}galement ces obstacles:
+   \begin{itemize}
+    \item Le robot ma\^{i}tre avance jusqu'\`{a} la d\'{e}tection d'une bordure
+    \item Si une bordure est d\'{e}tect\'{e}e, les d\'{e}cisions suivantes sont
+	  prises:
+    \begin{itemize}
+     \item Le robot tourne \`{a} gauche \`{a} 90 deg.
+     \item Si une bordure est pr\'{e}sente, il sait que le chemin qu'il doit
+	   emprunter est celui de droite.
+    \end{itemize}
+   \end{itemize}
 
-\subsubsection{Robot Maître}
-
-	Le robot maître est le robot qui possède les capteurs. C'est également lui qui décide des actions que les deux robots doivent effectuer. Il est capable de donner des ordres au robot esclave grâce à des composants BlueTooth. Deux capteurs sont montés sur ce robot : un capteur de lumière à l'avant, et un capteur ultrasonique à l'arrière. Les déplacements possibles du robot sont les suivants : avancer jusquà la détection d'un changement d'environnement, tourner à gauche ou à droite sur place à 90°. Le capteur de lumière permet de détecter les bordures du marquage. Le capteur ultrasonique detecte la présence du robot esclave à l'arrière. Il est particulièrement utile après un changement de direction pour arrêter le robot esclave à hauteur du virage.
-
-\subsubsection{Robot Esclave}
-
-	Ce robot ne comporte aucun capteur, et est complètement dépendant du robot maître, à savoir qu'il n'effectue une action que lorsqu'il reçoit un message par la communication BlueTooth. Les possibilités de déplacement de ce robot sont les mêmes.
-
-\subsubsection{Intéractions}
-
-	Lors du déplacement dans l'environnement et de la découverte d'obstacles, le robot maître fait des choix de déplacement et communique au robot esclave des ordres lui permettant de passer également ces obstacles:
-
-- le robot maître avance jusqu'à la détection d'une bordure
-- si une bordure est détectée, les décisions suivantes sont prises:
-	- le robot tourne à gauche à 90°.
-	- si une bordure est présente, 
-
-
-
-\subsection{Objectif}
-
-	Les robots sont sensés se déplacer à l'intérieur du marquage et atteindre le point d'arrivée. Le robot maître doit explorer le terrain et permettre au robot esclave de le suivre.
+  \subsection{Objectif}
+  Les robots sont cens\'{e}s se d\'{e}placer \`{a} l'int\'{e}rieur du marquage et
+  atteindre le point d'arriv\'{e}e. Le robot ma\^{i} doit explorer le terrain
+  et permettre au robot esclave de le suivre. 
