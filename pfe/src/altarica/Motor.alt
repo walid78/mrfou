@@ -1,0 +1,12 @@
+node Motor
+  state
+    move : [-1,1] : public;
+  event
+    back, stop, forward;
+  trans
+    true |- back -> move := -1;
+    true |- stop -> move := 0;
+    true |- forward -> move := 1;
+  init
+    move := 0;
+edon
