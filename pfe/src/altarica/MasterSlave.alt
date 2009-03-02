@@ -1,0 +1,17 @@
+node MasterSlave
+  sub
+    Master : BTMaster;
+    Slave : BTSlave;
+  state
+
+  flow
+
+  event
+
+  trans
+ 
+  init
+ 
+  assert 
+ 
+edon
