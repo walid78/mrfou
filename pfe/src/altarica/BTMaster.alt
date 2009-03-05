@@ -9,11 +9,11 @@ node BTMaster
   event
     orderFw, orderBack, orderLeft, orderRight, orderStop;
   trans
-    true |- orderBack
-    true |- orderStop
-    true |- orderLeft
-    true |- orderFw
-    true |- orderRight
+    true |- orderBack;
+    true |- orderStop;
+    true |- orderLeft;
+    true |- orderFw;
+    true |- orderRight;
   init
 edon
   

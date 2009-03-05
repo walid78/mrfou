@@ -1,0 +1,11 @@
+node TouchSensor
+  state 
+    value : bool : public;
+  event
+    readValue;
+  trans
+    true |- readValue -> value := ~value;
+  init
+    value := false;
+edon
+
