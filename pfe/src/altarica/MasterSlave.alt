@@ -2,16 +2,10 @@ node MasterSlave
   sub
     Master : BTMaster;
     Slave : BTSlave;
-  state
-
-  flow
-
-  event
-
-  trans
- 
-  init
- 
-  assert 
- 
+  sync
+    <Master.orderBack, Slave.back>
+    <Master.orderStop, Slave.stop>
+    <Master.orderLeft, Slave.left>
+    <Master.orderFw, Slave.forward>
+    <Master.orderRight, Slave.Right>
 edon
