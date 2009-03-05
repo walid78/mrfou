@@ -1,27 +1,20 @@
-//order = -1 : le robot recule
-//order = 0 : arret du robot
-//order = 1 : le robot tourne a gauche
-//order = 2 : le robot avance
-//order = 3 : le robot tourne a droite
+//orderBack : le robot recule
+//orderStop : arret du robot
+//orderLeft : le robot tourne a gauche
+//orderFw : le robot avance
+//orderRight : le robot tourne a droite
 
 
 node BTMaster
-  state
-    order : [-1,3] : public;
-  flow
-    transmit : [-1,3];
   event
     orderFw, orderBack, orderLeft, orderRight, orderStop;
   trans
-    true |- orderBack -> order := -1;
-    true |- orderStop -> order := 0; 
-    true |- orderLeft -> order := 1;  
-    true |- orderFw -> order := 2;
-    true |- orderRight -> order := 3;
+    true |- orderBack
+    true |- orderStop
+    true |- orderLeft
+    true |- orderFw
+    true |- orderRight
   init
-    order := 0;
-  assert 
-    transmit = order;
 edon
   
 
