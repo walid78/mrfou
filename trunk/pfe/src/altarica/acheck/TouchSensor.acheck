@@ -1,12 +1,11 @@
-with UltraSonicSensor do
+with TouchSensor do
  quot() >  '$NODENAME.dot';
  dead := any_s - src(any_t - self_epsilon);
  notCFC := any_t - loop(any_t,any_t);
- value0 := [value = 0];
- value1 := [value = 1];
+ valueTrue := [value = true];
+ valueFalse := [value = false];
  readValue := label readValue;
  show(all) > '$NODENAME.prop';
  test(dead,0) > '$NODENAME.res';
  test(notCFC,0) >> '$NODENAME.res';
 done
-
