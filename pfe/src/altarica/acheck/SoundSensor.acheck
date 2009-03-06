@@ -1,4 +1,4 @@
-with UltraSonicSensor do
+with SoundSensor do
  quot() >  '$NODENAME.dot';
  dead := any_s - src(any_t - self_epsilon);
  notCFC := any_t - loop(any_t,any_t);
