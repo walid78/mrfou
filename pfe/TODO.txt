@@ -3,12 +3,10 @@
 
 --------------------------------------------------------------------------------
 Dorian/JS : 
-
-- Codage/Utilisation du bluetooth
-- Réactivité du robot (Compte-rendu SVP)
+ -> A vous de voir
 
 --------------------------------------------------------------------------------
 Fabien/Jérémy :
 
-- Attente des résultats des tests sur les robots pour modéliser le bluetooth
-- Modéliser les autres composants
+- Modéliser et vérifier
+- Renommer intelligemment les variables
