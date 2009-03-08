@@ -5,12 +5,14 @@ SOURCE_ALT = alt/UltraSonicSensor.alt\
 	alt/SoundSensor.alt\
 	alt/Motor.alt\
 	alt/LightSensor.alt\
+	alt/BTMaster.alt\
 
 SOURCE_ACHECK = acheck/UltraSonicSensor.acheck\
 	acheck/TouchSensor.acheck\
 	acheck/SoundSensor.acheck\
 	acheck/Motor.acheck\
 	acheck/LightSensor.acheck\
+	acheck/BTMaster.acheck\
 
 
 GENERATED_RES = UltraSonicSensor.res\
@@ -18,6 +20,7 @@ GENERATED_RES = UltraSonicSensor.res\
 	SoundSensor.res\
 	Motor.res\
 	LightSensor.res\
+	BTMaster.res\
 
 # SOURCE_TEX = $(TARGET).tex\
 
@@ -26,6 +29,7 @@ GRAPHS = UltraSonicSensor.eps\
 	SoundSensor.eps\
 	Motor.eps\
 	LightSensor.eps\
+	BTMaster.eps\
 
 SUBDIRS = acheck alt
 
@@ -44,14 +48,14 @@ cleanAll: clean
 $(TARGET).alt: $(SOURCE_ALT)
 	rm -f $(TARGET).alt
 	for d in $(SOURCE_ALT); do \
-		echo "\n" >> $(TARGET).res;\
+		echo "\n" >> $(TARGET).alt;\
 		cat $$d >> $(TARGET).alt;\
 	done
 
 $(TARGET).acheck: $(SOURCE_ACHECK)
 	rm -f $(TARGET).acheck
 	for d in $(SOURCE_ACHECK); do \
-		echo "\n" >> $(TARGET).res;\
+		echo "\n" >> $(TARGET).acheck;\
 		cat $$d >> $(TARGET).acheck;\
 	done
 
