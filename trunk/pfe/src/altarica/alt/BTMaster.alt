@@ -6,15 +6,18 @@
 
 
 node BTMaster
+  state
+    order : [-1,3] : public;
   event
     orderFw, orderBack, orderLeft, orderRight, orderStop;
   trans
-    true |- orderBack;
-    true |- orderStop;
-    true |- orderLeft;
-    true |- orderFw;
-    true |- orderRight;
+    true |- orderBack -> order := -1;
+    true |- orderStop -> order := 0;
+    true |- orderLeft -> order := 1;
+    true |- orderFw -> order := 2;
+    true |- orderRight -> order := 3;
   init
+    order := 0;
 edon
   
 
