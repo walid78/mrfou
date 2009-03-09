@@ -4,7 +4,7 @@ node BTSlave
   state
     obey : [-1,3] : public;
   event
-   back, stop, left, right, forward;
+    obeyBack, obeyStop, obeyLeft, obeyRight, obeyFw;
   trans
     true |- obeyBack -> obey := -1;
     true |- obeyStop -> obey := 0;
@@ -12,11 +12,11 @@ node BTSlave
     true |- obeyFw -> obey := 2;
     true |- obeyRight -> obey := 3;
   sync
-    <back, Move.back>;
-    <stop, Move.stop>;
-    <left, Move.left>;
-    <forward, Move.forward>;
-    <right, Move.right>;
+    <obeyBack, Move.back>;
+    <obeyStop, Move.stop>;
+    <obeyLeft, Move.left>;
+    <obeyFw, Move.forward>;
+    <obeyRight, Move.right>;
   init
     obey := 0;
 edon

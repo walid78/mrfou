@@ -19,6 +19,5 @@ node Moving
     <forward, LeftWheel.forward, RightWheel.forward>;
     <right, LeftWheel.forward, RightWheel.back>;
   init
-    LeftWheel.move := stop;    
-    RightWheel.move := stop;
+    LeftWheel.move := 0, RightWheel.move := 0, moving := 0;
 edon

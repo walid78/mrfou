@@ -6,6 +6,8 @@ SOURCE_ALT = alt/UltraSonicSensor.alt\
 	alt/Motor.alt\
 	alt/LightSensor.alt\
 	alt/BTMaster.alt\
+	alt/Moving.alt\
+	alt/BTSlave.alt\
 
 SOURCE_ACHECK = acheck/UltraSonicSensor.acheck\
 	acheck/TouchSensor.acheck\
@@ -13,7 +15,7 @@ SOURCE_ACHECK = acheck/UltraSonicSensor.acheck\
 	acheck/Motor.acheck\
 	acheck/LightSensor.acheck\
 	acheck/BTMaster.acheck\
-
+	acheck/BTSlave.acheck\
 
 GENERATED_RES = UltraSonicSensor.res\
 	TouchSensor.res\
@@ -21,6 +23,7 @@ GENERATED_RES = UltraSonicSensor.res\
 	Motor.res\
 	LightSensor.res\
 	BTMaster.res\
+	BTSlave.res\
 
 GENERATED_PROP = UltraSonicSensor.prop\
 	TouchSensor.prop\
@@ -28,20 +31,7 @@ GENERATED_PROP = UltraSonicSensor.prop\
 	Motor.prop\
 	LightSensor.prop\
 	BTMaster.prop\
-
-GENERATED_EPS = UltraSonicSensor.eps\
-	TouchSensor.eps\
-	SoundSensor.eps\
-	Motor.eps\
-	LightSensor.eps\
-	BTMaster.eps\
-
-GENERATED_PDF = UltraSonicSensor.pdf\
-	TouchSensor.pdf\
-	SoundSensor.pdf\
-	Motor.pdf\
-	LightSensor.pdf\
-	BTMaster.pdf\
+	BTSlave.prop\
 
 # SOURCE_TEX = $(TARGET).tex\
 
@@ -51,6 +41,7 @@ GRAPHS = UltraSonicSensor.eps\
 	Motor.eps\
 	LightSensor.eps\
 	BTMaster.eps\
+	BTSlave.eps\
 
 SUBDIRS = acheck alt
 
@@ -91,7 +82,7 @@ $(TARGET).acheck: $(SOURCE_ACHECK)
 	done
 
 $(TARGET).res: $(TARGET).alt $(TARGET).acheck
-	acheck $(TARGET).alt $(TARGET).acheck
+	arc -b $(TARGET).alt $(TARGET).acheck
 	rm -f $(TARGET).res
 	for d in $(GENERATED_RES); do \
 		echo "\n$$d" >> $(TARGET).res;\
