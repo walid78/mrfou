@@ -1,12 +1,14 @@
 -- FICHIER DYNAMIQUE --
 - N'hésitez pas à le modifier -
 
+Plan de rapport détaillé.
+Mission basique à faire.
+
 --------------------------------------------------------------------------------
 Dorian/JS : 
  -> A vous de voir
 
 --------------------------------------------------------------------------------
 Fabien/Jérémy :
-
 - Modéliser et vérifier
 - Renommer intelligemment les variables
