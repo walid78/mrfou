@@ -10,10 +10,10 @@ node Controller
     slaveTooFar, slaveTooClose, slaveBehind, slaveWayTooFar, slaveWayTooClose;
   trans
     sonic.value = 0 |- slaveWayTooClose; -> order= -1;
-    sonic.value = 0 |- slaveTooClose; -> order= -1;
-    sonic.value = 1 |- slaveBehind; -> order= 0;
-    sonic.value = 2 |- slaveTooFar; -> order= 1;
-    sonic.value = 2 |- slaveWayTooFar; -> order= 1;
+    sonic.value = 1 |- slaveTooClose; -> order= -1;
+    sonic.value = 2 |- slaveBehind; -> order= 0;
+    sonic.value = 3 |- slaveTooFar; -> order= 1;
+    sonic.value = 4 |- slaveWayTooFar; -> order= 1;
   sync
     <slaveWayTooClose, move.forward, BT.orderStop>;
     <slaveTooClose, move.forward, BT.orderStop>;
