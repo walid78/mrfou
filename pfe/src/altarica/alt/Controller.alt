@@ -1,0 +1,58 @@
+node Controller
+  sub
+    light: LightSensor;
+    sonic: UltraSonicSensor;
+    move: Moving;
+    BT: BTMaster;
+  state
+    order : [-1,1] : public;
+  event
+    slaveTooFar, slaveTooClose, slaveBehind, slaveWayTooFar, slaveWayTooClose;
+  trans
+    sonic.value = 0 |- slaveWayTooClose; -> order= -1;
+    sonic.value = 0 |- slaveTooClose; -> order= -1;
+    sonic.value = 1 |- slaveBehind; -> order= 0;
+    sonic.value = 2 |- slaveTooFar; -> order= 1;
+    sonic.value = 2 |- slaveWayTooFar; -> order= 1;
+  sync
+    <slaveWayTooClose, move.forward, BT.orderStop>;
+    <slaveTooClose, move.forward, BT.orderStop>;
+    <slaveBehind, move.forward, BT.orderFw>;
+    <slaveTooFar, move.stop, BT.orderFw>;
+    <slaveWayTooFar, move.stop, BT.orderFw>;
+  init
+    order := 0;
+edon
+
+
+node ControllerEvolved
+  sub
+    light: LightSensor;
+    sonic: UltraSonicSensor;
+    move: Moving;
+    BT: BTMaster;
+  state
+    order : [-1,6] : public;
+    
+    squareChanged: bool;
+    
+  event
+  //slaveTooFar, slaveTooClose, slaveBehind, correspondent
+  // à la gestion du fait que le robot esclave doit suivre
+  // le robot maitre dans une ligne droite.
+  
+    slaveTooFar, slaveTooClose, slaveBehind, wallFront, wallLeftFront, wallRightLeftFront;
+  trans
+    sonic.value = 0 |- slaveTooClose; -> order= -1;
+    sonic.value = 1 |- slaveBehind; -> order= 0;
+    sonic.value = 0 |- slaveTooFar; -> order= 1;
+    LightSensor.value = 
+  
+  sync
+    <slaveTooClose, BT.orderStop>;
+    <slaveBehind, move.forward, BT.orderFw>;
+    <slaveBehind, move.forward>;
+  init
+    order := 0;
+    squareChanged := false;
+edon
