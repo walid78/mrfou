@@ -7,6 +7,11 @@ with BTSlave do
  obey1 := [obey = 1];
  obey2 := [obey = 2];
  obey3 := [obey = 3];
+ moveBack := label Move.back;
+ moveStop := label Move.stop;
+ moveLeft := label Move.left;
+ moveForward := label Move.forward;
+ moveRight := label Move.right;
  obeyBack := label obeyBack;
  obeyStop := label obeyStop;
  obeyLeft := label obeyLeft;
@@ -14,14 +19,22 @@ with BTSlave do
  obeyRight := label obeyRight;
 
  //Situation redoutée : mauvaise obéissance
- ER := (tgt(obeyBack) & not(obeyB)) |
-       (tgt(obeyStop) & not(obey0)) |
-       (tgt(obeyLeft) & not(obey1)) |
-       (tgt(obeyFw) & not(obey2)) |
-       (tgt(obeyRight) & not(obey3));
+ ERObey := (tgt(obeyBack) & not(obeyB)) |
+       	   (tgt(obeyStop) & not(obey0)) |
+	   (tgt(obeyLeft) & not(obey1)) |
+       	   (tgt(obeyFw) & not(obey2)) |
+       	   (tgt(obeyRight) & not(obey3));
  
+ ERMove := (tgt(obeyBack) & not(tgt(moveBack))) |
+       	   (tgt(obeyStop) & not(tgt(moveStop))) |
+	   (tgt(obeyLeft) & not(tgt(moveLeft))) |
+       	   (tgt(obeyFw) & not(tgt(moveForward))) |
+       	   (tgt(obeyRight) & not(tgt(moveRight)));
+
+
  show(all) > '$NODENAME.prop';
  test(dead,0) > '$NODENAME.res';
  test(notCFC,0) >> '$NODENAME.res';
- test(ER,0) >> '$NODENAME.res';
+ test(ERObey,0) >> '$NODENAME.res';
+ test(ERMove,0) >> '$NODENAME.res';
 done
