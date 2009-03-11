@@ -15,6 +15,7 @@ SOURCE_ACHECK = acheck/UltraSonicSensor.acheck\
 	acheck/Motor.acheck\
 	acheck/LightSensor.acheck\
 	acheck/BTMaster.acheck\
+	acheck/Moving.acheck\
 	acheck/BTSlave.acheck\
 
 GENERATED_RES = UltraSonicSensor.res\
@@ -23,6 +24,7 @@ GENERATED_RES = UltraSonicSensor.res\
 	Motor.res\
 	LightSensor.res\
 	BTMaster.res\
+	Moving.res\
 	BTSlave.res\
 
 GENERATED_PROP = UltraSonicSensor.prop\
@@ -31,6 +33,7 @@ GENERATED_PROP = UltraSonicSensor.prop\
 	Motor.prop\
 	LightSensor.prop\
 	BTMaster.prop\
+	Moving.prop\
 	BTSlave.prop\
 
 # SOURCE_TEX = $(TARGET).tex\
@@ -41,6 +44,7 @@ GRAPHS = UltraSonicSensor.eps\
 	Motor.eps\
 	LightSensor.eps\
 	BTMaster.eps\
+	Moving.eps\
 	BTSlave.eps\
 
 SUBDIRS = acheck alt
