@@ -1,11 +1,12 @@
 node UltraSonicSensor
   state
-    value : [0,1] : public;
+    value : [0,2] : public;
   event
     readValue;
   trans
-    value = 0 |- readValue -> value := value + 1;
-    value = 1 |- readValue -> value := value - 1;
+    signal < 2 |- readValue -> signal := signal + 1;
+    signal > 0 |- readValue -> signal := signal - 1;
   init
-    value := 0;
+    signal := 0;
 edon
+
