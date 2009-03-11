@@ -7,12 +7,12 @@ with Moving do
  moving1 := [moving = 1];
  moving2 := [moving = 2];
  moving3 := [moving = 3];
- motorLB := [LeftWheel.move = -1];
- motorL0 := [LeftWheel.move = 0];
- motorL1 := [LeftWheel.move = 1];
- motorRB := [RightWheel.move = -1];
- motorR0 := [RightWheel.move = 0];
- motorR1 := [RightWheel.move = 1];
+ motorLB := label LeftWheel.back;
+ motorL0 := label LeftWheel.stop;
+ motorL1 := label LeftWheel.forward;
+ motorRB := label RightWheel.back;
+ motorR0 := label RightWheel.stop;
+ motorR1 := label RightWheel.forward;
  back := label back;
  stop := label stop;
  left := label left;
@@ -26,11 +26,11 @@ with Moving do
        (tgt(forward) & not(moving2)) |
        (tgt(right) & not(moving3));
 
- ERWheel := (tgt(back) & (not(motorLB) | not(motorRB))) |
-       (tgt(stop) & (not(motorL0) & not(motorR0))) |
-       (tgt(left) & (not(motorLB) & not(motorR1))) |
-       (tgt(forward) & (not(motorL1) & not(motorR1))) |
-       (tgt(right) & (not(motorL1) & not(motorRB)));
+ ERWheel := (tgt(back) & (not(tgt(motorLB)) | not(tgt(motorRB)))) |
+       	    (tgt(stop) & (not(tgt(motorL0)) & not(tgt(motorR0)))) |
+       	    (tgt(left) & (not(tgt(motorLB)) & not(tgt(motorR1)))) |
+       	    (tgt(forward) & (not(tgt(motorL1)) & not(tgt(motorR1)))) |
+       	    (tgt(right) & (not(tgt(motorL1)) & not(tgt(motorRB))));
 
  show(all) > '$NODENAME.prop';
  test(dead,0) > '$NODENAME.res';
