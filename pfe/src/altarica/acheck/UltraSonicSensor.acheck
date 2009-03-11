@@ -4,9 +4,13 @@ with UltraSonicSensor do
  notCFC := any_t - loop(any_t,any_t);
  value0 := [value = 0];
  value1 := [value = 1];
+ value1 := [value = 2];
+ value1 := [value = 3];
+ value1 := [value = 4];
  readValue := label readValue;
  show(all) > '$NODENAME.prop';
  test(dead,0) > '$NODENAME.res';
  test(notCFC,0) >> '$NODENAME.res';
 done
+
 
