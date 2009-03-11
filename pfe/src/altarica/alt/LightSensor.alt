@@ -4,9 +4,16 @@ node LightSensor
   event
     readValue;
   trans
+    //noir
     true |- readValue -> value := 0;
+    
+    //gris foncé
     true |- readValue -> value := 1;
+    
+    //gris clair
     true |- readValue -> value := 2;
+    
+    //blanc
     true |- readValue -> value := 3;
   init
     value := 0;
