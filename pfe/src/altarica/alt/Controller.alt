@@ -15,11 +15,11 @@ node Controller
     sonic.value = 3 |- slaveTooFar; -> order= 1;
     sonic.value = 4 |- slaveWayTooFar; -> order= 1;
   sync
-    <slaveWayTooClose, move.forward, BT.orderStop>;
-    <slaveTooClose, move.forward, BT.orderStop>;
+    <slaveWayTooClose, move.forward, BT.orderStop, sonic.inc>;
+    <slaveTooClose, move.forward, BT.orderStop, sonic.inc>;
     <slaveBehind, move.forward, BT.orderFw>;
-    <slaveTooFar, move.stop, BT.orderFw>;
-    <slaveWayTooFar, move.stop, BT.orderFw>;
+    <slaveTooFar, move.stop, BT.orderFw, sonic.dec>;
+    <slaveWayTooFar, move.stop, BT.orderFw, sonic.dec>;
   init
     order := 0;
 edon
