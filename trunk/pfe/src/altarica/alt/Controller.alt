@@ -5,15 +5,15 @@ node Controller
     move: Moving;
     BT: BTMaster;
   state
-    order : [-1,1] : public;
+    order : [-2,2] : public;
   event
     slaveTooFar, slaveTooClose, slaveBehind, slaveWayTooFar, slaveWayTooClose;
   trans
-    sonic.value = 0 |- slaveWayTooClose; -> order= -1;
+    sonic.value = 0 |- slaveWayTooClose; -> order= -2;
     sonic.value = 1 |- slaveTooClose; -> order= -1;
     sonic.value = 2 |- slaveBehind; -> order= 0;
     sonic.value = 3 |- slaveTooFar; -> order= 1;
-    sonic.value = 4 |- slaveWayTooFar; -> order= 1;
+    sonic.value = 4 |- slaveWayTooFar; -> order= 2;
   sync
     <slaveWayTooClose, move.forward, BT.orderStop, sonic.inc>;
     <slaveTooClose, move.forward, BT.orderStop, sonic.inc>;
