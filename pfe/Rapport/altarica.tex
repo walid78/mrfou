@@ -1,14 +1,47 @@
  \section{Noeuds AltaRica}
  
   \subsection{LightSensor}
-  \verbatiminput{../src/altarica/LightSensor.alt}
+
+  \subsubsection{Le code Altarica}
+  \verbatiminput{../src/altarica/alt/LightSensor.alt}
+
+
+  Ce noeud correspond au capteur de lumière, et possede une variable d'état nommée value qui peux prendre trois valeurs différentes, correspondants au trois couleurs de case que nous allons utiliser: Noir, gris et blanc.
+  
+  \subsubsection{La vérification acheck}
 
   \subsection{UltraSonicSensor}
-  \verbatiminput{../src/altarica/UltraSonicSensor.alt}
+  \subsubsection{Le code Altarica}
+  \verbatiminput{../src/altarica/alt/UltraSonicSensor.alt}
+  
+
+
+  De la même maniere que le noeud LightSensor, UltraSonicSensor comporte une variable "signal", avec cinq valeurs possibles, qui servira au robot maitre à savoir a quelle distance se trouve le robot esclave.
+
+  \subsubsection{La vérification acheck}
+  
 
   \subsection{Motor}
-  \verbatiminput{../src/altarica/Motor.alt}
+  \subsubsection{Le code Altarica}
+  \verbatiminput{../src/altarica/alt/Motor.alt}
+
+
+
+  Les moteurs sont modélisés de façon à avoir seulement trois vitesses possible: Avancer, stopper, reculer.
+
+  \subsubsection{La vérification acheck}
 
   \subsection{Moving}
-  \verbatiminput{../src/altarica/Moving.alt}
+  \subsubsection{Le code Altarica}
+  \verbatiminput{../src/altarica/alt/Moving.alt}
+
+  Moving est la pour faire la synchronisation entre les deux moteurs munis de roues d'un robot. Il y a cinq ordres possible, avancer, s'arreter, reculer, à droite et à gauche.
+
+  \subsubsection{La vérification acheck}
+
+ 
+  \subsection{BTMaster}
+
+  \subsubsection{Le code Altarica}
+  \verbatiminput{../src/altarica/alt/BTMaster.alt}
 
