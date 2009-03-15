@@ -8,6 +8,7 @@ SOURCE_ALT = alt/UltraSonicSensor.alt\
 	alt/BTMaster.alt\
 	alt/Moving.alt\
 	alt/BTSlave.alt\
+	alt/BTMasterSlave.alt\
 	alt/Controller.alt\
 
 SOURCE_ACHECK = acheck/UltraSonicSensor.acheck\

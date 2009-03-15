@@ -3,7 +3,7 @@ node Controller
     light: LightSensor;
     sonic: UltraSonicSensor;
     move: Moving;
-    BT: BTMaster;
+    BT: BTMasterSlave;
   state
     order : [-2,2] : public;
   event
