@@ -35,13 +35,18 @@
   \subsubsection{Le code Altarica}
   \verbatiminput{../src/altarica/alt/Moving.alt}
 
-  Moving est la pour faire la synchronisation entre les deux moteurs munis de roues d'un robot. Il y a cinq ordres possible, avancer, s'arreter, reculer, à droite et à gauche.
+  Moving est la pour faire la synchronisation entre les deux moteurs munis de roues d'un robot. Il y a cinq ordres possible: Avancer, s'arreter, reculer, à droite et à gauche. Il faut savoir que les rotations à droite et à gauche du robot sont tout le temps de 90 degrés.
 
   \subsubsection{La vérification acheck}
 
  
-  \subsection{BTMaster}
+  \subsection{BTMaster, BTSlave et MasterSlave}
 
   \subsubsection{Le code Altarica}
   \verbatiminput{../src/altarica/alt/BTMaster.alt}
 
+  \verbatiminput{../src/altarica/alt/BTSlave.alt}
+
+  \verbatiminput{../src/altarica/alt/MasterSlave.alt}
+
+  La communication bluetooth entre nos deux robots est de type maitre/esclave, le maitre envoie simplement des ordres à executer à l'esclave. Le noeud BTMaster qui sera pour le robot maitre comporte donc simplement les cinq même ordres que le noeud moving. BTSlave sera lui pour le robot esclave, et inclus un sous noeud de type Moving, afin de pouvoir synchroniser les cinq ordres possibles à un agissement concret de ce noeud Moving. Enfin, le noeud MasterSlave se chargera de faire la synchronisation entre les ordres des noeuds BTMaster et BTSlave.
