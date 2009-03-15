@@ -5,7 +5,6 @@ with LightSensor do
  value0 := [value = 0];
  value1 := [value = 1];
  value2 := [value = 2];
- value3 := [value = 3];
  readValue := label readValue;
  show(all) > '$NODENAME.prop';
  test(dead,0) > '$NODENAME.res';

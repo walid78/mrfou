@@ -7,6 +7,6 @@ node UltraSonicSensor
     signal < 4 |- inc -> signal := signal + 1;
     signal > 0 |- dec -> signal := signal - 1;
   init
-    signal := 0;
+    signal := 2;
 edon
 
