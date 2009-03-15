@@ -1,0 +1,22 @@
+with Controller do
+ quot() >  '$NODENAME.dot';
+ dead := any_s - src(any_t - self_epsilon);
+ notCFC := any_t - loop(any_t,any_t);
+ orderM2 := [order = -2];
+ orderM1 := [order = -1];
+ order0 := [order = 0];
+ order1 := [order = 1];
+ order2 := [order = 2];
+ slaveTooClose := label slaveTooClose;
+ slaveClose := label slaveClose;
+ slaveBehind := label slaveBehind;
+ slaveFar := label slaveFar;
+ slaveTooFar := label slaveTooFar;
+
+ ERToo := tgt(slaveTooFar) | tgt(slaveTooClose);
+
+ show(all) > '$NODENAME.prop';
+ test(dead,0) > '$NODENAME.res';
+ test(notCFC,0) >> '$NODENAME.res';
+ test(ERToo,0) >> '$NODENAME.res';
+done
