@@ -7,24 +7,22 @@ node Controller
   state
     order : [-2,2] : public;
   event
-    slaveTooFar, slaveTooClose, slaveBehind, slaveWayTooFar, slaveWayTooClose;
+    slaveTooClose, slaveClose, slaveBehind, slaveFar, slaveTooFar;
   trans
-    sonic.value = 0 |- slaveWayTooClose; -> order= -2;
-    sonic.value = 1 |- slaveTooClose; -> order= -1;
-    sonic.value = 2 |- slaveBehind; -> order= 0;
-    sonic.value = 3 |- slaveTooFar; -> order= 1;
-    sonic.value = 4 |- slaveWayTooFar; -> order= 2;
+    sonic.signal = 0 |- slaveTooClose -> order := -2;
+    sonic.signal = 1 |- slaveClose -> order := -1;
+    sonic.signal = 2 |- slaveBehind -> order := 0;
+    sonic.signal = 3 |- slaveFar -> order := 1;
+    sonic.signal = 4 |- slaveTooFar -> order := 2;
   sync
-    <slaveWayTooClose, move.forward, BT.orderStop, sonic.inc>;
-    <slaveTooClose, move.forward, BT.orderStop, sonic.inc>;
+    <slaveClose, move.forward, BT.orderStop, sonic.inc>;
     <slaveBehind, move.forward, BT.orderFw>;
-    <slaveTooFar, move.stop, BT.orderFw, sonic.dec>;
-    <slaveWayTooFar, move.stop, BT.orderFw, sonic.dec>;
+    <slaveFar, move.stop, BT.orderFw, sonic.dec>;
   init
     order := 0;
 edon
 
-
+/*
 node ControllerEvolved
   sub
     light: LightSensor;
@@ -43,9 +41,9 @@ node ControllerEvolved
   
     slaveTooFar, slaveTooClose, slaveBehind, wallFront, wallLeftFront, wallRightLeftFront;
   trans
-    sonic.value = 0 |- slaveTooClose; -> order= -1;
-    sonic.value = 1 |- slaveBehind; -> order= 0;
-    sonic.value = 0 |- slaveTooFar; -> order= 1;
+    sonic.signal = 0 |- slaveTooClose; -> order= -1;
+    sonic.signal = 1 |- slaveBehind; -> order= 0;
+    sonic.signal = 0 |- slaveTooFar; -> order= 1;
     LightSensor.value = 
   
   sync
@@ -56,3 +54,4 @@ node ControllerEvolved
     order := 0;
     squareChanged := false;
 edon
+*/
