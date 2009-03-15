@@ -1,0 +1,13 @@
+node BTMasterSlave
+  sub
+    Master : BTMaster;
+    Slave : BTSlave;
+  event
+    orderFw, orderBack, orderLeft, orderRight, orderStop;
+  sync
+    <orderBack, Master.orderBack, Slave.obeyBack>;
+    <orderStop, Master.orderStop, Slave.obeyStop>;
+    <orderLeft, Master.orderLeft, Slave.obeyLeft>;
+    <orderFw, Master.orderFw, Slave.obeyFw>;
+    <orderRight, Master.orderRight, Slave.obeyRight>;
+edon
