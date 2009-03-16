@@ -1,12 +1,13 @@
 node UltraSonicSensor
+  flow
+    d : bool;
+  /* Inutile ?? */
   state
-    signal : [0,4] : public;
+    behind : bool : public;
   event
-    inc, dec;
+    readValue;
   trans
-    signal < 4 |- inc -> signal := signal + 1;
-    signal > 0 |- dec -> signal := signal - 1;
-  init
-    signal := 2;
+   not d |- readValue -> behind := false;
+   d |- readValue -> behind := true;
 edon
 
