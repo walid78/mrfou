@@ -2,13 +2,9 @@ with UltraSonicSensor do
  quot() >  '$NODENAME.dot';
  dead := any_s - src(any_t - self_epsilon);
  notCFC := any_t - loop(any_t,any_t);
- signal0 := [signal = 0];
- signal1 := [signal = 1];
- signal2 := [signal = 2];
- signal3 := [signal = 3];
- signal4 := [signal = 4];
- inc := label inc;
- dec := label dec;
+ behind := [behind];
+ notBehind := [not behind];
+ readValue := label readValue;
  show(all) > '$NODENAME.prop';
  test(dead,0) > '$NODENAME.res';
  test(notCFC,0) >> '$NODENAME.res';
