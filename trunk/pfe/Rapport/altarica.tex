@@ -1,12 +1,10 @@
  \section{Noeuds AltaRica}
  
   \subsection{LightSensor}
-  
-   \subsubsection{Description}
-   Ce noeud correspond au capteur de lumière, et possede une variable
-   d'état nommée value qui peux prendre trois valeurs différentes,
-   correspondants au trois couleurs de case que nous allons utiliser:
-   Noir, gris et blanc. 
+
+  \subsubsection{Description}
+
+  Ce noeud correspond au capteur de lumière, et possède une variable d'état nommée $color$ qui   peux prendre trois valeurs différentes, correspondants au trois couleurs de case que nous allons utiliser: Noir, gris et blanc. Cette variable d'état n'est présente que pour pouvoir modéliser des événements, qui seront déclenché par les différentes valeurs de la variable de flux $value$. L'action du senseur de lumière est donc véritablement représentée par cette variable de flux, puisque les valeurs lues par le senseur sont "incontrôlables".
 
    \subsubsection{Le code Altarica}
    \verbatiminput{../src/altarica/alt/LightSensor.alt}
@@ -41,15 +39,12 @@
    
   \subsection{Moving}
 
+   \subsubsection{Description}
+  Moving est la pour faire la synchronisation entre les deux moteurs munis de roues d'un robot. Il y a cinq ordres possible: Avancer, s'arrêter, reculer, à droite et à gauche. Il faut savoir que les rotations à droite et à gauche du robot sont tout le temps de 90 degrés.
+
    \subsubsection{Le code Altarica}
    \verbatiminput{../src/altarica/alt/Moving.alt}
    
-   Moving est la pour faire la synchronisation entre les deux moteurs
-   munis de roues d'un robot. Il y a cinq ordres possible: Avancer,
-   s'arreter, reculer, à droite et à gauche. Il faut savoir que les
-   rotations à droite et à gauche du robot sont tout le temps de 90
-   degrés.
-  
    \subsubsection{La vérification acheck}
    \verbatiminput{../src/altarica/acheck/Moving.acheck}
  
@@ -66,11 +61,14 @@
    chargera de faire la synchronisation entre les ordres des noeuds
    BTMaster et BTSlave.
 
-   \subsubsection{Le code Altarica}
-   \verbatiminput{../src/altarica/alt/BTMaster.alt}
+
+  \subsubsection{Le code Altarica}
+  \verbatiminput{../src/altarica/alt/BTMaster.alt}
+
+  \verbatiminput{../src/altarica/alt/BTSlave.alt}
+
+  \verbatiminput{../src/altarica/alt/MasterSlave.alt}
+
+\subsubsection{La vérification acheck}
    
-   \verbatiminput{../src/altarica/alt/BTSlave.alt}
-   
-   \verbatiminput{../src/altarica/alt/MasterSlave.alt}
-   
-   
+  
