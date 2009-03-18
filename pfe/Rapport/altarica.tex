@@ -1,52 +1,76 @@
  \section{Noeuds AltaRica}
  
   \subsection{LightSensor}
-
-  \subsubsection{Le code Altarica}
-  \verbatiminput{../src/altarica/alt/LightSensor.alt}
-
-
-  Ce noeud correspond au capteur de lumière, et possede une variable d'état nommée value qui peux prendre trois valeurs différentes, correspondants au trois couleurs de case que nous allons utiliser: Noir, gris et blanc.
   
-  \subsubsection{La vérification acheck}
+   \subsubsection{Description}
+   Ce noeud correspond au capteur de lumière, et possede une variable
+   d'état nommée value qui peux prendre trois valeurs différentes,
+   correspondants au trois couleurs de case que nous allons utiliser:
+   Noir, gris et blanc. 
 
+   \subsubsection{Le code Altarica}
+   \verbatiminput{../src/altarica/alt/LightSensor.alt}
+   
+   \subsubsection{La vérification acheck}
+   \verbatiminput{../src/altarica/acheck/LightSensor.acheck}
+   
   \subsection{UltraSonicSensor}
-  \subsubsection{Le code Altarica}
-  \verbatiminput{../src/altarica/alt/UltraSonicSensor.alt}
   
+   \subsubsection{Description}
+   De la même maniere que le noeud LightSensor, UltraSonicSensor
+   comporte une variable "signal", avec cinq valeurs possibles, qui
+   servira au robot maitre à savoir a quelle distance se trouve le robot
+   esclave.
 
-
-  De la même maniere que le noeud LightSensor, UltraSonicSensor comporte une variable "signal", avec cinq valeurs possibles, qui servira au robot maitre à savoir a quelle distance se trouve le robot esclave.
-
-  \subsubsection{La vérification acheck}
-  
-
+   \subsubsection{Le code Altarica}
+   \verbatiminput{../src/altarica/alt/UltraSonicSensor.alt}
+   
+   \subsubsection{La vérification acheck}
+   
   \subsection{Motor}
-  \subsubsection{Le code Altarica}
-  \verbatiminput{../src/altarica/alt/Motor.alt}
+  
+   \subsubsection{Description}
+   Les moteurs sont modélisés de façon à avoir seulement trois vitesses
+   possible: Avancer, stopper, reculer.
 
-
-
-  Les moteurs sont modélisés de façon à avoir seulement trois vitesses possible: Avancer, stopper, reculer.
-
-  \subsubsection{La vérification acheck}
-
+   \subsubsection{Le code Altarica}
+   \verbatiminput{../src/altarica/alt/Motor.alt}
+   
+   \subsubsection{La vérification acheck}
+   \verbatiminput{../src/altarica/acheck/Motor.acheck}
+   
   \subsection{Moving}
-  \subsubsection{Le code Altarica}
-  \verbatiminput{../src/altarica/alt/Moving.alt}
 
-  Moving est la pour faire la synchronisation entre les deux moteurs munis de roues d'un robot. Il y a cinq ordres possible: Avancer, s'arreter, reculer, à droite et à gauche. Il faut savoir que les rotations à droite et à gauche du robot sont tout le temps de 90 degrés.
-
-  \subsubsection{La vérification acheck}
-
+   \subsubsection{Le code Altarica}
+   \verbatiminput{../src/altarica/alt/Moving.alt}
+   
+   Moving est la pour faire la synchronisation entre les deux moteurs
+   munis de roues d'un robot. Il y a cinq ordres possible: Avancer,
+   s'arreter, reculer, à droite et à gauche. Il faut savoir que les
+   rotations à droite et à gauche du robot sont tout le temps de 90
+   degrés.
+  
+   \subsubsection{La vérification acheck}
+   \verbatiminput{../src/altarica/acheck/Moving.acheck}
  
   \subsection{BTMaster, BTSlave et MasterSlave}
+  
+   \subsubsection{Description}
+   La communication bluetooth entre nos deux robots est de type
+   maitre/esclave, le maitre envoie simplement des ordres à executer à
+   l'esclave. Le noeud BTMaster qui sera pour le robot maitre comporte
+   donc simplement les cinq même ordres que le noeud moving. BTSlave
+   sera lui pour le robot esclave, et inclus un sous noeud de type
+   Moving, afin de pouvoir synchroniser les cinq ordres possibles à un
+   agissement concret de ce noeud Moving. Enfin, le noeud MasterSlave se
+   chargera de faire la synchronisation entre les ordres des noeuds
+   BTMaster et BTSlave.
 
-  \subsubsection{Le code Altarica}
-  \verbatiminput{../src/altarica/alt/BTMaster.alt}
-
-  \verbatiminput{../src/altarica/alt/BTSlave.alt}
-
-  \verbatiminput{../src/altarica/alt/MasterSlave.alt}
-
-  La communication bluetooth entre nos deux robots est de type maitre/esclave, le maitre envoie simplement des ordres à executer à l'esclave. Le noeud BTMaster qui sera pour le robot maitre comporte donc simplement les cinq même ordres que le noeud moving. BTSlave sera lui pour le robot esclave, et inclus un sous noeud de type Moving, afin de pouvoir synchroniser les cinq ordres possibles à un agissement concret de ce noeud Moving. Enfin, le noeud MasterSlave se chargera de faire la synchronisation entre les ordres des noeuds BTMaster et BTSlave.
+   \subsubsection{Le code Altarica}
+   \verbatiminput{../src/altarica/alt/BTMaster.alt}
+   
+   \verbatiminput{../src/altarica/alt/BTSlave.alt}
+   
+   \verbatiminput{../src/altarica/alt/MasterSlave.alt}
+   
+   
