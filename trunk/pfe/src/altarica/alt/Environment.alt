@@ -1,0 +1,26 @@
+node Environment
+  sub
+   
+  flow
+  //0: noir, 1: gris, 2: blanc;
+    square : [0,2];
+  
+  state
+    //1: gris, 2: blanc;
+    colorPath : [1,2] : public;
+  event
+    newSquare, blackSquare;
+  trans
+    //noir
+    colorPath = 2 |- newSquare -> colorPath := 1;
+    
+    //gris 
+    value = 1 |- readValue -> color := 1;
+    
+    //blanc
+    value = 2 |- readValue -> color := 2;
+	
+  init
+    colorPath := 2;
+   
+edon

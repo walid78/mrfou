@@ -1,3 +1,4 @@
+/*
 node Controller
   sub
     light: LightSensor;
@@ -21,8 +22,9 @@ node Controller
   init
     order := 0;
 edon
+*/
 
-/*
+
 node ControllerEvolved
   sub
     light: LightSensor;
@@ -36,11 +38,15 @@ node ControllerEvolved
     
   event
   //slaveTooFar, slaveTooClose, slaveBehind, correspondent
-  // à la gestion du fait que le robot esclave doit suivre
-  // le robot maitre dans une ligne droite.
+  //à la gestion du fait que le robot esclave doit suivre
+  //le robot maitre dans une ligne droite.
   
-    slaveTooFar, slaveTooClose, slaveBehind, wallFront, wallLeftFront, wallRightLeftFront;
+    avancer, slaveTooFar, slaveTooClose, slaveBehind, wallFront, wallLeftFront, wallRightLeftFront;
+      
   trans
+  
+    
+  
     sonic.signal = 0 |- slaveTooClose; -> order= -1;
     sonic.signal = 1 |- slaveBehind; -> order= 0;
     sonic.signal = 0 |- slaveTooFar; -> order= 1;
@@ -54,4 +60,3 @@ node ControllerEvolved
     order := 0;
     squareChanged := false;
 edon
-*/
