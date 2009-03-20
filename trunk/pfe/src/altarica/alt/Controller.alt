@@ -35,28 +35,45 @@ node ControllerEvolved
     order : [-1,6] : public;
     
     squareChanged: bool;
+    straightLine: bool;
     
   event
   //slaveTooFar, slaveTooClose, slaveBehind, correspondent
   //à la gestion du fait que le robot esclave doit suivre
   //le robot maitre dans une ligne droite.
   
-    avancer, slaveTooFar, slaveTooClose, slaveBehind, wallFront, wallLeftFront, wallRightLeftFront;
+    GoOn, waitingSlaveOneSquare; 
+    
+    //slaveTooFar, slaveTooClose, slaveBehind, wallFront, wallLeftFront, wallRightLeftFront;
       
   trans
   
-    
+    /* Le maitre est sur une case blanche, l'esclave est derriere lui. On dit à l'esclave de stopper via le bluetooth, le maitre avance, passe sur une case grise, on passe le booléen qui dit si on viens de changer de case à vrai, et le booléen qui indique que nous sommes en ligne droite à vrai. */
+    LightSensor.value = 2 & sonic.d |- GoOn -> move.forward, LightSensor.value := 1, squareChanged := true, straightLine := true;
   
-    sonic.signal = 0 |- slaveTooClose; -> order= -1;
-    sonic.signal = 1 |- slaveBehind; -> order= 0;
-    sonic.signal = 0 |- slaveTooFar; -> order= 1;
+  
+    /* Le maitre est sur une case grise, l'esclave est derriere lui. On dit à l'esclave de stopper via le bluetooth, le maitre avance, passe sur une case blanche, on passe le booléen qui dit si on viens de changer de case à vrai, et le booléen qui indique que nous sommes en ligne droite à vrai. */
+    LightSensor.value = 1 & sonic.d  |- GoOn -> BT.orderStop, LightSensor.value := 2, move.forward, squareChanged := true, straightLine := true;
+  
+    /* Cet Evenement correspond au maitre qui s'arrete aprés avoir changé de case pour attendre l'esclave. Le maitre s'arrete, on ordonne à l'esclave d'avancer, et on indique via le booléen que l'on a plus changé de case. */
+    squareChanged = true & straightLine = true |- waitingSlaveOneSquare -> move.stop, BT.orderFw, squareChanged := false;
+  
+       
+  
+  
+    /*
+    sonic.signal = 0 |- slaveTooClose -> order= -1;
+    sonic.signal = 1 |- slaveBehind -> order= 0;
+    sonic.signal = 0 |- slaveTooFar -> order= 1;
     LightSensor.value = 
-  
+    */
+    
   sync
-    <slaveTooClose, BT.orderStop>;
-    <slaveBehind, move.forward, BT.orderFw>;
-    <slaveBehind, move.forward>;
+    <GoOn, BT.orderStop>;
+
   init
     order := 0;
     squareChanged := false;
+    straightLine := true;
+    LightSensor.value = 2;
 edon

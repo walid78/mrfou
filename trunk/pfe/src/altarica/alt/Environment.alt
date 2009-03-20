@@ -1,25 +1,29 @@
 node Environment
-  sub
-   
+
   flow
   //0: noir, 1: gris, 2: blanc;
     square : [0,2];
-  
+    
   state
     //1: gris, 2: blanc;
-    colorPath : [1,2] : public;
+    colorPath : [0,2] : public;
+    
   event
     newSquare, blackSquare;
+    
   trans
-    //noir
+    //blanc vers gris
     colorPath = 2 |- newSquare -> colorPath := 1;
     
-    //gris 
-    value = 1 |- readValue -> color := 1;
+    //gris  vers blanc
+    colorPath = 1 |- newSquare -> colorPath := 2;
     
-    //blanc
-    value = 2 |- readValue -> color := 2;
-	
+    //Une case noire devant
+    true |- blackSquare -> colorPath := 0;
+    
+  assert
+    square = colorPath;
+    
   init
     colorPath := 2;
    
