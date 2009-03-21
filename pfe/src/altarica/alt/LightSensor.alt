@@ -1,7 +1,7 @@
 node LightSensor
   flow
     value : [0,2];
-  /* Inutile ? */
+  /* Inutile ? 
   state
     color : [0,2] : public;
   event
@@ -15,4 +15,5 @@ node LightSensor
     
     //blanc
     value = 2 |- readValue -> color := 2;
+*/
 edon

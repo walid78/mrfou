@@ -1,7 +1,7 @@
 node UltraSonicSensor
   flow
     d : bool;
-  /* Inutile ?? */
+  /* Inutile ?? 
   state
     behind : bool : public;
   event
@@ -9,5 +9,8 @@ node UltraSonicSensor
   trans
    not d |- readValue -> behind := false;
    d |- readValue -> behind := true;
+  init
+   behind := true;
+  */
 edon
 

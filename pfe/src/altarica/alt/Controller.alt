@@ -1,18 +1,11 @@
-node ControllerEvolved
+node Controller
   sub
     light: LightSensor;
     sonic: UltraSonicSensor;
     move: Moving;
     BT: BTMaster;
   state
-/*
-    order : [-1,6] : public;
-    changedSquare: bool;
-    straightLine: bool;
-    oneWall: bool;
-    lastSquareWasWhite: bool;
-    lastSquareWasGrey: bool;    
-*/
+
     //Dernière case vue
     /*
      * 0 : noire
@@ -33,10 +26,13 @@ node ControllerEvolved
     //Le maître a-t-il tourné à droite ? (si non à gauche)
     turned_to_right : bool;
 
+    //Le maître s'est-il décalé pour laisser la place à l'esclave ?
+    slave_has_place : bool;
+
   event
 
-    go, waitingSlaveOneSquare, wallFront, goOneWall1, goOneWall2, goOneWall3, 
-    wallFrontLeft; 
+    go, waitingSlaveOneSquare, wallFront, foundLeft, turnRight, foundRight,
+    makePlace, slaveTurnLeft, slaveTurnRight; 
     
     //slaveTooFar, slaveTooClose, slaveBehind, wallFront, wallLeftFront, 
     //wallRightLeftFront;
@@ -65,7 +61,7 @@ node ControllerEvolved
      * vient de changer de case à vrai, et le booléen qui indique que nous sommes
      * en ligne droite à vrai. */
 
-    LightSensor.value = 2 & 
+    light.value = 2 & 
     sonic.d &
     last_val = 1 &
     not obstacle_mode	     |- go -> last_val := 2, 
@@ -78,7 +74,7 @@ node ControllerEvolved
      * on vient de changer de case à vrai, et le booléen qui indique que nous
      * sommes en ligne droite à vrai. */
 
-    LightSensor.value = 1 & 
+    light.value = 1 & 
     sonic.d & last_val = 2 &
     not obstacle_mode	     |- go -> last_val := 1, 
     				      changed_square := true;
@@ -100,43 +96,110 @@ node ControllerEvolved
      * en mode obstacle, passe changed_square à false, dit à l'esclave de
      * s'arrêter et tourne à gauche. */
 
-    LightSensor.value = 0 &
+    light.value = 0 &
     sonic.d & 
     (last_val = 1 | 
      last_val = 2) & 
     not obstacle_mode	    |- wallFront -> obstacle_mode := true, 
     			       		    changed_square := false;
 
-    /* À cette étape là, le maître s'apprète à changer de case après avoir été
-     * en mode obstacle. 
+    /* À cette étape là, le maître trouve une case de sortie à gauche après
+     * avoir été en mode obstacle. 
+     */
+
+    // Le maître était sur une case blanche
     obstacle_mode &
-    LightSensor.value != last_value |- foundLeft -> found_way := true,
+    light.value = 2 &
+    last_val = 1 &
+    not found_way &
+    not turned_to_right     |- foundLeft -> found_way := true,
+    			   	     	    changed_square := true,
+					    last_val := 2;
+
+    // Le maître était sur une case grise
+    obstacle_mode &
+    light.value = 1 &
+    last_val = 2 &
+    not found_way &
+    not turned_to_right     |- foundLeft -> found_way := true,
+    			   	     	    changed_square := true,
+					    last_val := 1;
 
 
-    /* Voici la premiere etape de la manoeuvre du maitre et de l'esclave à la
-     * suite de la decouverte d'un mur : Le maitre ayant deja tourné à gauche,
-     * l'esclave avance */
-    LightSensor.value = 2 & not sonic.d & lastSquareWasGrey & oneWall |- goOneWall1 -> changed_square := true;
-    
-    LightSensor.value = 1 & not sonic.d & lastSquareWasWhite & oneWall |- goOneWall1 -> changed_square := true;
-  
-    /* Deuxieme etape de la manoeuvre du maitre et de l'esclave : */
-    LightSensor.value = 2 & sonic.d & lastSquareWasGrey & oneWall |- goOneWall2 -> 
-    
-    LightSensor.value = 1 & sonic.d & lastSquareWasWhite & oneWall |- goOneWall2 -> 
-  
+    /* Si le maître retombe sur un obstacle à gauche, alors il sait que la sortie
+     * est plutot à droite. 
+     */
+
+    obstacle_mode &
+    light.value = 0 &
+    not turned_to_right	    |- turnRight -> turned_to_right := true;
+
+    /* Le maître vient de tourner à droite et est prêt à prendre la sortie. 
+     */
+
+    obstacle_mode &
+    turned_to_right &
+    not found_way &
+    light.value != last_val |- foundRight -> found_way := true,
+    		      	 	    		     changed_square := true,
+						     last_val := light.value;
+
+
+    /* Maintenant le maître a avancé d'une case pour laisser la place à 
+     * l'esclave, ce dernier peut donc avancer.
+     */
+
+     obstacle_mode &
+     found_way &
+     not slave_has_place &
+     not sonic.d &
+     light.value != last_val |- makePlace -> slave_has_place := true;
+     
+
+    /* Voici la dernière étape du mode obstacle. Dès que le maître détecte
+     * l'esclave dans son champ, il le fait se tourner dans le même sens que lui
+     * et sort du mode obstacle.
+     */
+
+    //Si le maître a tourné à gauche
+    obstacle_mode &
+    found_way &
+    sonic.d &
+    slave_has_place &
+    not turned_to_right |- slaveTurnLeft -> obstacle_mode := false,
+    			   		    found_way := false,
+					    turned_to_right := false,
+					    slave_has_place := false;
+
+
+    //Si le maître a tourné à droite
+    obstacle_mode &
+    found_way &
+    sonic.d &
+    slave_has_place &
+    turned_to_right |- slaveTurnRight -> obstacle_mode := false,
+    			   		 found_way := false,
+					 turned_to_right := false,
+					 slave_has_place := false;
 
 
   sync
     <go, BT.orderStop, move.forward>;
     <waitingSlaveOneSquare, BT.orderFw, move.stop>;
     <wallFront, BT.orderStop, move.left>;
-    <goOneWall1, BT.orderFw, move.left>;    
+    <foundLeft, BT.orderStop, move.forward>;
+    <turnRight, BT.orderStop, move.right>; // Right or halfTurn ?
+    <foundRight, BT.orderStop, move.forward>;
+    <makePlace, BT.orderFw, move.stop>;
+    <slaveTurnLeft, BT.orderLeft, move.stop>;
+    <slaveTurnRight, BT.orderRight, move.stop>;
 
   init
-    order := 0;
+//    light.value := 2;
+    last_val := 1;
     changed_square := false;
     obstacle_mode := false;
-    LightSensor.value = 2;
-    last_val := 1;
+    found_way := false;
+    turned_to_right := false;
+    slave_has_place := false;
 edon
