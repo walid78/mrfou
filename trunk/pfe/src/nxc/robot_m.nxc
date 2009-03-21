@@ -1,0 +1,168 @@
+#define MAX_BLANC 100
+#define MIN_BLANC 46
+
+#define MAX_GRIS 45
+#define MIN_GRIS 36
+
+#define MAX_NOIR 35
+#define MIN_NOIR 0
+
+#define NOIR 2
+#define GRIS 1
+#define BLANC 0
+
+
+task main()
+{
+
+int savedVal = 0;
+int currentVal = 0 ;
+int realVal = 0;
+bool changedSquare = false ;
+bool obstacle_mode = false ;
+//Modif---------------------
+bool op_effec = false;
+bool turn_to = false;
+
+int currentSquare = 0;
+
+SetSensorLight(IN_3);
+SetSensorMode(IN_3,IN_MODE_PCTFULLSCALE);
+ResetSensor(IN_3);
+
+SetSensorLowspeed(IN_4);
+  
+OnFwd(OUT_A,39);
+OnFwd(OUT_C,41);
+  while (true)
+  {
+  if(currentVal == 0)
+   TextOut(10,LCD_LINE2,"blanc");
+     else {if(currentVal == 1)
+   TextOut(10,LCD_LINE2,"gris");
+     else {if(currentVal == 2)
+   TextOut(10,LCD_LINE2,"noir");
+     else {   TextOut(10,LCD_LINE2,"error");}}}
+
+   
+  while(currentVal == savedVal){
+	savedVal = currentVal ;
+	realVal = Sensor(S3);
+  if((realVal>=MIN_GRIS) && (realVal<=MAX_GRIS))
+    currentVal = GRIS;
+  else{
+    if((realVal>=MIN_BLANC) && (realVal<=MAX_BLANC))
+     currentVal = BLANC;
+     else if((realVal>=MIN_NOIR) && (realVal<=MAX_NOIR))
+       currentVal = NOIR;
+  }
+  }
+  
+   Wait(100);
+	//resolution bug passage de blanc a noir
+  OnFwd(OUT_AC,0);
+  realVal = Sensor(S3);
+  if((realVal>=MIN_GRIS) && (realVal<=MAX_GRIS))
+    currentVal = GRIS;
+  else{
+    if((realVal>=MIN_BLANC) && (realVal<=MAX_BLANC))
+     currentVal = BLANC;
+     else if((realVal>=MIN_NOIR) && (realVal<=MAX_NOIR))
+       currentVal = NOIR;}
+  
+  OnFwd(OUT_A,39);
+ OnFwd(OUT_C,41);
+
+
+if((currentVal == GRIS)){
+	currentSquare = GRIS;
+	if(savedVal == BLANC)
+    changedSquare = TRUE;
+}else{
+if((currentVal == BLANC)){
+	currentSquare = BLANC;
+	if(savedVal == GRIS)
+		changedSquare = TRUE;
+
+}else
+     changedSquare = false;}
+
+
+if(obstacle_mode == TRUE)
+{
+	if(changedSquare == TRUE){
+		obstacle_mode = FALSE;
+		//Modif---------------------
+		op_effec = TRUE;
+
+		}
+}
+
+if((turn_to == TRUE) && (obstacle_mode == FALSE))
+   op_effec = TRUE;
+
+
+ if(op_effec == TRUE){
+
+
+ if(turn_to == TRUE)
+  {
+ OnFwd(OUT_AC,30);
+   Wait(3000);
+ OnFwd(OUT_AC,0);      }
+
+ RemoteStartProgram(1,"forward.rxe");
+ while(SensorUS(S4) > 10);
+ RemoteStopProgram(1);
+ 
+ Wait(2000);
+ 
+ if(turn_to == FALSE){
+
+  RemoteStartProgram(1,"turnleft.rxe");
+  Wait(5000);
+  RemoteStopProgram(1);
+  }
+  else{
+     RemoteStartProgram(1,"turnright.rxe");
+     Wait(5000);
+     RemoteStopProgram(1);
+     }
+  op_effec = FALSE;
+  OnFwd(OUT_AC,30);
+  }
+
+if((changedSquare == true) && (obstacle_mode == false))
+{
+ OnFwd(OUT_AC,0);
+ RemoteStartProgram(1,"forward.rxe");
+ while(SensorUS(S4) > 10);
+ RemoteStopProgram(1);
+ OnFwd(OUT_AC,30);
+}
+
+if((currentVal == NOIR)){
+	if(obstacle_mode == FALSE){
+        TextOut(10,LCD_LINE4,"NOIR 1");
+        obstacle_mode = TRUE;
+				OnFwd(OUT_AC,0);
+        RotateMotorEx(OUT_AC, 30, 220, -100, true, true);
+				}
+			else{
+        turn_to = TRUE;
+        TextOut(10,LCD_LINE5,"NOIR 2");
+        OnFwd(OUT_AC,0);
+        RotateMotorEx(OUT_AC, 30, 400, 100, true, true);
+        obstacle_mode = FALSE;
+        //Modif---------------------
+
+
+        }
+}
+
+OnFwd(OUT_A,39);
+OnFwd(OUT_C,41);
+savedVal = currentVal;
+}
+
+}
