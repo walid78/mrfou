@@ -1,0 +1,5 @@
+task main (){
+while(true){
+ OnFwd(OUT_AC,30);
+ }
+}
