@@ -1,30 +1,3 @@
-/*
-node Controller
-  sub
-    light: LightSensor;
-    sonic: UltraSonicSensor;
-    move: Moving;
-    BT: BTMasterSlave;
-  state
-    order : [-2,2] : public;
-  event
-    slaveTooClose, slaveClose, slaveBehind, slaveFar, slaveTooFar;
-  trans
-    sonic.signal = 0 |- slaveTooClose -> order := -2;
-    sonic.signal = 1 |- slaveClose -> order := -1;
-    sonic.signal = 2 |- slaveBehind -> order := 0;
-    sonic.signal = 3 |- slaveFar -> order := 1;
-    sonic.signal = 4 |- slaveTooFar -> order := 2;
-  sync
-    <slaveClose, move.forward, BT.orderStop, sonic.inc>;
-    <slaveBehind, move.forward, BT.orderFw>;
-    <slaveFar, move.stop, BT.orderFw, sonic.dec>;
-  init
-    order := 0;
-edon
-*/
-
-
 node ControllerEvolved
   sub
     light: LightSensor;
@@ -32,75 +5,138 @@ node ControllerEvolved
     move: Moving;
     BT: BTMaster;
   state
+/*
     order : [-1,6] : public;
-    
-    squareChanged: bool;
+    changedSquare: bool;
     straightLine: bool;
     oneWall: bool;
     lastSquareWasWhite: bool;
     lastSquareWasGrey: bool;    
+*/
+    //Dernière case vue
+    /*
+     * 0 : noire
+     * 1 : grise
+     * 2 : blanche
+     */
+    last_val : [0,2];
+
+    //Le maître a-t-il changé de case ?
+    changed_square: bool;
+
+    //Le maître vient-il de rencontrer un obstacle ?
+    obstacle_mode : bool;
+
+    //Le robot maître a-t-il trouvé le bon chemin à chosir après un obstacle ?
+    found_way : bool;
+
+    //Le maître a-t-il tourné à droite ? (si non à gauche)
+    turned_to_right : bool;
 
   event
 
-    go, waitingSlaveOneSquare, wallFront, goOneWall1, goOneWall2, goOneWall3, wallFrontLeft; 
+    go, waitingSlaveOneSquare, wallFront, goOneWall1, goOneWall2, goOneWall3, 
+    wallFrontLeft; 
     
-    //slaveTooFar, slaveTooClose, slaveBehind, wallFront, wallLeftFront, wallRightLeftFront;
+    //slaveTooFar, slaveTooClose, slaveBehind, wallFront, wallLeftFront, 
+    //wallRightLeftFront;
       
   trans
 
-    /*Procédure utilisée dans le code pour avancer:
-      
-      Le maitre avance d'une case, il s'arrete, attends l'esclave qui avance, lorsque l'ultrasonic le capte, l'esclave s'arrete, le maitre avance d'une case et ainsi de suite.
+    /* Procédure utilisée dans le code pour avancer:
+     *
+     * Le maitre avance d'une case, il s'arrete, attend l'esclave qui avance, 
+     * lorsque l'ultrasonic le capte, l'esclave s'arrete, le maitre avance d'une
+     * case et ainsi de suite.
+     *
+     * Procédure utilisée dans le code pour tourner à gauche après avoir 
+     * rencontré un mur, et pas d'obstacle à gauche:
+     *
+     * Le maitre avance d'une case, et detecte une case noire. Il s'arrete et 
+     * l'esclave s'arrete aussi. Le maître tourne de 90° à gauche et avance d'une
+     * case, s'arrete, et attend. Il donne l'ordre à l'esclave d'avancer jusqu'à
+     * le sentir derriere, lui ordonne de tourner à gauche, et la procédure  
+     * ligne droite recommence.
+     */
+  
+    /* Le maitre est sur une case blanche, l'esclave est derriere lui. On dit à
+     * l'esclave de stopper via le bluetooth (dans les synchronisations), le 
+     * maitre avance, passe sur une case grise, on passe le booléen qui dit si on
+     * vient de changer de case à vrai, et le booléen qui indique que nous sommes
+     * en ligne droite à vrai. */
+
+    LightSensor.value = 2 & 
+    sonic.d &
+    last_val = 1 &
+    not obstacle_mode	     |- go -> last_val := 2, 
+    			     	      changed_square := true;
+  
+  
+    /* Le maitre est sur une case grise, l'esclave est derriere lui. On dit à
+     * l'esclave de stopper via le bluetooth (dans les synchronisations), le
+     * maitre avance, passe sur une case blanche, on passe le booléen qui dit si
+     * on vient de changer de case à vrai, et le booléen qui indique que nous
+     * sommes en ligne droite à vrai. */
+
+    LightSensor.value = 1 & 
+    sonic.d & last_val = 2 &
+    not obstacle_mode	     |- go -> last_val := 1, 
+    				      changed_square := true;
+
+  
+    /* Cet événement correspond au maitre qui s'arrete après avoir changé de
+     * case pour attendre l'esclave. Le maitre s'arrete, ordonne à l'esclave
+     * d'avancer, et on indique via le booléen que l'on a entierement fait le
+     * changement de case. */
+
+    changed_square & 
+    not obstacle_mode & 
+    not sonic.d	        |- waitingSlaveOneSquare -> changed_square := false;
+  
+
+    /* Voici le premier evenement qui signale la présence d'un obstacle, en 
+     * l'occurence un seul mur en face du robot, alors qu'il n'avait pas déjà
+     * rencontré un obstacle au moment précédent : le robot maître passe alors
+     * en mode obstacle, passe changed_square à false, dit à l'esclave de
+     * s'arrêter et tourne à gauche. */
+
+    LightSensor.value = 0 &
+    sonic.d & 
+    (last_val = 1 | 
+     last_val = 2) & 
+    not obstacle_mode	    |- wallFront -> obstacle_mode := true, 
+    			       		    changed_square := false;
+
+    /* À cette étape là, le maître s'apprète à changer de case après avoir été
+     * en mode obstacle. 
+    obstacle_mode &
+    LightSensor.value != last_value |- foundLeft -> found_way := true,
 
 
-     Procédure utilisée dans le code pour tourner à gauche après avoir rencontré un mur, et pas d'obstacle à gauche:
-
-     Le maitre avance d'une case, et detecte une case noire. Il s'arrete, et tourne de 90° à gauche. L'esclave s'arrete aussi. Le maitre avance d'une case, s'arrete, et attends. Il donne l'ordre à l'esclave d'avancer jusqu'a le sentir derriere, lui ordonne de tourner à gauche, et la procédure  ligne droite recommence.
-        
-   */
-  
-    /* Le maitre est sur une case blanche, l'esclave est derriere lui. On dit à l'esclave de stopper via le bluetooth (dans les synchronisations), le maitre avance, passe sur une case grise, on passe le booléen qui dit si on viens de changer de case à vrai, et le booléen qui indique que nous sommes en ligne droite à vrai. */
-    LightSensor.value = 2 & sonic.d & lastSquareWasGrey := true |- go -> lastSquareWasWhite := true, lastSquareWasGrey := false, move.forward, squareChanged := true, straightLine := true;
-  
-  
-    /* Le maitre est sur une case grise, l'esclave est derriere lui. On dit à l'esclave de stopper via le bluetooth (dans les synchronisations), le maitre avance, passe sur une case blanche, on passe le booléen qui dit si on viens de changer de case à vrai, et le booléen qui indique que nous sommes en ligne droite à vrai. */
-    LightSensor.value = 1 & sonic.d & lastSquareWasWhite = true |- go -> lastSquareWasGrey := true, lastSquareWasWhite := false, move.forward, squareChanged := true, straightLine := true;
-  
-    /* Cet Evenement correspond au maitre qui s'arrete aprés avoir changé de case pour attendre l'esclave. Le maitre s'arrete, ordonne à l'esclave d'avancer, et on indique via le booléen que l'on a entierement fait le changement de case. */
-    squareChanged = true & straightLine = true & not sonic.d |- waitingSlaveOneSquare -> move.stop, BT.orderFw, squareChanged := false;
-  
-
-    /* Voici le premier evenement qui signale la présence d'un obstacle, en l'occurence un seul mur en face du robot, alors qu'il était sur une case grise ou blanche. */
-    LightSensor.value = 0 & sonic.d & lastSquareWasGrey := true |- wallFront -> oneWall := true, move.stop, squareChanged := true, straightLine := false;
-  
-    LightSensor.value = 0 & sonic.d & lastSquareWasWhite := true |- wallFront -> oneWall := true, move.stop, squareChanged := true, straightLine := false;
-
-
-    /* Voici la premiere etape de la manoeuvre du maitre et de l'esclave à la suite de la decouverte d'un mur: Le maitre ayant deja tourné à gauche, l'esclave avance*/
-    LightSensor.value = 2 & not sonic.d & lastSquareWasGrey := true & oneWall |- goOneWall1 -> move.left, squareChanged := true;
+    /* Voici la premiere etape de la manoeuvre du maitre et de l'esclave à la
+     * suite de la decouverte d'un mur : Le maitre ayant deja tourné à gauche,
+     * l'esclave avance */
+    LightSensor.value = 2 & not sonic.d & lastSquareWasGrey & oneWall |- goOneWall1 -> changed_square := true;
     
-    LightSensor.value = 1 & not sonic.d & lastSquareWasWhite := true & oneWall |- goOneWall1 -> move.left, squareChanged := true;
+    LightSensor.value = 1 & not sonic.d & lastSquareWasWhite & oneWall |- goOneWall1 -> changed_square := true;
   
-    /* Deuxieme etape de la manoeuvre du maitre et de l'esclave:    */
-    LightSensor.value = 2 & sonic.d & lastSquareWasGrey := true & oneWall |- goOneWall2 -> 
+    /* Deuxieme etape de la manoeuvre du maitre et de l'esclave : */
+    LightSensor.value = 2 & sonic.d & lastSquareWasGrey & oneWall |- goOneWall2 -> 
     
-    LightSensor.value = 1 & sonic.d & lastSquareWasWhite := true & oneWall |- goOneWall2 -> 
+    LightSensor.value = 1 & sonic.d & lastSquareWasWhite & oneWall |- goOneWall2 -> 
   
 
 
   sync
-    <go, BT.orderStop>;
-    <waitingSlaveOneSquare, BT.orderFw>;
-    <wallFront, BT.orderStop>;
-    <goOneWall1, BT.orderFw>;    
+    <go, BT.orderStop, move.forward>;
+    <waitingSlaveOneSquare, BT.orderFw, move.stop>;
+    <wallFront, BT.orderStop, move.left>;
+    <goOneWall1, BT.orderFw, move.left>;    
 
   init
     order := 0;
-    squareChanged := false;
-    straightLine := true;
+    changed_square := false;
+    obstacle_mode := false;
     LightSensor.value = 2;
-    oneWall: false;
-    lastSquareWasWhite := false;
-    lastSquareWasGrey := true;    
-
+    last_val := 1;
 edon
