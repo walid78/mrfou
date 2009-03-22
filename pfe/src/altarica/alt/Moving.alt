@@ -17,7 +17,7 @@ node Moving
     <left, LeftWheel.back, RightWheel.forward>;
     <forward, LeftWheel.forward, RightWheel.forward>;
     <right, LeftWheel.forward, RightWheel.back>;
-    <halfturn, LeftWheel.back, RightWheel.forward>;
+    <halfturn, LeftWheel.forward, RightWheel.back>;
   init
     moving := 0;
 edon

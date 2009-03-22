@@ -34,8 +34,6 @@ node Controller
     go, waitingSlaveOneSquare, wallFront, foundLeft, halfTurn, foundRight,
     makePlace, slaveTurnLeft, slaveTurnRight; 
     
-    //slaveTooFar, slaveTooClose, slaveBehind, wallFront, wallLeftFront, 
-    //wallRightLeftFront;
       
   trans
 
@@ -55,11 +53,12 @@ node Controller
      * ligne droite recommence.
      */
   
-    /* Le maitre est sur une case blanche, l'esclave est derriere lui. On dit à
+    /* Le maitre voit une case blanche, l'esclave est derriere lui. On dit à
      * l'esclave de stopper via le bluetooth (dans les synchronisations), le 
-     * maitre avance, passe sur une case grise, on passe le booléen qui dit si on
-     * vient de changer de case à vrai, et le booléen qui indique que nous sommes
-     * en ligne droite à vrai. */
+     * maitre avance, passe sur cette case blanche, on passe le booléen qui indique que l'on vient
+     * vient de changer de case à vrai.  Les gardes vérifient bien sur que la derniere case vue était
+     * une case grise, que l'esclave est derriere, et que le maitre n'est pas 
+     * en mode obstacle. */
 
     light.value = 2 & 
     sonic.d &
@@ -68,11 +67,10 @@ node Controller
     			     	      changed_square := true;
   
   
-    /* Le maitre est sur une case grise, l'esclave est derriere lui. On dit à
-     * l'esclave de stopper via le bluetooth (dans les synchronisations), le
-     * maitre avance, passe sur une case blanche, on passe le booléen qui dit si
-     * on vient de changer de case à vrai, et le booléen qui indique que nous
-     * sommes en ligne droite à vrai. */
+    /* Le maitre voit une case grise, l'esclave est derriere lui. On dit à
+     * l'esclave de stopper via le bluetooth (dans les synchronisations), le 
+     * maitre avance, passe sur cette case grise, on passe le booléen qui indique que l'on vient
+     * vient de changer de case à vrai. Les gardes sont adaptées au changement de couleur.*/
 
     light.value = 1 & 
     sonic.d & last_val = 2 &
@@ -80,10 +78,10 @@ node Controller
     				      changed_square := true;
 
   
-    /* Cet événement correspond au maitre qui s'arrete après avoir changé de
-     * case pour attendre l'esclave. Le maitre s'arrete, ordonne à l'esclave
-     * d'avancer, et on indique via le booléen que l'on a entierement fait le
-     * changement de case. */
+    /* Cet événement correspond au maitre qui s'arrete, après avoir changé de
+     * case, pour attendre l'esclave. Le maitre s'arrete, ordonne à l'esclave
+     * d'avancer, et on indique via le booléen changed_square que le changement 
+     * de case est fait. */
 
     changed_square & 
     not obstacle_mode & 
