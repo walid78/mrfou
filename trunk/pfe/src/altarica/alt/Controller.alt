@@ -186,7 +186,7 @@ node Controller
     <waitingSlaveOneSquare, BT.orderFw, move.stop>;
     <wallFront, BT.orderStop, move.left>;
     <foundLeft, BT.orderStop, move.forward>;
-    <halfTurn, BT.orderStop, move.right>; 
+    <halfTurn, BT.orderStop, move.halfturn>; 
     <foundRight, BT.orderStop, move.forward>;
     <makePlace, BT.orderFw, move.stop>;
     <slaveTurnLeft, BT.orderLeft, move.stop>;
