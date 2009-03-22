@@ -3,9 +3,8 @@ node BTMasterSlave
     Master : BTMaster;
     Slave : BTSlave;
   event
-    orderFw, orderBack, orderLeft, orderRight, orderStop;
+    orderFw, orderLeft, orderRight, orderStop;
   sync
-    <orderBack, Master.orderBack, Slave.obeyBack>;
     <orderStop, Master.orderStop, Slave.obeyStop>;
     <orderLeft, Master.orderLeft, Slave.obeyLeft>;
     <orderFw, Master.orderFw, Slave.obeyFw>;

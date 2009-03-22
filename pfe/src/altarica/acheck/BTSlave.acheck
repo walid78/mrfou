@@ -2,31 +2,26 @@ with BTSlave do
  quot() >  '$NODENAME.dot';
  dead := any_s - src(any_t - self_epsilon);
  notCFC := any_t - loop(any_t,any_t);
- obeyB := [obey = -1];
  obey0 := [obey = 0];
  obey1 := [obey = 1];
  obey2 := [obey = 2];
  obey3 := [obey = 3];
- moveBack := label Move.back;
  moveStop := label Move.stop;
  moveLeft := label Move.left;
  moveForward := label Move.forward;
  moveRight := label Move.right;
- obeyBack := label obeyBack;
  obeyStop := label obeyStop;
  obeyLeft := label obeyLeft;
  obeyFw := label obeyFw;
  obeyRight := label obeyRight;
 
  //Situation redoutée : mauvaise obéissance
- ERObey := (tgt(obeyBack) & not(obeyB)) |
-       	   (tgt(obeyStop) & not(obey0)) |
+ ERObey := (tgt(obeyStop) & not(obey0)) |
 	   (tgt(obeyLeft) & not(obey1)) |
        	   (tgt(obeyFw) & not(obey2)) |
        	   (tgt(obeyRight) & not(obey3));
  
- ERMove := (tgt(obeyBack) & not(tgt(moveBack))) |
-       	   (tgt(obeyStop) & not(tgt(moveStop))) |
+ ERMove := (tgt(obeyStop) & not(tgt(moveStop))) |
 	   (tgt(obeyLeft) & not(tgt(moveLeft))) |
        	   (tgt(obeyFw) & not(tgt(moveForward))) |
        	   (tgt(obeyRight) & not(tgt(moveRight)));
