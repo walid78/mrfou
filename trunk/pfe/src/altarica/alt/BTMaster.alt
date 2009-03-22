@@ -7,11 +7,10 @@
 
 node BTMaster
   state
-    order : [-1,3] : public;
+    order : [0,3] : public;
   event
-    orderFw, orderBack, orderLeft, orderRight, orderStop;
+    orderFw, orderLeft, orderRight, orderStop;
   trans
-    true |- orderBack -> order := -1;
     true |- orderStop -> order := 0;
     true |- orderLeft -> order := 1;
     true |- orderFw -> order := 2;
