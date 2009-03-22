@@ -31,7 +31,7 @@ node Controller
 
   event
 
-    go, waitingSlaveOneSquare, wallFront, foundLeft, turnRight, foundRight,
+    go, waitingSlaveOneSquare, wallFront, foundLeft, halfTurn, foundRight,
     makePlace, slaveTurnLeft, slaveTurnRight; 
     
     //slaveTooFar, slaveTooClose, slaveBehind, wallFront, wallLeftFront, 
@@ -132,7 +132,7 @@ node Controller
 
     obstacle_mode &
     light.value = 0 &
-    not turned_to_right	    |- turnRight -> turned_to_right := true;
+    not turned_to_right	    |- halfTurn -> turned_to_right := true;
 
     /* Le maître vient de tourner à droite et est prêt à prendre la sortie. 
      */
@@ -188,7 +188,7 @@ node Controller
     <waitingSlaveOneSquare, BT.orderFw, move.stop>;
     <wallFront, BT.orderStop, move.left>;
     <foundLeft, BT.orderStop, move.forward>;
-    <turnRight, BT.orderStop, move.right>; // Right or halfTurn ?
+    <halfTurn, BT.orderStop, move.right>; 
     <foundRight, BT.orderStop, move.forward>;
     <makePlace, BT.orderFw, move.stop>;
     <slaveTurnLeft, BT.orderLeft, move.stop>;
