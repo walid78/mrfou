@@ -6,9 +6,7 @@ all : dvi ps
 
 dvi :
 	latex $(NAME).tex
-#if [-e $(NAME).bib]; then bibtex $(NAME); fi
-	#bibtex $(NAME)
-	#latex $(NAME).tex
+	if [-e $(NAME).bib]; then bibtex $(NAME); latex $(NAME).tex; fi
 	latex $(NAME).tex
 
 ps :
