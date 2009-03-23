@@ -40,24 +40,26 @@ node Controller
     /* Procédure utilisée dans le code pour avancer:
      *
      * Le maitre avance d'une case, il s'arrete, attend l'esclave qui avance, 
-     * lorsque l'ultrasonic le capte, l'esclave s'arrete, le maitre avance d'une
-     * case et ainsi de suite.
+     * lorsque l'ultrasonic le capte, l'esclave s'arrete, le maitre avance 
+     * d'une case et ainsi de suite.
      *
      * Procédure utilisée dans le code pour tourner à gauche après avoir 
      * rencontré un mur, et pas d'obstacle à gauche:
      *
      * Le maitre avance d'une case, et detecte une case noire. Il s'arrete et 
-     * l'esclave s'arrete aussi. Le maître tourne de 90 degrés à gauche et avance d'une
-     * case, s'arrete, et attend. Il donne l'ordre à l'esclave d'avancer jusqu'à
-     * le sentir derriere, lui ordonne de tourner à gauche, et la procédure  
-     * ligne droite recommence.
+     * l'esclave s'arrete aussi. Le maître tourne de 90 degrés à gauche et 
+     * avance d'une case, s'arrete, et attend. Il donne l'ordre à l'esclave
+     * d'avancer jusqu'à le sentir derriere, lui ordonne de tourner à gauche,
+     * et la procédure ligne droite recommence.
+     * 
      */
   
     /* Le maitre voit une case blanche, l'esclave est derriere lui. On dit à
      * l'esclave de stopper via le bluetooth (dans les synchronisations), le 
-     * maitre avance, passe sur cette case blanche, on passe le booléen qui indique que l'on vient
-     * vient de changer de case à vrai.  Les gardes vérifient bien sur que la derniere case vue était
-     * une case grise, que l'esclave est derriere, et que le maitre n'est pas 
+     * maitre avance, passe sur cette case blanche, on passe le booléen qui 
+     * indique que l'on vient vient de changer de case à vrai.  Les gardes 
+     * vérifient bien sur que la derniere case vue était une case grise, 
+     * que l'esclave est derriere, et que le maitre n'est pas 
      * en mode obstacle. */
 
     light.value = 2 & 
@@ -69,9 +71,11 @@ node Controller
   
     /* Le maitre voit une case grise, l'esclave est derriere lui. On dit à
      * l'esclave de stopper via le bluetooth (dans les synchronisations), le 
-     * maitre avance, passe sur cette case grise, on passe le booléen qui indique que l'on vient
-     * vient de changer de case à vrai. Les gardes sont adaptées au changement de couleur.*/
-
+     * maitre avance, passe sur cette case grise, on passe le booléen qui 
+     * indique que l'on vient de changer de case à vrai. Les gardes 
+     * sont adaptées au changement de couleur.*/
+     
+     
     light.value = 1 & 
     sonic.d & last_val = 2 &
     not obstacle_mode	     |- go -> last_val := 1, 
@@ -124,8 +128,8 @@ node Controller
 					    last_val := 1;
 
 
-    /* Si le maître retombe sur un obstacle à gauche, alors il sait que la sortie
-     * est plutot à droite. 
+    /* Si le maître retombe sur un obstacle à gauche, alors il sait que la 
+     * sortie est plutot à droite. 
      */
 
     obstacle_mode &
@@ -155,8 +159,8 @@ node Controller
      
 
     /* Voici la dernière étape du mode obstacle. Dès que le maître détecte
-     * l'esclave dans son champ, il le fait se tourner dans le même sens que lui
-     * et sort du mode obstacle.
+     * l'esclave dans son champ, il le fait se tourner dans le même sens que 
+     * lui et sort du mode obstacle.
      */
 
     //Si le maître a tourné à gauche
