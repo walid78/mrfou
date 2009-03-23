@@ -47,7 +47,7 @@ node Controller
      * rencontré un mur, et pas d'obstacle à gauche:
      *
      * Le maitre avance d'une case, et detecte une case noire. Il s'arrete et 
-     * l'esclave s'arrete aussi. Le maître tourne de 90° à gauche et avance d'une
+     * l'esclave s'arrete aussi. Le maître tourne de 90 degrés à gauche et avance d'une
      * case, s'arrete, et attend. Il donne l'ordre à l'esclave d'avancer jusqu'à
      * le sentir derriere, lui ordonne de tourner à gauche, et la procédure  
      * ligne droite recommence.
