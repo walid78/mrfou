@@ -1,7 +1,7 @@
 \section{R\'{e}duction API NXC}
 Pour la r\'{e}alisation du  projet nous utiliserons 4 cat\'{e}gories de fonction : celles relatives aux moteurs, aux capteurs , à la connexion Bluetooth et \'{e}ventuellement d'autres fonctions permettant la coh\'{e}sion de l'ensemble.
 
-\subsection{Les moteurs : }
+\subsection{Les moteurs }
 \begin{verbatim}
 	OnFwd("port","power"); //permet de mettre en marche "avant" un moteur du robot 
 	OnRev("port","power"); //sens inverse
@@ -9,9 +9,9 @@ Pour la r\'{e}alisation du  projet nous utiliserons 4 cat\'{e}gories de fonction
 	RotateMotorEx("port","speed","degrees","turnpct","sync","stop"); 
 \end{verbatim}
 
-\subsection{Les capteurs : }
+\subsection{Les capteurs }
 
-\subsubsection{Type et mode des capteurs :}
+\subsubsection{Type et mode des capteurs}
 \begin{verbatim}
 	SetSensorLight("port"); //Lie le capteur de lumière à un "port"
 	SetSensorSound("port"); //Lie le capteur ultrason à un "port"
@@ -22,14 +22,14 @@ Pour la r\'{e}alisation du  projet nous utiliserons 4 cat\'{e}gories de fonction
 
 \end{verbatim}
 
-\subsubsection{Information des capteurs :}
+\subsubsection{Information des capteurs}
 \begin{verbatim}
 	Sensor("n"); //retourne la valeur d'un capteur
 	SensorUS("n"); //retourne la valeur du capteur ultrason
 
 \end{verbatim}
 
-\subsection{La connexion Bluetooth : }
+\subsection{La connexion Bluetooth }
 \begin{verbatim}
 	BluetoothStatues("NUMBER"); //Vérifie la connexion
 	RemoteStartProgram("connection", "filename");
@@ -37,7 +37,7 @@ Pour la r\'{e}alisation du  projet nous utiliserons 4 cat\'{e}gories de fonction
 
 \end{verbatim}
 
-\subsection{Autres fonctions : }
+\subsection{Autres fonctions }
 \begin{verbatim}
 	Wait("time"); //Temps donné à l'exécution d'une action
 	off("port"); //Stop le moteur associé au "port"
@@ -47,7 +47,7 @@ Pour la r\'{e}alisation du  projet nous utiliserons 4 cat\'{e}gories de fonction
 
 \end{verbatim}
 
-\subsection{Les variables : }
+\subsection{Les variables }
 \begin{verbatim}
 	OUT_A; //port A
 	OUT_AC; //port AC
