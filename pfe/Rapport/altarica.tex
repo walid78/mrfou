@@ -1,18 +1,32 @@
- \section{Noeuds AltaRica}
- 
-  \subsection{LightSensor}
+\section{Arichitecture finale}
 
-  \subsubsection{Description}
+  \subsection{Le n\oe{}ud LightSensor}
 
-  Ce noeud correspond au capteur de lumière, et possède une variable d'état nommée $color$ qui   peux prendre trois valeurs différentes, correspondants au trois couleurs de case que nous allons utiliser: Noir, gris et blanc. Cette variable d'état n'est présente que pour pouvoir modéliser des événements, qui seront déclenché par les différentes valeurs de la variable de flux $value$. L'action du senseur de lumière est donc véritablement représentée par cette variable de flux, puisque les valeurs lues par le senseur sont "incontrôlables".
+   \subsubsection{Description}
+   Ce noeud correspond au capteur de lumière, et possède une variable
+   d'état nommée $color$ qui   peux prendre trois valeurs différentes,
+   correspondants au trois couleurs de case que nous allons utiliser:
+   Noir, gris et blanc. Cette variable d'état n'est présente que pour
+   pouvoir modéliser des événements, qui seront déclenché par les
+   différentes valeurs de la variable de flux $value$. L'action du
+   senseur de lumière est donc véritablement représentée par cette
+   variable de flux, puisque les valeurs lues par le senseur sont
+   "incontrôlables".
 
-   \subsubsection{Le code Altarica}
+   \subsubsection{Le source Altarica}
    \verbatiminput{../src/altarica/alt/LightSensor.alt}
    
-   \subsubsection{La vérification acheck}
+   \subsubsection{La spécification}
    \verbatiminput{../src/altarica/acheck/LightSensor.acheck}
+
+   \subsubsection{La sémantique}
+   \begin{figure}[!ht]
+    \begin{center}
+     \includegraphics{../src/altarica/LightSensor.eps}
+    \end{center}
+   \end{figure}
    
-  \subsection{UltraSonicSensor}
+  \subsection{Le n\oe{}ud UltraSonicSensor}
   
    \subsubsection{Description}
    De la même maniere que le noeud LightSensor, UltraSonicSensor
@@ -20,38 +34,64 @@
    servira au robot maitre à savoir a quelle distance se trouve le robot
    esclave.
 
-   \subsubsection{Le code Altarica}
+   \subsubsection{Le source Altarica}
    \verbatiminput{../src/altarica/alt/UltraSonicSensor.alt}
    
-   \subsubsection{La vérification acheck}
+   \subsubsection{La spécification}
+   \verbatiminput{../src/altarica/acheck/UltraSonicSensor.acheck}
    
-  \subsection{Motor}
+   \subsubsection{La sémantique}
+   \begin{figure}[!ht]
+    \begin{center}
+     \includegraphics{../src/altarica/UltraSonicSensor.eps}
+    \end{center}
+   \end{figure}
+
+  \subsection{Le n\oe{}ud Motor}
   
    \subsubsection{Description}
    Les moteurs sont modélisés de façon à avoir seulement trois vitesses
    possible: Avancer, stopper, reculer.
 
-   \subsubsection{Le code Altarica}
+   \subsubsection{Le source Altarica}
    \verbatiminput{../src/altarica/alt/Motor.alt}
    
-   \subsubsection{La vérification acheck}
+   \subsubsection{La spécification}
    \verbatiminput{../src/altarica/acheck/Motor.acheck}
    
-  \subsection{Moving}
+   \subsubsection{La sémantique}
+   \begin{figure}[!ht]
+    \begin{center}
+     \includegraphics{../src/altarica/Motor.eps}
+    \end{center}
+   \end{figure}
+
+  \subsection{Le n\oe{}ud Moving}
 
    \subsubsection{Description}
-  Moving est la pour faire la synchronisation entre les deux moteurs munis de roues d'un robot. Il y a cinq ordres possible: Avancer, s'arrêter, reculer, à droite et à gauche. Il faut savoir que les rotations à droite et à gauche du robot sont tout le temps de 90 degrés.
+   Moving est la pour faire la synchronisation entre les deux moteurs
+   munis de roues d'un robot. Il y a cinq ordres possible: Avancer,
+   s'arrêter, reculer, à droite et à gauche. Il faut savoir que les
+   rotations à droite et à gauche du robot sont tout le temps de 90
+   degrés.
 
-   \subsubsection{Le code Altarica}
+   \subsubsection{Le source Altarica}
    \verbatiminput{../src/altarica/alt/Moving.alt}
    
-   \subsubsection{La vérification acheck}
+   \subsubsection{La spécification}
    \verbatiminput{../src/altarica/acheck/Moving.acheck}
  
-  \subsection{BTMaster, BTSlave et MasterSlave}
+   \subsubsection{La sémantique}
+   \begin{figure}[!ht]
+    \begin{center}
+     \includegraphics[width=16cm]{../src/altarica/Moving.eps}
+    \end{center}
+   \end{figure}
+
+  \subsection{Les n\oe{}uds BTMaster, BTSlave et MasterSlave}
   
    \subsubsection{Description}
-   La communication bluetooth entre nos deux robots est de type
+   La communication bluetooth entre les deux robots est de type
    maitre/esclave, le maitre envoie simplement des ordres à executer à
    l'esclave. Le noeud BTMaster qui sera pour le robot maitre comporte
    donc simplement les cinq même ordres que le noeud moving. BTSlave
@@ -61,14 +101,25 @@
    chargera de faire la synchronisation entre les ordres des noeuds
    BTMaster et BTSlave.
 
+   \subsubsection{Les sources Altarica}
+   \verbatiminput{../src/altarica/alt/BTMaster.alt}
+   \verbatiminput{../src/altarica/alt/BTSlave.alt}
+   \verbatiminput{../src/altarica/alt/BTMasterSlave.alt}
+   
+   \subsubsection{Les spécifications}
+   \verbatiminput{../src/altarica/acheck/BTMaster.acheck}
+   \verbatiminput{../src/altarica/acheck/BTSlave.acheck}
+   \verbatiminput{../src/altarica/acheck/BTMasterSlave.acheck}
 
-  \subsubsection{Le code Altarica}
-  \verbatiminput{../src/altarica/alt/BTMaster.alt}
+   \subsubsection{La sémantique}
+   \begin{figure}[!ht]
+    \begin{center}
+     \includegraphics{../src/altarica/BTMaster.eps}
+     \includegraphics{../src/altarica/BTSlave.eps}
+%      \includegraphics{../src/altarica/BTMasterSlave.eps}
+    \end{center}
+   \end{figure}
 
-  \verbatiminput{../src/altarica/alt/BTSlave.alt}
-
-  \verbatiminput{../src/altarica/alt/MasterSlave.alt}
-
-\subsubsection{La vérification acheck}
+\subsubsection{La spécification}
    
   
