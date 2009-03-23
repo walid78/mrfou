@@ -29,10 +29,8 @@
   \subsection{Le n\oe{}ud UltraSonicSensor}
   
    \subsubsection{Description}
-   De la même maniere que le noeud LightSensor, UltraSonicSensor
-   comporte une variable "signal", avec cinq valeurs possibles, qui
-   servira au robot maitre à savoir a quelle distance se trouve le robot
-   esclave.
+   De la même manière que le noeud LightSensor, UltraSonicSensor
+   comporte une variable d'état "behind" qui servira à pouvoir déclencher les deux évènements $readValue$. Le principe du capteur est que soit il y a un objet capté, soit il n'y en a pas, sans distinction véritable de distance. Et comme pour LightSensor, c'est la variable de flux $d$ qui déclenche ces évènements. 
 
    \subsubsection{Le source Altarica}
    \verbatiminput{../src/altarica/alt/UltraSonicSensor.alt}
@@ -120,4 +118,6 @@
 %     \end{center}
 %    \end{figure}
    
-  
+  \subsection{Le n\oe{}ud Controller}
+     \subsubsection{Les sources Altarica}
+  \verbatiminput{../src/altarica/alt/Controller.alt}
