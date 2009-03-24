@@ -1,19 +1,9 @@
 node LightSensor
   flow
     value : [0,2];
-  /* Inutile ? 
-  state
-    color : [0,2] : public;
-  event
-    readValue;
-  trans
-    //noir
-    value = 0 |- readValue -> color := 0;
-    
-    //gris 
-    value = 1 |- readValue -> color := 1;
-    
-    //blanc
-    value = 2 |- readValue -> color := 2;
-*/
+    /* 
+     * 0 -> noir
+     * 1 -> gris
+     * 2 -> blanc 
+     */
 edon

@@ -1,16 +1,5 @@
 node TouchSensor
   flow
     touch : bool;
-/* Inutile ? 
-  state
-    value : bool : public;
-  event
-    readValue;
-  trans
-    touch |- readValue -> value := true;
-    not touch |- readValue -> value := false;
-  init
-    value := false;
-*/
 edon
 

@@ -2,12 +2,6 @@ with Motor do
  quot() >  '$NODENAME.dot';
  dead := any_s - src(any_t - self_epsilon);
  notCFC := any_t - loop(any_t,any_t);
- moveB := [move = -1];
- move0 := [move = 0];
- move1 := [move = 1];
- back := label back;
- stop := label stop;
- forward := label forward;
  show(all) > '$NODENAME.prop';
  test(dead,0) > '$NODENAME.res';
  test(notCFC,0) >> '$NODENAME.res';
