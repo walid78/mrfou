@@ -26,9 +26,6 @@ node Controller
     //Le maître a-t-il tourné à droite ? (si non à gauche)
     turned_to_right : bool;
 
- /*   //Le maître s'est-il décalé pour laisser la place à l'esclave ?
-    slave_has_place : bool;
-*/
   event
 
     go, waitingSlaveOneSquare, wallFront, foundLeft, halfTurn, foundRight,
