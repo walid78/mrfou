@@ -1,4 +1,4 @@
- \section{Architecture finale}
+ \section{AltaRica}
 
   \subsection{Architecture}
   \begin{figure}[!ht]
@@ -8,129 +8,191 @@
    \end{center}
   \end{figure}
 
-  \subsection{Le n\oe{}ud LightSensor}
+  \subsection{Les capteurs et moteurs}
+    
+   \subsubsection{Le n\oe{}ud LightSensor}
 
-   \subsubsection{Description}
-   Ce noeud correspond au capteur de lumière, et possède une variable
-   d'état nommée $color$ qui   peux prendre trois valeurs différentes,
-   correspondants au trois couleurs de case que nous allons utiliser:
-   Noir, gris et blanc. Cette variable d'état n'est présente que pour
-   pouvoir modéliser des événements, qui seront déclenché par les
-   différentes valeurs de la variable de flux $value$. L'action du
-   senseur de lumière est donc véritablement représentée par cette
-   variable de flux, puisque les valeurs lues par le senseur sont
-   "incontrôlables".
+    \paragraph{\underline{Description\\}}
+    Ce noeud correspond au capteur de lumière, et possède une variable
+    d'état nommée $color$ qui   peux prendre trois valeurs différentes,
+    correspondants au trois couleurs de case que nous allons utiliser:
+    Noir, gris et blanc. Cette variable d'état n'est présente que pour
+    pouvoir modéliser des événements, qui seront déclenché par les
+    différentes valeurs de la variable de flux $value$. L'action du
+    senseur de lumière est donc véritablement représentée par cette
+    variable de flux, puisque les valeurs lues par le senseur sont
+    "incontrôlables".
 
-   \subsubsection{Le source Altarica}
-   \verbatiminput{../src/altarica/alt/LightSensor.alt}
+    \paragraph{\underline{Le source Altarica\\}}
+    \verbatiminput{../src/altarica/alt/LightSensor.alt}
    
-   \subsubsection{La spécification}
-   \verbatiminput{../src/altarica/acheck/LightSensor.acheck}
+    \paragraph{\underline{La spécification\\}}
+    \verbatiminput{../src/altarica/acheck/LightSensor.acheck}
 
-   \subsubsection{La sémantique}
-%    \begin{figure}[!ht]
-%     \begin{center}
-%      \includegraphics{../src/altarica/LightSensor.eps}
-%     \end{center}
-%    \end{figure}
+    \paragraph{\underline{La sémantique\\}}
+    \begin{figure}[!ht]
+     \begin{center}
+      \includegraphics{../src/altarica/LightSensor.eps}
+      \caption{LightSensor}
+     \end{center}
+    \end{figure}
+
+    \paragraph{\underline{Les résultats\\}}
+    \verbatiminput{../src/altarica/LightSensor.prop}
+    \verbatiminput{../src/altarica/LightSensor.res}
    
-  \subsection{Le n\oe{}ud UltraSonicSensor}
+   \subsubsection{Le n\oe{}ud UltraSonicSensor}
+   
+    \paragraph{\underline{Description\\}}
+    De la même manière que le noeud LightSensor, UltraSonicSensor
+    comporte une variable d'état "behind" qui servira à pouvoir
+    déclencher les deux évènements $readValue$. Le principe du capteur
+    est que soit il y a un objet capté, soit il n'y en a pas, sans
+    distinction véritable de distance. Et comme pour LightSensor, c'est
+    la variable de flux $d$ qui déclenche ces évènements.
+
+    \paragraph{\underline{Le source Altarica\\}}
+    \verbatiminput{../src/altarica/alt/UltraSonicSensor.alt}
+    
+    \paragraph{\underline{La spécification\\}}
+    \verbatiminput{../src/altarica/acheck/UltraSonicSensor.acheck}
+    
+    \paragraph{\underline{La sémantique\\}}
+    \begin{figure}[!ht]
+     \begin{center}
+      \includegraphics{../src/altarica/UltraSonicSensor.eps}
+      \caption{UltraSonicSensor}
+     \end{center}
+    \end{figure}
+
+    \paragraph{\underline{Les résultats\\}}
+    \verbatiminput{../src/altarica/UltraSonicSensor.prop}
+    \verbatiminput{../src/altarica/UltraSonicSensor.res}
+   
+   \subsubsection{Le n\oe{}ud Motor}
   
-   \subsubsection{Description}
-   De la même manière que le noeud LightSensor, UltraSonicSensor
-   comporte une variable d'état "behind" qui servira à pouvoir
-   déclencher les deux évènements $readValue$. Le principe du capteur
-   est que soit il y a un objet capté, soit il n'y en a pas, sans
-   distinction véritable de distance. Et comme pour LightSensor, c'est
-   la variable de flux $d$ qui déclenche ces évènements.
+    \paragraph{\underline{Description\\}}
+    Les moteurs sont modélisés de façon à avoir seulement trois vitesses
+    possible: Avancer, stopper, reculer.
 
-   \subsubsection{Le source Altarica}
-   \verbatiminput{../src/altarica/alt/UltraSonicSensor.alt}
+    \paragraph{\underline{Le source Altarica\\}}
+    \verbatiminput{../src/altarica/alt/Motor.alt}
+    
+    \paragraph{\underline{La spécification\\}}
+    \verbatiminput{../src/altarica/acheck/Motor.acheck}
+    
+    \paragraph{\underline{La sémantique\\}}
+    \begin{figure}[!ht]
+     \begin{center}
+      \includegraphics{../src/altarica/Motor.eps}
+      \caption{Motor}
+     \end{center}
+    \end{figure}
+
+    \paragraph{\underline{Les résultats\\}}
+    \verbatiminput{../src/altarica/Motor.prop}
+    \verbatiminput{../src/altarica/Motor.res}
    
-   \subsubsection{La spécification}
-   \verbatiminput{../src/altarica/acheck/UltraSonicSensor.acheck}
-   
-   \subsubsection{La sémantique}
-%    \begin{figure}[!ht]
-%     \begin{center}
-%      \includegraphics{../src/altarica/UltraSonicSensor.eps}
-%     \end{center}
-%    \end{figure}
+  \subsection{Les déplacements, n\oe{uds Moving}}
 
-  \subsection{Le n\oe{}ud Motor}
-  
-   \subsubsection{Description}
-   Les moteurs sont modélisés de façon à avoir seulement trois vitesses
-   possible: Avancer, stopper, reculer.
+    \paragraph{\underline{Description\\}}
+    Les n\oe{}uds Moving sont là pour faire la synchronisation entre les deux moteurs
+    munis de roues d'un robot. Il y a cinq ordres possible: Avancer,
+    s'arrêter, reculer, à droite et à gauche. Il faut savoir que les
+    rotations à droite et à gauche du robot sont tout le temps de 90
+    degrés.
 
-   \subsubsection{Le source Altarica}
-   \verbatiminput{../src/altarica/alt/Motor.alt}
-   
-   \subsubsection{La spécification}
-   \verbatiminput{../src/altarica/acheck/Motor.acheck}
-   
-   \subsubsection{La sémantique}
-%    \begin{figure}[!ht]
-%     \begin{center}
-%      \includegraphics{../src/altarica/Motor.eps}
-%     \end{center}
-%    \end{figure}
+    \paragraph{\underline{Les sources Altarica\\}}
+    \verbatiminput{../src/altarica/alt/MovingMaster.alt}
+    \verbatiminput{../src/altarica/alt/MovingSlave.alt}
+    
+    \paragraph{\underline{Les spécifications\\}}
+    \verbatiminput{../src/altarica/acheck/MovingMaster.acheck}
+    \verbatiminput{../src/altarica/acheck/MovingSlave.acheck}
+    
+    \paragraph{\underline{La sémantique\\}}
+    \begin{figure}[!ht]
+     \begin{center}
+      \includegraphics[width=16cm]{../src/altarica/MovingMaster.eps}
+      \caption{MovingMaster}
+     \end{center}
+    \end{figure}
 
-  \subsection{Le n\oe{}ud Moving}
+    \begin{figure}[!ht]
+     \begin{center}
+      \includegraphics[width=16cm]{../src/altarica/MovingSlave.eps}
+      \caption{MovingSlave}
+     \end{center}
+    \end{figure}
 
-   \subsubsection{Description}
-   Moving est la pour faire la synchronisation entre les deux moteurs
-   munis de roues d'un robot. Il y a cinq ordres possible: Avancer,
-   s'arrêter, reculer, à droite et à gauche. Il faut savoir que les
-   rotations à droite et à gauche du robot sont tout le temps de 90
-   degrés.
+    \paragraph{\underline{Les résultats\\}}
+    \verbatiminput{../src/altarica/MovingMaster.prop}
+    \verbatiminput{../src/altarica/MovingMaster.res}
+    ~\newline
+    \verbatiminput{../src/altarica/MovingSlave.prop}
+    \verbatiminput{../src/altarica/MovingSlave.res}
+    
+  \subsection{La communication}
+    
+   \subsubsection{Les n\oe{}uds BTMaster, BTSlave et MasterSlave}
+    
+    \paragraph{\underline{Description\\}}
+    La communication bluetooth entre les deux robots est de type
+    maitre/esclave, le maitre envoie simplement des ordres à executer à
+    l'esclave. Le noeud BTMaster qui sera pour le robot maitre comporte
+    donc simplement les cinq même ordres que le noeud moving. BTSlave
+    sera lui pour le robot esclave, et inclus un sous noeud de type
+    Moving, afin de pouvoir synchroniser les cinq ordres possibles à un
+    agissement concret de ce noeud Moving. Enfin, le noeud MasterSlave se
+    chargera de faire la synchronisation entre les ordres des noeuds
+    BTMaster et BTSlave.
 
-   \subsubsection{Le source Altarica}
-   \verbatiminput{../src/altarica/alt/Moving.alt}
-   
-   \subsubsection{La spécification}
-   \verbatiminput{../src/altarica/acheck/Moving.acheck}
- 
-   \subsubsection{La sémantique}
-%    \begin{figure}[!ht]
-%     \begin{center}
-%      \includegraphics[width=16cm]{../src/altarica/Moving.eps}
-%     \end{center}
-%    \end{figure}
+    \paragraph{\underline{Les sources Altarica\\}}
+    \verbatiminput{../src/altarica/alt/BTMaster.alt}
+    \verbatiminput{../src/altarica/alt/BTSlave.alt}
+    \verbatiminput{../src/altarica/alt/BTMasterSlave.alt}
+    
+    \paragraph{\underline{Les spécifications\\}}
+    \verbatiminput{../src/altarica/acheck/BTMaster.acheck}
+    \verbatiminput{../src/altarica/acheck/BTSlave.acheck}
+    \verbatiminput{../src/altarica/acheck/BTMasterSlave.acheck}
 
-  \subsection{Les n\oe{}uds BTMaster, BTSlave et MasterSlave}
-  
-   \subsubsection{Description}
-   La communication bluetooth entre les deux robots est de type
-   maitre/esclave, le maitre envoie simplement des ordres à executer à
-   l'esclave. Le noeud BTMaster qui sera pour le robot maitre comporte
-   donc simplement les cinq même ordres que le noeud moving. BTSlave
-   sera lui pour le robot esclave, et inclus un sous noeud de type
-   Moving, afin de pouvoir synchroniser les cinq ordres possibles à un
-   agissement concret de ce noeud Moving. Enfin, le noeud MasterSlave se
-   chargera de faire la synchronisation entre les ordres des noeuds
-   BTMaster et BTSlave.
-
-   \subsubsection{Les sources Altarica}
-   \verbatiminput{../src/altarica/alt/BTMaster.alt}
-   \verbatiminput{../src/altarica/alt/BTSlave.alt}
-   \verbatiminput{../src/altarica/alt/BTMasterSlave.alt}
-   
-   \subsubsection{Les spécifications}
-   \verbatiminput{../src/altarica/acheck/BTMaster.acheck}
-   \verbatiminput{../src/altarica/acheck/BTSlave.acheck}
-   \verbatiminput{../src/altarica/acheck/BTMasterSlave.acheck}
-
-%    \subsubsection{La sémantique}
-%    \begin{figure}[!ht]
-%     \begin{center}
-%      \includegraphics{../src/altarica/BTMaster.eps}
-%      \includegraphics{../src/altarica/BTSlave.eps}
-%      \includegraphics{../src/altarica/BTMasterSlave.eps}
-%     \end{center}
-%    \end{figure}
+    \paragraph{\underline{La sémantique}}
+    \begin{figure}[!ht]
+     \begin{center}
+      \includegraphics[width=16cm]{../src/altarica/BTMaster.eps}
+      \caption{BTMaster}
+     \end{center}
+    \end{figure}
+    \begin{figure}[!ht]
+     \begin{center}
+      \includegraphics[width=16cm]{../src/altarica/BTSlave.eps}
+      \caption{BTSlave}
+     \end{center}
+    \end{figure}
+    \begin{figure}[!ht]
+     \begin{center}
+      \includegraphics[width=16cm]{../src/altarica/BTMasterSlave.eps}
+      \caption{BTMasterSlave}
+     \end{center}
+    \end{figure}
    
   \subsection{Le n\oe{}ud Controller}
    
-   \subsubsection{Les sources Altarica}
-   \verbatiminput{../src/altarica/alt/Controller.alt}
+    \paragraph{\underline{Le source Altarica\\}}
+    \verbatiminput{../src/altarica/alt/Controller.alt}
+    
+    \paragraph{\underline{La spécification\\}}
+    \verbatiminput{../src/altarica/acheck/Controller.acheck}
+    
+    \paragraph{\underline{La sémantique\\}}
+    \begin{figure}[!ht]
+     \begin{center}
+      \includegraphics[width=16cm]{../src/altarica/Controller.eps}
+      \caption{Controller}
+     \end{center}
+    \end{figure}
+
+    \paragraph{\underline{Les résultats\\}}
+    \verbatiminput{../src/altarica/Controller.prop}
+    \verbatiminput{../src/altarica/Controller.res}
