@@ -93,7 +93,7 @@ case rencontrée par le robot.
   } 
 \end{verbatim}
 
-Le robot maître avance jusqu'à la prochaine case. En fonction de la
+Le robot maître avance jusqu'à la prochaine case et en fonction de la
 couleur de celle-ci, deux cas se présentent.
 Si elle est grise ou blanche, le robot maître s'arrète et ordonne au
 robot esclave d'avancer jusqu'à lui.
@@ -109,7 +109,7 @@ if((changed_square == true) && (obstacle_mode == false))
 }
 \end{verbatim}
 
-Si elle est noire, le robot maître effectue l'opération de contournement
+Sinon, la case est noire, le robot maître effectue alors une opération de contournement
 de l'obstacle.
 
 \begin{verbatim} 
