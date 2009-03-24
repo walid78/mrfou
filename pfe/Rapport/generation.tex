@@ -6,9 +6,13 @@ Etant donné que notre modèle altarica représente les comportements des élém
 
 \begin{verbatim}
 event
-    	back		OnFwd(Out_X, Y); pour le moteur X, et Y choisi arbitrairement entre 1 et 100.
+    	back		OnFwd(Out_X, Y); pour le moteur X, et Y 
+    	choisi arbitrairement entre 1 et 100.
+    	
     	stop		OnFwd(Out_X, 0);
-    	forward	OnRev(Out_X, Y); pour le moteur X, et Y choisi arbitrairement entre 1 et 100.
+    	
+    	forward	OnRev(Out_X, Y); pour le moteur X, et Y 
+    	choisi arbitrairement entre 1 et 100.
 
 \end{verbatim}
 
@@ -19,9 +23,15 @@ La conjonction des évenements des 2 moteurs permettent de déplacer le robot de
 \begin{verbatim}
 event
 	stop	OnFwd(Out_AC, 0);
-	left	OnFwd(Out_C, 20); et OnRev(Out_A, 20); ou bien RotateMotorEx(OUT_AC, 40, 180, -100, true, true); (plus simple)
+	
+	left	OnFwd(Out_C, 20); et OnRev(Out_A, 20); ou bien 
+	RotateMotorEx(OUT_AC, 40, 180, -100, true, true); (plus simple)
+	
 	forward	OnFwd(Out_AC, 40);
-	right		OnFwd(Out_A, 20); et OnRev(Out_C, 20); ou bien RotateMotorEx(OUT_AC, 40, 180, 100, true, true); (plus simple)
+	
+	right		OnFwd(Out_A, 20); et OnRev(Out_C, 20); ou bien 
+	RotateMotorEx(OUT_AC, 40, 180, 100, true, true); (plus simple)
+	
 	halfturn	RotateMotorEx(OUT_AC, 40, 360, 100, true, true);
 \end{verbatim}
 
@@ -29,7 +39,8 @@ event
 
 \begin{verbatim}
 flow
-    value : [0,2];	value = SensorUs(3); 3 étant dans notre cas le numéro du port sur lequel est branché le capteur lumineux.
+    value : [0,2];	value = SensorUs(3); 3 étant dans notre cas le numéro du port 
+    sur lequel est branché le capteur lumineux.
 \end{verbatim}
 
 \subsection{UltraSonicSensor}
@@ -41,3 +52,98 @@ flow
 \end{verbatim}
 
 \subsection{BlueTooth}
+
+\begin{verbatim}
+event
+
+	orderFw	RemoteStartProgram(1,"forward.rxe"); 1 étant le numéro de fréquence sur 
+	lequel les robots sont réglés.
+	
+	orderLeft	RemoteStartProgram(1,"turnleft.rxe");
+	
+	orderRight	RemoteStartProgram(1,"turnright.rxe");
+	
+	orderStop		RemoteStopProgram(1);
+\end{verbatim}
+
+	Les chaînes de caractères correspondent aux microprogrammes préenregistrés dans le contrôleur du robot esclave :
+	
+\subsubsection{programme "forward.exe"}
+	
+\begin{verbatim}
+task main (){
+while(true){
+ OnFwd(OUT_AC,30);
+ }
+}
+\end{verbatim}
+
+\subsubsection{programme "turnleft.exe" }
+
+\begin{verbatim}
+task main (){
+ RotateMotorEx(OUT_AC, 40, 180, -100, true, true);		rotation à 90 degres à gauche.
+}
+\end{verbatim}
+
+\subsubsection{programme "turnright.exe"}
+
+\begin{verbatim}
+task  main (){
+ RotateMotorEx(OUT_AC, 40, 180, 100, true, true);		rotation à 90 degres à droite.
+}
+
+\end{verbatim}
+
+\subsection{Controller}
+
+Le principe de la translation entre code Altarica et code NXC est assez simple : les éléments que nous avons vu ci-dessus vont être utilisés pour former des blocs de code. Ainsi, pour chaque transition du controlleur, la garde sera contenue dans la garde d'un if, et les instructions correspondantes ainsi que les instructions obtenues en cascade par synchronisation de l'évènement en question seront dans le corps de ce même if.
+
+\begin{verbatim}
+trans
+a |- b -> c
+d |- e -> f
+
+<b,e>
+\end{verbatim}
+
+devient:
+
+\begin{verbatim}
+if(a){c; f;}
+\end{verbatim}
+
+En effet, dans les modèles considérés, une garde de transition découlant d'une synchronisation est toujours à true. Si l'on veut considérer une garde non triviale, alors il faudra ajouter un if imbriqué pour la seconde transition.\newline
+
+Les changements de variables altarica seront reproduits en NXC avec des variables identiques. Le système considéré devant être réactif, une boucle de type while(true) encapsulera l'ensemble du code concernant la prise de décision et le déclenchement de comportements en conséquence.\newline
+
+Exemple concret :\newline
+
+\begin{verbatim}
+    light.value = 2 & 
+    sonic.d &
+    last_val = 1 &
+    not obstacle_mode	     |- go -> last_val := 2, 
+    			     	      changed_square := true;
+  
+sync
+    <go, BT.orderStop, move.forward>;
+\end{verbatim}
+
+devient:\newline
+
+\begin{verbatim}
+if(SensorUs(3) == BLANC && SensorUs(4) == true && current_square == GRIS && !obstacle_mode)
+{
+// partie instructions de la transition
+current_square = BLANC;
+changed_square = true;
+
+// instructions découlant de la synchronisation
+RemoteStopProgram(1);
+OnFwd(Out_AC, 40);
+}
+\end{verbatim}
+
+
+Cependant, certains problèmes purement techniques exigent des modifications et ajustements locaux dans le code, qui ne sont pas prévus à l'origine dans le modèle. Exemple : problème de lecture de gris lors du passage d'une case blanche à une case noire comme vous allez le voir dans la section suivante.
