@@ -1,3 +1,4 @@
+//Seuil des Couleurs //
 #define MAX_BLANC 100
 #define MIN_BLANC 46
 
@@ -6,6 +7,7 @@
 
 #define MAX_NOIR 35
 #define MIN_NOIR 0
+//-------------------//
 
 #define NOIR 2
 #define GRIS 1
@@ -15,124 +17,132 @@
 task main()
 {
 
-int savedVal = 0;
-int currentVal = 0 ;
-int realVal = 0;
-bool changedSquare = false ;
-bool obstacle_mode = false ;
-//Modif---------------------
-bool op_effec = false;
-bool turn_to = false;
+/*Les trois valeurs qui suivent servent à 
+déterminer la couleur de la case lu par le 
+capteur du robot*/
 
-int currentSquare = 0;
+int last_val = 0; 
+int current_val = 0 ;
+int real_val = 0;
 
+
+bool changed_square = false ; // Changement de case
+bool obstacle_mode = false ; // Obstacle trouvé
+bool found_way = false; // Chemin trouvé 
+bool turned_to_right = false; 
+int current_square = 0; // Case sur laquelle le robot se trouve 
+
+//Initialisation des capteurs du robots
 SetSensorLight(IN_3);
 SetSensorMode(IN_3,IN_MODE_PCTFULLSCALE);
 ResetSensor(IN_3);
-
 SetSensorLowspeed(IN_4);
+
+
+OnFwd(OUT_AC,40);
+
   
-OnFwd(OUT_A,39);
-OnFwd(OUT_C,41);
-  while (true)
+while (true)
   {
-  if(currentVal == 0)
+//test permettant de vérifier le type de case que le robot "voit"
+
+  if(current_val == 0)
    TextOut(10,LCD_LINE2,"blanc");
-     else {if(currentVal == 1)
+     else {if(current_val == 1)
    TextOut(10,LCD_LINE2,"gris");
-     else {if(currentVal == 2)
+     else {if(current_val == 2)
    TextOut(10,LCD_LINE2,"noir");
      else {   TextOut(10,LCD_LINE2,"error");}}}
 
-   
-  while(currentVal == savedVal){
-	savedVal = currentVal ;
-	realVal = Sensor(S3);
-  if((realVal>=MIN_GRIS) && (realVal<=MAX_GRIS))
-    currentVal = GRIS;
+  //On récupère la valeur du capteur de lumière
+
+  while(current_val == last_val){
+   last_val = current_val ;
+   real_val = Sensor(S3);
+  if((real_val>=MIN_GRIS) && (real_val<=MAX_GRIS))
+    current_val = GRIS;
   else{
-    if((realVal>=MIN_BLANC) && (realVal<=MAX_BLANC))
-     currentVal = BLANC;
-     else if((realVal>=MIN_NOIR) && (realVal<=MAX_NOIR))
-       currentVal = NOIR;
-  }
-  }
+    if((real_val>=MIN_BLANC) && (real_val<=MAX_BLANC))
+     current_val = BLANC;
+     else if((real_val>=MIN_NOIR) && (real_val<=MAX_NOIR))
+       current_val = NOIR;
+      }
+  } 
   
-   Wait(100);
-	//resolution bug passage de blanc a noir
+  Wait(100);
+  //resolution bug passage de blanc a noir------------
   OnFwd(OUT_AC,0);
-  realVal = Sensor(S3);
-  if((realVal>=MIN_GRIS) && (realVal<=MAX_GRIS))
-    currentVal = GRIS;
+  real_val = Sensor(S3);
+  if((real_val>=MIN_GRIS) && (real_val<=MAX_GRIS))
+    current_val = GRIS;
   else{
-    if((realVal>=MIN_BLANC) && (realVal<=MAX_BLANC))
-     currentVal = BLANC;
-     else if((realVal>=MIN_NOIR) && (realVal<=MAX_NOIR))
-       currentVal = NOIR;}
-  
-  OnFwd(OUT_A,39);
- OnFwd(OUT_C,41);
+    if((real_val>=MIN_BLANC) && (real_val<=MAX_BLANC))
+     current_val = BLANC;
+     else if((real_val>=MIN_NOIR) && (real_val<=MAX_NOIR))
+       current_val = NOIR;}
+  //--------------------------------------------------
+ 
+  OnFwd(OUT_AC,40);
+ 
 
+//Test changement de case
 
-if((currentVal == GRIS)){
-	currentSquare = GRIS;
-	if(savedVal == BLANC)
-    changedSquare = TRUE;
-}else{
-if((currentVal == BLANC)){
-	currentSquare = BLANC;
-	if(savedVal == GRIS)
-		changedSquare = TRUE;
+ if((current_val == GRIS)){
+  current_square = GRIS;
+  if(last_val == BLANC)
+    changed_square = TRUE;
+ }else{
+  if((current_val == BLANC)){
+   current_square = BLANC;
+   if(last_val == GRIS)
+    changed_square = TRUE;
+  }else
+     changed_square = false;}
 
-}else
-     changedSquare = false;}
+//Test chemin trouvé
 
-
-if(obstacle_mode == TRUE)
-{
-	if(changedSquare == TRUE){
-		obstacle_mode = FALSE;
-		//Modif---------------------
-		op_effec = TRUE;
-
-		}
+if(obstacle_mode == TRUE){
+ if(changed_square == TRUE){
+   obstacle_mode = FALSE;
+   found_way = TRUE;
+   }
 }
 
-if((turn_to == TRUE) && (obstacle_mode == FALSE))
-   op_effec = TRUE;
+if((turned_to_right == TRUE) && (obstacle_mode == FALSE))
+   found_way = TRUE;
 
 
- if(op_effec == TRUE){
+//Séquence servant à faire tourner le robot esclave dans le même sens que le maître
 
-
- if(turn_to == TRUE)
-  {
- OnFwd(OUT_AC,30);
+ if(found_way == TRUE){
+  if(turned_to_right == TRUE){
+   OnFwd(OUT_AC,30);
    Wait(3000);
- OnFwd(OUT_AC,0);      }
-
- RemoteStartProgram(1,"forward.rxe");
- while(SensorUS(S4) > 10);
- RemoteStopProgram(1);
- 
- Wait(2000);
- 
- if(turn_to == FALSE){
-
-  RemoteStartProgram(1,"turnleft.rxe");
-  Wait(5000);
+   OnFwd(OUT_AC,0);
+  }
+  RemoteStartProgram(1,"forward.rxe");
+  while(SensorUS(S4) > 10);
   RemoteStopProgram(1);
+ 
+  Wait(2000);
+ 
+  if(turned_to_right == FALSE){
+   RemoteStartProgram(1,"turnleft.rxe");
+   Wait(5000);
+   RemoteStopProgram(1);
   }
   else{
      RemoteStartProgram(1,"turnright.rxe");
      Wait(5000);
      RemoteStopProgram(1);
      }
-  op_effec = FALSE;
+  found_way = FALSE;
   OnFwd(OUT_AC,30);
   }
 
-if((changedSquare == true) && (obstacle_mode == false))
+//Séquence servant à faire avancer les 2 robots de case en case sur une ligne droite.
+
+if((changed_square == true) && (obstacle_mode == false))
 {
  OnFwd(OUT_AC,0);
  RemoteStartProgram(1,"forward.rxe");
@@ -141,28 +151,25 @@ if((changedSquare == true) && (obstacle_mode == false))
  OnFwd(OUT_AC,30);
 }
 
-if((currentVal == NOIR)){
-	if(obstacle_mode == FALSE){
-        TextOut(10,LCD_LINE4,"NOIR 1");
-        obstacle_mode = TRUE;
-				OnFwd(OUT_AC,0);
-        RotateMotorEx(OUT_AC, 30, 220, -100, true, true);
-				}
-			else{
-        turn_to = TRUE;
-        TextOut(10,LCD_LINE5,"NOIR 2");
-        OnFwd(OUT_AC,0);
-        RotateMotorEx(OUT_AC, 30, 400, 100, true, true);
-        obstacle_mode = FALSE;
-        //Modif---------------------
+//Le robot maître rencontre un obstacle
 
-
-        }
+if((current_val == NOIR)){
+ if(obstacle_mode == FALSE){
+ TextOut(10,LCD_LINE4,"NOIR 1");
+ obstacle_mode = TRUE;
+ OnFwd(OUT_AC,0);
+ RotateMotorEx(OUT_AC, 30, 220, -100, true, true);
+ }else{
+    turned_to_right = TRUE;
+    TextOut(10,LCD_LINE5,"NOIR 2");
+    OnFwd(OUT_AC,0);
+    RotateMotorEx(OUT_AC, 30, 400, 100, true, true);
+    obstacle_mode = FALSE;
+    }
 }
 
-OnFwd(OUT_A,39);
-OnFwd(OUT_C,41);
-savedVal = currentVal;
+OnFwd(OUT_AC,40);
+last_val = current_val;
 }
 
 }
