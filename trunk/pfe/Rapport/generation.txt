@@ -1,0 +1,72 @@
+Génération de code à partir des noeuds altarica élémentaires.
+
+Etant donné que notre modèle altarica représente les comportements des éléments du système, nous allons ici faire le lien entre chaque comportement adopté par une entité et des portions de code implémentant ces comportements.
+
+
+Moteurs.
+
+event
+    	back				OnFwd(Out_X, Y); pour le moteur X, et Y choisi arbitrairement entre 1 et 100.
+    	stop				OnFwd(Out_X, 0);
+    	forward				OnRev(Out_X, Y); pour le moteur X, et Y choisi arbitrairement entre 1 et 100.
+
+La conjonction des évenements des 2 moteurs permettent de déplacer le robot de manière cohérente. Ceci correspond au noeud Moving.
+
+Moving.
+
+event
+	stop				OnFwd(Out_AC, 0);
+	left				OnFwd(Out_C, 20); et OnRev(Out_A, 20); ou bien RotateMotorEx(OUT_AC, 40, 180, -100, true, true); (plus simple)
+	forward				OnFwd(Out_AC, 40);
+	right				OnFwd(Out_A, 20); et OnRev(Out_C, 20); ou bien RotateMotorEx(OUT_AC, 40, 180, 100, true, true); (plus simple)
+	halfturn			RotateMotorEx(OUT_AC, 40, 360, 100, true, true);
+
+
+LightSensor.
+
+flow
+    value : [0,2];			value = SensorUs(3); 3 étant dans notre cas le numéro du port sur lequel est branché le capteur lumineux.
+
+
+UltraSonic.
+
+flow
+    d : bool;				value = SensorUs(4); 4 étant dans notre cas le numéro du port sur lequel est branché le capteur ultrason.
+
+
+BlueTooth.
+
+event
+
+	orderFw				RemoteStartProgram(1,"forward.rxe"); 1 étant le numéro de fréquence sur lequel les robots sont réglés.
+	orderLeft			RemoteStartProgram(1,"turnleft.rxe");
+	orderRight			RemoteStartProgram(1,"turnright.rxe");
+	orderStop			RemoteStopProgram(1);
+
+
+	Les chaînes de caractères correspondent aux microprogrammes préenregistrés dans le contrôleur du robot esclave :
+
+programme "forward.exe" :
+
+task main (){
+while(true){
+ OnFwd(OUT_AC,30);
+ }
+}
+
+programme "turnleft.exe" :
+
+task main (){
+ RotateMotorEx(OUT_AC, 40, 180, -100, true, true);		rotation à 90 degres à gauche.
+}
+
+programme "turnright.exe" :
+
+task  main (){
+ RotateMotorEx(OUT_AC, 40, 180, 100, true, true);		rotation à 90 degres à droite.
+}
+
+
+
+
+
