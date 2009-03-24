@@ -1,5 +1,5 @@
 \section{R\'{e}duction API NXC}
-Pour la r\'{e}alisation du  projet nous utiliserons 4 cat\'{e}gories de fonction : celles relatives aux moteurs, aux capteurs , à la connexion Bluetooth et \'{e}ventuellement d'autres fonctions permettant la coh\'{e}sion de l'ensemble.
+Pour la r\'{e}alisation du  projet nous utiliserons 4 cat\'{e}gories de fonctions : celles relatives aux moteurs, aux capteurs, à la connexion Bluetooth et \'{e}ventuellement d'autres fonctions permettant la coh\'{e}sion de l'ensemble.
 
 \subsection{Les moteurs }
 \begin{verbatim}
@@ -61,7 +61,7 @@ Pour la r\'{e}alisation du  projet nous utiliserons 4 cat\'{e}gories de fonction
 Le langage NXC est un langage calqué sur le C d'où il tire d'ailleurs son
 sigle, Not eXactly C. Il est ce que l'on peut appeler une surcouche du
 langage utilisé par les robots  : le langage NBC (Next Byte Code). Bien
-que celui-ci possède une API assez developpée, ça syntaxe s'inspirant
+que celui-ci possède une API assez developpée, sa syntaxe s'inspirant
 fortement de l'assembleur n'en reste pas moins rude et c'est pour cela
 que nous préfèrerons programmer les robots  dans le langage NXC.
 
@@ -98,7 +98,7 @@ changements de cases.
 
 Le robot maître avance jusqu'à la prochaine case et en fonction de la
 couleur de celle-ci, deux cas se présentent.
-Si elle est grise ou blanche, le robot maître s'arrète et ordonne au
+Si elle est grise ou blanche, le robot maître s'arrête et ordonne au
 robot esclave d'avancer jusqu'à lui.
 
 \begin{verbatim}
@@ -163,4 +163,4 @@ if(found_way == TRUE){
   }
 \end{verbatim}
 
-Les deux robots recommencent ensuite le même cycle de fonctionement.
+Les deux robots recommencent ensuite le même cycle de fonctionnement.
