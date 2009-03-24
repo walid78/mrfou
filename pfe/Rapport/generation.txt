@@ -67,6 +67,49 @@ task  main (){
 }
 
 
+Controller.
 
+Le principe de la translation entre code Altarica et code NXC est assez simple : les éléments que nous avons vu ci-dessus vont être utilisés pour former des blocs de code. Ainsi, pour chaque transition du controlleur, la garde sera contenue dans la garde d'un if, et les instructions correspondantes ainsi que les instructions obtenues en cascade par synchronisation de l'évènement en question seront dans le corps de ce même if.
+
+trans
+a |- b -> c
+d |- e -> f
+
+<b,e>
+
+devient:
+
+if(a){c; f;}
+
+En effet, dans les modèles considérés, une garde de transition découlant d'une synchronisation est toujours à true. Si l'on veut considérer une garde non triviale, alors il faudra ajouter un if imbriqué pour la seconde transition.
+
+Les changements de variables altarica seront reproduits en NXC avec des variables identiques. Le système considéré devant être réactif, une boucle de type while(true) encapsulera l'ensemble du code concernant la prise de décision et le déclenchement de comportements en conséquence.
+
+Exemple concret :
+
+
+    light.value = 2 & 
+    sonic.d &
+    last_val = 1 &
+    not obstacle_mode	     |- go -> last_val := 2, 
+    			     	      changed_square := true;
+  
+sync
+    <go, BT.orderStop, move.forward>;
+
+devient:
+
+if(SensorUs(3) == BLANC && SensorUs(4) == true && current_square == GRIS && !obstacle_mode)
+{
+// partie instructions de la transition
+current_square = BLANC;
+changed_square = true;
+
+// instructions découlant de la synchronisation
+RemoteStopProgram(1);
+OnFwd(Out_AC, 40);
+}
+
+Cependant, certains problèmes purement techniques exigent des modifications et ajustements locaux dans le code, qui ne sont pas prévus à l'origine dans le modèle. Exemple : problème de lecture de gris lors du passage d'une case blanche à une case noire (voir section problèmes).
 
 
