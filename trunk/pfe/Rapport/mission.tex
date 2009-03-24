@@ -2,7 +2,7 @@
 
   \subsection{Objectifs généraux du projet}
 
-  L'\'{e}nonc\'{e} de ce projet est le suivant: nous devons mettre en place une mission non triviale, constitu\'{e}e d'un robot ma\^{i}tre et de un ou plusieurs robots esclaves. Il y a plusieurs contraintes quant \`{i}a la constitution de cette mission: d'une part, le robot esclave ne doit poss\'{e}der aucun capteur. C'est le ma\^{i}tre qui a tous les capteurs n\'{e}cessaires à la réalisation de la mission. Et d'autre part, le ma\^{i}tre doit guider l'esclave \`{a} travers la mission grace à son module bluetooth. Nous disposons de quatre type de capteurs: un capteur de lumiere, un capteur à ultrason capable de mesurer des distances, un capteur de son, et un capteur de pression. Après une p\'{e}riode de r\'{e}flexion, voici la mission que nous avons d\'{e}cid\'{e}s d'adopter.
+  L'\'{e}nonc\'{e} de ce projet est le suivant: nous devons mettre en place une mission non triviale, constitu\'{e}e d'un robot ma\^{i}tre et de un ou plusieurs robots esclaves. Il y a plusieurs contraintes quant \`{i}a la constitution de cette mission: d'une part, le robot esclave ne doit poss\'{e}der aucun capteur. C'est le ma\^{i}tre qui a tous les capteurs n\'{e}cessaires à la réalisation de la mission. D'autre part, le ma\^{i}tre doit guider l'esclave \`{a} travers la mission gr\^{a}ce à son module bluetooth. Nous disposons de quatre types de capteurs: un capteur de lumiere, un capteur à ultrason capable de mesurer des distances, un capteur de son, et un capteur de pression. Après une p\'{e}riode de r\'{e}flexion, voici la mission que nous avons d\'{e}cid\'{e} d'adopter.
 
   \subsection{Environnement}
   L'environnement est constitu\'{e} d'un marquage au sol. Ce marquage
@@ -10,7 +10,7 @@
   diff\'{e}rentes de celle du sol. Un point d'arriv\'{e}e est pr\'{e}d\'{e}fini. On peut
   repr\'{e}senter l'environnement par une grille sur laquelle les
   d\'{e}placements possibles sont verticaux ou horizontaux. Les \'{e}l\'{e}ments de
-  marquage sont donc de forme carr\'{e}e et on d\'{e}finit un chemin unique
+  marquage sont donc de forme carr\'{e}e et on d\'{e}finit un chemin unique à chaque instance,
   repr\'{e}sentant la combinaison de d\'{e}placements que les robots doivent
   \^{e}tre capables de r\'{e}aliser. Les couleurs des cases de la grille sont
   altern\'{e}es de mani\`{e}re \`{a} obtenir un damier. Ce d\'{e}tail permet au robot de
@@ -27,8 +27,8 @@
    ce robot : un capteur de lumi\`{e}re \`{a} l'avant, et un capteur
    ultrasonique \`{a} l'arri\`{e}re. Les d\'{e}placements possibles du robot sont
    les suivants : avancer jusqu'\`{a} la d\'{e}tection d'un changement
-   d'environnement, tourner \`{a} gauche ou \`{a} droite sur place \`{a}
-   90 deg. Le
+   d'environnement, tourner \`{a} gauche sur place \`{a}
+   90 deg, faire demi-tour. Le
    capteur de lumi\`{e}re permet de d\'{e}tecter les bordures du marquage. Le
    capteur ultrasonique detecte la pr\'{e}sence du robot esclave \`{a}
    l'arri\`{e}re. Il est particuli\`{e}rement utile apr\`{e}s un changement de
@@ -38,7 +38,7 @@
    Ce robot ne comporte aucun capteur, et est compl\`{e}tement d\'{e}pendant du
    robot ma\^{i}tre, \`{a} savoir qu'il n'effectue une action que lorsqu'il
    re\c coit un message par la communication Bluetooth. Les possibilit\'{e}s de
-   d\'{e}placement de ce robot sont les m\^{e}mes.
+   d\'{e}placement de ce robot sont les m\^{e}mes hormis le fait que le robot esclave ne fait pas demi-tour après avoir tourné à gauche, il tourne à droite directement.
 
    \subsubsection{Int\'{e}ractions}
    Lors du d\'{e}placement dans l'environnement et de la d\'{e}couverte
@@ -52,7 +52,7 @@
     \begin{itemize}
      \item Le robot tourne \`{a} gauche \`{a} 90 deg.
      \item Si une bordure est pr\'{e}sente, il sait que le chemin qu'il doit
-	   emprunter est celui de droite.
+	   emprunter est celui de droite et fait demi-tour.
     \end{itemize}
    \end{itemize}
 
