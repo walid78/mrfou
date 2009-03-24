@@ -74,3 +74,92 @@ que nous préfèrerons programmer les robots  dans le langage NXC.
 L'algorithme utilisé dans le robot maître est assez simple à comprendre
 en lui même. La difficulté rencontré vient donc plus de l'approche de la
 programmation du robot.
+\\
+Pour rapidement décrire l'algorithme, nous avons en premier lieu un while nous
+permettant de boucler à l'infini. Dans celui-ci le capteur de lumière
+vient mettre à jour une variable, current\_val, qui indique la couleur de la prochaine
+case rencontrée par le robot.
+
+\begin{verbatim} 
+ while(current_val == last_val){
+   last_val = current_val ;
+   real_val = Sensor(S3);
+  if((real_val>=MIN_GRIS) && (real_val<=MAX_GRIS))
+    current_val = GRIS;
+  else{
+    if((real_val>=MIN_BLANC) && (real_val<=MAX_BLANC))
+     current_val = BLANC;
+     else if((real_val>=MIN_NOIR) && (real_val<=MAX_NOIR))
+       current_val = NOIR;
+      }
+  } 
+\end{verbatim}
+
+Le robot maître avance ensuite jusqu'à la prochaine case. En fonction de la
+couleur de celle-ci, deux cas se présentent.
+Si elle est grise ou blanche, le robot maître s'arrète et ordonne au
+robot esclave d'avancer jusqu'à lui.
+
+\begin{verbatim}
+if((changed_square == true) && (obstacle_mode == false))
+{
+ OnFwd(OUT_AC,0);
+ RemoteStartProgram(1,"forward.rxe");
+ while(SensorUS(S4) > 10);
+ RemoteStopProgram(1);
+ OnFwd(OUT_AC,30);
+}
+\end{verbatim}
+
+Si elle est noire, le robot maître effectue l'opération de contournement
+de l'obstacle.
+
+\begin{verbatim} 
+if((current_val == NOIR)){
+ if(obstacle_mode == FALSE){
+ TextOut(10,LCD_LINE4,"NOIR 1");
+ obstacle_mode = TRUE;
+ OnFwd(OUT_AC,0);
+ RotateMotorEx(OUT_AC, 30, 220, -100, true, true);
+ }else{
+    turned_to_right = TRUE;
+    TextOut(10,LCD_LINE5,"NOIR 2");
+    OnFwd(OUT_AC,0);
+    RotateMotorEx(OUT_AC, 30, 400, 100, true, true);
+    obstacle_mode = FALSE;
+    }
+}
+\end{verbatim}
+
+Il ordonne ensuite au robot esclave d'avancer et tourner dans le même
+sens. 
+
+\begin{verbatim}
+if(found_way == TRUE){
+  if(turned_to_right == TRUE){
+   OnFwd(OUT_AC,30);
+   Wait(3000);
+   OnFwd(OUT_AC,0);
+  }
+  RemoteStartProgram(1,"forward.rxe");
+  while(SensorUS(S4) > 10);
+  RemoteStopProgram(1);
+ 
+  Wait(2000);
+ 
+  if(turned_to_right == FALSE){
+   RemoteStartProgram(1,"turnleft.rxe");
+   Wait(5000);
+   RemoteStopProgram(1);
+  }
+  else{
+     RemoteStartProgram(1,"turnright.rxe");
+     Wait(5000);
+     RemoteStopProgram(1);
+     }
+  found_way = FALSE;
+  OnFwd(OUT_AC,30);
+  }
+\end{verbatim}
+
+Les deux robots recommencent ensuite le même cycle de fonctionement.
