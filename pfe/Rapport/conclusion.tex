@@ -15,4 +15,10 @@ Selon les différentes intensités lumineuses dans la pièce où se trouve le ro
 
 Lors du passage du capteur entre les 2 seuils extrêmes (case blanche à case noire ou case noire à case blanche), le capteur détecte un seuil intermédiaire gris pendant un bref instant, causant un bug dans la prise de décision. Nous avons du mettre en place un procédé de correction de la detection qui renouvelle la lecture du capteur après un très bref instant et change la valeur obtenue si elle est différente de la dernière lecture. Cette temporisation était incontournable.
 
+\subsubsection{Le caractère incontrolable des valeurs retournées par les capteurs}
+
+Au début de notre modélisation Altarica des capteurs, nous pensions pouvoir nous en sortir avec une variable d'état $value$ pour représenter les valeurs "lues" par le capteur de lumière et le capteur ultrasonique. Et un évenement $readValue$ devait survenir en fonction de chaque changement de valeur de notre variable d'état. Cela ne convenait pas ensuite dans la vérification, car en réalité, il est impossible de prévoir les valeurs qui vont \^{e}tres lues par ces capteurs. Le robot est réactif à son environnement. Nous avons donc remplacés ces modélisations par une simple variable de flux, qui est bien incontrolable et donc cohérente.
+
+
+
 \subsection{Conclusion}
