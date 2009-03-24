@@ -2,35 +2,41 @@ with Moving do
  quot() >  '$NODENAME.dot';
  dead := any_s - src(any_t - self_epsilon);
  notCFC := any_t - loop(any_t,any_t);
+
+ // Etat de la variable moving
  moving0 := [moving = 0];
  moving1 := [moving = 1];
  moving2 := [moving = 2];
  moving3 := [moving = 3];
- moving4 := [moving = 4];
+
+ // Evénements des roues
  motorLB := label LeftWheel.back;
  motorL0 := label LeftWheel.stop;
  motorL1 := label LeftWheel.forward;
  motorRB := label RightWheel.back;
  motorR0 := label RightWheel.stop;
  motorR1 := label RightWheel.forward;
+
+ // Evénements de Moving
  stop := label stop;
  left := label left;
  forward := label forward;
- right := label right;
  halfturn := label halfturn;
 
- //Situations redoutées : 
+
+ /* Situations redoutées : */
+
+ // Mauvais état de la variable moving
  ERMove := (tgt(stop) & not(moving0)) |
        	   (tgt(left) & not(moving1)) |
        	   (tgt(forward) & not(moving2)) |
-       	   (tgt(right) & not(moving3)) |
-       	   (tgt(halfturn) & not(moving4));
+       	   (tgt(halfturn) & not(moving3));
 
+ // Erreur de synchronisation avec les roues
  ERWheel := (tgt(stop) & (not(tgt(motorL0)) & not(tgt(motorR0)))) |
        	    (tgt(left) & (not(tgt(motorLB)) & not(tgt(motorR1)))) |
        	    (tgt(forward) & (not(tgt(motorL1)) & not(tgt(motorR1)))) |
-       	    (tgt(right) & (not(tgt(motorL1)) & not(tgt(motorRB)))) |
-	    (tgt(halfturn) & (not(tgt(motorLB)) & not(tgt(motorR1))));
+	    (tgt(halfturn) & (not(tgt(motorL1)) & not(tgt(motorRB))));
 
  show(all) > '$NODENAME.prop';
  test(dead,0) > '$NODENAME.res';

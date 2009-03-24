@@ -2,14 +2,6 @@ with BTMaster do
  quot() >  '$NODENAME.dot';
  dead := any_s - src(any_t - self_epsilon);
  notCFC := any_t - loop(any_t,any_t);
- order0 := [order = 0];
- order1 := [order = 1];
- order2 := [order = 2];
- order3 := [order = 3];
- orderStop := label orderStop;
- orderLeft := label orderLeft;
- orderFw := label orderFw;
- orderRight := label orderRight;
  show(all) > '$NODENAME.prop';
  test(dead,0) > '$NODENAME.res';
  test(notCFC,0) >> '$NODENAME.res';

@@ -6,7 +6,8 @@ SOURCE_ALT = alt/UltraSonicSensor.alt\
 	alt/Motor.alt\
 	alt/LightSensor.alt\
 	alt/BTMaster.alt\
-	alt/Moving.alt\
+	alt/MovingMaster.alt\
+	alt/MovingSlave.alt\
 	alt/BTSlave.alt\
 	alt/BTMasterSlave.alt\
 	alt/Controller.alt\
@@ -17,9 +18,11 @@ SOURCE_ACHECK = acheck/UltraSonicSensor.acheck\
 	acheck/Motor.acheck\
 	acheck/LightSensor.acheck\
 	acheck/BTMaster.acheck\
-	acheck/Moving.acheck\
+	acheck/MovingMaster.acheck\
+	acheck/MovingSlave.acheck\
 	acheck/BTSlave.acheck\
-# 	acheck/Controller.acheck\
+	acheck/BTMasterSlave.acheck\
+	acheck/Controller.acheck\
 
 GENERATED_RES = UltraSonicSensor.res\
 	TouchSensor.res\
@@ -27,9 +30,11 @@ GENERATED_RES = UltraSonicSensor.res\
 	Motor.res\
 	LightSensor.res\
 	BTMaster.res\
-	Moving.res\
+	MovingMaster.res\
+	MovingSlave.res\
 	BTSlave.res\
-# 	Controller.res\
+	BTMasterSlave.res\
+	Controller.res\
 
 GENERATED_PROP = UltraSonicSensor.prop\
 	TouchSensor.prop\
@@ -37,11 +42,13 @@ GENERATED_PROP = UltraSonicSensor.prop\
 	Motor.prop\
 	LightSensor.prop\
 	BTMaster.prop\
-	Moving.prop\
+	MovingMaster.prop\
+	MovingSlave.prop\
 	BTSlave.prop\
-# 	Controller.prop\
+	BTMasterSlave.prop\
+	Controller.prop\
 
-# SOURCE_TEX = $(TARGET).tex\
+SOURCE_TEX = $(TARGET).tex\
 
 GRAPHS = UltraSonicSensor.eps\
 	TouchSensor.eps\
@@ -49,9 +56,11 @@ GRAPHS = UltraSonicSensor.eps\
 	Motor.eps\
 	LightSensor.eps\
 	BTMaster.eps\
-	Moving.eps\
+	MovingMaster.eps\
+	MovingSlave.eps\
 	BTSlave.eps\
-# 	Controller.eps\
+	BTMasterSlave.eps\
+	Controller.eps\
 
 SUBDIRS = acheck alt
 
