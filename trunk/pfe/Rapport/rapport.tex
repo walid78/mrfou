@@ -66,15 +66,33 @@ Enseignant : Alain GRIFFAULT
 \newpage
 \begin{abstract}
 
-Nous allons vous pr\'{e}senter dans ce rapport notre projet de fin d'\'{e}tude, qui consiste en l'application du cours de conceptions formelles sur la programmation de robots. Les robots en question sont les robots NXT de l'entreprise lego, sur lesquels nous utilisons le langage C. Ces robots sont capables de r\'{e}agir et m\^{e}me d'interagir avec leur environnement gr\^{a}ce \`{a} un ensemble de capteurs et de moteurs. Et nous allons utiliser le langage Altarica pour montrer que la mission que nous allons impl√©menter dans les robots est sure. Pour r√©aliser ce projet, nous avons proc√©d√©s par √©tapes.\newline
+Nous allons vous pr\'{e}senter dans ce rapport notre projet de fin
+d'\'{e}tudes, qui consiste en l'application du cours de conceptions
+formelles sur la programmation de robots et la gÈnÈration automatique
+de code. Les robots en question sont des robots NXT de l'entreprise
+LEGO. Nous utilisons le langage NXC pour les programmer. Ces robots
+sont capables d'intÈragir avec leur environnement gr\^{a}ce \`{a} un
+ensemble de capteurs et de moteurs. Nous utilisons Altarica pour
+montrer que les diffÈrents comportements des robots sont s˚res.\newline
 
-Premi√®rement, nous avons du nous familiariser avec les robots NXT, les possibilit√©s des diff√©rents capteurs, moteurs et constructions. Les possibilit√©s niveau code ont aussi √©t√© √©xamin√©es, tout ceci afin de savoir quel type de mission est r√©alisable. Puis nous avons d√©cid√©s de cette mission.\newline
+Nous avons d'abord du nous familiariser avec les robots NXT,
+les possibilit√©s des diff√©rents capteurs, moteurs et
+constructions. Les possibilit√©s au niveau code ont aussi √©t√©
+√©xamin√©es afin de savoir quel type de mission est r√©alisable. Nous
+avons ensuite choisi la mission.\newline
 
-Deuxi√®mement, nous avons cod√©s cette mission en langage C avec l'API NXC, et au fur et √† mesure de la r√©daction de cette mission, nous avons mod√©lis√©s les noeuds Altarica correspondants aux diff√©rents capteurs, moteurs, au module bluetooth et au controlleur, pour obtenir au final une mod√©lisation du robot ma√Ætre et une mod√©lisation du robot esclave, dans le contexte de la mission que nous avons choisi. \newline
+Ensuite, nous avons dÈveloppÈ en parallËle le code correspondant ‡ la
+mission et le modËle Altarica. De nombreuses mises-‡-jour ont ÈtÈ
+nÈcessaires avant d'obtenir les versions finales. Nous avons alors
+tentÈ de prouver gr√¢ce √† une sp√©cification $Acheck$ pour chaque
+noeud Altarica qu'il est s˚r et ne provoque pas de comportements indÈsirables. \newline
 
-Troisi√®mement, il s'agit de prouver gr√¢ce √† une sp√©cification $Acheck$ pour chaque noeud Altarica que ce dernier est sur et ne provoque pas de comportements non d√©sir√©s. \newline
+Enfin, nous avons dÈcrit les mÈcanismes principaux formant les bases
+d'une gÈnÈration automatique de code NXC ‡ partir d'un modËle
+altarica. Nous n'avons pas pu Ècrire le parseur correspondant en
+raison de la contrainte de temps liÈe au projet mais restons convaincu
+qu'un tel outil est rÈalisable ‡ partir de notre travail.
 
-Enfin, quatri√®mement, nous avons fait une analogie entre nos noeuds Altarica et le code C de nos robots, afin de cr√©er une piste vers une pseudo g√©n√©ration automatique de code faisant fonctionner les robots √† partir des mod√©lisations Altarica.\newline
 
 
 \end{abstract}
