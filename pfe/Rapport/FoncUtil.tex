@@ -73,10 +73,13 @@ L'algorithme utilisé dans le robot maître est assez simple à comprendre
 en lui même. La difficulté rencontrée vient donc plus de l'approche de la
 programmation du robot.
 \\
-Pour rapidement décrire l'algorithme, nous avons en premier lieu un
+Pour décrire l'algorithme, nous avons en premier lieu un
 while dans lequel le capteur de lumière
 vient mettre à jour une variable, current\_val, qui va servir à indiquer la couleur de la prochaine
-case rencontrée par le robot.
+case rencontrée par le robot. La portion de code suivante permet en
+quelque sorte de se débarasser de l'aspect temporisé, de prendre des
+décisions logiques (et non temporelles), et de raisonner en fonction des
+changements de cases.
 
 \begin{verbatim} 
  while(current_val == last_val){
@@ -118,12 +121,12 @@ if((current_val == NOIR)){
  TextOut(10,LCD_LINE4,"NOIR 1");
  obstacle_mode = TRUE;
  OnFwd(OUT_AC,0);
- RotateMotorEx(OUT_AC, 30, 220, -100, true, true);
+ RotateMotorEx(OUT_AC, 30, 220, -100, true, true); //Rotation à gauche
  }else{
     turned_to_right = TRUE;
     TextOut(10,LCD_LINE5,"NOIR 2");
     OnFwd(OUT_AC,0);
-    RotateMotorEx(OUT_AC, 30, 400, 100, true, true);
+    RotateMotorEx(OUT_AC, 30, 400, 100, true, true); //Rotation à droite
     obstacle_mode = FALSE;
     }
 }
