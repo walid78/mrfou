@@ -70,12 +70,12 @@ que nous préfèrerons programmer les robots  dans le langage NXC.
 
 
 L'algorithme utilisé dans le robot maître est assez simple à comprendre
-en lui même. La difficulté rencontré vient donc plus de l'approche de la
+en lui même. La difficulté rencontrée vient donc plus de l'approche de la
 programmation du robot.
 \\
-Pour rapidement décrire l'algorithme, nous avons en premier lieu un while nous
-permettant de boucler à l'infini. Dans celui-ci le capteur de lumière
-vient mettre à jour une variable, current\_val, qui indique la couleur de la prochaine
+Pour rapidement décrire l'algorithme, nous avons en premier lieu un
+while dans lequel le capteur de lumière
+vient mettre à jour une variable, current\_val, qui va servir à indiquer la couleur de la prochaine
 case rencontrée par le robot.
 
 \begin{verbatim} 
@@ -93,7 +93,7 @@ case rencontrée par le robot.
   } 
 \end{verbatim}
 
-Le robot maître avance ensuite jusqu'à la prochaine case. En fonction de la
+Le robot maître avance jusqu'à la prochaine case. En fonction de la
 couleur de celle-ci, deux cas se présentent.
 Si elle est grise ou blanche, le robot maître s'arrète et ordonne au
 robot esclave d'avancer jusqu'à lui.
