@@ -3,7 +3,7 @@ node Controller
     light: LightSensor;
     sonic: UltraSonicSensor;
     move: MovingMaster;
-    BT: BTMaster;
+    BT: BTMasterSlave;
   state
 
     //Dernière case vue
@@ -79,7 +79,8 @@ node Controller
      
      
     light.value = 1 & 
-    sonic.d & last_val = 2 &
+    sonic.d & 
+    last_val = 2 &
     not obstacle_mode	     |- go -> last_val := 1, 
     				      changed_square := true;
 
