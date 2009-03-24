@@ -7,5 +7,12 @@
 
 M\^{e}me si notre professeur encadrant à tout de suite écarté le fait que l'imprécision des moteurs et des capteurs des robots NXT soient une difficulté réellement importante du projet, il nous a tout de M\^{e}me, fallu composer avec. Par exemple, il nous a fallu quelque temps pour comprendre que lorsque le capteur de lumière, situé à l'avant du robot, arrive exactement entre une case blanche et case noire, il renv 
 
+\subsubsection{Problématique du damier}
+
+Nous avions initialement prévu que la mission se déroulerait dans un environnement ou le sol serait homogène (exemple: tout blanc). Cependant, un problème de décision est survenu. Il était impossible de différencier la présence de l'absence d'un chemin à gauche ou à droite lors de la rencontre d'un obstacle. Etant donné que le robot reste sur la même case lors de sa rotation, il aurait fallu décider d'une distance ou durée avant la rencontre potentielle d'un nouvel obstacle sur le nouveau chemin, ce qui va à l'encontre  de l'objectif de réactivité et généricité du comportement du robot. Pour éviter de temporiser cette action, nous avons décidé d'utiliser un damier gris et blanc, permettant de décider au premier changement de case sur le nouveau chemin si ce chemin est effectivement utilisable ou si la solution était la direction opposée (rencontre immédiate d'une nouvelle case noire).
+
+\subsubsection{Problématique de seuil intermédiaire du capteur lumineux}
+
+Lors du passage du capteur entre les 2 seuils extrêmes (case blanche à case noire ou case noire à case blanche), le capteur détecte un seuil intermédiaire gris pendant un bref instant, causant un bug dans la prise de décision. Nous avons du mettre en place un procédé de correction de la detection qui renouvelle la lecture du capteur après un très bref instant et change la valeur obtenue si elle est différente de la dernière lecture. Cette temporisation était incontournable.
 
 \subsection{Conclusion}
