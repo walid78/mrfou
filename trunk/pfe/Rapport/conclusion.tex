@@ -15,10 +15,16 @@ Selon les différentes intensités lumineuses dans la pièce où se trouve le ro
 
 Lors du passage du capteur entre les 2 seuils extrêmes (case blanche à case noire ou case noire à case blanche), le capteur détecte un seuil intermédiaire gris pendant un bref instant, causant un bug dans la prise de décision. Nous avons du mettre en place un procédé de correction de la detection qui renouvelle la lecture du capteur après un très bref instant et change la valeur obtenue si elle est différente de la dernière lecture. Cette temporisation était incontournable.
 
-\subsubsection{Le caractère incontrolable des valeurs retournées par les capteurs}
+\subsubsection{Caractère incontrolable des valeurs retournées par les capteurs}
 
 Au début de notre modélisation Altarica des capteurs, nous pensions pouvoir nous en sortir avec une variable d'état $value$ pour représenter les valeurs "lues" par le capteur de lumière et le capteur ultrasonique. Et un évenement $readValue$ devait survenir en fonction de chaque changement de valeur de notre variable d'état. Cela ne convenait pas ensuite dans la vérification, car en réalité, il est impossible de prévoir les valeurs qui vont \^{e}tres lues par ces capteurs. Le robot est réactif à son environnement. Nous avons donc remplacés ces modélisations par une simple variable de flux, qui est bien incontrolable et donc cohérente.
 
+\subsubsection{Possibilité de tirer des transitions non voulues}
 
+Au moment de simuler notre n\oe{}ud Controller, nous avons remarqué qu'il nous était possible de faire tourner le robot maître à droite, alors qu'en réalité, cela ne correspondait pas. Nous avons ensuite compris qu'il s'agissait d'une action non capturée d'un sous-n\oe{}ud de notre Controller. Nous avons donc remarqué que cet événement n'était pas capturé parce que le robot maître ne tournait jamais à droite.
 
 \subsection{Conclusion}
+
+Nous avons apprécié l'approche que nous avons eue pendant ce projet. Nous ne nous sommes pas uniquement concentrés sur des difficultés logicielles, et avons abordés les problèmes techniques découlant d'un système complet (électronique et logiciel). Nous aurions voulu aller au bout de notre démarche mais le temps nous a manqué.
+
+Il nous semble que la réalisation d'un outil de génération de code automatique, reposant sur notre travail, est tout à fait envisageable en utilisant une méthode proche de celle que nous avons proposée.
