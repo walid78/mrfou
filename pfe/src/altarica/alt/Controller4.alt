@@ -1,0 +1,20 @@
+light.value = 2 & 
+sonic.d &
+last_val = 1 &
+not obstacle_mode |- go -> last_val := 2, 
+    			   changed_square := true;
+  
+  
+/* Le maitre voit une case grise, l'esclave est derriere lui. On dit à
+ * l'esclave de stopper via le bluetooth (dans les synchronisations), le 
+ * maitre avance, passe sur cette case grise, on passe le booléen qui 
+ * indique que l'on vient de changer de case à vrai. Les gardes 
+ * sont adaptées au changement de couleur.
+ */
+     
+     
+light.value = 1 & 
+sonic.d & 
+last_val = 2 &
+not obstacle_mode |- go -> last_val := 1, 
+    		     	   changed_square := true;

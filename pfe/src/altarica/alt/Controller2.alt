@@ -1,0 +1,19 @@
+  //Le robot maître a-t-il trouvé le bon chemin à chosir après un obstacle ?
+  found_way : bool;
+
+  //Le maître a-t-il tourné à droite ? (si non à gauche)
+  turned_to_right : bool;
+
+event
+
+  go, waitingSlaveOneSquare, wallFront, foundLeft, halfTurn, foundRight,
+  makePlace, slaveTurnLeft, slaveTurnRight; 
+    
+      
+  trans
+
+  /* Procédure utilisée dans le code pour avancer:
+   *
+   * Le maitre avance d'une case, il s'arrete, attend l'esclave qui avance, 
+   * lorsque l'ultrasonic le capte, l'esclave s'arrete, le maitre avance 
+   * d'une case et ainsi de suite.

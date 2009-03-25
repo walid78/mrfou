@@ -1,0 +1,14 @@
+/* Voici la dernière étape du mode obstacle. Dès que le maître détecte
+ * l'esclave dans son champ, il le fait se tourner dans le même sens que 
+ * lui et sort du mode obstacle.
+ */
+
+//Si le maître a tourné à gauche
+obstacle_mode &
+found_way &
+sonic.d &
+changed_square &
+not turned_to_right |- slaveTurnLeft -> obstacle_mode := false,
+    			   		found_way := false,
+					turned_to_right := false,
+					changed_square := false;

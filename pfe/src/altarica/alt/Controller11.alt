@@ -1,0 +1,9 @@
+//Si le maître a tourné à droite
+obstacle_mode &
+found_way &
+sonic.d &
+changed_square &
+turned_to_right |- slaveTurnRight -> obstacle_mode := false,
+			   	     found_way := false,
+				     turned_to_right := false,
+				     changed_square := false;

@@ -1,0 +1,16 @@
+/* Si le maître retombe sur un obstacle à gauche, alors il sait que la 
+ * sortie est plutot à droite. 
+ */
+
+obstacle_mode &
+light.value = 0 &
+not turned_to_right |- halfTurn -> turned_to_right := true;
+
+/* Le maître vient de tourner à droite et est prêt à prendre la sortie. 
+ */
+
+obstacle_mode &
+turned_to_right &
+not found_way &
+light.value = (3-last_val) |- foundRight -> found_way := true,
+					    last_val := light.value;

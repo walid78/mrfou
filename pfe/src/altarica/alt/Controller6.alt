@@ -1,0 +1,12 @@
+/* Voici le premier evenement qui signale la présence d'un obstacle, en 
+ * l'occurence un seul mur en face du robot, alors qu'il n'avait pas déjà
+ * rencontré un obstacle au moment précédent : le robot maître passe alors
+ * en mode obstacle, passe changed_square à false, dit à l'esclave de
+ * s'arrêter et tourne à gauche. */
+
+light.value = 0 &
+sonic.d & 
+(last_val = 1 | 
+last_val = 2) & 
+not obstacle_mode |- wallFront -> obstacle_mode := true, 
+    			       	  changed_square := false;

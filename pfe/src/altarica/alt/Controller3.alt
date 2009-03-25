@@ -1,0 +1,19 @@
+ * Procédure utilisée dans le code pour tourner à gauche après avoir 
+ * rencontré un mur, et pas d'obstacle à gauche:
+ *
+ * Le maitre avance d'une case, et detecte une case noire. Il s'arrete et 
+ * l'esclave s'arrete aussi. Le maître tourne de 90 degrés à gauche et 
+ * avance d'une case, s'arrete, et attend. Il donne l'ordre à l'esclave
+ * d'avancer jusqu'à le sentir derriere, lui ordonne de tourner à gauche,
+ * et la procédure ligne droite recommence.
+ * 
+ */
+  
+/* Le maitre voit une case blanche, l'esclave est derriere lui. On dit à
+ * l'esclave de stopper via le bluetooth (dans les synchronisations), le 
+ * maitre avance, passe sur cette case blanche, on passe le booléen qui 
+ * indique que l'on vient vient de changer de case à vrai.  Les gardes 
+ * vérifient bien sur que la derniere case vue était une case grise, 
+ * que l'esclave est derriere, et que le maitre n'est pas 
+ * en mode obstacle. 
+ */

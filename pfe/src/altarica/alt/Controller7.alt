@@ -1,0 +1,19 @@
+/* À cette étape là, le maître trouve une case de sortie à gauche après
+ * avoir été en mode obstacle. 
+ */
+
+// Le maître était sur une case blanche
+obstacle_mode &
+light.value = 2 &
+last_val = 1 &
+not found_way &
+not turned_to_right |- foundLeft -> found_way := true,
+				    last_val := 2;
+
+// Le maître était sur une case grise
+obstacle_mode &
+light.value = 1 &
+last_val = 2 &
+not found_way &
+not turned_to_right |- foundLeft -> found_way := true,
+				    last_val := 1;
