@@ -1,4 +1,4 @@
-with Moving do
+with MovingMaster do
  quot() >  '$NODENAME.dot';
  dead := any_s - src(any_t - self_epsilon);
  notCFC := any_t - loop(any_t,any_t);
