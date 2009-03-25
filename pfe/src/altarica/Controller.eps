@@ -1,0 +1,4496 @@
+%!PS-Adobe-2.0
+%%Creator: Graphviz version 2.18 (Wed Aug  6 10:29:47 UTC 2008)
+%%For: (mrfou) Fabien Kuntz,,,
+%%Title: Controller/Q
+%%Pages: (atend)
+%%BoundingBox: (atend)
+%%EndComments
+save
+%%BeginProlog
+/DotDict 200 dict def
+DotDict begin
+
+/setupLatin1 {
+mark
+/EncodingVector 256 array def
+ EncodingVector 0
+
+ISOLatin1Encoding 0 255 getinterval putinterval
+EncodingVector 45 /hyphen put
+
+% Set up ISO Latin 1 character encoding
+/starnetISO {
+        dup dup findfont dup length dict begin
+        { 1 index /FID ne { def }{ pop pop } ifelse
+        } forall
+        /Encoding EncodingVector def
+        currentdict end definefont
+} def
+/Times-Roman starnetISO def
+/Times-Italic starnetISO def
+/Times-Bold starnetISO def
+/Times-BoldItalic starnetISO def
+/Helvetica starnetISO def
+/Helvetica-Oblique starnetISO def
+/Helvetica-Bold starnetISO def
+/Helvetica-BoldOblique starnetISO def
+/Courier starnetISO def
+/Courier-Oblique starnetISO def
+/Courier-Bold starnetISO def
+/Courier-BoldOblique starnetISO def
+cleartomark
+} bind def
+
+%%BeginResource: procset graphviz 0 0
+/coord-font-family /Times-Roman def
+/default-font-family /Times-Roman def
+/coordfont coord-font-family findfont 8 scalefont def
+
+/InvScaleFactor 1.0 def
+/set_scale {
+       dup 1 exch div /InvScaleFactor exch def
+       scale
+} bind def
+
+% styles
+/solid { [] 0 setdash } bind def
+/dashed { [9 InvScaleFactor mul dup ] 0 setdash } bind def
+/dotted { [1 InvScaleFactor mul 6 InvScaleFactor mul] 0 setdash } bind def
+/invis {/fill {newpath} def /stroke {newpath} def /show {pop newpath} def} bind def
+/bold { 2 setlinewidth } bind def
+/filled { } bind def
+/unfilled { } bind def
+/rounded { } bind def
+/diagonals { } bind def
+
+% hooks for setting color 
+/nodecolor { sethsbcolor } bind def
+/edgecolor { sethsbcolor } bind def
+/graphcolor { sethsbcolor } bind def
+/nopcolor {pop pop pop} bind def
+
+/beginpage {	% i j npages
+	/npages exch def
+	/j exch def
+	/i exch def
+	/str 10 string def
+	npages 1 gt {
+		gsave
+			coordfont setfont
+			0 0 moveto
+			(\() show i str cvs show (,) show j str cvs show (\)) show
+		grestore
+	} if
+} bind def
+
+/set_font {
+	findfont exch
+	scalefont setfont
+} def
+
+% draw text fitted to its expected width
+/alignedtext {			% width text
+	/text exch def
+	/width exch def
+	gsave
+		width 0 gt {
+			[] 0 setdash
+			text stringwidth pop width exch sub text length div 0 text ashow
+		} if
+	grestore
+} def
+
+/boxprim {				% xcorner ycorner xsize ysize
+		4 2 roll
+		moveto
+		2 copy
+		exch 0 rlineto
+		0 exch rlineto
+		pop neg 0 rlineto
+		closepath
+} bind def
+
+/ellipse_path {
+	/ry exch def
+	/rx exch def
+	/y exch def
+	/x exch def
+	matrix currentmatrix
+	newpath
+	x y translate
+	rx ry scale
+	0 0 1 0 360 arc
+	setmatrix
+} bind def
+
+/endpage { showpage } bind def
+/showpage { } def
+
+/layercolorseq
+	[	% layer color sequence - darkest to lightest
+		[0 0 0]
+		[.2 .8 .8]
+		[.4 .8 .8]
+		[.6 .8 .8]
+		[.8 .8 .8]
+	]
+def
+
+/layerlen layercolorseq length def
+
+/setlayer {/maxlayer exch def /curlayer exch def
+	layercolorseq curlayer 1 sub layerlen mod get
+	aload pop sethsbcolor
+	/nodecolor {nopcolor} def
+	/edgecolor {nopcolor} def
+	/graphcolor {nopcolor} def
+} bind def
+
+/onlayer { curlayer ne {invis} if } def
+
+/onlayers {
+	/myupper exch def
+	/mylower exch def
+	curlayer mylower lt
+	curlayer myupper gt
+	or
+	{invis} if
+} def
+
+/curlayer 0 def
+
+%%EndResource
+%%EndProlog
+%%BeginSetup
+14 default-font-family set_font
+1 setmiterlimit
+% /arrowlength 10 def
+% /arrowwidth 5 def
+
+% make sure pdfmark is harmless for PS-interpreters other than Distiller
+/pdfmark where {pop} {userdict /pdfmark /cleartomark load put} ifelse
+% make '<<' and '>>' safe on PS Level 1 devices
+/languagelevel where {pop languagelevel}{1} ifelse
+2 lt {
+    userdict (<<) cvn ([) cvn load put
+    userdict (>>) cvn ([) cvn load put
+} if
+
+%%EndSetup
+setupLatin1
+%%Page: 1 1
+%%PageBoundingBox: 36 36 14740 3500
+%%PageOrientation: Portrait
+0 0 1 beginpage
+gsave
+36 36 14704 3464 boxprim clip newpath
+1 1 set_scale 0 rotate 40 40 translate
+% C0
+gsave
+[ /Rect [ 8556 3420 10490 3456 ]
+  /Border [ 0 0 0 ]
+  /Action << /Subtype /URI /URI (#) >>
+  /Subtype /Link
+/ANN pdfmark
+1 setlinewidth
+0.000 0.000 0.000 nodecolor
+newpath 10490 3456 moveto
+8556 3456 lineto
+8556 3420 lineto
+10490 3420 lineto
+closepath stroke
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+8564 3433.9 moveto 1918 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=0,move.RightWheel.move=0,move.moving=0,light.value=2,sonic.d=true,changed_square=false,found_way=false,last_val=1,obstacle_mode=false,turned_to_right=false) alignedtext
+grestore
+% C0->C0
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 10490 3441 moveto
+10502 3440 10508 3439 10508 3438 curveto
+10508 3437 10505 3437 10500 3436 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 10500.3 3432.51 moveto
+10490 3435 lineto
+10499.6 3439.48 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 10500.3 3432.51 moveto
+10490 3435 lineto
+10499.6 3439.48 lineto
+closepath stroke
+grestore
+% C9
+gsave
+[ /Rect [ 1817 3256 3751 3366 ]
+  /Border [ 0 0 0 ]
+  /Action << /Subtype /URI /URI (#) >>
+  /Subtype /Link
+/ANN pdfmark
+1 setlinewidth
+0.000 0.000 0.000 nodecolor
+newpath 3751 3366 moveto
+1817 3366 lineto
+1817 3256 lineto
+3751 3256 lineto
+closepath stroke
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+1825 3349.4 moveto 1918 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=1,move.moving=2,light.value=0,sonic.d=false,changed_square=true,found_way=false,last_val=1,obstacle_mode=false,turned_to_right=false) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+1825 3332.4 moveto 1918 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=1,move.moving=2,light.value=0,sonic.d=false,changed_square=true,found_way=false,last_val=2,obstacle_mode=false,turned_to_right=false) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+1825 3315.4 moveto 1918 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=1,move.moving=2,light.value=1,sonic.d=false,changed_square=true,found_way=false,last_val=1,obstacle_mode=false,turned_to_right=false) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+1825 3298.4 moveto 1918 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=1,move.moving=2,light.value=1,sonic.d=false,changed_square=true,found_way=false,last_val=2,obstacle_mode=false,turned_to_right=false) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+1825 3281.4 moveto 1918 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=1,move.moving=2,light.value=2,sonic.d=false,changed_square=true,found_way=false,last_val=1,obstacle_mode=false,turned_to_right=false) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+1825 3264.4 moveto 1918 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=1,move.moving=2,light.value=2,sonic.d=false,changed_square=true,found_way=false,last_val=2,obstacle_mode=false,turned_to_right=false) alignedtext
+grestore
+% C0->C9
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 8556 3436 moveto
+6892 3432 3644 3421 3393 3402 curveto
+3299 3394 3199 3381 3107 3367 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 3107.3 3363.51 moveto
+3097 3366 lineto
+3106.6 3370.48 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 3107.3 3363.51 moveto
+3097 3366 lineto
+3106.6 3370.48 lineto
+closepath stroke
+0.000 0.000 0.000 edgecolor
+14 /Times-Roman set_font
+3417.5 3388.9 moveto 1241 (\(go, move.forward, move.LeftWheel.forward, move.RightWheel.forward, BT.orderStop, BT.Master.orderStop, BT.Slave.obeyStop, BT.Slave.Move.stop, BT.Slave.Move.LeftWheel.stop, BT.Slave.Move.RightWheel.stop\)) alignedtext
+grestore
+% C10
+gsave
+[ /Rect [ 3167 3143 5095 3185 ]
+  /Border [ 0 0 0 ]
+  /Action << /Subtype /URI /URI (#) >>
+  /Subtype /Link
+/ANN pdfmark
+1 setlinewidth
+0.000 0.000 0.000 nodecolor
+newpath 5095 3185 moveto
+3167 3185 lineto
+3167 3143 lineto
+5095 3143 lineto
+closepath stroke
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+3174.5 3168.4 moveto 1913 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=1,move.moving=2,light.value=2,sonic.d=true,changed_square=true,found_way=false,last_val=1,obstacle_mode=false,turned_to_right=false) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+3174.5 3151.4 moveto 1913 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=1,move.moving=2,light.value=1,sonic.d=true,changed_square=true,found_way=false,last_val=2,obstacle_mode=false,turned_to_right=false) alignedtext
+grestore
+% C0->C10
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 8556 3432 moveto
+7369 3423 5473 3403 5145 3366 curveto
+4801 3327 4398 3232 4222 3187 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 4222.49 3183.53 moveto
+4212 3185 lineto
+4221.12 3190.39 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 4222.49 3183.53 moveto
+4212 3185 lineto
+4221.12 3190.39 lineto
+closepath stroke
+0.000 0.000 0.000 edgecolor
+14 /Times-Roman set_font
+5160.5 3306.9 moveto 1241 (\(go, move.forward, move.LeftWheel.forward, move.RightWheel.forward, BT.orderStop, BT.Master.orderStop, BT.Slave.obeyStop, BT.Slave.Move.stop, BT.Slave.Move.LeftWheel.stop, BT.Slave.Move.RightWheel.stop\)) alignedtext
+grestore
+% C12
+gsave
+[ /Rect [ 3980 2950 5908 2992 ]
+  /Border [ 0 0 0 ]
+  /Action << /Subtype /URI /URI (#) >>
+  /Subtype /Link
+/ANN pdfmark
+1 setlinewidth
+0.000 0.000 0.000 nodecolor
+newpath 5908 2992 moveto
+3980 2992 lineto
+3980 2950 lineto
+5908 2950 lineto
+closepath stroke
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+3987.5 2975.4 moveto 1913 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=1,move.moving=2,light.value=0,sonic.d=true,changed_square=true,found_way=false,last_val=1,obstacle_mode=false,turned_to_right=false) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+3987.5 2958.4 moveto 1913 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=1,move.moving=2,light.value=0,sonic.d=true,changed_square=true,found_way=false,last_val=2,obstacle_mode=false,turned_to_right=false) alignedtext
+grestore
+% C0->C12
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 9185 3420 moveto
+8934 3402 8636 3368 8636 3311 curveto
+8636 3311 8636 3311 8636 3051 curveto
+8636 3016 7012 2992 5918 2980 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 5918 2976.5 moveto
+5908 2980 lineto
+5918 2983.5 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 5918 2976.5 moveto
+5908 2980 lineto
+5918 2983.5 lineto
+closepath stroke
+0.000 0.000 0.000 edgecolor
+14 /Times-Roman set_font
+8635.5 3159.9 moveto 1241 (\(go, move.forward, move.LeftWheel.forward, move.RightWheel.forward, BT.orderStop, BT.Master.orderStop, BT.Slave.obeyStop, BT.Slave.Move.stop, BT.Slave.Move.LeftWheel.stop, BT.Slave.Move.RightWheel.stop\)) alignedtext
+grestore
+% C17
+gsave
+[ /Rect [ 2975 3030 4903 3072 ]
+  /Border [ 0 0 0 ]
+  /Action << /Subtype /URI /URI (#) >>
+  /Subtype /Link
+/ANN pdfmark
+1 setlinewidth
+0.000 0.000 0.000 nodecolor
+newpath 4903 3072 moveto
+2975 3072 lineto
+2975 3030 lineto
+4903 3030 lineto
+closepath stroke
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+2982.5 3055.4 moveto 1913 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=1,move.moving=2,light.value=1,sonic.d=true,changed_square=true,found_way=false,last_val=1,obstacle_mode=false,turned_to_right=false) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+2982.5 3038.4 moveto 1913 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=1,move.moving=2,light.value=2,sonic.d=true,changed_square=true,found_way=false,last_val=2,obstacle_mode=false,turned_to_right=false) alignedtext
+grestore
+% C0->C17
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 8907 3420 moveto
+8812 3415 8714 3409 8622 3402 curveto
+7621 3320 7381 3202 6381 3126 curveto
+6103 3104 5467 3085 4913 3071 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 4913 3067.5 moveto
+4903 3071 lineto
+4913 3074.5 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 4913 3067.5 moveto
+4903 3071 lineto
+4913 3074.5 lineto
+closepath stroke
+0.000 0.000 0.000 edgecolor
+14 /Times-Roman set_font
+7355.5 3224.9 moveto 1241 (\(go, move.forward, move.LeftWheel.forward, move.RightWheel.forward, BT.orderStop, BT.Master.orderStop, BT.Slave.obeyStop, BT.Slave.Move.stop, BT.Slave.Move.LeftWheel.stop, BT.Slave.Move.RightWheel.stop\)) alignedtext
+grestore
+% C25
+gsave
+[ /Rect [ 11182 3293 13116 3329 ]
+  /Border [ 0 0 0 ]
+  /Action << /Subtype /URI /URI (#) >>
+  /Subtype /Link
+/ANN pdfmark
+1 setlinewidth
+0.000 0.000 0.000 nodecolor
+newpath 13116 3329 moveto
+11182 3329 lineto
+11182 3293 lineto
+13116 3293 lineto
+closepath stroke
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+11190 3306.9 moveto 1918 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=0,move.RightWheel.move=0,move.moving=0,light.value=0,sonic.d=true,changed_square=false,found_way=false,last_val=1,obstacle_mode=false,turned_to_right=false) alignedtext
+grestore
+% C0->C25
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 9891 3420 moveto
+10384 3396 11258 3354 11762 3329 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 11762 3332.5 moveto
+11772 3329 lineto
+11762 3325.5 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 11762 3332.5 moveto
+11772 3329 lineto
+11762 3325.5 lineto
+closepath stroke
+grestore
+% C26
+gsave
+[ /Rect [ 12215 3126 14153 3202 ]
+  /Border [ 0 0 0 ]
+  /Action << /Subtype /URI /URI (#) >>
+  /Subtype /Link
+/ANN pdfmark
+1 setlinewidth
+0.000 0.000 0.000 nodecolor
+newpath 14153 3202 moveto
+12215 3202 lineto
+12215 3126 lineto
+14153 3126 lineto
+closepath stroke
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+12223 3185.4 moveto 1922 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=0,move.RightWheel.move=0,move.moving=0,light.value=0,sonic.d=false,changed_square=false,found_way=false,last_val=1,obstacle_mode=false,turned_to_right=false) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+12223 3168.4 moveto 1922 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=0,move.RightWheel.move=0,move.moving=0,light.value=1,sonic.d=false,changed_square=false,found_way=false,last_val=1,obstacle_mode=false,turned_to_right=false) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+12225 3151.4 moveto 1918 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=0,move.RightWheel.move=0,move.moving=0,light.value=1,sonic.d=true,changed_square=false,found_way=false,last_val=1,obstacle_mode=false,turned_to_right=false) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+12223 3134.4 moveto 1922 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=0,move.RightWheel.move=0,move.moving=0,light.value=2,sonic.d=false,changed_square=false,found_way=false,last_val=1,obstacle_mode=false,turned_to_right=false) alignedtext
+grestore
+% C0->C26
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 10490 3433 moveto
+11542 3426 13083 3408 13134 3366 curveto
+13178 3329 13183 3259 13183 3212 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 13186.5 3212 moveto
+13183 3202 lineto
+13179.5 3212 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 13186.5 3212 moveto
+13183 3202 lineto
+13179.5 3212 lineto
+closepath stroke
+grestore
+% C1
+gsave
+[ /Rect [ 6229 2481 8149 2557 ]
+  /Border [ 0 0 0 ]
+  /Action << /Subtype /URI /URI (#) >>
+  /Subtype /Link
+/ANN pdfmark
+1 setlinewidth
+0.000 0.000 0.000 nodecolor
+newpath 8149 2557 moveto
+6229 2557 lineto
+6229 2481 lineto
+8149 2481 lineto
+closepath stroke
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+6237 2540.4 moveto 1904 (BT.Master.order=2,BT.Slave.Move.LeftWheel.move=1,BT.Slave.Move.RightWheel.move=1,BT.Slave.Move.moving=2,BT.Slave.obey=2,BT.order=2,move.LeftWheel.move=0,move.RightWheel.move=0,move.moving=0,light.value=1,sonic.d=true,changed_square=true,found_way=true,last_val=2,obstacle_mode=true,turned_to_right=false) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+6237 2523.4 moveto 1904 (BT.Master.order=2,BT.Slave.Move.LeftWheel.move=1,BT.Slave.Move.RightWheel.move=1,BT.Slave.Move.moving=2,BT.Slave.obey=2,BT.order=2,move.LeftWheel.move=0,move.RightWheel.move=0,move.moving=0,light.value=1,sonic.d=true,changed_square=true,found_way=true,last_val=1,obstacle_mode=true,turned_to_right=false) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+6237 2506.4 moveto 1904 (BT.Master.order=2,BT.Slave.Move.LeftWheel.move=1,BT.Slave.Move.RightWheel.move=1,BT.Slave.Move.moving=2,BT.Slave.obey=2,BT.order=2,move.LeftWheel.move=0,move.RightWheel.move=0,move.moving=0,light.value=2,sonic.d=true,changed_square=true,found_way=true,last_val=1,obstacle_mode=true,turned_to_right=false) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+6237 2489.4 moveto 1904 (BT.Master.order=2,BT.Slave.Move.LeftWheel.move=1,BT.Slave.Move.RightWheel.move=1,BT.Slave.Move.moving=2,BT.Slave.obey=2,BT.order=2,move.LeftWheel.move=0,move.RightWheel.move=0,move.moving=0,light.value=2,sonic.d=true,changed_square=true,found_way=true,last_val=2,obstacle_mode=true,turned_to_right=false) alignedtext
+grestore
+% C1->C1
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 8149 2524 moveto
+8161 2523 8167 2521 8167 2519 curveto
+8167 2518 8164 2516 8159 2515 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 8159.3 2511.51 moveto
+8149 2514 lineto
+8158.6 2518.48 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 8159.3 2511.51 moveto
+8149 2514 lineto
+8158.6 2518.48 lineto
+closepath stroke
+grestore
+% C3
+gsave
+[ /Rect [ 5981 2368 7901 2410 ]
+  /Border [ 0 0 0 ]
+  /Action << /Subtype /URI /URI (#) >>
+  /Subtype /Link
+/ANN pdfmark
+1 setlinewidth
+0.000 0.000 0.000 nodecolor
+newpath 7901 2410 moveto
+5981 2410 lineto
+5981 2368 lineto
+7901 2368 lineto
+closepath stroke
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+5989 2393.4 moveto 1904 (BT.Master.order=2,BT.Slave.Move.LeftWheel.move=1,BT.Slave.Move.RightWheel.move=1,BT.Slave.Move.moving=2,BT.Slave.obey=2,BT.order=2,move.LeftWheel.move=0,move.RightWheel.move=0,move.moving=0,light.value=0,sonic.d=true,changed_square=true,found_way=true,last_val=2,obstacle_mode=true,turned_to_right=false) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+5989 2376.4 moveto 1904 (BT.Master.order=2,BT.Slave.Move.LeftWheel.move=1,BT.Slave.Move.RightWheel.move=1,BT.Slave.Move.moving=2,BT.Slave.obey=2,BT.order=2,move.LeftWheel.move=0,move.RightWheel.move=0,move.moving=0,light.value=0,sonic.d=true,changed_square=true,found_way=true,last_val=1,obstacle_mode=true,turned_to_right=false) alignedtext
+grestore
+% C1->C3
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 7110 2481 moveto
+7069 2460 7019 2434 6985 2415 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 6986.44 2411.8 moveto
+6976 2410 lineto
+6983.04 2417.92 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 6986.44 2411.8 moveto
+6976 2410 lineto
+6983.04 2417.92 lineto
+closepath stroke
+grestore
+% C7
+gsave
+[ /Rect [ 7580 2090 9504 2166 ]
+  /Border [ 0 0 0 ]
+  /Action << /Subtype /URI /URI (#) >>
+  /Subtype /Link
+/ANN pdfmark
+1 setlinewidth
+0.000 0.000 0.000 nodecolor
+newpath 9504 2166 moveto
+7580 2166 lineto
+7580 2090 lineto
+9504 2090 lineto
+closepath stroke
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+7587.5 2149.4 moveto 1909 (BT.Master.order=2,BT.Slave.Move.LeftWheel.move=1,BT.Slave.Move.RightWheel.move=1,BT.Slave.Move.moving=2,BT.Slave.obey=2,BT.order=2,move.LeftWheel.move=0,move.RightWheel.move=0,move.moving=0,light.value=1,sonic.d=false,changed_square=true,found_way=true,last_val=2,obstacle_mode=true,turned_to_right=false) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+7587.5 2132.4 moveto 1909 (BT.Master.order=2,BT.Slave.Move.LeftWheel.move=1,BT.Slave.Move.RightWheel.move=1,BT.Slave.Move.moving=2,BT.Slave.obey=2,BT.order=2,move.LeftWheel.move=0,move.RightWheel.move=0,move.moving=0,light.value=1,sonic.d=false,changed_square=true,found_way=true,last_val=1,obstacle_mode=true,turned_to_right=false) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+7587.5 2115.4 moveto 1909 (BT.Master.order=2,BT.Slave.Move.LeftWheel.move=1,BT.Slave.Move.RightWheel.move=1,BT.Slave.Move.moving=2,BT.Slave.obey=2,BT.order=2,move.LeftWheel.move=0,move.RightWheel.move=0,move.moving=0,light.value=2,sonic.d=false,changed_square=true,found_way=true,last_val=1,obstacle_mode=true,turned_to_right=false) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+7587.5 2098.4 moveto 1909 (BT.Master.order=2,BT.Slave.Move.LeftWheel.move=1,BT.Slave.Move.RightWheel.move=1,BT.Slave.Move.moving=2,BT.Slave.obey=2,BT.order=2,move.LeftWheel.move=0,move.RightWheel.move=0,move.moving=0,light.value=2,sonic.d=false,changed_square=true,found_way=true,last_val=2,obstacle_mode=true,turned_to_right=false) alignedtext
+grestore
+% C1->C7
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 7580 2481 moveto
+7672 2471 7771 2459 7862 2446 curveto
+8055 2418 8100 2391 8295 2368 curveto
+8364 2359 8872 2380 8920 2330 curveto
+8991 2254 8874 2201 8752 2169 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 8752.58 2165.52 moveto
+8742 2166 lineto
+8750.57 2172.23 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 8752.58 2165.52 moveto
+8742 2166 lineto
+8750.57 2172.23 lineto
+closepath stroke
+grestore
+% C11
+gsave
+[ /Rect [ 2089 1592 4027 1702 ]
+  /Border [ 0 0 0 ]
+  /Action << /Subtype /URI /URI (#) >>
+  /Subtype /Link
+/ANN pdfmark
+1 setlinewidth
+0.000 0.000 0.000 nodecolor
+newpath 4027 1702 moveto
+2089 1702 lineto
+2089 1592 lineto
+4027 1592 lineto
+closepath stroke
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+2097 1685.4 moveto 1922 (BT.Master.order=3,BT.Slave.Move.LeftWheel.move=1,BT.Slave.Move.RightWheel.move=-1,BT.Slave.Move.moving=3,BT.Slave.obey=3,BT.order=3,move.LeftWheel.move=0,move.RightWheel.move=0,move.moving=0,light.value=1,sonic.d=true,changed_square=false,found_way=false,last_val=2,obstacle_mode=false,turned_to_right=false) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+2097 1668.4 moveto 1922 (BT.Master.order=3,BT.Slave.Move.LeftWheel.move=1,BT.Slave.Move.RightWheel.move=-1,BT.Slave.Move.moving=3,BT.Slave.obey=3,BT.order=3,move.LeftWheel.move=0,move.RightWheel.move=0,move.moving=0,light.value=2,sonic.d=true,changed_square=false,found_way=false,last_val=1,obstacle_mode=false,turned_to_right=false) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+2097 1651.4 moveto 1922 (BT.Master.order=1,BT.Slave.Move.LeftWheel.move=-1,BT.Slave.Move.RightWheel.move=1,BT.Slave.Move.moving=1,BT.Slave.obey=1,BT.order=1,move.LeftWheel.move=0,move.RightWheel.move=0,move.moving=0,light.value=1,sonic.d=true,changed_square=false,found_way=false,last_val=2,obstacle_mode=false,turned_to_right=false) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+2099 1634.4 moveto 1918 (BT.Master.order=2,BT.Slave.Move.LeftWheel.move=1,BT.Slave.Move.RightWheel.move=1,BT.Slave.Move.moving=2,BT.Slave.obey=2,BT.order=2,move.LeftWheel.move=0,move.RightWheel.move=0,move.moving=0,light.value=2,sonic.d=true,changed_square=false,found_way=false,last_val=1,obstacle_mode=false,turned_to_right=false) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+2097 1617.4 moveto 1922 (BT.Master.order=1,BT.Slave.Move.LeftWheel.move=-1,BT.Slave.Move.RightWheel.move=1,BT.Slave.Move.moving=1,BT.Slave.obey=1,BT.order=1,move.LeftWheel.move=0,move.RightWheel.move=0,move.moving=0,light.value=2,sonic.d=true,changed_square=false,found_way=false,last_val=1,obstacle_mode=false,turned_to_right=false) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+2099 1600.4 moveto 1918 (BT.Master.order=2,BT.Slave.Move.LeftWheel.move=1,BT.Slave.Move.RightWheel.move=1,BT.Slave.Move.moving=2,BT.Slave.obey=2,BT.order=2,move.LeftWheel.move=0,move.RightWheel.move=0,move.moving=0,light.value=1,sonic.d=true,changed_square=false,found_way=false,last_val=2,obstacle_mode=false,turned_to_right=false) alignedtext
+grestore
+% C1->C11
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 6494 2481 moveto
+5298 2415 2976 2286 2961 2270 curveto
+2886 2190 2987 1854 3036 1711 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 3039.16 1712.59 moveto
+3039 1702 lineto
+3032.52 1710.38 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 3039.16 1712.59 moveto
+3039 1702 lineto
+3032.52 1710.38 lineto
+closepath stroke
+0.000 0.000 0.000 edgecolor
+14 /Times-Roman set_font
+2971.5 2256.9 moveto 1247 (\(slaveTurnLeft, move.stop, move.LeftWheel.stop, move.RightWheel.stop, BT.orderLeft, BT.Master.orderLeft, BT.Slave.obeyLeft, BT.Slave.Move.left, BT.Slave.Move.LeftWheel.back, BT.Slave.Move.RightWheel.forward\)) alignedtext
+grestore
+% C13
+gsave
+[ /Rect [ 4438 958 6376 1068 ]
+  /Border [ 0 0 0 ]
+  /Action << /Subtype /URI /URI (#) >>
+  /Subtype /Link
+/ANN pdfmark
+1 setlinewidth
+0.000 0.000 0.000 nodecolor
+newpath 6376 1068 moveto
+4438 1068 lineto
+4438 958 lineto
+6376 958 lineto
+closepath stroke
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+4446 1051.4 moveto 1922 (BT.Master.order=3,BT.Slave.Move.LeftWheel.move=1,BT.Slave.Move.RightWheel.move=-1,BT.Slave.Move.moving=3,BT.Slave.obey=3,BT.order=3,move.LeftWheel.move=0,move.RightWheel.move=0,move.moving=0,light.value=0,sonic.d=true,changed_square=false,found_way=false,last_val=2,obstacle_mode=false,turned_to_right=false) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+4446 1034.4 moveto 1922 (BT.Master.order=3,BT.Slave.Move.LeftWheel.move=1,BT.Slave.Move.RightWheel.move=-1,BT.Slave.Move.moving=3,BT.Slave.obey=3,BT.order=3,move.LeftWheel.move=0,move.RightWheel.move=0,move.moving=0,light.value=0,sonic.d=true,changed_square=false,found_way=false,last_val=1,obstacle_mode=false,turned_to_right=false) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+4448 1017.4 moveto 1918 (BT.Master.order=2,BT.Slave.Move.LeftWheel.move=1,BT.Slave.Move.RightWheel.move=1,BT.Slave.Move.moving=2,BT.Slave.obey=2,BT.order=2,move.LeftWheel.move=0,move.RightWheel.move=0,move.moving=0,light.value=0,sonic.d=true,changed_square=false,found_way=false,last_val=1,obstacle_mode=false,turned_to_right=false) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+4446 1000.4 moveto 1922 (BT.Master.order=1,BT.Slave.Move.LeftWheel.move=-1,BT.Slave.Move.RightWheel.move=1,BT.Slave.Move.moving=1,BT.Slave.obey=1,BT.order=1,move.LeftWheel.move=0,move.RightWheel.move=0,move.moving=0,light.value=0,sonic.d=true,changed_square=false,found_way=false,last_val=2,obstacle_mode=false,turned_to_right=false) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+4448 983.4 moveto 1918 (BT.Master.order=2,BT.Slave.Move.LeftWheel.move=1,BT.Slave.Move.RightWheel.move=1,BT.Slave.Move.moving=2,BT.Slave.obey=2,BT.order=2,move.LeftWheel.move=0,move.RightWheel.move=0,move.moving=0,light.value=0,sonic.d=true,changed_square=false,found_way=false,last_val=2,obstacle_mode=false,turned_to_right=false) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+4446 966.4 moveto 1922 (BT.Master.order=1,BT.Slave.Move.LeftWheel.move=-1,BT.Slave.Move.RightWheel.move=1,BT.Slave.Move.moving=1,BT.Slave.obey=1,BT.order=1,move.LeftWheel.move=0,move.RightWheel.move=0,move.moving=0,light.value=0,sonic.d=true,changed_square=false,found_way=false,last_val=1,obstacle_mode=false,turned_to_right=false) alignedtext
+grestore
+% C1->C13
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 7575 2481 moveto
+7690 2470 7816 2457 7933 2446 curveto
+8284 2411 8372 2399 8724 2368 curveto
+8933 2349 8985 2347 9195 2330 curveto
+9409 2312 9462 2301 9678 2288 curveto
+9884 2275 9936 2279 10144 2270 curveto
+10220 2266 10782 2289 10836 2234 curveto
+10900 2165 10902 2089 10836 2022 curveto
+10789 1975 9702 2050 9656 2004 curveto
+9633 1981 9655 1893 9655 1862 curveto
+9655 1862 9655 1862 9655 1330 curveto
+9655 1166 7641 1078 6386 1038 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 6386 1034.5 moveto
+6376 1038 lineto
+6386 1041.5 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 6386 1034.5 moveto
+6376 1038 lineto
+6386 1041.5 lineto
+closepath stroke
+0.000 0.000 0.000 edgecolor
+14 /Times-Roman set_font
+10676.5 1990.9 moveto 1247 (\(slaveTurnLeft, move.stop, move.LeftWheel.stop, move.RightWheel.stop, BT.orderLeft, BT.Master.orderLeft, BT.Slave.obeyLeft, BT.Slave.Move.left, BT.Slave.Move.LeftWheel.back, BT.Slave.Move.RightWheel.forward\)) alignedtext
+grestore
+% C19
+gsave
+[ /Rect [ 3121 1122 5063 1538 ]
+  /Border [ 0 0 0 ]
+  /Action << /Subtype /URI /URI (#) >>
+  /Subtype /Link
+/ANN pdfmark
+1 setlinewidth
+0.000 0.000 0.000 nodecolor
+newpath 5063 1538 moveto
+3121 1538 lineto
+3121 1122 lineto
+5063 1122 lineto
+closepath stroke
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+3128.5 1521.4 moveto 1927 (BT.Master.order=3,BT.Slave.Move.LeftWheel.move=1,BT.Slave.Move.RightWheel.move=-1,BT.Slave.Move.moving=3,BT.Slave.obey=3,BT.order=3,move.LeftWheel.move=0,move.RightWheel.move=0,move.moving=0,light.value=0,sonic.d=false,changed_square=false,found_way=false,last_val=2,obstacle_mode=false,turned_to_right=false) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+3128.5 1504.4 moveto 1927 (BT.Master.order=3,BT.Slave.Move.LeftWheel.move=1,BT.Slave.Move.RightWheel.move=-1,BT.Slave.Move.moving=3,BT.Slave.obey=3,BT.order=3,move.LeftWheel.move=0,move.RightWheel.move=0,move.moving=0,light.value=0,sonic.d=false,changed_square=false,found_way=false,last_val=1,obstacle_mode=false,turned_to_right=false) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+3128.5 1487.4 moveto 1927 (BT.Master.order=3,BT.Slave.Move.LeftWheel.move=1,BT.Slave.Move.RightWheel.move=-1,BT.Slave.Move.moving=3,BT.Slave.obey=3,BT.order=3,move.LeftWheel.move=0,move.RightWheel.move=0,move.moving=0,light.value=1,sonic.d=false,changed_square=false,found_way=false,last_val=2,obstacle_mode=false,turned_to_right=false) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+3131 1470.4 moveto 1922 (BT.Master.order=2,BT.Slave.Move.LeftWheel.move=1,BT.Slave.Move.RightWheel.move=1,BT.Slave.Move.moving=2,BT.Slave.obey=2,BT.order=2,move.LeftWheel.move=0,move.RightWheel.move=0,move.moving=0,light.value=0,sonic.d=false,changed_square=false,found_way=false,last_val=1,obstacle_mode=false,turned_to_right=false) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+3128.5 1453.4 moveto 1927 (BT.Master.order=3,BT.Slave.Move.LeftWheel.move=1,BT.Slave.Move.RightWheel.move=-1,BT.Slave.Move.moving=3,BT.Slave.obey=3,BT.order=3,move.LeftWheel.move=0,move.RightWheel.move=0,move.moving=0,light.value=2,sonic.d=false,changed_square=false,found_way=false,last_val=2,obstacle_mode=false,turned_to_right=false) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+3131 1436.4 moveto 1922 (BT.Master.order=3,BT.Slave.Move.LeftWheel.move=1,BT.Slave.Move.RightWheel.move=-1,BT.Slave.Move.moving=3,BT.Slave.obey=3,BT.order=3,move.LeftWheel.move=0,move.RightWheel.move=0,move.moving=0,light.value=2,sonic.d=true,changed_square=false,found_way=false,last_val=2,obstacle_mode=false,turned_to_right=false) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+3128.5 1419.4 moveto 1927 (BT.Master.order=1,BT.Slave.Move.LeftWheel.move=-1,BT.Slave.Move.RightWheel.move=1,BT.Slave.Move.moving=1,BT.Slave.obey=1,BT.order=1,move.LeftWheel.move=0,move.RightWheel.move=0,move.moving=0,light.value=0,sonic.d=false,changed_square=false,found_way=false,last_val=2,obstacle_mode=false,turned_to_right=false) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+3128.5 1402.4 moveto 1927 (BT.Master.order=3,BT.Slave.Move.LeftWheel.move=1,BT.Slave.Move.RightWheel.move=-1,BT.Slave.Move.moving=3,BT.Slave.obey=3,BT.order=3,move.LeftWheel.move=0,move.RightWheel.move=0,move.moving=0,light.value=1,sonic.d=false,changed_square=false,found_way=false,last_val=1,obstacle_mode=false,turned_to_right=false) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+3131 1385.4 moveto 1922 (BT.Master.order=3,BT.Slave.Move.LeftWheel.move=1,BT.Slave.Move.RightWheel.move=-1,BT.Slave.Move.moving=3,BT.Slave.obey=3,BT.order=3,move.LeftWheel.move=0,move.RightWheel.move=0,move.moving=0,light.value=1,sonic.d=true,changed_square=false,found_way=false,last_val=1,obstacle_mode=false,turned_to_right=false) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+3128.5 1368.4 moveto 1927 (BT.Master.order=3,BT.Slave.Move.LeftWheel.move=1,BT.Slave.Move.RightWheel.move=-1,BT.Slave.Move.moving=3,BT.Slave.obey=3,BT.order=3,move.LeftWheel.move=0,move.RightWheel.move=0,move.moving=0,light.value=2,sonic.d=false,changed_square=false,found_way=false,last_val=1,obstacle_mode=false,turned_to_right=false) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+3131 1351.4 moveto 1922 (BT.Master.order=2,BT.Slave.Move.LeftWheel.move=1,BT.Slave.Move.RightWheel.move=1,BT.Slave.Move.moving=2,BT.Slave.obey=2,BT.order=2,move.LeftWheel.move=0,move.RightWheel.move=0,move.moving=0,light.value=0,sonic.d=false,changed_square=false,found_way=false,last_val=2,obstacle_mode=false,turned_to_right=false) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+3128.5 1334.4 moveto 1927 (BT.Master.order=1,BT.Slave.Move.LeftWheel.move=-1,BT.Slave.Move.RightWheel.move=1,BT.Slave.Move.moving=1,BT.Slave.obey=1,BT.order=1,move.LeftWheel.move=0,move.RightWheel.move=0,move.moving=0,light.value=0,sonic.d=false,changed_square=false,found_way=false,last_val=1,obstacle_mode=false,turned_to_right=false) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+3128.5 1317.4 moveto 1927 (BT.Master.order=1,BT.Slave.Move.LeftWheel.move=-1,BT.Slave.Move.RightWheel.move=1,BT.Slave.Move.moving=1,BT.Slave.obey=1,BT.order=1,move.LeftWheel.move=0,move.RightWheel.move=0,move.moving=0,light.value=1,sonic.d=false,changed_square=false,found_way=false,last_val=2,obstacle_mode=false,turned_to_right=false) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+3131 1300.4 moveto 1922 (BT.Master.order=2,BT.Slave.Move.LeftWheel.move=1,BT.Slave.Move.RightWheel.move=1,BT.Slave.Move.moving=2,BT.Slave.obey=2,BT.order=2,move.LeftWheel.move=0,move.RightWheel.move=0,move.moving=0,light.value=1,sonic.d=false,changed_square=false,found_way=false,last_val=1,obstacle_mode=false,turned_to_right=false) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+3133 1283.4 moveto 1918 (BT.Master.order=2,BT.Slave.Move.LeftWheel.move=1,BT.Slave.Move.RightWheel.move=1,BT.Slave.Move.moving=2,BT.Slave.obey=2,BT.order=2,move.LeftWheel.move=0,move.RightWheel.move=0,move.moving=0,light.value=1,sonic.d=true,changed_square=false,found_way=false,last_val=1,obstacle_mode=false,turned_to_right=false) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+3131 1266.4 moveto 1922 (BT.Master.order=2,BT.Slave.Move.LeftWheel.move=1,BT.Slave.Move.RightWheel.move=1,BT.Slave.Move.moving=2,BT.Slave.obey=2,BT.order=2,move.LeftWheel.move=0,move.RightWheel.move=0,move.moving=0,light.value=2,sonic.d=false,changed_square=false,found_way=false,last_val=1,obstacle_mode=false,turned_to_right=false) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+3128.5 1249.4 moveto 1927 (BT.Master.order=1,BT.Slave.Move.LeftWheel.move=-1,BT.Slave.Move.RightWheel.move=1,BT.Slave.Move.moving=1,BT.Slave.obey=1,BT.order=1,move.LeftWheel.move=0,move.RightWheel.move=0,move.moving=0,light.value=1,sonic.d=false,changed_square=false,found_way=false,last_val=1,obstacle_mode=false,turned_to_right=false) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+3131 1232.4 moveto 1922 (BT.Master.order=1,BT.Slave.Move.LeftWheel.move=-1,BT.Slave.Move.RightWheel.move=1,BT.Slave.Move.moving=1,BT.Slave.obey=1,BT.order=1,move.LeftWheel.move=0,move.RightWheel.move=0,move.moving=0,light.value=1,sonic.d=true,changed_square=false,found_way=false,last_val=1,obstacle_mode=false,turned_to_right=false) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+3128.5 1215.4 moveto 1927 (BT.Master.order=1,BT.Slave.Move.LeftWheel.move=-1,BT.Slave.Move.RightWheel.move=1,BT.Slave.Move.moving=1,BT.Slave.obey=1,BT.order=1,move.LeftWheel.move=0,move.RightWheel.move=0,move.moving=0,light.value=2,sonic.d=false,changed_square=false,found_way=false,last_val=1,obstacle_mode=false,turned_to_right=false) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+3131 1198.4 moveto 1922 (BT.Master.order=2,BT.Slave.Move.LeftWheel.move=1,BT.Slave.Move.RightWheel.move=1,BT.Slave.Move.moving=2,BT.Slave.obey=2,BT.order=2,move.LeftWheel.move=0,move.RightWheel.move=0,move.moving=0,light.value=1,sonic.d=false,changed_square=false,found_way=false,last_val=2,obstacle_mode=false,turned_to_right=false) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+3131 1181.4 moveto 1922 (BT.Master.order=2,BT.Slave.Move.LeftWheel.move=1,BT.Slave.Move.RightWheel.move=1,BT.Slave.Move.moving=2,BT.Slave.obey=2,BT.order=2,move.LeftWheel.move=0,move.RightWheel.move=0,move.moving=0,light.value=2,sonic.d=false,changed_square=false,found_way=false,last_val=2,obstacle_mode=false,turned_to_right=false) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+3133 1164.4 moveto 1918 (BT.Master.order=2,BT.Slave.Move.LeftWheel.move=1,BT.Slave.Move.RightWheel.move=1,BT.Slave.Move.moving=2,BT.Slave.obey=2,BT.order=2,move.LeftWheel.move=0,move.RightWheel.move=0,move.moving=0,light.value=2,sonic.d=true,changed_square=false,found_way=false,last_val=2,obstacle_mode=false,turned_to_right=false) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+3128.5 1147.4 moveto 1927 (BT.Master.order=1,BT.Slave.Move.LeftWheel.move=-1,BT.Slave.Move.RightWheel.move=1,BT.Slave.Move.moving=1,BT.Slave.obey=1,BT.order=1,move.LeftWheel.move=0,move.RightWheel.move=0,move.moving=0,light.value=2,sonic.d=false,changed_square=false,found_way=false,last_val=2,obstacle_mode=false,turned_to_right=false) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+3131 1130.4 moveto 1922 (BT.Master.order=1,BT.Slave.Move.LeftWheel.move=-1,BT.Slave.Move.RightWheel.move=1,BT.Slave.Move.moving=1,BT.Slave.obey=1,BT.order=1,move.LeftWheel.move=0,move.RightWheel.move=0,move.moving=0,light.value=2,sonic.d=true,changed_square=false,found_way=false,last_val=2,obstacle_mode=false,turned_to_right=false) alignedtext
+grestore
+% C1->C19
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 6608 2481 moveto
+5775 2426 4340 2332 4334 2330 curveto
+4271 2309 4271 2270 4208 2252 curveto
+4175 2242 3019 2257 2996 2234 curveto
+2929 2166 2988 2115 2996 2022 curveto
+2997 2007 3033 1769 3041 1756 curveto
+3053 1734 3060 1728 3084 1720 curveto
+3134 1701 4014 1738 4054 1702 curveto
+4097 1662 4114 1606 4118 1548 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 4121.49 1548.3 moveto
+4119 1538 lineto
+4114.52 1547.6 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 4121.49 1548.3 moveto
+4119 1538 lineto
+4114.52 1547.6 lineto
+closepath stroke
+0.000 0.000 0.000 edgecolor
+14 /Times-Roman set_font
+3001.5 2123.9 moveto 1247 (\(slaveTurnLeft, move.stop, move.LeftWheel.stop, move.RightWheel.stop, BT.orderLeft, BT.Master.orderLeft, BT.Slave.obeyLeft, BT.Slave.Move.left, BT.Slave.Move.LeftWheel.back, BT.Slave.Move.RightWheel.forward\)) alignedtext
+grestore
+% C23
+gsave
+[ /Rect [ 6978 2288 8902 2330 ]
+  /Border [ 0 0 0 ]
+  /Action << /Subtype /URI /URI (#) >>
+  /Subtype /Link
+/ANN pdfmark
+1 setlinewidth
+0.000 0.000 0.000 nodecolor
+newpath 8902 2330 moveto
+6978 2330 lineto
+6978 2288 lineto
+8902 2288 lineto
+closepath stroke
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+6985.5 2313.4 moveto 1909 (BT.Master.order=2,BT.Slave.Move.LeftWheel.move=1,BT.Slave.Move.RightWheel.move=1,BT.Slave.Move.moving=2,BT.Slave.obey=2,BT.order=2,move.LeftWheel.move=0,move.RightWheel.move=0,move.moving=0,light.value=0,sonic.d=false,changed_square=true,found_way=true,last_val=2,obstacle_mode=true,turned_to_right=false) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+6985.5 2296.4 moveto 1909 (BT.Master.order=2,BT.Slave.Move.LeftWheel.move=1,BT.Slave.Move.RightWheel.move=1,BT.Slave.Move.moving=2,BT.Slave.obey=2,BT.order=2,move.LeftWheel.move=0,move.RightWheel.move=0,move.moving=0,light.value=0,sonic.d=false,changed_square=true,found_way=true,last_val=1,obstacle_mode=true,turned_to_right=false) alignedtext
+grestore
+% C1->C23
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 7578 2481 moveto
+7738 2462 7893 2437 7919 2410 curveto
+7936 2392 7938 2363 7938 2340 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 7941.5 2340 moveto
+7938 2330 lineto
+7934.5 2340 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 7941.5 2340 moveto
+7938 2330 lineto
+7934.5 2340 lineto
+closepath stroke
+grestore
+% C2
+gsave
+[ /Rect [ 8592 2724 10520 2766 ]
+  /Border [ 0 0 0 ]
+  /Action << /Subtype /URI /URI (#) >>
+  /Subtype /Link
+/ANN pdfmark
+1 setlinewidth
+0.000 0.000 0.000 nodecolor
+newpath 10520 2766 moveto
+8592 2766 lineto
+8592 2724 lineto
+10520 2724 lineto
+closepath stroke
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+8599.5 2749.4 moveto 1913 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=1,move.moving=2,light.value=1,sonic.d=false,changed_square=false,found_way=true,last_val=2,obstacle_mode=true,turned_to_right=false) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+8599.5 2732.4 moveto 1913 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=1,move.moving=2,light.value=2,sonic.d=false,changed_square=false,found_way=true,last_val=1,obstacle_mode=true,turned_to_right=false) alignedtext
+grestore
+% C2->C1
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 8592 2725 moveto
+8001 2710 7352 2690 7326 2670 curveto
+7297 2647 7324 2620 7303 2592 curveto
+7295 2582 7285 2572 7274 2563 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 7276.1 2560.2 moveto
+7266 2557 lineto
+7271.9 2565.8 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 7276.1 2560.2 moveto
+7266 2557 lineto
+7271.9 2565.8 lineto
+closepath stroke
+0.000 0.000 0.000 edgecolor
+14 /Times-Roman set_font
+7331.5 2644.9 moveto 1257 (\(makePlace, move.stop, move.LeftWheel.stop, move.RightWheel.stop, BT.orderFw, BT.Master.orderFw, BT.Slave.obeyFw, BT.Slave.Move.forward, BT.Slave.Move.LeftWheel.forward, BT.Slave.Move.RightWheel.forward\)) alignedtext
+grestore
+% C2->C2
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 10520 2748 moveto
+10532 2747 10538 2746 10538 2745 curveto
+10538 2744 10535 2744 10530 2743 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 10530.3 2739.51 moveto
+10520 2742 lineto
+10529.6 2746.48 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 10530.3 2739.51 moveto
+10520 2742 lineto
+10529.6 2746.48 lineto
+closepath stroke
+grestore
+% C2->C3
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 8592 2736 moveto
+8248 2730 7858 2721 7503 2706 curveto
+7177 2692 6264 2847 6042 2610 curveto
+6022 2588 6039 2532 6220 2464 curveto
+6283 2440 6420 2423 6558 2411 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 6558.4 2414.48 moveto
+6568 2410 lineto
+6557.7 2407.51 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 6558.4 2414.48 moveto
+6568 2410 lineto
+6557.7 2407.51 lineto
+closepath stroke
+0.000 0.000 0.000 edgecolor
+14 /Times-Roman set_font
+6041.5 2596.9 moveto 1257 (\(makePlace, move.stop, move.LeftWheel.stop, move.RightWheel.stop, BT.orderFw, BT.Master.orderFw, BT.Slave.obeyFw, BT.Slave.Move.forward, BT.Slave.Move.LeftWheel.forward, BT.Slave.Move.RightWheel.forward\)) alignedtext
+grestore
+% C4
+gsave
+[ /Rect [ 8592 2628 10520 2670 ]
+  /Border [ 0 0 0 ]
+  /Action << /Subtype /URI /URI (#) >>
+  /Subtype /Link
+/ANN pdfmark
+1 setlinewidth
+0.000 0.000 0.000 nodecolor
+newpath 10520 2670 moveto
+8592 2670 lineto
+8592 2628 lineto
+10520 2628 lineto
+closepath stroke
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+8599.5 2653.4 moveto 1913 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=1,move.moving=2,light.value=0,sonic.d=false,changed_square=false,found_way=true,last_val=2,obstacle_mode=true,turned_to_right=false) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+8599.5 2636.4 moveto 1913 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=1,move.moving=2,light.value=0,sonic.d=false,changed_square=false,found_way=true,last_val=1,obstacle_mode=true,turned_to_right=false) alignedtext
+grestore
+% C2->C4
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 9550 2724 moveto
+9549 2711 9549 2695 9550 2680 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 9553.5 2680 moveto
+9550 2670 lineto
+9546.5 2680 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 9553.5 2680 moveto
+9550 2670 lineto
+9546.5 2680 lineto
+closepath stroke
+grestore
+% C6
+gsave
+[ /Rect [ 9670 2464 11598 2574 ]
+  /Border [ 0 0 0 ]
+  /Action << /Subtype /URI /URI (#) >>
+  /Subtype /Link
+/ANN pdfmark
+1 setlinewidth
+0.000 0.000 0.000 nodecolor
+newpath 11598 2574 moveto
+9670 2574 lineto
+9670 2464 lineto
+11598 2464 lineto
+closepath stroke
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+9677.5 2557.4 moveto 1913 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=1,move.moving=2,light.value=1,sonic.d=false,changed_square=false,found_way=true,last_val=1,obstacle_mode=true,turned_to_right=false) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+9679.5 2540.4 moveto 1909 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=1,move.moving=2,light.value=1,sonic.d=true,changed_square=false,found_way=true,last_val=1,obstacle_mode=true,turned_to_right=false) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+9679.5 2523.4 moveto 1909 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=1,move.moving=2,light.value=2,sonic.d=true,changed_square=false,found_way=true,last_val=1,obstacle_mode=true,turned_to_right=false) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+9679.5 2506.4 moveto 1909 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=1,move.moving=2,light.value=1,sonic.d=true,changed_square=false,found_way=true,last_val=2,obstacle_mode=true,turned_to_right=false) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+9677.5 2489.4 moveto 1913 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=1,move.moving=2,light.value=2,sonic.d=false,changed_square=false,found_way=true,last_val=2,obstacle_mode=true,turned_to_right=false) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+9679.5 2472.4 moveto 1909 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=1,move.moving=2,light.value=2,sonic.d=true,changed_square=false,found_way=true,last_val=2,obstacle_mode=true,turned_to_right=false) alignedtext
+grestore
+% C2->C6
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 10107 2724 moveto
+10309 2712 10498 2695 10538 2670 curveto
+10569 2650 10590 2615 10605 2583 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 10608.14 2584.56 moveto
+10609 2574 lineto
+10601.74 2581.72 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 10608.14 2584.56 moveto
+10609 2574 lineto
+10601.74 2581.72 lineto
+closepath stroke
+grestore
+% C2->C7
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 8592 2741 moveto
+7317 2735 5212 2723 5039 2706 curveto
+4880 2690 4780 2714 4706 2574 curveto
+4560 2299 5051 2408 5660 2368 curveto
+5920 2350 5985 2356 6246 2348 curveto
+6312 2345 6777 2345 6842 2330 curveto
+6922 2311 6929 2271 7010 2252 curveto
+7131 2223 7446 2242 7571 2234 curveto
+7794 2218 8045 2190 8237 2167 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 8237.4 2170.48 moveto
+8247 2166 lineto
+8236.7 2163.51 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 8237.4 2170.48 moveto
+8247 2166 lineto
+8236.7 2163.51 lineto
+closepath stroke
+0.000 0.000 0.000 edgecolor
+14 /Times-Roman set_font
+4707.5 2432.9 moveto 1257 (\(makePlace, move.stop, move.LeftWheel.stop, move.RightWheel.stop, BT.orderFw, BT.Master.orderFw, BT.Slave.obeyFw, BT.Slave.Move.forward, BT.Slave.Move.LeftWheel.forward, BT.Slave.Move.RightWheel.forward\)) alignedtext
+grestore
+% C22
+gsave
+[ /Rect [ 10039 2368 11963 2410 ]
+  /Border [ 0 0 0 ]
+  /Action << /Subtype /URI /URI (#) >>
+  /Subtype /Link
+/ANN pdfmark
+1 setlinewidth
+0.000 0.000 0.000 nodecolor
+newpath 11963 2410 moveto
+10039 2410 lineto
+10039 2368 lineto
+11963 2368 lineto
+closepath stroke
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+10046.5 2393.4 moveto 1909 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=1,move.moving=2,light.value=0,sonic.d=true,changed_square=false,found_way=true,last_val=2,obstacle_mode=true,turned_to_right=false) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+10046.5 2376.4 moveto 1909 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=1,move.moving=2,light.value=0,sonic.d=true,changed_square=false,found_way=true,last_val=1,obstacle_mode=true,turned_to_right=false) alignedtext
+grestore
+% C2->C22
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 10188 2724 moveto
+10287 2719 10373 2713 10425 2706 curveto
+10493 2696 10510 2688 10577 2670 curveto
+10634 2653 10646 2639 10705 2628 curveto
+10804 2609 11546 2647 11616 2574 curveto
+11649 2538 11648 2500 11616 2464 curveto
+11596 2441 11470 2423 11337 2411 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 11337.3 2407.51 moveto
+11327 2410 lineto
+11336.6 2414.48 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 11337.3 2407.51 moveto
+11327 2410 lineto
+11336.6 2414.48 lineto
+closepath stroke
+grestore
+% C2->C23
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 8592 2738 moveto
+7677 2730 6409 2718 6174 2706 curveto
+5862 2689 4987 2804 4778 2574 curveto
+4593 2371 4797 2496 5408 2446 curveto
+5660 2425 5719 2389 5972 2368 curveto
+6164 2351 6573 2338 6968 2328 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 6968 2331.5 moveto
+6978 2328 lineto
+6968 2324.5 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 6968 2331.5 moveto
+6978 2328 lineto
+6968 2324.5 lineto
+closepath stroke
+0.000 0.000 0.000 edgecolor
+14 /Times-Roman set_font
+4777.5 2514.9 moveto 1257 (\(makePlace, move.stop, move.LeftWheel.stop, move.RightWheel.stop, BT.orderFw, BT.Master.orderFw, BT.Slave.obeyFw, BT.Slave.Move.forward, BT.Slave.Move.LeftWheel.forward, BT.Slave.Move.RightWheel.forward\)) alignedtext
+grestore
+% C3->C1
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 6986 2410 moveto
+7021 2428 7072 2454 7113 2476 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 7111.56 2479.2 moveto
+7122 2481 lineto
+7114.96 2473.08 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 7111.56 2479.2 moveto
+7122 2481 lineto
+7114.96 2473.08 lineto
+closepath stroke
+grestore
+% C3->C3
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 7901 2392 moveto
+7913 2391 7919 2390 7919 2389 curveto
+7919 2388 7916 2388 7911 2387 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 7911.3 2383.51 moveto
+7901 2386 lineto
+7910.6 2390.48 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 7911.3 2383.51 moveto
+7901 2386 lineto
+7910.6 2390.48 lineto
+closepath stroke
+grestore
+% C3->C7
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 6934 2368 moveto
+6932 2344 6937 2307 6960 2288 curveto
+7011 2244 7495 2240 7562 2234 curveto
+7770 2213 8003 2188 8190 2167 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 8190.4 2170.48 moveto
+8200 2166 lineto
+8189.7 2163.51 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 8190.4 2170.48 moveto
+8200 2166 lineto
+8189.7 2163.51 lineto
+closepath stroke
+grestore
+% C3->C11
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 6935 2368 moveto
+6927 2344 6910 2305 6880 2288 curveto
+6816 2251 5638 2253 5565 2252 curveto
+5548 2251 4376 2245 4364 2234 curveto
+4323 2196 4378 2027 4342 1986 curveto
+3960 1562 3503 2123 3084 1738 curveto
+3077 1731 3071 1721 3067 1712 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 3070.23 1710.57 moveto
+3064 1702 lineto
+3063.52 1712.58 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 3070.23 1710.57 moveto
+3064 1702 lineto
+3063.52 1712.58 lineto
+closepath stroke
+0.000 0.000 0.000 edgecolor
+14 /Times-Roman set_font
+4391.5 2123.9 moveto 1247 (\(slaveTurnLeft, move.stop, move.LeftWheel.stop, move.RightWheel.stop, BT.orderLeft, BT.Master.orderLeft, BT.Slave.obeyLeft, BT.Slave.Move.left, BT.Slave.Move.LeftWheel.back, BT.Slave.Move.RightWheel.forward\)) alignedtext
+grestore
+% C3->C13
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 7901 2369 moveto
+8228 2360 8594 2347 8929 2330 curveto
+9177 2316 9238 2302 9487 2288 curveto
+9491 2287 10810 2237 10814 2234 curveto
+10879 2166 10880 2089 10814 2022 curveto
+10790 1998 9665 2005 9633 2004 curveto
+9508 1999 9478 1991 9354 1986 curveto
+9247 1981 8498 1987 8394 1968 curveto
+7879 1870 7787 1720 7291 1556 curveto
+6696 1359 5981 1165 5628 1071 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 5628.58 1067.52 moveto
+5618 1068 lineto
+5626.57 1074.23 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 5628.58 1067.52 moveto
+5618 1068 lineto
+5626.57 1074.23 lineto
+closepath stroke
+0.000 0.000 0.000 edgecolor
+14 /Times-Roman set_font
+8413.5 1857.9 moveto 1247 (\(slaveTurnLeft, move.stop, move.LeftWheel.stop, move.RightWheel.stop, BT.orderLeft, BT.Master.orderLeft, BT.Slave.obeyLeft, BT.Slave.Move.left, BT.Slave.Move.LeftWheel.back, BT.Slave.Move.RightWheel.forward\)) alignedtext
+grestore
+% C14
+gsave
+[ /Rect [ 5353 1756 7273 1968 ]
+  /Border [ 0 0 0 ]
+  /Action << /Subtype /URI /URI (#) >>
+  /Subtype /Link
+/ANN pdfmark
+1 setlinewidth
+0.000 0.000 0.000 nodecolor
+newpath 7273 1968 moveto
+5353 1968 lineto
+5353 1756 lineto
+7273 1756 lineto
+closepath stroke
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+5363 1951.4 moveto 1900 (BT.Master.order=2,BT.Slave.Move.LeftWheel.move=1,BT.Slave.Move.RightWheel.move=1,BT.Slave.Move.moving=2,BT.Slave.obey=2,BT.order=2,move.LeftWheel.move=0,move.RightWheel.move=0,move.moving=0,light.value=0,sonic.d=true,changed_square=true,found_way=true,last_val=2,obstacle_mode=true,turned_to_right=true) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+5363 1934.4 moveto 1900 (BT.Master.order=2,BT.Slave.Move.LeftWheel.move=1,BT.Slave.Move.RightWheel.move=1,BT.Slave.Move.moving=2,BT.Slave.obey=2,BT.order=2,move.LeftWheel.move=0,move.RightWheel.move=0,move.moving=0,light.value=0,sonic.d=true,changed_square=true,found_way=true,last_val=1,obstacle_mode=true,turned_to_right=true) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+5363 1917.4 moveto 1900 (BT.Master.order=2,BT.Slave.Move.LeftWheel.move=1,BT.Slave.Move.RightWheel.move=1,BT.Slave.Move.moving=2,BT.Slave.obey=2,BT.order=2,move.LeftWheel.move=0,move.RightWheel.move=0,move.moving=0,light.value=1,sonic.d=true,changed_square=true,found_way=true,last_val=2,obstacle_mode=true,turned_to_right=true) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+5363 1900.4 moveto 1900 (BT.Master.order=2,BT.Slave.Move.LeftWheel.move=1,BT.Slave.Move.RightWheel.move=1,BT.Slave.Move.moving=2,BT.Slave.obey=2,BT.order=2,move.LeftWheel.move=0,move.RightWheel.move=0,move.moving=0,light.value=2,sonic.d=true,changed_square=true,found_way=true,last_val=2,obstacle_mode=true,turned_to_right=true) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+5361 1883.4 moveto 1904 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=-1,move.moving=3,light.value=0,sonic.d=true,changed_square=true,found_way=true,last_val=2,obstacle_mode=true,turned_to_right=true) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+5361 1866.4 moveto 1904 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=-1,move.moving=3,light.value=1,sonic.d=true,changed_square=true,found_way=true,last_val=2,obstacle_mode=true,turned_to_right=true) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+5361 1849.4 moveto 1904 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=-1,move.moving=3,light.value=2,sonic.d=true,changed_square=true,found_way=true,last_val=2,obstacle_mode=true,turned_to_right=true) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+5363 1832.4 moveto 1900 (BT.Master.order=2,BT.Slave.Move.LeftWheel.move=1,BT.Slave.Move.RightWheel.move=1,BT.Slave.Move.moving=2,BT.Slave.obey=2,BT.order=2,move.LeftWheel.move=0,move.RightWheel.move=0,move.moving=0,light.value=1,sonic.d=true,changed_square=true,found_way=true,last_val=1,obstacle_mode=true,turned_to_right=true) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+5363 1815.4 moveto 1900 (BT.Master.order=2,BT.Slave.Move.LeftWheel.move=1,BT.Slave.Move.RightWheel.move=1,BT.Slave.Move.moving=2,BT.Slave.obey=2,BT.order=2,move.LeftWheel.move=0,move.RightWheel.move=0,move.moving=0,light.value=2,sonic.d=true,changed_square=true,found_way=true,last_val=1,obstacle_mode=true,turned_to_right=true) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+5361 1798.4 moveto 1904 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=-1,move.moving=3,light.value=0,sonic.d=true,changed_square=true,found_way=true,last_val=1,obstacle_mode=true,turned_to_right=true) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+5361 1781.4 moveto 1904 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=-1,move.moving=3,light.value=1,sonic.d=true,changed_square=true,found_way=true,last_val=1,obstacle_mode=true,turned_to_right=true) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+5361 1764.4 moveto 1904 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=-1,move.moving=3,light.value=2,sonic.d=true,changed_square=true,found_way=true,last_val=1,obstacle_mode=true,turned_to_right=true) alignedtext
+grestore
+% C3->C14
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 6207 2368 moveto
+6055 2363 5894 2357 5745 2350 curveto
+5587 2342 4417 2367 4333 2234 curveto
+4282 2154 4269 2091 4333 2022 curveto
+4370 1981 4859 1942 5343 1912 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 5343.4 1915.48 moveto
+5353 1911 lineto
+5342.7 1908.51 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 5343.4 1915.48 moveto
+5353 1911 lineto
+5342.7 1908.51 lineto
+closepath stroke
+0.000 0.000 0.000 edgecolor
+14 /Times-Roman set_font
+4393.5 2256.9 moveto 1255 (\(halfTurn, move.halfturn, move.LeftWheel.forward, move.RightWheel.back, BT.orderStop, BT.Master.orderStop, BT.Slave.obeyStop, BT.Slave.Move.stop, BT.Slave.Move.LeftWheel.stop, BT.Slave.Move.RightWheel.stop\)) alignedtext
+grestore
+% C3->C19
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 5981 2371 moveto
+5300 2357 4501 2340 4463 2330 curveto
+4376 2307 4337 2307 4285 2234 curveto
+4229 2156 4319 2084 4247 2022 curveto
+4199 1981 3164 2048 3121 2004 curveto
+2731 1607 3991 2168 4343 1738 curveto
+4348 1731 4346 1726 4343 1720 curveto
+4335 1706 4323 1713 4312 1702 curveto
+4266 1657 4227 1601 4195 1547 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 4197.92 1545.04 moveto
+4190 1538 lineto
+4191.8 1548.44 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 4197.92 1545.04 moveto
+4190 1538 lineto
+4191.8 1548.44 lineto
+closepath stroke
+0.000 0.000 0.000 edgecolor
+14 /Times-Roman set_font
+3122.5 1990.9 moveto 1247 (\(slaveTurnLeft, move.stop, move.LeftWheel.stop, move.RightWheel.stop, BT.orderLeft, BT.Master.orderLeft, BT.Slave.obeyLeft, BT.Slave.Move.left, BT.Slave.Move.LeftWheel.back, BT.Slave.Move.RightWheel.forward\)) alignedtext
+grestore
+% C20
+gsave
+[ /Rect [ 5620 2022 7544 2234 ]
+  /Border [ 0 0 0 ]
+  /Action << /Subtype /URI /URI (#) >>
+  /Subtype /Link
+/ANN pdfmark
+1 setlinewidth
+0.000 0.000 0.000 nodecolor
+newpath 7544 2234 moveto
+5620 2234 lineto
+5620 2022 lineto
+7544 2022 lineto
+closepath stroke
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+5630 2217.4 moveto 1904 (BT.Master.order=2,BT.Slave.Move.LeftWheel.move=1,BT.Slave.Move.RightWheel.move=1,BT.Slave.Move.moving=2,BT.Slave.obey=2,BT.order=2,move.LeftWheel.move=0,move.RightWheel.move=0,move.moving=0,light.value=0,sonic.d=false,changed_square=true,found_way=true,last_val=2,obstacle_mode=true,turned_to_right=true) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+5630 2200.4 moveto 1904 (BT.Master.order=2,BT.Slave.Move.LeftWheel.move=1,BT.Slave.Move.RightWheel.move=1,BT.Slave.Move.moving=2,BT.Slave.obey=2,BT.order=2,move.LeftWheel.move=0,move.RightWheel.move=0,move.moving=0,light.value=0,sonic.d=false,changed_square=true,found_way=true,last_val=1,obstacle_mode=true,turned_to_right=true) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+5630 2183.4 moveto 1904 (BT.Master.order=2,BT.Slave.Move.LeftWheel.move=1,BT.Slave.Move.RightWheel.move=1,BT.Slave.Move.moving=2,BT.Slave.obey=2,BT.order=2,move.LeftWheel.move=0,move.RightWheel.move=0,move.moving=0,light.value=1,sonic.d=false,changed_square=true,found_way=true,last_val=2,obstacle_mode=true,turned_to_right=true) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+5630 2166.4 moveto 1904 (BT.Master.order=2,BT.Slave.Move.LeftWheel.move=1,BT.Slave.Move.RightWheel.move=1,BT.Slave.Move.moving=2,BT.Slave.obey=2,BT.order=2,move.LeftWheel.move=0,move.RightWheel.move=0,move.moving=0,light.value=2,sonic.d=false,changed_square=true,found_way=true,last_val=2,obstacle_mode=true,turned_to_right=true) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+5627.5 2149.4 moveto 1909 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=-1,move.moving=3,light.value=0,sonic.d=false,changed_square=true,found_way=true,last_val=2,obstacle_mode=true,turned_to_right=true) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+5627.5 2132.4 moveto 1909 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=-1,move.moving=3,light.value=1,sonic.d=false,changed_square=true,found_way=true,last_val=2,obstacle_mode=true,turned_to_right=true) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+5627.5 2115.4 moveto 1909 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=-1,move.moving=3,light.value=2,sonic.d=false,changed_square=true,found_way=true,last_val=2,obstacle_mode=true,turned_to_right=true) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+5630 2098.4 moveto 1904 (BT.Master.order=2,BT.Slave.Move.LeftWheel.move=1,BT.Slave.Move.RightWheel.move=1,BT.Slave.Move.moving=2,BT.Slave.obey=2,BT.order=2,move.LeftWheel.move=0,move.RightWheel.move=0,move.moving=0,light.value=1,sonic.d=false,changed_square=true,found_way=true,last_val=1,obstacle_mode=true,turned_to_right=true) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+5630 2081.4 moveto 1904 (BT.Master.order=2,BT.Slave.Move.LeftWheel.move=1,BT.Slave.Move.RightWheel.move=1,BT.Slave.Move.moving=2,BT.Slave.obey=2,BT.order=2,move.LeftWheel.move=0,move.RightWheel.move=0,move.moving=0,light.value=2,sonic.d=false,changed_square=true,found_way=true,last_val=1,obstacle_mode=true,turned_to_right=true) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+5627.5 2064.4 moveto 1909 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=-1,move.moving=3,light.value=0,sonic.d=false,changed_square=true,found_way=true,last_val=1,obstacle_mode=true,turned_to_right=true) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+5627.5 2047.4 moveto 1909 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=-1,move.moving=3,light.value=1,sonic.d=false,changed_square=true,found_way=true,last_val=1,obstacle_mode=true,turned_to_right=true) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+5627.5 2030.4 moveto 1909 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=-1,move.moving=3,light.value=2,sonic.d=false,changed_square=true,found_way=true,last_val=1,obstacle_mode=true,turned_to_right=true) alignedtext
+grestore
+% C3->C20
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 6017 2368 moveto
+5827 2359 5679 2347 5663 2330 curveto
+5628 2294 5663 2263 5736 2237 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 5737.43 2240.23 moveto
+5746 2234 lineto
+5735.42 2233.52 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 5737.43 2240.23 moveto
+5746 2234 lineto
+5735.42 2233.52 lineto
+closepath stroke
+0.000 0.000 0.000 edgecolor
+14 /Times-Roman set_font
+5662.5 2304.9 moveto 1255 (\(halfTurn, move.halfturn, move.LeftWheel.forward, move.RightWheel.back, BT.orderStop, BT.Master.orderStop, BT.Slave.obeyStop, BT.Slave.Move.stop, BT.Slave.Move.LeftWheel.stop, BT.Slave.Move.RightWheel.stop\)) alignedtext
+grestore
+% C3->C23
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 7197 2368 moveto
+7339 2356 7515 2343 7660 2331 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 7660.4 2334.48 moveto
+7670 2330 lineto
+7659.7 2327.51 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 7660.4 2334.48 moveto
+7670 2330 lineto
+7659.7 2327.51 lineto
+closepath stroke
+grestore
+% C4->C1
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 8592 2628 moveto
+8587 2628 8583 2628 8578 2628 curveto
+8509 2626 7415 2632 7351 2610 curveto
+7338 2605 7338 2599 7328 2592 curveto
+7312 2582 7294 2571 7276 2562 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 7277.44 2558.8 moveto
+7267 2557 lineto
+7274.04 2564.92 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 7277.44 2558.8 moveto
+7267 2557 lineto
+7274.04 2564.92 lineto
+closepath stroke
+0.000 0.000 0.000 edgecolor
+14 /Times-Roman set_font
+7361.5 2596.9 moveto 1257 (\(makePlace, move.stop, move.LeftWheel.stop, move.RightWheel.stop, BT.orderFw, BT.Master.orderFw, BT.Slave.obeyFw, BT.Slave.Move.forward, BT.Slave.Move.LeftWheel.forward, BT.Slave.Move.RightWheel.forward\)) alignedtext
+grestore
+% C4->C2
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 9562 2670 moveto
+9563 2683 9563 2699 9562 2714 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 9558.5 2714 moveto
+9562 2724 lineto
+9565.5 2714 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 9558.5 2714 moveto
+9562 2724 lineto
+9565.5 2714 lineto
+closepath stroke
+grestore
+% C4->C3
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 9228 2628 moveto
+9045 2617 8814 2603 8608 2592 curveto
+8586 2590 8234 2586 8217 2574 curveto
+8174 2543 8217 2495 8176 2464 curveto
+8147 2443 7829 2424 7523 2410 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 7523 2406.5 moveto
+7513 2410 lineto
+7523 2413.5 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 7523 2406.5 moveto
+7513 2410 lineto
+7523 2413.5 lineto
+closepath stroke
+0.000 0.000 0.000 edgecolor
+14 /Times-Roman set_font
+8225.5 2514.9 moveto 1257 (\(makePlace, move.stop, move.LeftWheel.stop, move.RightWheel.stop, BT.orderFw, BT.Master.orderFw, BT.Slave.obeyFw, BT.Slave.Move.forward, BT.Slave.Move.LeftWheel.forward, BT.Slave.Move.RightWheel.forward\)) alignedtext
+grestore
+% C4->C4
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 10520 2652 moveto
+10532 2651 10538 2650 10538 2649 curveto
+10538 2648 10535 2648 10530 2647 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 10530.3 2643.51 moveto
+10520 2646 lineto
+10529.6 2650.48 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 10530.3 2643.51 moveto
+10520 2646 lineto
+10529.6 2650.48 lineto
+closepath stroke
+grestore
+% C4->C6
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 9725 2628 moveto
+9842 2613 10005 2594 10160 2575 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 10160.4 2578.48 moveto
+10170 2574 lineto
+10159.7 2571.51 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 10160.4 2578.48 moveto
+10170 2574 lineto
+10159.7 2571.51 lineto
+closepath stroke
+grestore
+% C4->C7
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 9552 2628 moveto
+9546 2591 9539 2515 9572 2464 curveto
+9580 2450 9595 2459 9603 2446 curveto
+9606 2439 9608 2433 9603 2428 curveto
+9569 2393 8773 2444 8740 2410 curveto
+8726 2396 8727 2381 8740 2368 curveto
+8761 2343 8853 2356 8886 2350 curveto
+8919 2343 8938 2356 8960 2330 curveto
+8982 2303 8985 2279 8965 2252 curveto
+8939 2217 8853 2189 8767 2168 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 8767.49 2164.53 moveto
+8757 2166 lineto
+8766.12 2171.39 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 8767.49 2164.53 moveto
+8757 2166 lineto
+8766.12 2171.39 lineto
+closepath stroke
+0.000 0.000 0.000 edgecolor
+14 /Times-Roman set_font
+8741.5 2384.9 moveto 1257 (\(makePlace, move.stop, move.LeftWheel.stop, move.RightWheel.stop, BT.orderFw, BT.Master.orderFw, BT.Slave.obeyFw, BT.Slave.Move.forward, BT.Slave.Move.LeftWheel.forward, BT.Slave.Move.RightWheel.forward\)) alignedtext
+grestore
+% C15
+gsave
+[ /Rect [ 8838 318 10766 462 ]
+  /Border [ 0 0 0 ]
+  /Action << /Subtype /URI /URI (#) >>
+  /Subtype /Link
+/ANN pdfmark
+1 setlinewidth
+0.000 0.000 0.000 nodecolor
+newpath 10766 462 moveto
+8838 462 lineto
+8838 318 lineto
+10766 318 lineto
+closepath stroke
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+8847.5 445.4 moveto 1909 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=1,move.moving=2,light.value=0,sonic.d=false,changed_square=false,found_way=true,last_val=2,obstacle_mode=true,turned_to_right=true) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+8847.5 428.4 moveto 1909 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=1,move.moving=2,light.value=0,sonic.d=false,changed_square=false,found_way=true,last_val=1,obstacle_mode=true,turned_to_right=true) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+8847.5 411.4 moveto 1909 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=1,move.moving=2,light.value=1,sonic.d=false,changed_square=false,found_way=true,last_val=2,obstacle_mode=true,turned_to_right=true) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+8845.5 394.4 moveto 1913 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=-1,move.moving=3,light.value=0,sonic.d=false,changed_square=false,found_way=true,last_val=2,obstacle_mode=true,turned_to_right=true) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+8845.5 377.4 moveto 1913 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=-1,move.moving=3,light.value=1,sonic.d=false,changed_square=false,found_way=true,last_val=2,obstacle_mode=true,turned_to_right=true) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+8847.5 360.4 moveto 1909 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=1,move.moving=2,light.value=2,sonic.d=false,changed_square=false,found_way=true,last_val=1,obstacle_mode=true,turned_to_right=true) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+8845.5 343.4 moveto 1913 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=-1,move.moving=3,light.value=0,sonic.d=false,changed_square=false,found_way=true,last_val=1,obstacle_mode=true,turned_to_right=true) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+8845.5 326.4 moveto 1913 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=-1,move.moving=3,light.value=2,sonic.d=false,changed_square=false,found_way=true,last_val=1,obstacle_mode=true,turned_to_right=true) alignedtext
+grestore
+% C4->C15
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 10324 2628 moveto
+10885 2612 11560 2589 11625 2574 curveto
+11965 2494 12159 2345 12159 1995 curveto
+12159 1995 12159 1995 12159 554 curveto
+12159 523 12130 525 12101 516 curveto
+11962 471 10934 470 10789 462 curveto
+10785 462 10780 462 10776 461 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 10776 457.5 moveto
+10766 461 lineto
+10776 464.5 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 10776 457.5 moveto
+10766 461 lineto
+10776 464.5 lineto
+closepath stroke
+0.000 0.000 0.000 edgecolor
+14 /Times-Roman set_font
+12158.5 1642.9 moveto 1255 (\(halfTurn, move.halfturn, move.LeftWheel.forward, move.RightWheel.back, BT.orderStop, BT.Master.orderStop, BT.Slave.obeyStop, BT.Slave.Move.stop, BT.Slave.Move.LeftWheel.stop, BT.Slave.Move.RightWheel.stop\)) alignedtext
+grestore
+% C18
+gsave
+[ /Rect [ 8838 0 10766 280 ]
+  /Border [ 0 0 0 ]
+  /Action << /Subtype /URI /URI (#) >>
+  /Subtype /Link
+/ANN pdfmark
+1 setlinewidth
+0.000 0.000 0.000 nodecolor
+newpath 10766 280 moveto
+8838 280 lineto
+8838 0 lineto
+10766 0 lineto
+closepath stroke
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+8850 263.4 moveto 1904 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=1,move.moving=2,light.value=0,sonic.d=true,changed_square=false,found_way=true,last_val=2,obstacle_mode=true,turned_to_right=true) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+8847.5 246.4 moveto 1909 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=-1,move.moving=3,light.value=0,sonic.d=true,changed_square=false,found_way=true,last_val=2,obstacle_mode=true,turned_to_right=true) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+8847.5 229.4 moveto 1909 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=-1,move.moving=3,light.value=1,sonic.d=true,changed_square=false,found_way=true,last_val=2,obstacle_mode=true,turned_to_right=true) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+8845.5 212.4 moveto 1913 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=-1,move.moving=3,light.value=2,sonic.d=false,changed_square=false,found_way=true,last_val=2,obstacle_mode=true,turned_to_right=true) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+8847.5 195.4 moveto 1909 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=-1,move.moving=3,light.value=2,sonic.d=true,changed_square=false,found_way=true,last_val=2,obstacle_mode=true,turned_to_right=true) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+8850 178.4 moveto 1904 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=1,move.moving=2,light.value=0,sonic.d=true,changed_square=false,found_way=true,last_val=1,obstacle_mode=true,turned_to_right=true) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+8847.5 161.4 moveto 1909 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=1,move.moving=2,light.value=1,sonic.d=false,changed_square=false,found_way=true,last_val=1,obstacle_mode=true,turned_to_right=true) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+8850 144.4 moveto 1904 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=1,move.moving=2,light.value=1,sonic.d=true,changed_square=false,found_way=true,last_val=1,obstacle_mode=true,turned_to_right=true) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+8847.5 127.4 moveto 1909 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=-1,move.moving=3,light.value=0,sonic.d=true,changed_square=false,found_way=true,last_val=1,obstacle_mode=true,turned_to_right=true) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+8845.5 110.4 moveto 1913 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=-1,move.moving=3,light.value=1,sonic.d=false,changed_square=false,found_way=true,last_val=1,obstacle_mode=true,turned_to_right=true) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+8847.5 93.4 moveto 1909 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=-1,move.moving=3,light.value=1,sonic.d=true,changed_square=false,found_way=true,last_val=1,obstacle_mode=true,turned_to_right=true) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+8847.5 76.4 moveto 1909 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=-1,move.moving=3,light.value=2,sonic.d=true,changed_square=false,found_way=true,last_val=1,obstacle_mode=true,turned_to_right=true) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+8850 59.4 moveto 1904 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=1,move.moving=2,light.value=2,sonic.d=true,changed_square=false,found_way=true,last_val=1,obstacle_mode=true,turned_to_right=true) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+8850 42.4 moveto 1904 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=1,move.moving=2,light.value=1,sonic.d=true,changed_square=false,found_way=true,last_val=2,obstacle_mode=true,turned_to_right=true) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+8847.5 25.4 moveto 1909 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=1,move.moving=2,light.value=2,sonic.d=false,changed_square=false,found_way=true,last_val=2,obstacle_mode=true,turned_to_right=true) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+8850 8.4 moveto 1904 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=1,move.moving=2,light.value=2,sonic.d=true,changed_square=false,found_way=true,last_val=2,obstacle_mode=true,turned_to_right=true) alignedtext
+grestore
+% C4->C18
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 9561 2628 moveto
+9572 2582 9600 2476 9612 2464 curveto
+9653 2422 9681 2438 9739 2428 curveto
+9795 2418 9946 2436 9997 2410 curveto
+10017 2398 10008 2378 10030 2368 curveto
+10120 2321 10878 2403 10949 2330 curveto
+10963 2314 11021 2113 10924 1986 curveto
+10598 1561 10295 1754 9786 1592 curveto
+9760 1583 9744 1595 9728 1574 curveto
+9696 1534 9705 1171 9697 1122 curveto
+9682 1031 9717 979 9645 922 curveto
+9610 894 8882 934 8851 904 curveto
+8664 722 8662 518 8829 318 curveto
+8838 306 8851 296 8867 285 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 8868.96 287.92 moveto
+8876 280 lineto
+8865.56 281.8 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 8868.96 287.92 moveto
+8876 280 lineto
+8865.56 281.8 lineto
+closepath stroke
+0.000 0.000 0.000 edgecolor
+14 /Times-Roman set_font
+9727.5 1560.9 moveto 1255 (\(halfTurn, move.halfturn, move.LeftWheel.forward, move.RightWheel.back, BT.orderStop, BT.Master.orderStop, BT.Slave.obeyStop, BT.Slave.Move.stop, BT.Slave.Move.LeftWheel.stop, BT.Slave.Move.RightWheel.stop\)) alignedtext
+grestore
+% C4->C22
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 9574 2628 moveto
+9580 2623 9586 2616 9591 2610 curveto
+9631 2552 9594 2504 9652 2464 curveto
+9682 2442 10010 2423 10336 2410 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 10336 2413.5 moveto
+10346 2410 lineto
+10336 2406.5 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 10336 2413.5 moveto
+10346 2410 lineto
+10336 2406.5 lineto
+closepath stroke
+grestore
+% C4->C23
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 9543 2628 moveto
+9540 2622 9537 2616 9534 2610 curveto
+9503 2546 9531 2503 9474 2464 curveto
+9448 2446 8376 2451 8346 2446 curveto
+8217 2423 8073 2367 7996 2334 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 7997.56 2330.86 moveto
+7987 2330 lineto
+7994.72 2337.26 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 7997.56 2330.86 moveto
+7987 2330 lineto
+7994.72 2337.26 lineto
+closepath stroke
+0.000 0.000 0.000 edgecolor
+14 /Times-Roman set_font
+8462.5 2432.9 moveto 1257 (\(makePlace, move.stop, move.LeftWheel.stop, move.RightWheel.stop, BT.orderFw, BT.Master.orderFw, BT.Slave.obeyFw, BT.Slave.Move.forward, BT.Slave.Move.LeftWheel.forward, BT.Slave.Move.RightWheel.forward\)) alignedtext
+grestore
+% C5
+gsave
+[ /Rect [ 9917 2820 11855 2896 ]
+  /Border [ 0 0 0 ]
+  /Action << /Subtype /URI /URI (#) >>
+  /Subtype /Link
+/ANN pdfmark
+1 setlinewidth
+0.000 0.000 0.000 nodecolor
+newpath 11855 2896 moveto
+9917 2896 lineto
+9917 2820 lineto
+11855 2820 lineto
+closepath stroke
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+9925 2879.4 moveto 1922 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=-1,move.RightWheel.move=1,move.moving=1,light.value=2,sonic.d=false,changed_square=false,found_way=false,last_val=1,obstacle_mode=true,turned_to_right=false) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+9925 2862.4 moveto 1922 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=-1,move.RightWheel.move=1,move.moving=1,light.value=1,sonic.d=false,changed_square=false,found_way=false,last_val=2,obstacle_mode=true,turned_to_right=false) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+9927 2845.4 moveto 1918 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=-1,move.RightWheel.move=1,move.moving=1,light.value=2,sonic.d=true,changed_square=false,found_way=false,last_val=1,obstacle_mode=true,turned_to_right=false) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+9927 2828.4 moveto 1918 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=-1,move.RightWheel.move=1,move.moving=1,light.value=1,sonic.d=true,changed_square=false,found_way=false,last_val=2,obstacle_mode=true,turned_to_right=false) alignedtext
+grestore
+% C5->C2
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 9917 2837 moveto
+9588 2827 9299 2815 9286 2802 curveto
+9280 2796 9280 2790 9286 2784 curveto
+9290 2778 9311 2772 9339 2768 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 9339.88 2771.39 moveto
+9349 2766 lineto
+9338.51 2764.53 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 9339.88 2771.39 moveto
+9349 2766 lineto
+9338.51 2764.53 lineto
+closepath stroke
+0.000 0.000 0.000 edgecolor
+14 /Times-Roman set_font
+9287.5 2788.9 moveto 1283 (\(foundLeft, move.forward, move.LeftWheel.forward, move.RightWheel.forward, BT.orderStop, BT.Master.orderStop, BT.Slave.obeyStop, BT.Slave.Move.stop, BT.Slave.Move.LeftWheel.stop, BT.Slave.Move.RightWheel.stop\)) alignedtext
+grestore
+% C5->C4
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 10728 2820 moveto
+10684 2806 10637 2788 10597 2766 curveto
+10571 2751 10573 2734 10547 2724 curveto
+10496 2703 10245 2685 10010 2671 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 10010.3 2667.51 moveto
+10000 2670 lineto
+10009.6 2674.48 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 10010.3 2667.51 moveto
+10000 2670 lineto
+10009.6 2674.48 lineto
+closepath stroke
+0.000 0.000 0.000 edgecolor
+14 /Times-Roman set_font
+10599.5 2740.9 moveto 1283 (\(foundLeft, move.forward, move.LeftWheel.forward, move.RightWheel.forward, BT.orderStop, BT.Master.orderStop, BT.Slave.obeyStop, BT.Slave.Move.stop, BT.Slave.Move.LeftWheel.stop, BT.Slave.Move.RightWheel.stop\)) alignedtext
+grestore
+% C5->C5
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 11855 2862 moveto
+11867 2861 11873 2860 11873 2858 curveto
+11873 2857 11870 2856 11865 2855 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 11865.3 2851.51 moveto
+11855 2854 lineto
+11864.6 2858.48 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 11865.3 2851.51 moveto
+11855 2854 lineto
+11864.6 2858.48 lineto
+closepath stroke
+grestore
+% C5->C6
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 11647 2820 moveto
+11767 2807 11858 2789 11880 2766 curveto
+11892 2752 11893 2737 11880 2724 curveto
+11831 2674 10683 2755 10635 2706 curveto
+10618 2689 10620 2631 10625 2584 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 10628.49 2584.3 moveto
+10626 2574 lineto
+10621.52 2583.6 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 10628.49 2584.3 moveto
+10626 2574 lineto
+10621.52 2583.6 lineto
+closepath stroke
+0.000 0.000 0.000 edgecolor
+14 /Times-Roman set_font
+11752.5 2692.9 moveto 1283 (\(foundLeft, move.forward, move.LeftWheel.forward, move.RightWheel.forward, BT.orderStop, BT.Master.orderStop, BT.Slave.obeyStop, BT.Slave.Move.stop, BT.Slave.Move.LeftWheel.stop, BT.Slave.Move.RightWheel.stop\)) alignedtext
+grestore
+% C8
+gsave
+[ /Rect [ 4438 664 6376 740 ]
+  /Border [ 0 0 0 ]
+  /Action << /Subtype /URI /URI (#) >>
+  /Subtype /Link
+/ANN pdfmark
+1 setlinewidth
+0.000 0.000 0.000 nodecolor
+newpath 6376 740 moveto
+4438 740 lineto
+4438 664 lineto
+6376 664 lineto
+closepath stroke
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+4446 723.4 moveto 1922 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=-1,move.RightWheel.move=1,move.moving=1,light.value=1,sonic.d=false,changed_square=false,found_way=false,last_val=1,obstacle_mode=true,turned_to_right=false) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+4448 706.4 moveto 1918 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=-1,move.RightWheel.move=1,move.moving=1,light.value=1,sonic.d=true,changed_square=false,found_way=false,last_val=1,obstacle_mode=true,turned_to_right=false) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+4446 689.4 moveto 1922 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=-1,move.RightWheel.move=1,move.moving=1,light.value=2,sonic.d=false,changed_square=false,found_way=false,last_val=2,obstacle_mode=true,turned_to_right=false) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+4448 672.4 moveto 1918 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=-1,move.RightWheel.move=1,move.moving=1,light.value=2,sonic.d=true,changed_square=false,found_way=false,last_val=2,obstacle_mode=true,turned_to_right=false) alignedtext
+grestore
+% C5->C8
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 9917 2854 moveto
+8047 2844 4125 2816 4125 2745 curveto
+4125 2745 4125 2745 4125 2601 curveto
+4125 2520 4141 2469 4073 2428 curveto
+3846 2291 3140 2410 2889 2330 curveto
+2630 2246 1929 1837 1929 1565 curveto
+1929 1565 1929 1565 1929 866 curveto
+1929 803 3399 752 4428 725 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 4428 728.5 moveto
+4438 725 lineto
+4428 721.5 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 4428 728.5 moveto
+4438 725 lineto
+4428 721.5 lineto
+closepath stroke
+grestore
+% C5->C22
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 11701 2820 moveto
+11747 2815 11786 2809 11814 2802 curveto
+11880 2786 11966 2736 11918 2688 curveto
+11872 2641 10795 2716 10750 2670 curveto
+10736 2656 10736 2641 10750 2628 curveto
+10765 2612 11520 2613 11542 2610 curveto
+11595 2601 11625 2617 11658 2574 curveto
+11686 2534 11685 2504 11658 2464 curveto
+11633 2428 11609 2437 11567 2428 curveto
+11538 2421 11491 2416 11436 2411 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 11436.3 2407.51 moveto
+11426 2410 lineto
+11435.6 2414.48 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 11436.3 2407.51 moveto
+11426 2410 lineto
+11435.6 2414.48 lineto
+closepath stroke
+0.000 0.000 0.000 edgecolor
+14 /Times-Roman set_font
+11760.5 2644.9 moveto 1283 (\(foundLeft, move.forward, move.LeftWheel.forward, move.RightWheel.forward, BT.orderStop, BT.Master.orderStop, BT.Slave.obeyStop, BT.Slave.Move.stop, BT.Slave.Move.LeftWheel.stop, BT.Slave.Move.RightWheel.stop\)) alignedtext
+grestore
+% C24
+gsave
+[ /Rect [ 8888 828 10826 904 ]
+  /Border [ 0 0 0 ]
+  /Action << /Subtype /URI /URI (#) >>
+  /Subtype /Link
+/ANN pdfmark
+1 setlinewidth
+0.000 0.000 0.000 nodecolor
+newpath 10826 904 moveto
+8888 904 lineto
+8888 828 lineto
+10826 828 lineto
+closepath stroke
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+8896 887.4 moveto 1922 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=-1,move.RightWheel.move=1,move.moving=1,light.value=0,sonic.d=false,changed_square=false,found_way=false,last_val=1,obstacle_mode=true,turned_to_right=false) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+8896 870.4 moveto 1922 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=-1,move.RightWheel.move=1,move.moving=1,light.value=0,sonic.d=false,changed_square=false,found_way=false,last_val=2,obstacle_mode=true,turned_to_right=false) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+8898 853.4 moveto 1918 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=-1,move.RightWheel.move=1,move.moving=1,light.value=0,sonic.d=true,changed_square=false,found_way=false,last_val=1,obstacle_mode=true,turned_to_right=false) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+8898 836.4 moveto 1918 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=-1,move.RightWheel.move=1,move.moving=1,light.value=0,sonic.d=true,changed_square=false,found_way=false,last_val=2,obstacle_mode=true,turned_to_right=false) alignedtext
+grestore
+% C5->C24
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 11702 2820 moveto
+11773 2815 11832 2808 11873 2802 curveto
+11969 2786 12085 2842 12085 2745 curveto
+12085 2745 12085 2745 12085 2437 curveto
+12085 2345 11979 2352 11979 2261 curveto
+11979 2261 11979 2261 11979 1013 curveto
+11979 950 11393 913 10836 891 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 10836 887.5 moveto
+10826 891 lineto
+10836 894.5 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 10836 887.5 moveto
+10826 891 lineto
+10836 894.5 lineto
+closepath stroke
+grestore
+% C6->C2
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 10624 2574 moveto
+10612 2608 10590 2648 10556 2670 curveto
+10517 2695 10333 2711 10134 2723 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 10133.6 2719.52 moveto
+10124 2724 lineto
+10134.3 2726.49 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 10133.6 2719.52 moveto
+10124 2724 lineto
+10134.3 2726.49 lineto
+closepath stroke
+grestore
+% C6->C4
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 10184 2574 moveto
+10030 2592 9867 2612 9746 2627 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 9745.6 2623.52 moveto
+9736 2628 lineto
+9746.3 2630.49 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 9745.6 2623.52 moveto
+9736 2628 lineto
+9746.3 2630.49 lineto
+closepath stroke
+grestore
+% C6->C6
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 11598 2524 moveto
+11610 2523 11616 2521 11616 2519 curveto
+11616 2518 11613 2516 11608 2515 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 11608.3 2511.51 moveto
+11598 2514 lineto
+11607.6 2518.48 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 11608.3 2511.51 moveto
+11598 2514 lineto
+11607.6 2518.48 lineto
+closepath stroke
+grestore
+% C6->C22
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 10783 2464 moveto
+10832 2446 10886 2428 10927 2413 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 10928.43 2416.23 moveto
+10937 2410 lineto
+10926.42 2409.52 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 10928.43 2416.23 moveto
+10937 2410 lineto
+10926.42 2409.52 lineto
+closepath stroke
+grestore
+% C7->C1
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 8757 2166 moveto
+8885 2198 9011 2252 8938 2330 curveto
+8890 2380 8382 2359 8313 2368 curveto
+8118 2391 8073 2418 7880 2446 curveto
+7792 2459 7697 2470 7607 2480 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 7606.6 2476.52 moveto
+7597 2481 lineto
+7607.3 2483.49 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 7606.6 2476.52 moveto
+7597 2481 lineto
+7607.3 2483.49 lineto
+closepath stroke
+grestore
+% C7->C3
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 8216 2166 moveto
+8029 2187 7792 2213 7580 2234 curveto
+7513 2240 7029 2244 6978 2288 curveto
+6958 2304 6952 2334 6948 2358 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 6944.51 2357.7 moveto
+6947 2368 lineto
+6951.48 2358.4 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 6944.51 2357.7 moveto
+6947 2368 lineto
+6951.48 2358.4 lineto
+closepath stroke
+grestore
+% C7->C7
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 9504 2137 moveto
+9516 2134 9522 2131 9522 2128 curveto
+9522 2126 9519 2124 9514 2122 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 9514.58 2118.52 moveto
+9504 2119 lineto
+9512.57 2125.23 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 9514.58 2118.52 moveto
+9504 2119 lineto
+9512.57 2125.23 lineto
+closepath stroke
+grestore
+% C7->C23
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 8421 2166 moveto
+8303 2202 8127 2255 8024 2285 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 8022.57 2281.77 moveto
+8014 2288 lineto
+8024.58 2288.48 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 8022.57 2281.77 moveto
+8014 2288 lineto
+8024.58 2288.48 lineto
+closepath stroke
+grestore
+% C8->C5
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 4438 725 moveto
+3414 753 1947 803 1947 866 curveto
+1947 1565 1947 1565 1947 1565 curveto
+1947 1837 2648 2246 2907 2330 curveto
+3158 2410 3864 2291 4091 2428 curveto
+4159 2469 4143 2520 4143 2601 curveto
+4143 2745 4143 2745 4143 2745 curveto
+4143 2816 8037 2844 9907 2854 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 9907 2857.5 moveto
+9917 2854 lineto
+9907 2850.5 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 9907 2857.5 moveto
+9917 2854 lineto
+9907 2850.5 lineto
+closepath stroke
+grestore
+% C8->C8
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 6376 708 moveto
+6388 706 6394 704 6394 702 curveto
+6394 701 6391 699 6386 698 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 6386.49 694.53 moveto
+6376 696 lineto
+6385.12 701.39 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 6386.49 694.53 moveto
+6376 696 lineto
+6385.12 701.39 lineto
+closepath stroke
+grestore
+% C8->C24
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 6376 738 moveto
+7118 765 8135 803 8878 830 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 8878 833.5 moveto
+8888 830 lineto
+8878 826.5 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 8878 833.5 moveto
+8888 830 lineto
+8878 826.5 lineto
+closepath stroke
+grestore
+% C9->C9
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 3751 3316 moveto
+3763 3315 3769 3313 3769 3311 curveto
+3769 3310 3766 3308 3761 3307 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 3761.3 3303.51 moveto
+3751 3306 lineto
+3760.6 3310.48 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 3761.3 3303.51 moveto
+3751 3306 lineto
+3760.6 3310.48 lineto
+closepath stroke
+grestore
+% C9->C10
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 3751 3276 moveto
+3937 3265 4080 3252 4099 3238 curveto
+4112 3227 4118 3210 4121 3195 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 4124.47 3195.49 moveto
+4123 3185 lineto
+4117.61 3194.12 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 4124.47 3195.49 moveto
+4123 3185 lineto
+4117.61 3194.12 lineto
+closepath stroke
+grestore
+% C9->C11
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 1994 3256 moveto
+1699 3230 1433 3197 1433 3164 curveto
+1433 3164 1433 3164 1433 2349 curveto
+1433 2310 1460 2302 1495 2288 curveto
+1556 2262 2616 2309 2667 2270 curveto
+2857 2126 2686 1952 2822 1756 curveto
+2835 1737 2852 1721 2872 1707 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 2873.38 1710.27 moveto
+2880 1702 lineto
+2869.66 1704.33 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 2873.38 1710.27 moveto
+2880 1702 lineto
+2869.66 1704.33 lineto
+closepath stroke
+0.000 0.000 0.000 edgecolor
+14 /Times-Roman set_font
+1433.5 2644.9 moveto 1329 (\(waitingSlaveOneSquare, move.stop, move.LeftWheel.stop, move.RightWheel.stop, BT.orderFw, BT.Master.orderFw, BT.Slave.obeyFw, BT.Slave.Move.forward, BT.Slave.Move.LeftWheel.forward, BT.Slave.Move.RightWheel.forward\)) alignedtext
+grestore
+% C9->C12
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 2757 3256 moveto
+2742 3207 2732 3137 2767 3090 curveto
+2819 3018 2869 3044 2957 3030 curveto
+3060 3012 3519 2998 3970 2988 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 3970 2991.5 moveto
+3980 2988 lineto
+3970 2984.5 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 3970 2991.5 moveto
+3980 2988 lineto
+3970 2984.5 lineto
+closepath stroke
+grestore
+% C9->C13
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 1817 3303 moveto
+1069 3293 149 3274 68 3238 curveto
+28 3219 0 3208 0 3164 curveto
+0 3164 0 3164 0 2601 curveto
+0 2356 2023 1973 2023 1729 curveto
+2023 1729 2023 1729 2023 1330 curveto
+2023 879 2571 1195 3014 1122 curveto
+3143 1100 3176 1096 3307 1086 curveto
+3314 1085 3884 1065 4428 1046 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 4428 1049.5 moveto
+4438 1046 lineto
+4428 1042.5 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 4428 1049.5 moveto
+4438 1046 lineto
+4428 1042.5 lineto
+closepath stroke
+0.000 0.000 0.000 edgecolor
+14 /Times-Roman set_font
+157.5 2514.9 moveto 1329 (\(waitingSlaveOneSquare, move.stop, move.LeftWheel.stop, move.RightWheel.stop, BT.orderFw, BT.Master.orderFw, BT.Slave.obeyFw, BT.Slave.Move.forward, BT.Slave.Move.LeftWheel.forward, BT.Slave.Move.RightWheel.forward\)) alignedtext
+grestore
+% C9->C17
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 2777 3256 moveto
+2779 3204 2793 3128 2844 3090 curveto
+2853 3083 2897 3078 2965 3073 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 2965.4 3076.48 moveto
+2975 3072 lineto
+2964.7 3069.51 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 2965.4 3076.48 moveto
+2975 3072 lineto
+2964.7 3069.51 lineto
+closepath stroke
+grestore
+% C9->C19
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 1817 3298 moveto
+1259 3288 614 3270 334 3238 curveto
+205 3223 51 3294 51 3164 curveto
+51 3164 51 3164 51 2649 curveto
+51 2623 30 2610 47 2592 curveto
+98 2541 1279 2620 1333 2574 curveto
+1444 2479 1281 2344 1393 2252 curveto
+1442 2211 1484 2272 1534 2234 curveto
+1616 2172 1542 2083 1623 2022 curveto
+1771 1909 1907 2100 2037 1968 curveto
+2155 1848 1962 1711 2080 1592 curveto
+2157 1514 2638 1449 3111 1404 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 3111.4 1407.48 moveto
+3121 1403 lineto
+3110.7 1400.51 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 3111.4 1407.48 moveto
+3121 1403 lineto
+3110.7 1400.51 lineto
+closepath stroke
+0.000 0.000 0.000 edgecolor
+14 /Times-Roman set_font
+47.5 2596.9 moveto 1329 (\(waitingSlaveOneSquare, move.stop, move.LeftWheel.stop, move.RightWheel.stop, BT.orderFw, BT.Master.orderFw, BT.Slave.obeyFw, BT.Slave.Move.forward, BT.Slave.Move.LeftWheel.forward, BT.Slave.Move.RightWheel.forward\)) alignedtext
+grestore
+% C10->C9
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 4138 3185 moveto
+4138 3202 4133 3225 4117 3238 curveto
+4097 3253 3951 3266 3761 3276 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 3760.6 3272.52 moveto
+3751 3277 lineto
+3761.3 3279.49 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 3760.6 3272.52 moveto
+3751 3277 lineto
+3761.3 3279.49 lineto
+closepath stroke
+grestore
+% C10->C9
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 3335 3185 moveto
+3092 3194 2881 3206 2856 3220 curveto
+2847 3224 2849 3230 2844 3238 curveto
+2841 3241 2839 3245 2836 3248 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 2833.2 3245.9 moveto
+2830 3256 lineto
+2838.8 3250.1 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 2833.2 3245.9 moveto
+2830 3256 lineto
+2838.8 3250.1 lineto
+closepath stroke
+0.000 0.000 0.000 edgecolor
+14 /Times-Roman set_font
+2855.5 3224.9 moveto 1241 (\(go, move.forward, move.LeftWheel.forward, move.RightWheel.forward, BT.orderStop, BT.Master.orderStop, BT.Slave.obeyStop, BT.Slave.Move.stop, BT.Slave.Move.LeftWheel.stop, BT.Slave.Move.RightWheel.stop\)) alignedtext
+grestore
+% C10->C10
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 5095 3166 moveto
+5107 3165 5113 3165 5113 3164 curveto
+5113 3163 5110 3163 5105 3163 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 5105.3 3159.51 moveto
+5095 3162 lineto
+5104.6 3166.48 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 5105.3 3159.51 moveto
+5095 3162 lineto
+5104.6 3166.48 lineto
+closepath stroke
+grestore
+% C10->C10
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 5095 3170 moveto
+5118 3168 5131 3166 5131 3164 curveto
+5131 3162 5122 3161 5105 3159 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 5105.3 3155.51 moveto
+5095 3158 lineto
+5104.6 3162.48 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 5105.3 3155.51 moveto
+5095 3158 lineto
+5104.6 3162.48 lineto
+closepath stroke
+0.000 0.000 0.000 edgecolor
+14 /Times-Roman set_font
+5130.5 3159.9 moveto 1241 (\(go, move.forward, move.LeftWheel.forward, move.RightWheel.forward, BT.orderStop, BT.Master.orderStop, BT.Slave.obeyStop, BT.Slave.Move.stop, BT.Slave.Move.LeftWheel.stop, BT.Slave.Move.RightWheel.stop\)) alignedtext
+grestore
+% C10->C12
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 5095 3150 moveto
+5612 3138 6152 3114 6193 3072 curveto
+6205 3058 6205 3043 6193 3030 curveto
+6177 3013 6036 3001 5855 2992 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 5855 2988.5 moveto
+5845 2992 lineto
+5855 2995.5 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 5855 2988.5 moveto
+5845 2992 lineto
+5855 2995.5 lineto
+closepath stroke
+grestore
+% C10->C12
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 4484 3143 moveto
+4683 3128 4897 3104 4930 3072 curveto
+4948 3054 4950 3025 4949 3002 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 4952.48 3001.6 moveto
+4948 2992 lineto
+4945.51 3002.3 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 4952.48 3001.6 moveto
+4948 2992 lineto
+4945.51 3002.3 lineto
+closepath stroke
+0.000 0.000 0.000 edgecolor
+14 /Times-Roman set_font
+4946.5 3046.9 moveto 1241 (\(go, move.forward, move.LeftWheel.forward, move.RightWheel.forward, BT.orderStop, BT.Master.orderStop, BT.Slave.obeyStop, BT.Slave.Move.stop, BT.Slave.Move.LeftWheel.stop, BT.Slave.Move.RightWheel.stop\)) alignedtext
+grestore
+% C10->C17
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 4123 3143 moveto
+4119 3126 4113 3103 4099 3090 curveto
+4093 3084 4082 3079 4069 3075 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 4069.58 3071.52 moveto
+4059 3072 lineto
+4067.57 3078.23 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 4069.58 3071.52 moveto
+4059 3072 lineto
+4067.57 3078.23 lineto
+closepath stroke
+grestore
+% C10->C17
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 3175 3143 moveto
+3006 3135 2878 3124 2863 3108 curveto
+2857 3102 2857 3095 2863 3090 curveto
+2869 3083 2962 3077 3091 3072 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 3091 3075.5 moveto
+3101 3072 lineto
+3091 3068.5 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 3091 3075.5 moveto
+3101 3072 lineto
+3091 3068.5 lineto
+closepath stroke
+0.000 0.000 0.000 edgecolor
+14 /Times-Roman set_font
+2862.5 3094.9 moveto 1241 (\(go, move.forward, move.LeftWheel.forward, move.RightWheel.forward, BT.orderStop, BT.Master.orderStop, BT.Slave.obeyStop, BT.Slave.Move.stop, BT.Slave.Move.LeftWheel.stop, BT.Slave.Move.RightWheel.stop\)) alignedtext
+grestore
+% C11->C9
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 2879 1702 moveto
+2862 1708 2845 1714 2829 1720 curveto
+2283 1922 2189 2093 1623 2234 curveto
+1577 2245 1446 2221 1409 2252 curveto
+1390 2268 1395 2282 1395 2309 curveto
+1395 2519 1395 2519 1395 2519 curveto
+1395 2559 1412 2583 1381 2610 curveto
+1331 2654 222 2585 170 2628 curveto
+146 2647 156 2665 156 2697 curveto
+156 3164 156 3164 156 3164 curveto
+156 3250 1059 3286 1807 3300 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 1807 3303.5 moveto
+1817 3300 lineto
+1807 3296.5 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 1807 3303.5 moveto
+1817 3300 lineto
+1807 3296.5 lineto
+closepath stroke
+0.000 0.000 0.000 edgecolor
+14 /Times-Roman set_font
+170.5 2644.9 moveto 1241 (\(go, move.forward, move.LeftWheel.forward, move.RightWheel.forward, BT.orderStop, BT.Master.orderStop, BT.Slave.obeyStop, BT.Slave.Move.stop, BT.Slave.Move.LeftWheel.stop, BT.Slave.Move.RightWheel.stop\)) alignedtext
+grestore
+% C11->C10
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 2914 1702 moveto
+2893 1716 2873 1734 2860 1756 curveto
+2834 1796 2836 1813 2836 1862 curveto
+2836 2261 2836 2261 2836 2261 curveto
+2836 2367 2745 2364 2710 2464 curveto
+2690 2518 2696 2534 2693 2592 curveto
+2692 2599 2688 2603 2693 2610 curveto
+2713 2636 2741 2605 2766 2628 curveto
+2790 2649 2790 2664 2790 2697 curveto
+2790 3051 2790 3051 2790 3051 curveto
+2790 3088 2818 3093 2853 3108 curveto
+2891 3124 3013 3135 3167 3142 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 3166.7 3145.49 moveto
+3177 3143 lineto
+3167.4 3138.52 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 3166.7 3145.49 moveto
+3177 3143 lineto
+3167.4 3138.52 lineto
+closepath stroke
+0.000 0.000 0.000 edgecolor
+14 /Times-Roman set_font
+2692.5 2596.9 moveto 1241 (\(go, move.forward, move.LeftWheel.forward, move.RightWheel.forward, BT.orderStop, BT.Master.orderStop, BT.Slave.obeyStop, BT.Slave.Move.stop, BT.Slave.Move.LeftWheel.stop, BT.Slave.Move.RightWheel.stop\)) alignedtext
+grestore
+% C11->C11
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 4027 1652 moveto
+4039 1651 4045 1649 4045 1647 curveto
+4045 1646 4042 1644 4037 1643 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 4037.3 1639.51 moveto
+4027 1642 lineto
+4036.6 1646.48 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 4037.3 1639.51 moveto
+4027 1642 lineto
+4036.6 1646.48 lineto
+closepath stroke
+grestore
+% C11->C12
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 2994 1702 moveto
+2954 1742 2912 1799 2912 1862 curveto
+2912 2349 2912 2349 2912 2349 curveto
+2912 2467 3319 2433 3438 2446 curveto
+3468 2449 3963 2444 3987 2464 curveto
+4067 2532 3993 2862 4073 2932 curveto
+4081 2939 4127 2944 4196 2949 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 4195.7 2952.49 moveto
+4206 2950 lineto
+4196.4 2945.52 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 4195.7 2952.49 moveto
+4206 2950 lineto
+4196.4 2945.52 lineto
+closepath stroke
+0.000 0.000 0.000 edgecolor
+14 /Times-Roman set_font
+3671.5 2432.9 moveto 1241 (\(go, move.forward, move.LeftWheel.forward, move.RightWheel.forward, BT.orderStop, BT.Master.orderStop, BT.Slave.obeyStop, BT.Slave.Move.stop, BT.Slave.Move.LeftWheel.stop, BT.Slave.Move.RightWheel.stop\)) alignedtext
+grestore
+% C11->C13
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 3038 1592 moveto
+3009 1484 2973 1244 3103 1122 curveto
+3116 1110 3806 1078 4428 1052 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 4428 1055.5 moveto
+4438 1052 lineto
+4428 1048.5 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 4428 1055.5 moveto
+4438 1052 lineto
+4428 1048.5 lineto
+closepath stroke
+grestore
+% C11->C17
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 2952 1702 moveto
+2931 1717 2912 1735 2898 1756 curveto
+2870 1795 2874 1813 2874 1862 curveto
+2874 2261 2874 2261 2874 2261 curveto
+2874 2411 2637 2466 2742 2574 curveto
+2788 2621 3886 2550 3938 2592 curveto
+3958 2608 3952 2622 3952 2649 curveto
+3952 2971 3952 2971 3952 2971 curveto
+3952 2987 3949 3005 3946 3020 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 3942.53 3019.51 moveto
+3944 3030 lineto
+3949.39 3020.88 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 3942.53 3019.51 moveto
+3944 3030 lineto
+3949.39 3020.88 lineto
+closepath stroke
+0.000 0.000 0.000 edgecolor
+14 /Times-Roman set_font
+2743.5 2514.9 moveto 1241 (\(go, move.forward, move.LeftWheel.forward, move.RightWheel.forward, BT.orderStop, BT.Master.orderStop, BT.Slave.obeyStop, BT.Slave.Move.stop, BT.Slave.Move.LeftWheel.stop, BT.Slave.Move.RightWheel.stop\)) alignedtext
+grestore
+% C11->C19
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 3232 1592 moveto
+3280 1577 3337 1560 3397 1541 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 3398.43 1544.23 moveto
+3407 1538 lineto
+3396.42 1537.52 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 3398.43 1544.23 moveto
+3407 1538 lineto
+3396.42 1537.52 lineto
+closepath stroke
+grestore
+% C12->C5
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 5908 2953 moveto
+7009 2932 8800 2898 9907 2877 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 9907 2880.5 moveto
+9917 2877 lineto
+9907 2873.5 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 9907 2880.5 moveto
+9917 2877 lineto
+9907 2873.5 lineto
+closepath stroke
+0.000 0.000 0.000 edgecolor
+14 /Times-Roman set_font
+7913.5 2918.9 moveto 1235 (\(wallFront, move.left, move.LeftWheel.back, move.RightWheel.forward, BT.orderStop, BT.Master.orderStop, BT.Slave.obeyStop, BT.Slave.Move.stop, BT.Slave.Move.LeftWheel.stop, BT.Slave.Move.RightWheel.stop\)) alignedtext
+grestore
+% C12->C8
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 4253 2950 moveto
+4146 2945 4066 2939 4054 2932 curveto
+3857 2823 4192 2587 4035 2428 curveto
+4022 2415 2811 2410 2794 2410 curveto
+2653 2404 1616 2433 1518 2330 curveto
+1506 2316 1516 2306 1518 2288 curveto
+1608 1621 1401 1261 1915 828 curveto
+2011 747 3428 718 4428 708 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 4428 711.5 moveto
+4438 708 lineto
+4428 704.5 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 4428 711.5 moveto
+4438 708 lineto
+4428 704.5 lineto
+closepath stroke
+0.000 0.000 0.000 edgecolor
+14 /Times-Roman set_font
+1524.5 2256.9 moveto 1235 (\(wallFront, move.left, move.LeftWheel.back, move.RightWheel.forward, BT.orderStop, BT.Master.orderStop, BT.Slave.obeyStop, BT.Slave.Move.stop, BT.Slave.Move.LeftWheel.stop, BT.Slave.Move.RightWheel.stop\)) alignedtext
+grestore
+% C12->C9
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 3980 2988 moveto
+3533 2998 3078 3012 2975 3030 curveto
+2887 3044 2837 3018 2785 3090 curveto
+2752 3134 2759 3198 2769 3246 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 2765.61 3246.88 moveto
+2771 3256 lineto
+2772.47 3245.51 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 2765.61 3246.88 moveto
+2771 3256 lineto
+2772.47 3245.51 lineto
+closepath stroke
+grestore
+% C12->C10
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 5862 2992 moveto
+6049 3001 6195 3013 6211 3030 curveto
+6223 3043 6223 3058 6211 3072 curveto
+6170 3115 5626 3138 5105 3150 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 5105 3146.5 moveto
+5095 3150 lineto
+5105 3153.5 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 5105 3146.5 moveto
+5095 3150 lineto
+5105 3153.5 lineto
+closepath stroke
+grestore
+% C12->C12
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 5908 2974 moveto
+5920 2973 5926 2972 5926 2971 curveto
+5926 2970 5923 2970 5918 2969 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 5918.3 2965.51 moveto
+5908 2968 lineto
+5917.6 2972.48 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 5918.3 2965.51 moveto
+5908 2968 lineto
+5917.6 2972.48 lineto
+closepath stroke
+grestore
+% C12->C17
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 4685 2992 moveto
+4542 3004 4365 3017 4219 3029 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 4218.6 3025.52 moveto
+4209 3030 lineto
+4219.3 3032.49 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 4218.6 3025.52 moveto
+4209 3030 lineto
+4219.3 3032.49 lineto
+closepath stroke
+grestore
+% C12->C24
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 4509 2950 moveto
+4297 2934 4087 2906 4087 2858 curveto
+4087 2858 4087 2858 4087 2601 curveto
+4087 2523 4118 2479 4060 2428 curveto
+4034 2405 2873 2422 2842 2410 curveto
+2801 2394 2808 2362 2768 2348 curveto
+2735 2336 1556 2354 1531 2330 curveto
+1518 2316 1518 2301 1531 2288 curveto
+1576 2243 2620 2314 2664 2270 curveto
+2670 2264 2670 2257 2664 2252 curveto
+2613 2198 2049 2287 1997 2234 curveto
+1985 2221 1956 1139 2009 1086 curveto
+2029 1066 4000 1071 4028 1068 curveto
+4211 1042 4245 982 4429 958 curveto
+4572 938 9506 964 9649 940 curveto
+9686 934 9726 921 9761 908 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 9762.28 911.26 moveto
+9770 904 lineto
+9759.44 904.86 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 9762.28 911.26 moveto
+9770 904 lineto
+9759.44 904.86 lineto
+closepath stroke
+0.000 0.000 0.000 edgecolor
+14 /Times-Roman set_font
+1540.5 2304.9 moveto 1235 (\(wallFront, move.left, move.LeftWheel.back, move.RightWheel.forward, BT.orderStop, BT.Master.orderStop, BT.Slave.obeyStop, BT.Slave.Move.stop, BT.Slave.Move.LeftWheel.stop, BT.Slave.Move.RightWheel.stop\)) alignedtext
+grestore
+% C13->C5
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 6376 1022 moveto
+7615 1036 9609 1066 9669 1122 curveto
+9742 1190 9650 1492 9710 1574 curveto
+9972 1934 10199 1864 10634 1968 curveto
+10663 1974 10882 1964 10903 1986 curveto
+10978 2067 10940 2147 10871 2234 curveto
+10804 2317 10654 2252 10730 2330 curveto
+10827 2430 11884 2275 11990 2368 curveto
+12085 2451 12052 2625 12033 2670 curveto
+11990 2763 11944 2777 11845 2802 curveto
+11819 2808 11786 2814 11746 2819 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 11745.6 2815.52 moveto
+11736 2820 lineto
+11746.3 2822.49 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 11745.6 2815.52 moveto
+11736 2820 lineto
+11746.3 2822.49 lineto
+closepath stroke
+0.000 0.000 0.000 edgecolor
+14 /Times-Roman set_font
+10731.5 2304.9 moveto 1235 (\(wallFront, move.left, move.LeftWheel.back, move.RightWheel.forward, BT.orderStop, BT.Master.orderStop, BT.Slave.obeyStop, BT.Slave.Move.stop, BT.Slave.Move.LeftWheel.stop, BT.Slave.Move.RightWheel.stop\)) alignedtext
+grestore
+% C13->C8
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 5407 958 moveto
+5407 899 5407 806 5407 750 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 5410.5 750 moveto
+5407 740 lineto
+5403.5 750 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 5410.5 750 moveto
+5407 740 lineto
+5403.5 750 lineto
+closepath stroke
+0.000 0.000 0.000 edgecolor
+14 /Times-Roman set_font
+5406.5 861.9 moveto 1235 (\(wallFront, move.left, move.LeftWheel.back, move.RightWheel.forward, BT.orderStop, BT.Master.orderStop, BT.Slave.obeyStop, BT.Slave.Move.stop, BT.Slave.Move.LeftWheel.stop, BT.Slave.Move.RightWheel.stop\)) alignedtext
+grestore
+% C13->C11
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 4438 1052 moveto
+3820 1078 3134 1110 3121 1122 curveto
+2995 1240 3025 1470 3046 1582 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 3042.61 1582.88 moveto
+3048 1592 lineto
+3049.47 1581.51 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 3042.61 1582.88 moveto
+3048 1592 lineto
+3049.47 1581.51 lineto
+closepath stroke
+grestore
+% C13->C13
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 6376 1018 moveto
+6388 1017 6394 1015 6394 1013 curveto
+6394 1012 6391 1010 6386 1009 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 6386.3 1005.51 moveto
+6376 1008 lineto
+6385.6 1012.48 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 6386.3 1005.51 moveto
+6376 1008 lineto
+6385.6 1012.48 lineto
+closepath stroke
+grestore
+% C13->C19
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 5183 1068 moveto
+5121 1083 5048 1101 4971 1120 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 4970.12 1116.61 moveto
+4961 1122 lineto
+4971.49 1123.47 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 4970.12 1116.61 moveto
+4961 1122 lineto
+4971.49 1123.47 lineto
+closepath stroke
+grestore
+% C13->C24
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 6376 1008 moveto
+7599 1001 9564 982 9723 940 curveto
+9747 933 9771 921 9793 909 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 9794.96 911.92 moveto
+9802 904 lineto
+9791.56 905.8 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 9794.96 911.92 moveto
+9802 904 lineto
+9791.56 905.8 lineto
+closepath stroke
+0.000 0.000 0.000 edgecolor
+14 /Times-Roman set_font
+9763.5 926.9 moveto 1235 (\(wallFront, move.left, move.LeftWheel.back, move.RightWheel.forward, BT.orderStop, BT.Master.orderStop, BT.Slave.obeyStop, BT.Slave.Move.stop, BT.Slave.Move.LeftWheel.stop, BT.Slave.Move.RightWheel.stop\)) alignedtext
+grestore
+% C14->C11
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 5353 1848 moveto
+4444 1830 3204 1796 3109 1738 curveto
+3098 1731 3089 1721 3082 1711 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 3084.92 1709.04 moveto
+3077 1702 lineto
+3078.8 1712.44 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 3084.92 1709.04 moveto
+3077 1702 lineto
+3078.8 1712.44 lineto
+closepath stroke
+0.000 0.000 0.000 edgecolor
+14 /Times-Roman set_font
+3109 1724.9 moveto 1284 (\(slaveTurnRight, move.stop, move.LeftWheel.stop, move.RightWheel.stop, BT.orderRight, BT.Master.orderRight, BT.Slave.obeyRight, BT.Slave.Move.right, BT.Slave.Move.LeftWheel.forward, BT.Slave.Move.RightWheel.back\)) alignedtext
+grestore
+% C14->C13
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 6200 1756 moveto
+6009 1577 5627 1219 5474 1075 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 5475.83 1071.95 moveto
+5466 1068 lineto
+5471.22 1077.22 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 5475.83 1071.95 moveto
+5466 1068 lineto
+5471.22 1077.22 lineto
+closepath stroke
+0.000 0.000 0.000 edgecolor
+14 /Times-Roman set_font
+6003 1560.9 moveto 1284 (\(slaveTurnRight, move.stop, move.LeftWheel.stop, move.RightWheel.stop, BT.orderRight, BT.Master.orderRight, BT.Slave.obeyRight, BT.Slave.Move.right, BT.Slave.Move.LeftWheel.forward, BT.Slave.Move.RightWheel.back\)) alignedtext
+grestore
+% C14->C14
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 7273 1871 moveto
+7285 1868 7291 1865 7291 1862 curveto
+7291 1860 7288 1858 7283 1856 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 7283.58 1852.52 moveto
+7273 1853 lineto
+7281.57 1859.23 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 7283.58 1852.52 moveto
+7273 1853 lineto
+7281.57 1859.23 lineto
+closepath stroke
+grestore
+% C14->C19
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 5353 1806 moveto
+4954 1777 4563 1740 4478 1702 curveto
+4399 1665 4326 1607 4265 1545 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 4267.55 1542.6 moveto
+4258 1538 lineto
+4262.6 1547.55 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 4267.55 1542.6 moveto
+4258 1538 lineto
+4262.6 1547.55 lineto
+closepath stroke
+0.000 0.000 0.000 edgecolor
+14 /Times-Roman set_font
+4484 1642.9 moveto 1284 (\(slaveTurnRight, move.stop, move.LeftWheel.stop, move.RightWheel.stop, BT.orderRight, BT.Master.orderRight, BT.Slave.obeyRight, BT.Slave.Move.right, BT.Slave.Move.LeftWheel.forward, BT.Slave.Move.RightWheel.back\)) alignedtext
+grestore
+% C14->C20
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 6427 1968 moveto
+6443 1984 6458 1999 6474 2015 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 6471.45 2017.4 moveto
+6481 2022 lineto
+6476.4 2012.45 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 6471.45 2017.4 moveto
+6481 2022 lineto
+6476.4 2012.45 lineto
+closepath stroke
+grestore
+% C15->C14
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 8899 462 moveto
+8880 468 8863 474 8849 480 curveto
+8590 598 8500 661 8388 922 curveto
+8371 959 8387 972 8387 1013 curveto
+8387 1565 8387 1565 8387 1565 curveto
+8387 1626 7823 1704 7283 1765 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 7282.6 1761.52 moveto
+7273 1766 lineto
+7283.3 1768.49 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 7282.6 1761.52 moveto
+7273 1766 lineto
+7283.3 1768.49 lineto
+closepath stroke
+0.000 0.000 0.000 edgecolor
+14 /Times-Roman set_font
+8387.5 926.9 moveto 1257 (\(makePlace, move.stop, move.LeftWheel.stop, move.RightWheel.stop, BT.orderFw, BT.Master.orderFw, BT.Slave.obeyFw, BT.Slave.Move.forward, BT.Slave.Move.LeftWheel.forward, BT.Slave.Move.RightWheel.forward\)) alignedtext
+grestore
+% C15->C15
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 10766 396 moveto
+10778 394 10784 392 10784 390 curveto
+10784 389 10781 387 10776 386 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 10776.49 382.53 moveto
+10766 384 lineto
+10775.12 389.39 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 10776.49 382.53 moveto
+10766 384 lineto
+10775.12 389.39 lineto
+closepath stroke
+grestore
+% C15->C18
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 9796 318 moveto
+9796 309 9795 300 9795 290 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 9798.5 290 moveto
+9795 280 lineto
+9791.5 290 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 9798.5 290 moveto
+9795 280 lineto
+9791.5 290 lineto
+closepath stroke
+grestore
+% C15->C20
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 8838 409 moveto
+7527 438 5250 506 4429 630 curveto
+3858 716 3524 501 3172 958 curveto
+3142 996 3137 1032 3172 1068 curveto
+3246 1144 4994 1073 5090 1122 curveto
+5325 1241 5369 1341 5455 1592 curveto
+5470 1638 5480 1660 5455 1702 curveto
+5425 1748 5373 1709 5344 1756 curveto
+5294 1835 5281 1897 5344 1968 curveto
+5351 1977 5490 1997 5672 2021 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 5671.7 2024.49 moveto
+5682 2022 lineto
+5672.4 2017.52 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 5671.7 2024.49 moveto
+5682 2022 lineto
+5672.4 2017.52 lineto
+closepath stroke
+0.000 0.000 0.000 edgecolor
+14 /Times-Roman set_font
+3173.5 1008.9 moveto 1257 (\(makePlace, move.stop, move.LeftWheel.stop, move.RightWheel.stop, BT.orderFw, BT.Master.orderFw, BT.Slave.obeyFw, BT.Slave.Move.forward, BT.Slave.Move.LeftWheel.forward, BT.Slave.Move.RightWheel.forward\)) alignedtext
+grestore
+% C16
+gsave
+[ /Rect [ 10140 516 12074 592 ]
+  /Border [ 0 0 0 ]
+  /Action << /Subtype /URI /URI (#) >>
+  /Subtype /Link
+/ANN pdfmark
+1 setlinewidth
+0.000 0.000 0.000 nodecolor
+newpath 12074 592 moveto
+10140 592 lineto
+10140 516 lineto
+12074 516 lineto
+closepath stroke
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+10148 575.4 moveto 1918 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=-1,move.moving=3,light.value=2,sonic.d=false,changed_square=false,found_way=false,last_val=1,obstacle_mode=true,turned_to_right=true) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+10148 558.4 moveto 1918 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=-1,move.moving=3,light.value=1,sonic.d=false,changed_square=false,found_way=false,last_val=2,obstacle_mode=true,turned_to_right=true) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+10150.5 541.4 moveto 1913 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=-1,move.moving=3,light.value=2,sonic.d=true,changed_square=false,found_way=false,last_val=1,obstacle_mode=true,turned_to_right=true) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+10150.5 524.4 moveto 1913 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=-1,move.moving=3,light.value=1,sonic.d=true,changed_square=false,found_way=false,last_val=2,obstacle_mode=true,turned_to_right=true) alignedtext
+grestore
+% C16->C15
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 10140 535 moveto
+9958 526 9819 515 9803 498 curveto
+9796 491 9792 482 9790 472 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 9793.39 471.12 moveto
+9788 462 lineto
+9786.53 472.49 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 9793.39 471.12 moveto
+9788 462 lineto
+9786.53 472.49 lineto
+closepath stroke
+0.000 0.000 0.000 edgecolor
+14 /Times-Roman set_font
+9803 484.9 moveto 1290 (\(foundRight, move.forward, move.LeftWheel.forward, move.RightWheel.forward, BT.orderStop, BT.Master.orderStop, BT.Slave.obeyStop, BT.Slave.Move.stop, BT.Slave.Move.LeftWheel.stop, BT.Slave.Move.RightWheel.stop\)) alignedtext
+grestore
+% C16->C16
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 12074 558 moveto
+12086 557 12092 555 12092 554 curveto
+12092 553 12089 552 12084 551 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 12084.3 547.51 moveto
+12074 550 lineto
+12083.6 554.48 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 12084.3 547.51 moveto
+12074 550 lineto
+12083.6 554.48 lineto
+closepath stroke
+grestore
+% C16->C18
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 11106 516 moveto
+11104 503 11100 490 11093 480 curveto
+11003 357 10936 368 10793 318 curveto
+10757 305 10721 294 10683 283 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 10683.58 279.52 moveto
+10673 280 lineto
+10681.57 286.23 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 10683.58 279.52 moveto
+10673 280 lineto
+10681.57 286.23 lineto
+closepath stroke
+0.000 0.000 0.000 edgecolor
+14 /Times-Roman set_font
+11078 385.9 moveto 1290 (\(foundRight, move.forward, move.LeftWheel.forward, move.RightWheel.forward, BT.orderStop, BT.Master.orderStop, BT.Slave.obeyStop, BT.Slave.Move.stop, BT.Slave.Move.LeftWheel.stop, BT.Slave.Move.RightWheel.stop\)) alignedtext
+grestore
+% C21
+gsave
+[ /Rect [ 10179 630 12113 774 ]
+  /Border [ 0 0 0 ]
+  /Action << /Subtype /URI /URI (#) >>
+  /Subtype /Link
+/ANN pdfmark
+1 setlinewidth
+0.000 0.000 0.000 nodecolor
+newpath 12113 774 moveto
+10179 774 lineto
+10179 630 lineto
+12113 630 lineto
+closepath stroke
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+10187 757.4 moveto 1918 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=-1,move.moving=3,light.value=0,sonic.d=false,changed_square=false,found_way=false,last_val=1,obstacle_mode=true,turned_to_right=true) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+10189.5 740.4 moveto 1913 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=-1,move.moving=3,light.value=0,sonic.d=true,changed_square=false,found_way=false,last_val=1,obstacle_mode=true,turned_to_right=true) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+10187 723.4 moveto 1918 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=-1,move.moving=3,light.value=1,sonic.d=false,changed_square=false,found_way=false,last_val=1,obstacle_mode=true,turned_to_right=true) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+10189.5 706.4 moveto 1913 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=-1,move.moving=3,light.value=1,sonic.d=true,changed_square=false,found_way=false,last_val=1,obstacle_mode=true,turned_to_right=true) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+10187 689.4 moveto 1918 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=-1,move.moving=3,light.value=0,sonic.d=false,changed_square=false,found_way=false,last_val=2,obstacle_mode=true,turned_to_right=true) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+10189.5 672.4 moveto 1913 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=-1,move.moving=3,light.value=0,sonic.d=true,changed_square=false,found_way=false,last_val=2,obstacle_mode=true,turned_to_right=true) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+10187 655.4 moveto 1918 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=-1,move.moving=3,light.value=2,sonic.d=false,changed_square=false,found_way=false,last_val=2,obstacle_mode=true,turned_to_right=true) alignedtext
+0.000 0.000 0.000 nodecolor
+14 /Times-Roman set_font
+10189.5 638.4 moveto 1913 (BT.Master.order=0,BT.Slave.Move.LeftWheel.move=0,BT.Slave.Move.RightWheel.move=0,BT.Slave.Move.moving=0,BT.Slave.obey=0,BT.order=0,move.LeftWheel.move=1,move.RightWheel.move=-1,move.moving=3,light.value=2,sonic.d=true,changed_square=false,found_way=false,last_val=2,obstacle_mode=true,turned_to_right=true) alignedtext
+grestore
+% C16->C21
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 11123 592 moveto
+11126 601 11129 611 11132 620 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 11128.61 620.88 moveto
+11134 630 lineto
+11135.47 619.51 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 11128.61 620.88 moveto
+11134 630 lineto
+11135.47 619.51 lineto
+closepath stroke
+grestore
+% C17->C9
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 2989 3072 moveto
+2919 3077 2871 3083 2862 3090 curveto
+2814 3126 2799 3195 2792 3246 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 2788.51 3245.7 moveto
+2791 3256 lineto
+2795.48 3246.4 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 2788.51 3245.7 moveto
+2791 3256 lineto
+2795.48 3246.4 lineto
+closepath stroke
+grestore
+% C17->C10
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 4077 3072 moveto
+4095 3077 4110 3083 4117 3090 curveto
+4128 3101 4134 3118 4136 3133 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 4132.52 3133.4 moveto
+4137 3143 lineto
+4139.49 3132.7 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 4132.52 3133.4 moveto
+4137 3143 lineto
+4139.49 3132.7 lineto
+closepath stroke
+grestore
+% C17->C12
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 4197 3030 moveto
+4340 3018 4517 3005 4663 2993 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 4663.4 2996.48 moveto
+4673 2992 lineto
+4662.7 2989.51 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 4663.4 2996.48 moveto
+4673 2992 lineto
+4662.7 2989.51 lineto
+closepath stroke
+grestore
+% C17->C17
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 4903 3054 moveto
+4915 3053 4921 3052 4921 3051 curveto
+4921 3050 4918 3050 4913 3049 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 4913.3 3045.51 moveto
+4903 3048 lineto
+4912.6 3052.48 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 4913.3 3045.51 moveto
+4903 3048 lineto
+4912.6 3052.48 lineto
+closepath stroke
+grestore
+% C18->C15
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 9809 280 moveto
+9809 289 9808 299 9808 308 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 9804.5 308 moveto
+9808 318 lineto
+9811.5 308 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 9804.5 308 moveto
+9808 318 lineto
+9811.5 308 lineto
+closepath stroke
+grestore
+% C18->C18
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 10766 150 moveto
+10778 147 10784 144 10784 140 curveto
+10784 137 10781 135 10776 133 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 10776.58 129.52 moveto
+10766 130 lineto
+10774.57 136.23 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 10776.58 129.52 moveto
+10766 130 lineto
+10774.57 136.23 lineto
+closepath stroke
+grestore
+% C19->C11
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 3420 1538 moveto
+3360 1557 3303 1574 3253 1589 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 3251.57 1585.77 moveto
+3243 1592 lineto
+3253.58 1592.48 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 3251.57 1585.77 moveto
+3243 1592 lineto
+3253.58 1592.48 lineto
+closepath stroke
+grestore
+% C19->C13
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 4948 1122 moveto
+5025 1103 5098 1086 5163 1070 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 5163.88 1073.39 moveto
+5173 1068 lineto
+5162.51 1066.53 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 5163.88 1073.39 moveto
+5173 1068 lineto
+5162.51 1066.53 lineto
+closepath stroke
+grestore
+% C19->C19
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 5063 1345 moveto
+5075 1341 5081 1336 5081 1330 curveto
+5081 1326 5078 1322 5072 1319 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 5073.56 1315.86 moveto
+5063 1315 lineto
+5070.72 1322.26 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 5073.56 1315.86 moveto
+5063 1315 lineto
+5070.72 1322.26 lineto
+closepath stroke
+grestore
+% C20->C14
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 6468 2022 moveto
+6453 2007 6436 1991 6421 1976 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 6423.22 1973.22 moveto
+6414 1968 lineto
+6417.95 1977.83 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 6423.22 1973.22 moveto
+6414 1968 lineto
+6417.95 1977.83 lineto
+closepath stroke
+grestore
+% C20->C20
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 7544 2137 moveto
+7556 2134 7562 2131 7562 2128 curveto
+7562 2126 7559 2124 7554 2122 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 7554.58 2118.52 moveto
+7544 2119 lineto
+7552.57 2125.23 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 7554.58 2118.52 moveto
+7544 2119 lineto
+7552.57 2125.23 lineto
+closepath stroke
+grestore
+% C21->C16
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 11120 630 moveto
+11118 621 11115 611 11113 602 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 11116.39 601.12 moveto
+11111 592 lineto
+11109.53 602.49 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 11116.39 601.12 moveto
+11111 592 lineto
+11109.53 602.49 lineto
+closepath stroke
+grestore
+% C21->C21
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 12113 708 moveto
+12125 706 12131 704 12131 702 curveto
+12131 701 12128 699 12123 698 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 12123.49 694.53 moveto
+12113 696 lineto
+12122.12 701.39 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 12123.49 694.53 moveto
+12113 696 lineto
+12122.12 701.39 lineto
+closepath stroke
+grestore
+% C22->C2
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 11344 2410 moveto
+11481 2422 11613 2440 11634 2464 curveto
+11666 2500 11667 2538 11634 2574 curveto
+11564 2647 10822 2609 10723 2628 curveto
+10664 2639 10652 2653 10595 2670 curveto
+10528 2688 10511 2696 10443 2706 curveto
+10393 2713 10311 2719 10216 2723 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 10215.6 2719.52 moveto
+10206 2724 lineto
+10216.3 2726.49 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 10215.6 2719.52 moveto
+10206 2724 lineto
+10216.3 2726.49 lineto
+closepath stroke
+grestore
+% C22->C4
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 10361 2410 moveto
+10035 2423 9700 2442 9670 2464 curveto
+9612 2504 9649 2552 9609 2610 curveto
+9606 2613 9603 2617 9600 2621 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 9597.22 2618.78 moveto
+9592 2628 lineto
+9601.83 2624.05 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 9597.22 2618.78 moveto
+9592 2628 lineto
+9601.83 2624.05 lineto
+closepath stroke
+grestore
+% C22->C6
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 10947 2410 moveto
+10909 2424 10857 2443 10806 2461 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 10804.57 2457.77 moveto
+10796 2464 lineto
+10806.58 2464.48 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 10804.57 2457.77 moveto
+10796 2464 lineto
+10806.58 2464.48 lineto
+closepath stroke
+grestore
+% C22->C15
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 11001 2368 moveto
+11001 2352 11001 2329 11001 2309 curveto
+11001 2309 11001 2309 11001 1647 curveto
+11001 1606 11017 1583 10987 1556 curveto
+10964 1535 10739 1547 10710 1538 curveto
+10581 1498 9799 958 9670 922 curveto
+9627 909 8912 932 8879 904 curveto
+8843 873 8860 847 8860 801 curveto
+8860 801 8860 801 8860 554 curveto
+8860 518 8965 488 9105 464 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 9105.88 467.39 moveto
+9115 462 lineto
+9104.51 460.53 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 9105.88 467.39 moveto
+9115 462 lineto
+9104.51 460.53 lineto
+closepath stroke
+0.000 0.000 0.000 edgecolor
+14 /Times-Roman set_font
+10724.5 1325.9 moveto 1255 (\(halfTurn, move.halfturn, move.LeftWheel.forward, move.RightWheel.back, BT.orderStop, BT.Master.orderStop, BT.Slave.obeyStop, BT.Slave.Move.stop, BT.Slave.Move.LeftWheel.stop, BT.Slave.Move.RightWheel.stop\)) alignedtext
+grestore
+% C22->C18
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 11328 2368 moveto
+11579 2347 11901 2306 12011 2234 curveto
+12104 2172 12054 2087 12145 2022 curveto
+12640 1663 13442 2176 13442 1565 curveto
+13442 1565 13442 1565 13442 390 curveto
+13442 256 11854 189 10776 160 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 10776 156.5 moveto
+10766 160 lineto
+10776 163.5 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 10776 156.5 moveto
+10766 160 lineto
+10776 163.5 lineto
+closepath stroke
+0.000 0.000 0.000 edgecolor
+14 /Times-Roman set_font
+13441.5 1090.9 moveto 1255 (\(halfTurn, move.halfturn, move.LeftWheel.forward, move.RightWheel.back, BT.orderStop, BT.Master.orderStop, BT.Slave.obeyStop, BT.Slave.Move.stop, BT.Slave.Move.LeftWheel.stop, BT.Slave.Move.RightWheel.stop\)) alignedtext
+grestore
+% C22->C22
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 11963 2392 moveto
+11975 2391 11981 2390 11981 2389 curveto
+11981 2388 11978 2388 11973 2387 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 11973.3 2383.51 moveto
+11963 2386 lineto
+11972.6 2390.48 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 11973.3 2383.51 moveto
+11963 2386 lineto
+11972.6 2390.48 lineto
+closepath stroke
+grestore
+% C23->C1
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 7951 2330 moveto
+7956 2353 7957 2389 7937 2410 curveto
+7912 2436 7762 2461 7604 2480 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 7603.6 2476.52 moveto
+7594 2481 lineto
+7604.3 2483.49 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 7603.6 2476.52 moveto
+7594 2481 lineto
+7604.3 2483.49 lineto
+closepath stroke
+grestore
+% C23->C3
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 7682 2330 moveto
+7540 2342 7364 2355 7219 2367 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 7218.6 2363.52 moveto
+7209 2368 lineto
+7219.3 2370.49 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 7218.6 2363.52 moveto
+7209 2368 lineto
+7219.3 2370.49 lineto
+closepath stroke
+grestore
+% C23->C7
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 8005 2288 moveto
+8100 2259 8275 2206 8400 2169 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 8401.43 2172.23 moveto
+8410 2166 lineto
+8399.42 2165.52 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 8401.43 2172.23 moveto
+8410 2166 lineto
+8399.42 2165.52 lineto
+closepath stroke
+grestore
+% C23->C14
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 8902 2290 moveto
+9222 2278 9505 2261 9531 2234 curveto
+9563 2199 9563 2056 9531 2022 curveto
+9485 1974 8423 1971 8358 1968 curveto
+8007 1950 7623 1931 7283 1914 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 7283.3 1910.51 moveto
+7273 1913 lineto
+7282.6 1917.48 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 7283.3 1910.51 moveto
+7273 1913 lineto
+7282.6 1917.48 lineto
+closepath stroke
+0.000 0.000 0.000 edgecolor
+14 /Times-Roman set_font
+9554.5 2123.9 moveto 1255 (\(halfTurn, move.halfturn, move.LeftWheel.forward, move.RightWheel.back, BT.orderStop, BT.Master.orderStop, BT.Slave.obeyStop, BT.Slave.Move.stop, BT.Slave.Move.LeftWheel.stop, BT.Slave.Move.RightWheel.stop\)) alignedtext
+grestore
+% C23->C20
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 6978 2288 moveto
+6896 2283 6834 2277 6810 2270 curveto
+6785 2262 6760 2252 6737 2239 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 6738.44 2235.8 moveto
+6728 2234 lineto
+6735.04 2241.92 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 6738.44 2235.8 moveto
+6728 2234 lineto
+6735.04 2241.92 lineto
+closepath stroke
+0.000 0.000 0.000 edgecolor
+14 /Times-Roman set_font
+6816.5 2256.9 moveto 1255 (\(halfTurn, move.halfturn, move.LeftWheel.forward, move.RightWheel.back, BT.orderStop, BT.Master.orderStop, BT.Slave.obeyStop, BT.Slave.Move.stop, BT.Slave.Move.LeftWheel.stop, BT.Slave.Move.RightWheel.stop\)) alignedtext
+grestore
+% C23->C23
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 8902 2312 moveto
+8914 2311 8920 2310 8920 2309 curveto
+8920 2308 8917 2308 8912 2307 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 8912.3 2303.51 moveto
+8902 2306 lineto
+8911.6 2310.48 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 8912.3 2303.51 moveto
+8902 2306 lineto
+8911.6 2310.48 lineto
+closepath stroke
+grestore
+% C24->C5
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 10826 891 moveto
+11393 912 11997 950 11997 1013 curveto
+11997 2261 11997 2261 11997 2261 curveto
+11997 2352 12103 2345 12103 2437 curveto
+12103 2745 12103 2745 12103 2745 curveto
+12103 2842 11987 2786 11891 2802 curveto
+11852 2808 11797 2814 11730 2819 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 11729.6 2815.52 moveto
+11720 2820 lineto
+11730.3 2822.49 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 11729.6 2815.52 moveto
+11720 2820 lineto
+11730.3 2822.49 lineto
+closepath stroke
+grestore
+% C24->C8
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 8888 830 moveto
+8147 803 7130 765 6386 738 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 6386 734.5 moveto
+6376 738 lineto
+6386 741.5 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 6386 734.5 moveto
+6376 738 lineto
+6386 741.5 lineto
+closepath stroke
+grestore
+% C24->C16
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 9151 828 moveto
+9030 815 8936 797 8915 774 curveto
+8872 726 8870 676 8915 630 curveto
+8937 606 9556 586 10130 573 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 10130 576.5 moveto
+10140 573 lineto
+10130 569.5 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 10130 576.5 moveto
+10140 573 lineto
+10130 569.5 lineto
+closepath stroke
+0.000 0.000 0.000 edgecolor
+14 /Times-Roman set_font
+8914.5 697.9 moveto 1255 (\(halfTurn, move.halfturn, move.LeftWheel.forward, move.RightWheel.back, BT.orderStop, BT.Master.orderStop, BT.Slave.obeyStop, BT.Slave.Move.stop, BT.Slave.Move.LeftWheel.stop, BT.Slave.Move.RightWheel.stop\)) alignedtext
+grestore
+% C24->C21
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 10156 828 moveto
+10280 812 10428 794 10572 775 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 10572.4 778.48 moveto
+10582 774 lineto
+10571.7 771.51 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 10572.4 778.48 moveto
+10582 774 lineto
+10571.7 771.51 lineto
+closepath stroke
+0.000 0.000 0.000 edgecolor
+14 /Times-Roman set_font
+10422.5 796.9 moveto 1255 (\(halfTurn, move.halfturn, move.LeftWheel.forward, move.RightWheel.back, BT.orderStop, BT.Master.orderStop, BT.Slave.obeyStop, BT.Slave.Move.stop, BT.Slave.Move.LeftWheel.stop, BT.Slave.Move.RightWheel.stop\)) alignedtext
+grestore
+% C24->C24
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 10826 870 moveto
+10838 869 10844 868 10844 866 curveto
+10844 865 10841 864 10836 863 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 10836.3 859.51 moveto
+10826 862 lineto
+10835.6 866.48 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 10836.3 859.51 moveto
+10826 862 lineto
+10835.6 866.48 lineto
+closepath stroke
+grestore
+% C25->C0
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 11782 3329 moveto
+11287 3353 10414 3395 9910 3420 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 9910 3416.5 moveto
+9900 3420 lineto
+9910 3423.5 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 9910 3416.5 moveto
+9900 3420 lineto
+9910 3423.5 lineto
+closepath stroke
+grestore
+% C25->C5
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 11562 3293 moveto
+11232 3275 10886 3238 10886 3164 curveto
+10886 3164 10886 3164 10886 2971 curveto
+10886 2950 10886 2926 10886 2906 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 10889.5 2906 moveto
+10886 2896 lineto
+10882.5 2906 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 10889.5 2906 moveto
+10886 2896 lineto
+10882.5 2906 lineto
+closepath stroke
+0.000 0.000 0.000 edgecolor
+14 /Times-Roman set_font
+10885.5 3046.9 moveto 1235 (\(wallFront, move.left, move.LeftWheel.back, move.RightWheel.forward, BT.orderStop, BT.Master.orderStop, BT.Slave.obeyStop, BT.Slave.Move.stop, BT.Slave.Move.LeftWheel.stop, BT.Slave.Move.RightWheel.stop\)) alignedtext
+grestore
+% C25->C8
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 12149 3293 moveto
+12149 3265 12149 3210 12149 3164 curveto
+12149 3164 12149 3164 12149 2349 curveto
+12149 2188 12083 2155 12083 1995 curveto
+12083 1995 12083 1995 12083 866 curveto
+12083 775 11772 800 11682 792 curveto
+11526 777 9032 776 8877 774 curveto
+8036 763 7081 742 6386 726 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 6386 722.5 moveto
+6376 726 lineto
+6386 729.5 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 6386 722.5 moveto
+6376 726 lineto
+6386 729.5 lineto
+closepath stroke
+0.000 0.000 0.000 edgecolor
+14 /Times-Roman set_font
+12148.5 2384.9 moveto 1235 (\(wallFront, move.left, move.LeftWheel.back, move.RightWheel.forward, BT.orderStop, BT.Master.orderStop, BT.Slave.obeyStop, BT.Slave.Move.stop, BT.Slave.Move.LeftWheel.stop, BT.Slave.Move.RightWheel.stop\)) alignedtext
+grestore
+% C25->C24
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 12153 3293 moveto
+12162 3252 12185 3152 12206 3126 curveto
+12589 2633 13812 2825 13388 2368 curveto
+13190 2155 12325 2434 12086 2270 curveto
+12023 2226 12045 2270 12045 1995 curveto
+12045 1995 12045 1995 12045 1013 curveto
+12045 784 11966 944 11573 922 curveto
+11334 908 11077 897 10836 889 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 10836 885.5 moveto
+10826 889 lineto
+10836 892.5 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 10836 885.5 moveto
+10826 889 lineto
+10836 892.5 lineto
+closepath stroke
+0.000 0.000 0.000 edgecolor
+14 /Times-Roman set_font
+13447.5 2432.9 moveto 1235 (\(wallFront, move.left, move.LeftWheel.back, move.RightWheel.forward, BT.orderStop, BT.Master.orderStop, BT.Slave.obeyStop, BT.Slave.Move.stop, BT.Slave.Move.LeftWheel.stop, BT.Slave.Move.RightWheel.stop\)) alignedtext
+grestore
+% C25->C25
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 13116 3316 moveto
+13128 3315 13134 3313 13134 3311 curveto
+13134 3310 13131 3308 13126 3307 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 13126.3 3303.51 moveto
+13116 3306 lineto
+13125.6 3310.48 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 13126.3 3303.51 moveto
+13116 3306 lineto
+13125.6 3310.48 lineto
+closepath stroke
+grestore
+% C25->C26
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 12271 3293 moveto
+12425 3271 12694 3232 12901 3203 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 12901.4 3206.48 moveto
+12911 3202 lineto
+12900.7 3199.51 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 12901.4 3206.48 moveto
+12911 3202 lineto
+12900.7 3199.51 lineto
+closepath stroke
+grestore
+% C26->C0
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 13195 3202 moveto
+13201 3249 13199 3326 13152 3366 curveto
+13101 3408 11558 3426 10500 3433 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 10500 3429.5 moveto
+10490 3433 lineto
+10500 3436.5 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 10500 3429.5 moveto
+10490 3433 lineto
+10500 3436.5 lineto
+closepath stroke
+grestore
+% C26->C25
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 12923 3202 moveto
+12722 3230 12453 3269 12291 3292 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 12290.6 3288.52 moveto
+12281 3293 lineto
+12291.3 3295.49 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 12290.6 3288.52 moveto
+12281 3293 lineto
+12291.3 3295.49 lineto
+closepath stroke
+grestore
+% C26->C26
+gsave
+1 setlinewidth
+0.000 0.000 0.000 edgecolor
+newpath 14153 3168 moveto
+14165 3167 14171 3166 14171 3164 curveto
+14171 3163 14168 3162 14163 3161 curveto
+stroke
+0.000 0.000 0.000 edgecolor
+newpath 14163.3 3157.51 moveto
+14153 3160 lineto
+14162.6 3164.48 lineto
+closepath fill
+1 setlinewidth
+solid
+0.000 0.000 0.000 edgecolor
+newpath 14163.3 3157.51 moveto
+14153 3160 lineto
+14162.6 3164.48 lineto
+closepath stroke
+grestore
+endpage
+showpage
+grestore
+%%PageTrailer
+%%EndPage: 1
+%%Trailer
+%%Pages: 1
+%%BoundingBox: 36 36 14740 3500
+end
+restore
+%%EOF
