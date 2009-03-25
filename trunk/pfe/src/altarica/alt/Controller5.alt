@@ -1,0 +1,10 @@
+/* Cet événement correspond au maitre qui s'arrete, après avoir changé de
+ * case, pour attendre l'esclave. Le maitre s'arrete, ordonne à l'esclave
+ * d'avancer, et on indique via le booléen changed_square que le changement 
+ * de case est fait. */
+
+changed_square & 
+not obstacle_mode & 
+not sonic.d	&
+(last_val = 1 | last_val = 2) |- waitingSlaveOneSquare -> 
+	      		      	 changed_square := false;

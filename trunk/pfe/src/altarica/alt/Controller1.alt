@@ -1,0 +1,21 @@
+node Controller
+  sub
+    light: LightSensor;
+    sonic: UltraSonicSensor;
+    move: MovingMaster;
+    BT: BTMasterSlave;
+  state
+
+    //Dernière case vue
+    /*
+     * 0 : noire
+     * 1 : grise
+     * 2 : blanche
+     */
+    last_val : [0,2];
+
+    //Le maître a-t-il changé de case ?
+    changed_square: bool;
+
+    //Le maître vient-il de rencontrer un obstacle ?
+    obstacle_mode : bool;

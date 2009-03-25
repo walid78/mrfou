@@ -12,5 +12,4 @@ with Controller do
  test(dead,0) > '$NODENAME.res';
  test(notCFC,0) >> '$NODENAME.res';
  test(ERBlackSquare,0) >> '$NODENAME.res';
- test(ERSlave1,0) >> '$NODENAME.res';
 done

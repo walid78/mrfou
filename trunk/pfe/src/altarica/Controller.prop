@@ -1,0 +1,18 @@
+/*
+ * Properties for node : Controller
+ * # state properties : 4
+ *
+ * initial = 6
+ * dead = 0
+ * any_s = 150
+ * ERBlackSquare = 0
+ *
+ * # trans properties : 6
+ *
+ * self = 150
+ * self_epsilon = 150
+ * not_deterministic = 1344
+ * notCFC = 12
+ * any_t = 1344
+ * epsilon = 900
+ */

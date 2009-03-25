@@ -1,0 +1,9 @@
+/* Maintenant le maître a avancé d'une case pour laisser la place à 
+ * l'esclave, ce dernier peut donc avancer.
+ */
+
+obstacle_mode &
+found_way &
+not changed_square &
+not sonic.d &
+light.value != last_val |- makePlace -> changed_square := true;
